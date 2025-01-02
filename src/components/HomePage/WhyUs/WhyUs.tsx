@@ -24,7 +24,7 @@ const WhyUs = () => {
         },
     ]
     return (
-        <div className="bg-gradient-gray py-[64px]">
+        <div className="bg-gradient-gray py-[64px] font-Inter">
             <Container>
                 <div className="flex flex-col gap-9 items-center justify-center">
                     <SectionHeading heading="Why PM Gurukul?" description="Your Pathway to Growth, Learning, and Success." />

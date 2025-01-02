@@ -29,7 +29,8 @@ export default {
         neutral : {
           10 : "#8A9BB1",
           15 : "#CBD5E1",
-          20 : "#FAFAFA"
+          20 : "#FAFAFA",
+          25 : '#F9F9F9'
         }
       },
 
