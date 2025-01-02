@@ -1,6 +1,6 @@
-import Enrollment from "../../components/HomePage/Enrollment/Enrollment";
+// import Enrollment from "../../components/HomePage/Enrollment/Enrollment";
+// import Testimonials from "../../components/HomePage/Testimonials/Testimonials";
 import Hero from "../../components/HomePage/Hero/Hero";
-import Testimonials from "../../components/HomePage/Testimonials/Testimonials";
 
 
 const Home = () => {

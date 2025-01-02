@@ -13,22 +13,27 @@ export default {
       },
 
       colors : {
+        white : "#FFF",
+
         primary : {
           10 : "#051539"
         }, 
         
         secondary : {
           10 : "#FFD614",
-          20 : '#F4E28C'
+          15 : "#EFD881",
+          20 : '#F4E28C',
         },
 
         neutral : {
-          10 : "#8A9BB1"
+          10 : "#8A9BB1",
+          15 : "#CBD5E1"
         }
       },
 
       backgroundImage : {
-       "primary-gradient" : "linear-gradient(180deg, #EFD881 0%, #C59629 100%)"
+       "primary-gradient" : "linear-gradient(180deg, #EFD881 0%, #C59629 100%)",
+       'gradient-dark-blue' : 'linear-gradient(90deg, #122755 0%, #051539 100%)'
       },
 
       boxShadow : {
