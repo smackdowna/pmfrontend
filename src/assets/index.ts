@@ -1,6 +1,6 @@
 import hamburgerMenu from "../assets/Icons/hamburgerMenu.svg";
 import starCircle from "../assets/Icons/star-circle.svg";
-import infinity from "../assets/Icons/Infinity.svg";
+import infinity from "../assets/Icons/infinity.svg";
 import coupon from "../assets/Icons/coupon.svg";
 import avatar from "../assets/Icons/avatar.svg";
 import downArrow from "../assets/Icons/down-arrow.svg";
