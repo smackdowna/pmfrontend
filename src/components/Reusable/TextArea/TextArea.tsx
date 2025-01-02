@@ -8,7 +8,7 @@ interface TextareaProps {
   rows?: number;
   validation?: object;
   error?: FieldError;
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  register?: (name: string, options: object) => void;
 }
 
 const Textarea: React.FC<TextareaProps> = ({
@@ -18,7 +18,7 @@ const Textarea: React.FC<TextareaProps> = ({
   rows = 4,
   validation = {},
   error,
-  onChange,
+  register,
 }) => {
   return (
     <div className="flex flex-col gap-2 font-Inter">
@@ -34,7 +34,7 @@ const Textarea: React.FC<TextareaProps> = ({
         className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border ${
           error ? "border-red-500" : "border-neutral-75"
         }`}
-        onChange={onChange}
+        {...(register ? register(name, validation) : {})}
       ></textarea>
       {error && (
         <span className="text-red-500 text-sm">{error.message}</span>
