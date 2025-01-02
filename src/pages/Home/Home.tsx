@@ -5,6 +5,7 @@ import Hero from "../../components/HomePage/Hero/Hero";
 import SessionAnnouncement from "../../components/HomePage/SessionAnnouncement/SessionAnnouncement";
 import WhyUs from "../../components/HomePage/WhyUs/WhyUs";
 import FAQ from "../../components/Shared/FAQ/FAQ";
+import CustomerSupport from "../../components/Shared/CustomerSupport/CustomerSupport";
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
             <WhyUs/>
             <Testimonials/>
             <FAQ/>
+            <CustomerSupport/>
         </div>
     );
 };

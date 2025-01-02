@@ -24,6 +24,8 @@ export default {
           10 : "#FFD614",
           15 : "#EFD881",
           20 : '#F4E28C',
+          25 : "#ffe466",
+          30 : "#ffffff80"
         },
 
         neutral : {
