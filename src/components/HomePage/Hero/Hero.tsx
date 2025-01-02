@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { ICONS, IMAGES } from "../../../assets";
 import Container from "../../Shared/Container/Container";
+import HeroContainer from "../../Reusable/HeroContainer/HeroContainer";
 
 const Hero = () => {
     return (
-        <div className="bg-primary-10 rounded-bl-[96px] pt-12">
+        <HeroContainer classNames="pt-12">
             <Container>
                 <div className="font-Inter flex flex-col lg:flex-row justify-between">
                     <div className="flex flex-col justify-center">
@@ -34,7 +35,7 @@ const Hero = () => {
                     <img src={IMAGES.heroImg} alt="" className="max-h-[497px]" />
                 </div>
             </Container>
-        </div>
+        </HeroContainer>
     );
 };
 
