@@ -6,19 +6,23 @@ import SessionAnnouncement from "../../components/HomePage/SessionAnnouncement/S
 import WhyUs from "../../components/HomePage/WhyUs/WhyUs";
 import FAQ from "../../components/Shared/FAQ/FAQ";
 import CustomerSupport from "../../components/Shared/CustomerSupport/CustomerSupport";
+import { Helmet } from "react-helmet-async";
 
 
 const Home = () => {
     return (
         <div>
-            <Hero/>
-            <FeaturedOn/>
-            <Enrollment/>
-            <SessionAnnouncement/>
-            <WhyUs/>
-            <Testimonials/>
-            <FAQ/>
-            <CustomerSupport/>
+            <Helmet>
+                <title>PM Guruokul | Achieve Digital Excellence</title>
+            </Helmet>
+            <Hero />
+            <FeaturedOn />
+            <Enrollment />
+            <SessionAnnouncement />
+            <WhyUs />
+            <Testimonials />
+            <FAQ />
+            <CustomerSupport />
         </div>
     );
 };

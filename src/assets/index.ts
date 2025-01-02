@@ -4,6 +4,7 @@ import infinity from "../assets/Icons/Infinity.svg";
 import coupon from "../assets/Icons/coupon.svg";
 import avatar from "../assets/Icons/avatar.svg";
 import downArrow from "../assets/Icons/down-arrow.svg";
+import search from "../assets/Icons/search.svg";
 
 // Importing Images
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
@@ -18,6 +19,7 @@ export const ICONS = {
     coupon,
     avatar,
     downArrow,
+    search,
 };
 
 export const IMAGES = {
