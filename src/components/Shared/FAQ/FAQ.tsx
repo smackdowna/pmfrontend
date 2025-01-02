@@ -1,4 +1,3 @@
-"use client";
 import { useState } from "react";
 import SectionHeading from "../../Reusable/SectionHeading/SectionHeading";
 import { ICONS } from "../../../assets";
