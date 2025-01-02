@@ -1,4 +1,4 @@
-// import Enrollment from "../../components/HomePage/Enrollment/Enrollment";
+import Enrollment from "../../components/HomePage/Enrollment/Enrollment";
 // import Testimonials from "../../components/HomePage/Testimonials/Testimonials";
 import FeaturedOn from "../../components/HomePage/FeaturedOn/FeaturedOn";
 import Hero from "../../components/HomePage/Hero/Hero";
@@ -9,8 +9,8 @@ const Home = () => {
         <div>
             <Hero/>
             <FeaturedOn/>
-            {/* <Enrollment/>
-            <Testimonials/> */}
+            <Enrollment/>
+            {/* <Testimonials/> */}
         </div>
     );
 };

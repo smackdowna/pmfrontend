@@ -39,7 +39,7 @@ const Navbar = () => {
                             }
                         </div>
 
-                        <button className="bg-primary-gradient px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">Get Started</button>
+                        <button className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">Get Started</button>
                     </div>
                 </div>
             </Container>
