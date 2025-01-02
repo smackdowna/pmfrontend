@@ -50,7 +50,7 @@ const Testimonials = () => {
                 <div className="flex flex-col gap-[64px] items-center justify-center">
                     <SectionHeading heading="What People Are Saying About Us" description="Discover how PM Gurukul has reshaped learning and sparked success stories." />
 
-                    <Marquee speed={30} className="flex items-center" direction="right">
+                    <Marquee speed={30} className="flex items-center" direction="right" pauseOnHover>
                         {testimonials.map((testimonial) => (
                             <TestimonialCard key={testimonial._id} {...testimonial} />
                         ))}
