@@ -33,13 +33,14 @@ export default {
         }
       },
 
-      backgroundImage : {
-       "primary-gradient" : "linear-gradient(180deg, #EFD881 0%, #FFB200 100%)",
-       "primary-gradient-light" : "linear-gradient(180deg, #EFD881 0%, #C59629 100%)",
-       
-       'gradient-dark-blue' : 'linear-gradient(90deg, #122755 0%, #051539 100%)',
-       'gradient-light-rose' : 'linear-gradient(0deg, rgba(255, 162, 57, 0.10) 0%, rgba(255, 162, 57, 0.10) 100%), #FFF'
+      backgroundImage: {
+        "primary-gradient": "linear-gradient(180deg, #EFD881 0%, #FFB200 100%)",
+        "primary-gradient-light": "linear-gradient(180deg, #EFD881 0%, #C59629 100%)",
+        "gradient-dark-blue": "linear-gradient(90deg, #122755 0%, #051539 100%)",
+        "gradient-light-rose": "linear-gradient(0deg, rgba(255, 162, 57, 0.10) 0%, rgba(255, 162, 57, 0.10) 100%), #FFF",
+        "gradient-gray": "linear-gradient(180deg, rgba(241, 233, 255, 0.80) 0%, #FAF7FF 100%)",
       },
+      
 
       boxShadow : {
         "primary-shadow" : "0px 16px 28px -5px rgba(239, 216, 129, 0.15)",
