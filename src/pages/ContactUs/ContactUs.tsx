@@ -1,8 +1,13 @@
+import ContactUsForm from "../../components/ContactUsPage/ContactUsForm/ContactUsForm";
+import ContactUsHero from "../../components/ContactUsPage/ContactUsHero/ContactUsHero";
+import CustomerSupport from "../../components/Shared/CustomerSupport/CustomerSupport";
 
 const ContactUs = () => {
     return (
         <div className="text-gray-900">
-            Contact us
+            <ContactUsHero />
+            <ContactUsForm />
+            <CustomerSupport />
         </div>
     );
 };
