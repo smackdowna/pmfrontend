@@ -33,7 +33,8 @@ export default {
 
       backgroundImage : {
        "primary-gradient" : "linear-gradient(180deg, #EFD881 0%, #C59629 100%)",
-       'gradient-dark-blue' : 'linear-gradient(90deg, #122755 0%, #051539 100%)'
+       'gradient-dark-blue' : 'linear-gradient(90deg, #122755 0%, #051539 100%)',
+       'gradient-light-rose' : 'linear-gradient(0deg, rgba(255, 162, 57, 0.10) 0%, rgba(255, 162, 57, 0.10) 100%), #FFF'
       },
 
       boxShadow : {
