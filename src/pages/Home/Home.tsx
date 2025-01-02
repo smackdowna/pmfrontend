@@ -4,6 +4,7 @@ import FeaturedOn from "../../components/HomePage/FeaturedOn/FeaturedOn";
 import Hero from "../../components/HomePage/Hero/Hero";
 import SessionAnnouncement from "../../components/HomePage/SessionAnnouncement/SessionAnnouncement";
 import WhyUs from "../../components/HomePage/WhyUs/WhyUs";
+import FAQ from "../../components/Shared/FAQ/FAQ";
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
             <SessionAnnouncement/>
             <WhyUs/>
             <Testimonials/>
+            <FAQ/>
         </div>
     );
 };

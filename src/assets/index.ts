@@ -3,6 +3,7 @@ import starCircle from "../assets/Icons/star-circle.svg";
 import infinity from "../assets/Icons/Infinity.svg";
 import coupon from "../assets/Icons/coupon.svg";
 import avatar from "../assets/Icons/avatar.svg";
+import downArrow from "../assets/Icons/down-arrow.svg";
 
 // Importing Images
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
@@ -16,6 +17,7 @@ export const ICONS = {
     infinity,
     coupon,
     avatar,
+    downArrow,
 };
 
 export const IMAGES = {
