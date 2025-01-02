@@ -6,6 +6,7 @@ import MainLayout from "../layouts/MainLayout/MainLayout";
 import Courses from "../pages/Courses/Courses";
 import AuthLayout from "../layouts/AuthLayout/AuthLayout";
 import Login from "../pages/Login/Login";
+import VerifyPhoneNumber from "../pages/VerifyPhoneNumber/VerifyPhoneNumber";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "verify-phone",
+        element: <VerifyPhoneNumber />,
       },
     ],
   },
