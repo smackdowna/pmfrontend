@@ -7,6 +7,7 @@ import coupon from "../assets/Icons/coupon.svg";
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
 import heroImg from "../assets/Images/hero-img.png";
 import enrollment from "../assets/Images/enrollment.png";
+import sessionAnnouncement from "../assets/Images/session-announcement.png";
 
 export const ICONS = {
     hamburgerMenu,
@@ -19,4 +20,5 @@ export const IMAGES = {
     pmGurukulLogo,
     heroImg,
     enrollment,
+    sessionAnnouncement,
 };
