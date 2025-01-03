@@ -10,6 +10,7 @@ import VerifyPhoneNumber from "../pages/VerifyPhoneNumber/VerifyPhoneNumber";
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import DashboardHome from "../pages/Dashbaord/DashboardHome/DashboardHome";
 import MyCourses from "../pages/Dashbaord/MyCourses/MyCourses";
+import MyProfile from "../pages/Dashbaord/MyProfile/MyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "",
         element: <DashboardHome />,
+      },
+      {
+        path: "my-profile",
+        element: <MyProfile />,
       },
       {
         path: "my-courses",

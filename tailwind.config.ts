@@ -28,7 +28,8 @@ export default {
           15 : "#EFD881",
           20 : '#F4E28C',
           25 : "#ffe466",
-          30 : "#ffffff80"
+          30 : "#ffffff80",
+          35 : "#FFE5A0"
         },
 
         neutral : {
@@ -47,6 +48,9 @@ export default {
           70 : "#fcfcfd",
           75 : "#6e78831f",
           80 : "#F8FAFC",
+          85 : "#64748B",
+          90 : "#0F172A",
+          95 : "#686972"
         }
       },
 

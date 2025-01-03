@@ -1,12 +1,14 @@
 import { Outlet } from "react-router-dom";
+import Sidebar from "../../components/Reusable/Sidebar/Sidebar";
+import HeaderDashboard from "../../components/Reusable/HeaderDashboard/HeaderDashboard";
 
 const DashboardLayout = () => {
     return (
         <div className="flex w-full">
-            <div className="bg-primary-10 w-44 h-screen p-10 text-white">Sidebar</div>
-            <div className="flex flex-col gap-10 w-full">
-                <div className="bg-white p-10 h-10 text-3xl">Dashboard Header</div>
-                <div className="p-10">
+            <Sidebar />
+            <div className="flex flex-col w-full">
+                <HeaderDashboard />
+                <div className="p-6 bg-neutral-80">
                     <Outlet />
                 </div>
             </div>
