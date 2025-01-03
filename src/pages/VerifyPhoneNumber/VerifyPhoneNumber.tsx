@@ -37,7 +37,6 @@ const VerifyPhoneNumber = () => {
                         required: "OTP is required",
                     })}
                 />
-
                 <button
                     type="submit"
                     className="px-6 py-3 bg-primary-10 text-white rounded-xl text-lg font-semibold"
