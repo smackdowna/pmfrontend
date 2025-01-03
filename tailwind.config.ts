@@ -5,6 +5,7 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/Components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.tsx",
   ],
   theme: {
     extend: {
@@ -19,6 +20,7 @@ export default {
           10 : "#051539",
           15 : "#263238",
           20 : '#2E3238',
+          25 : '#303D5C'
         }, 
         
         secondary : {
@@ -43,7 +45,8 @@ export default {
           60 : '#F1F5F9',
           65 : "#6E7883",
           70 : "#fcfcfd",
-          75 : "#6e78831f"
+          75 : "#6e78831f",
+          80 : "#F8FAFC",
         }
       },
 

@@ -4,6 +4,12 @@ import NotFound from "../pages/NotFound/NotFound";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import MainLayout from "../layouts/MainLayout/MainLayout";
 import Courses from "../pages/Courses/Courses";
+import AuthLayout from "../layouts/AuthLayout/AuthLayout";
+import Login from "../pages/Login/Login";
+import VerifyPhoneNumber from "../pages/VerifyPhoneNumber/VerifyPhoneNumber";
+import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
+import DashboardHome from "../pages/Dashbaord/DashboardHome/DashboardHome";
+import MyCourses from "../pages/Dashbaord/MyCourses/MyCourses";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +28,36 @@ export const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+    ],
+  },
+  {
+    path: "auth",
+    element: <AuthLayout />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "verify-phone",
+        element: <VerifyPhoneNumber />,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <DashboardLayout />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: "",
+        element: <DashboardHome />,
+      },
+      {
+        path: "my-courses",
+        element: <MyCourses />,
       },
     ],
   },

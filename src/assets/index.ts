@@ -7,6 +7,7 @@ import downArrow from "../assets/Icons/down-arrow.svg";
 import search from "../assets/Icons/search.svg";
 import user from "../assets/Icons/user.svg";
 import starWhite from "../assets/Icons/star-white.svg";
+import pen from "../assets/Icons/pen.svg";
 
 import design from "../assets/Icons/design.svg";
 import development from "../assets/Icons/html.svg";
@@ -29,6 +30,7 @@ export const ICONS = {
     downArrow,
     search,
     user,
+    pen,
 
     design,
     development,
