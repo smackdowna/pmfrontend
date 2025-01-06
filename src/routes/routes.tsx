@@ -10,6 +10,8 @@ import VerifyPhoneNumber from "../pages/VerifyPhoneNumber/VerifyPhoneNumber";
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import DashboardHome from "../pages/Dashbaord/DashboardHome/DashboardHome";
 import MyCourses from "../pages/Dashbaord/MyCourses/MyCourses";
+import AdminCourses from "../pages/Dashbaord/Admin/Courses/Courses";
+import AddCourse from "../pages/Dashbaord/Admin/AddCourse/AddCourse";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +31,7 @@ export const router = createBrowserRouter([
         path: "/contact-us",
         element: <ContactUs />,
       },
+   
     ],
   },
   {
@@ -61,4 +64,19 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "admin",
+    element: <DashboardLayout />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: "courses",
+        element: <AdminCourses />,
+      },
+      {
+        path:"add-course",
+        element:<AddCourse/>
+      }
+    ]
+  }
 ]);
