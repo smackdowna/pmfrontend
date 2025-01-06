@@ -12,7 +12,7 @@ const Dropdown: React.FC<DropdownProps> = ({ label, options, error, ...rest }) =
     <div className="flex flex-col gap-2 font-Inter">
       <label className=" text-neutral-65">
         {label}
-      <span className="text-primary-10">*</span>
+      <span className="text-red-600">*</span>
       </label>
       <select
         className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border text-neutral-65 ${

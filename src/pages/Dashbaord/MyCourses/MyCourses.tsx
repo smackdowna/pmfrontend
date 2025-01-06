@@ -18,7 +18,7 @@ const MyCourses = () => {
                 _id: "2",
                 title: "React for Beginners",
                 instructor: "John Smith",
-                progress: 50,
+                progress: 90,
                 enrolled: "20th Oct 2024",
                 image: IMAGES.courseImg,
                 category: "Development",
@@ -44,7 +44,7 @@ const MyCourses = () => {
         ];
 
     return (
-        <div className="flex flex-col gap-8 p-6">
+        <div className="flex flex-col gap-8">
             <h1 className="text-2xl font-semibold text-neutral-90">My Courses</h1>
             <div className="flex flex-wrap gap-6">
                 {courses.map(course => (

@@ -11,6 +11,12 @@ import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import DashboardHome from "../pages/Dashbaord/DashboardHome/DashboardHome";
 import MyCourses from "../pages/Dashbaord/MyCourses/MyCourses";
 import MyProfile from "../pages/Dashbaord/MyProfile/MyProfile";
+import ReferralPayouts from "../pages/Dashbaord/ReferralPayouts/ReferralPayouts";
+import KYC from "../pages/Dashbaord/KYC/KYC";
+import KYCFormPage from "../pages/Dashbaord/KYC/KYCFormPage";
+import MyCourseVideo from "../pages/Dashbaord/MyCourses/MyCourseVideo";
+import KYCStatusPage from "../pages/Dashbaord/KYC/KYCStatusPage";
+import CourseVideoLayout from "../layouts/CourseVideoLayout/CourseVideoLayout";
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +70,34 @@ export const router = createBrowserRouter([
         path: "my-courses",
         element: <MyCourses />,
       },
+      {
+        path: "referral",
+        element: <ReferralPayouts />,
+      },
+       
+      {
+        path: "kyc",
+        element: <KYC />,
+      },
+      {
+        path: "kycregister",
+        element: <KYCFormPage />,
+      },
+      {
+        path: "kycstatus",
+        element: <KYCStatusPage />,
+      }
     ],
   },
+  {
+    path: "coursevideo",
+    element: <CourseVideoLayout />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: "my-course-video",
+        element: <MyCourseVideo />,
+      },
+    ]
+  }
 ]);

@@ -18,6 +18,16 @@ import UserCircle from "../assets/Icons/UserCircle.svg";
 import upload from "../assets/Icons/upload.svg";
 import PlayCircle from "../assets/Icons/PlayCircle.svg";
 import Calendar from "../assets/Icons/Calendar.svg";
+import Copy from "../assets/Icons/Copy.svg";
+import InfoCircle from "../assets/Icons/InfoCircle.svg";
+import ShareCircle from "../assets/Icons/ShareCircle.svg";
+import ClockCircle from "../assets/Icons/ClockCircle.svg";
+import Wallet from "../assets/Icons/Wallet.svg";
+import Filter from "../assets/Icons/Filter.svg";
+import SortVertical from "../assets/Icons/SortVertical.svg";
+import Play from "../assets/Icons/Play.svg";
+import AltArrowLeft from "../assets/Icons/AltArrowLeft.svg";
+import AltArrowRight from "../assets/Icons/AltArrowRight.svg";
 
 // Importing Images
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
@@ -25,6 +35,7 @@ import heroImg from "../assets/Images/hero-img.png";
 import enrollment from "../assets/Images/enrollment.png";
 import sessionAnnouncement from "../assets/Images/session-announcement.png";
 import courseImg from "../assets/Images/course-img.png";
+import KycBG from "../assets/Images/KycBG.png";
 
 export const ICONS = {
     hamburgerMenu,
@@ -47,6 +58,16 @@ export const ICONS = {
     upload,
     PlayCircle,
     Calendar,
+    Copy,
+    InfoCircle,
+    ShareCircle,
+    ClockCircle,
+    SortVertical,
+    Wallet,
+    Filter,
+    Play,
+    AltArrowLeft,
+    AltArrowRight,
 };
 
 export const IMAGES = {
@@ -55,4 +76,5 @@ export const IMAGES = {
     enrollment,
     sessionAnnouncement,
     courseImg,
+    KycBG,
 };

@@ -10,7 +10,7 @@ const Courses = () => {
     return (
         <div>
             <Helmet>
-                <title>PM Guruokul | Courses</title>
+                <title>PM Gurukul | Courses</title>
             </Helmet>
             <CourseHero/>
             <AllCourses/>

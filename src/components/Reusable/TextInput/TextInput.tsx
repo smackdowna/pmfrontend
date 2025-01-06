@@ -24,7 +24,7 @@ const TextInput: React.FC<TextInputProps> = ({
     <div className="flex flex-col gap-2 font-Inter">
       <label htmlFor={name} className="text-neutral-65">
         {label}
-        <span className="text-primary-10">*</span>
+        <span className="text-red-500"> *</span>
       </label>
       <input
         id={name}

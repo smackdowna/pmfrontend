@@ -28,8 +28,9 @@ const ContactUsForm = () => {
             >
                 <div className="p-8 flex flex-col gap-8">
                     <TextInput
+                       
                         label="Full Name"
-                        placeholder="eg., John Doe"
+                        placeholder="Enter full name"
                         validation={{
                             required: "Full Name is required",
                             minLength: {
@@ -48,7 +49,7 @@ const ContactUsForm = () => {
                     />
                     <TextInput
                         label="Email"
-                        placeholder="eg., johndoe@site.com"
+                        placeholder="Enter email"
                         type="email"
                         validation={{
                             required: "Email is required",
@@ -64,7 +65,7 @@ const ContactUsForm = () => {
                     />
                     <TextInput
                         label="Mobile Number"
-                        placeholder="eg., +1 234 567 890"
+                        placeholder="Enter mobile number"
                         type="tel"
                         validation={{
                             required: "Mobile Number is required",

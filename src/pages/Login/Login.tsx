@@ -21,7 +21,7 @@ const Login = () => {
                 <h1 className="text-primary-25 text-[28px] leading-8 font-semibold text-center mb-5">Login to get started</h1>
                 <TextInput
                     label="Mobile Number"
-                    placeholder="eg., +1 234 567 890"
+                    placeholder="Enter mobile number"
                     type="tel"
                     validation={{
                         required: "Mobile Number is required",

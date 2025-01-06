@@ -29,7 +29,8 @@ export default {
           20 : '#F4E28C',
           25 : "#ffe466",
           30 : "#ffffff80",
-          35 : "#FFE5A0"
+          35 : "#FFE5A0", 
+          40 : "#6BB870"
         },
 
         neutral : {
@@ -60,6 +61,7 @@ export default {
         "gradient-dark-blue": "linear-gradient(90deg, #122755 0%, #051539 100%)",
         "gradient-light-rose": "linear-gradient(0deg, rgba(255, 162, 57, 0.10) 0%, rgba(255, 162, 57, 0.10) 100%), #FFF",
         "gradient-gray": "linear-gradient(180deg, rgba(241, 233, 255, 0.80) 0%, #FAF7FF 100%)",
+        'custom-gradient': 'linear-gradient(0deg, rgba(0, 0, 0, 0.30) -14.5%, rgba(0, 0, 0, 0.00) 87.5%)',
       },
       
 

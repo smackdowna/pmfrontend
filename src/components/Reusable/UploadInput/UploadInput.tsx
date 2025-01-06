@@ -13,7 +13,7 @@ const UploadInput: React.FC<UploadInputProps> = ({ label, name, accept, error, .
   return (
     <div className="flex flex-col gap-2">
       <label className=" text-neutral-65">
-        {label} <span className="">*</span>
+        {label} <span className="text-red-600"> *</span>
       </label>
       <div className="relative border rounded-lg px-[18px] py-[14px] bg-neutral-70 focus-within:ring-2 focus-within:ring-primary-10 focus-within:outline-none 
         ">
