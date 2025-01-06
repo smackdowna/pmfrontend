@@ -9,6 +9,8 @@ interface TextInputProps {
   error?: FieldError;
   register?: (name: string, options: object) => void;
   validation?: object;
+  value?: string; // Add value for controlled input
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // Add onChange for controlled input
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -19,6 +21,8 @@ const TextInput: React.FC<TextInputProps> = ({
   error,
   register,
   validation = {},
+  value, // Destructure value
+  onChange, // Destructure onChange
 }) => {
   return (
     <div className="flex flex-col gap-2 font-Inter">
@@ -34,11 +38,11 @@ const TextInput: React.FC<TextInputProps> = ({
         className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border ${
           error ? "border-red-500" : "border-neutral-75"
         }`}
+        value={value} // Set value
+        onChange={onChange} // Set onChange
         {...(register ? register(name, validation) : {})}
       />
-      {error && (
-        <span className="text-red-500 text-sm">{error.message}</span>
-      )}
+      {error && <span className="text-red-500 text-sm">{error.message}</span>}
     </div>
   );
 };

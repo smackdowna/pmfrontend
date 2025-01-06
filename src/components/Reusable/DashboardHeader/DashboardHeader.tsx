@@ -1,16 +1,24 @@
-
 interface DashboardHeaderProps {
   pageName: string;
-  pageDesc: string;
+  pageDesc?: string;
 }
 
-const DashboardHeader: React.FC<DashboardHeaderProps> = ({ pageName, pageDesc }) => {
+const DashboardHeader: React.FC<DashboardHeaderProps> = ({
+  pageName,
+  pageDesc,
+}) => {
   return (
     <div className="flex flex-col flex-1 font-Inter text-[#0F172A]">
-        <span className="text-2xl font-semibold leading-7 tracking-tighter">{pageName}</span>
-        <span className="text-base font-normal leading-6 tracking-tight">{pageDesc}</span>
+      <span className="text-2xl font-semibold leading-7 tracking-tighter">
+        {pageName}
+      </span>
+      {pageDesc && (
+        <span className="text-base font-normal leading-6 tracking-tight">
+          {pageDesc}
+        </span>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default DashboardHeader
+export default DashboardHeader;

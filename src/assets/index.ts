@@ -10,6 +10,11 @@ import starWhite from "../assets/Icons/star-white.svg";
 import pen from "../assets/Icons/pen.svg";
 import arrowLeft from "../assets/Icons/Arrow Left.svg"
 import arrowDown from "../assets/Icons/arrow-down.svg"
+import close from "../assets/Icons/x.svg"
+import addCircle from "../assets/Icons/Add Circle.svg"
+import copy from "../assets/Icons/Copy.svg"
+import mp4 from "../assets/Icons/mp4.svg"
+import closeRed from "../assets/Icons/Close Circle.svg"
 
 import design from "../assets/Icons/design.svg";
 import development from "../assets/Icons/html.svg";
@@ -34,6 +39,9 @@ export const ICONS = {
     search,
     user,
     pen,
+    close,
+    mp4,
+    closeRed,
 
     design,
     development,
@@ -42,7 +50,9 @@ export const ICONS = {
     starWhite,
     arrowLeft,
     arrowDown,
-    folderUpload
+    folderUpload,
+    addCircle,
+    copy
 };
 
 export const IMAGES = {

@@ -12,6 +12,7 @@ import DashboardHome from "../pages/Dashbaord/DashboardHome/DashboardHome";
 import MyCourses from "../pages/Dashbaord/MyCourses/MyCourses";
 import AdminCourses from "../pages/Dashbaord/Admin/Courses/Courses";
 import AddCourse from "../pages/Dashbaord/Admin/AddCourse/AddCourse";
+import OrderDetails from "../pages/Dashbaord/Admin/OrderDetails/OrderDetails";
 
 export const router = createBrowserRouter([
   {
@@ -31,7 +32,6 @@ export const router = createBrowserRouter([
         path: "/contact-us",
         element: <ContactUs />,
       },
-   
     ],
   },
   {
@@ -74,9 +74,13 @@ export const router = createBrowserRouter([
         element: <AdminCourses />,
       },
       {
-        path:"add-course",
-        element:<AddCourse/>
-      }
-    ]
-  }
+        path: "add-course",
+        element: <AddCourse />,
+      },
+      {
+        path: "order-details",
+        element: <OrderDetails />,
+      },
+    ],
+  },
 ]);

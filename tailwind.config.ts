@@ -30,6 +30,9 @@ export default {
           25 : "#ffe466",
           30 : "#ffffff80"
         },
+        blue: {
+          10: "#0073DF"
+        },
 
         neutral : {
           10 : "#8A9BB1",
@@ -47,6 +50,16 @@ export default {
           70 : "#fcfcfd",
           75 : "#6e78831f",
           80 : "#F8FAFC",
+        },
+        textGray: {
+          10: "#6B788E",
+          20: "#64748B",
+          30: "#94A3B8",
+          80: "#1E293B"
+        },
+        borderColor: {
+          10: "#DFE2E6",
+          20: "rgba(110, 120, 131, 0.12)"
         }
       },
 
@@ -57,6 +70,7 @@ export default {
         "gradient-light-rose": "linear-gradient(0deg, rgba(255, 162, 57, 0.10) 0%, rgba(255, 162, 57, 0.10) 100%), #FFF",
         "gradient-gray": "linear-gradient(180deg, rgba(241, 233, 255, 0.80) 0%, #FAF7FF 100%)",
       },
+
       
 
       boxShadow : {
