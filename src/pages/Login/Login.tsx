@@ -23,16 +23,14 @@ const Login = () => {
                     label="Mobile Number"
                     placeholder="Enter mobile number"
                     type="tel"
-                    validation={{
+                    
+                    error={errors.mobileNumber}
+                    {...register("mobileNumber", {
                         required: "Mobile Number is required",
                         pattern: {
                             value: /^\+?[1-9]\d{1,14}$/,
                             message: "Enter a valid mobile number",
                         },
-                    }}
-                    error={errors.mobileNumber}
-                    {...register("mobileNumber", {
-                        required: "Mobile Number is required",
                     })}
                 />
 

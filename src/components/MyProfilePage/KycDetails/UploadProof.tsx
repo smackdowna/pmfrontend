@@ -115,7 +115,6 @@
 // export default UploadProof;
 
 
-import React from "react";
 import { useFormContext } from "react-hook-form";
 import UploadInput from "../../Reusable/UploadInput/UploadInput";
 

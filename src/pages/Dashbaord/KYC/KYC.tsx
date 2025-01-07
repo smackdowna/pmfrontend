@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const KYC = () => {
-  const [isKYCVerified, setIsKYCVerified] = useState(false);
+  const [isKYCVerified] = useState(false);
     const navigate = useNavigate();
   return (
     <div>

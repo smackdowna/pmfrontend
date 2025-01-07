@@ -254,7 +254,7 @@ import { ICONS } from "../../assets";
 import { useState } from "react";
 
 const TransactionHistory = () => {
-  const [data, setData] = useState([
+  const [data] = useState([
     { id: 1, date: "23 Oct 2023", customer: "John Jacobs", course: "Adobe Premier Pro", amount: "₹500" },
     { id: 2, date: "22 Oct 2024", customer: "Jane Doe", course: "Adobe Photoshop", amount: "₹600" },
     { id: 3, date: "21 Oct 2024", customer: "Mark Spencer", course: "Adobe Illustrator", amount: "₹400" },

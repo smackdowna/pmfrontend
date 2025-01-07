@@ -1,6 +1,6 @@
-import BankInfo from "../../../components/MyProfilePage/KycDetails/BankInfo";
-import IdentityInfo from "../../../components/MyProfilePage/KycDetails/IdentityInfo";
-import UploadProof from "../../../components/MyProfilePage/KycDetails/UploadProof";
+// import BankInfo from "../../../components/MyProfilePage/KycDetails/BankInfo";
+// import IdentityInfo from "../../../components/MyProfilePage/KycDetails/IdentityInfo";
+// import UploadProof from "../../../components/MyProfilePage/KycDetails/UploadProof";
 
 const KYCStatusPage = () => {
   return (
