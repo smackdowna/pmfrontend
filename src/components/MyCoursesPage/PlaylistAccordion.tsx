@@ -75,9 +75,9 @@ const PlaylistAccordion = () => {
   };
 
   return (
-    <div className="bg-white py-8 px-4 flex flex-col gap-6 w-1/3 ">
+    <div className="bg-white py-8 px-4 flex flex-col gap-6 w-1/3 h-[620px] ">
       <h1 className="text-2xl font-semibold ">Course Playlist</h1>
-      <div className="flex flex-col gap-2 w-full max-w-[600px] ">
+      <div className="flex flex-col gap-2 w-full max-w-[600px]  overflow-y-scroll ">
         {playlists.map((module, index) => (
           <div
             key={index}

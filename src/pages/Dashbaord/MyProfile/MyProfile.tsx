@@ -7,7 +7,6 @@ import BankInfo from "../../../components/MyProfilePage/KycDetails/BankInfo";
 
 const MyProfile = () => {
   
-
   return (
     <div className="flex flex-col gap-8">
       <div className="flex items-center justify-start gap-3">

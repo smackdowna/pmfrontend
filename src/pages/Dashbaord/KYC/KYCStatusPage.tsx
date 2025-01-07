@@ -13,10 +13,10 @@ const KYCStatusPage = () => {
           </div>
           
         </div>
-        <IdentityInfo />
-        <UploadProof />
+        {/* <IdentityInfo />
+        <UploadProof /> */}
       </div>
-      <BankInfo />
+      {/* <BankInfo /> */}
     </div>
   );
 };

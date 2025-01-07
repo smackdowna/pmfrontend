@@ -74,7 +74,6 @@ export const router = createBrowserRouter([
         path: "referral",
         element: <ReferralPayouts />,
       },
-       
       {
         path: "kyc",
         element: <KYC />,

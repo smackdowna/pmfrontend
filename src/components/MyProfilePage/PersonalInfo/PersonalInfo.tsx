@@ -12,7 +12,7 @@ interface FormData {
   dateOfBirth: string;
   mobileNumber: string;
   occupation: string;
-  county: string;
+  country: string;
   city: string;
 }
 
@@ -30,7 +30,7 @@ const PersonalInfo = () => {
   const genderOptions = ["Male", "Female", "Other"];
   const languageOptions = ["English", "Hindi"];
   const stateOptions = ["Maharashtra", "Gujrat"];
-  const countyOptions = ["India"];
+  const countryOptions = ["India"];
   const occupationOptions = ["Engineer", "Doctor", "Teacher", "Artist"];
   return (
     <div className="flex flex-col gap-4">
@@ -41,39 +41,29 @@ const PersonalInfo = () => {
       >
         <div className="grid grid-cols-2 gap-5 p-8">
           <div className="flex flex-col gap-6">
-            <TextInput
-              label="Name"
-              placeholder="Enter your name"
-              validation={{
-                required: "Full Name is required",
-                minLength: {
-                  value: 3,
-                  message: "Full Name must be at least 3 characters",
-                },
-              }}
-              error={errors.fullName}
-              {...register("fullName", {
-                required: "Full Name is required",
-                minLength: {
-                  value: 3,
-                  message: "Full Name must be at least 3 characters",
-                },
-              })}
-            />
+          <TextInput
+            label="Full Name"
+            // name="fullName"
+            placeholder="Enter full name"
+            error={errors.fullName}
+            {...register("fullName", {
+              required: "Full Name is required",
+              minLength: {
+                value: 3,
+                message: "Full Name must be at least 3 characters",
+              },
+            })} />
             <TextInput
               label="Email ID"
               placeholder="Enter your email"
               type="email"
-              validation={{
+              error={errors.email}
+              {...register("email", {
                 required: "Email is required",
                 pattern: {
                   value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
                   message: "Enter a valid email address",
                 },
-              }}
-              error={errors.email}
-              {...register("email", {
-                required: "Email is required",
               })}
             />
             <Dropdown
@@ -83,6 +73,7 @@ const PersonalInfo = () => {
               {...register("gender", {
                 required: "Gender is required",
               })}
+              
             />
             <Dropdown
               label="Language"
@@ -103,9 +94,6 @@ const PersonalInfo = () => {
             <TextInput
               label="Pincode"
               placeholder="Enter your pincode"
-              validation={{
-                required: "Pincode is required",
-              }}
               error={errors.pincode}
               {...register("pincode", {
                 required: "Pincode is required",
@@ -118,9 +106,6 @@ const PersonalInfo = () => {
               label="Date of Birth"
               placeholder="DD/MM/YYYY"
               type="date"
-              validation={{
-                required: "Date of Birth is required",
-              }}
               error={errors.dateOfBirth}
               {...register("dateOfBirth", {
                 required: "Date of Birth is required",
@@ -128,18 +113,22 @@ const PersonalInfo = () => {
             />
             <TextInput
               label="Mobile Number"
-              placeholder="eg., +1 234 567 890"
+              placeholder="Enter your mobile number"
               type="tel"
-              validation={{
+              error={errors.mobileNumber}
+              {...register("mobileNumber", {
                 required: "Mobile Number is required",
                 pattern: {
                   value: /^\+?[1-9]\d{1,14}$/,
                   message: "Enter a valid mobile number",
+                },minLength: {
+                  value: 10,
+                  message: "Mobile Number must be at least 10 characters",
                 },
-              }}
-              error={errors.mobileNumber}
-              {...register("mobileNumber", {
-                required: "Mobile Number is required",
+                maxLength: {
+                  value: 10,
+                  message: "Mobile Number must be at most 10 characters",
+                },
               })}
             />
             <Dropdown
@@ -151,19 +140,16 @@ const PersonalInfo = () => {
               })}
             />
             <Dropdown
-              label="County"
-              options={countyOptions}
-              error={errors.county}
-              {...register("county", {
-                required: "County is required",
+              label="Country"
+              options={countryOptions}
+              error={errors.country}
+              {...register("country", {
+                required: "country is required",
               })}
             />
             <TextInput
               label="City"
               placeholder="Enter your city"
-              validation={{
-                required: "City is required",
-              }}
               error={errors.city}
               {...register("city", {
                 required: "City is required",
