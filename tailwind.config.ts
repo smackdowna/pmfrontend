@@ -60,8 +60,11 @@ export default {
         borderColor: {
           10: "#DFE2E6",
           20: "rgba(110, 120, 131, 0.12)"
-        }
+        },
+        error:"#DC2626",
+        success:"#16A34A"
       },
+
 
       backgroundImage: {
         "primary-gradient": "linear-gradient(180deg, #EFD881 0%, #FFB200 100%)",

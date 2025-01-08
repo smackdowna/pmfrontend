@@ -13,6 +13,12 @@ import MyCourses from "../pages/Dashbaord/MyCourses/MyCourses";
 import AdminCourses from "../pages/Dashbaord/Admin/Courses/Courses";
 import AddCourse from "../pages/Dashbaord/Admin/AddCourse/AddCourse";
 import OrderDetails from "../pages/Dashbaord/Admin/OrderDetails/OrderDetails";
+import Payouts from "../pages/Dashbaord/Admin/Payouts/Payouts";
+import Affiliates from "../pages/Dashbaord/Admin/Affiliates/Affiliates";
+import RegisteredUsers from "../pages/Dashbaord/Admin/RegisteredUsers/RegisteredUsers";
+import TalentList from "../pages/Dashbaord/Admin/TalentList/TalentList";
+import PurchaseHistory from "../pages/Dashbaord/Admin/PurchaseHistory/PurchaseHistory";
+import ViewAffiliate from "../pages/Dashbaord/Admin/ViewAffiliate/ViewAffiliate";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +86,34 @@ export const router = createBrowserRouter([
       {
         path: "order-details",
         element: <OrderDetails />,
+      },
+      {
+        path: "payouts",
+        element: <Payouts />,
+      },
+      {
+        path: "affiliates",
+        element: <Affiliates />,
+      },
+      {
+        path: "registered-users",
+        element: <RegisteredUsers />,
+      },
+      {
+        path: "talent-list",
+        element: <TalentList />,
+      },
+      {
+        path: "registered-users",
+        element: <RegisteredUsers />,
+      },
+      {
+        path: "purchase-history",
+        element: <PurchaseHistory />,
+      },
+      {
+        path: "view-affiliate",
+        element: <ViewAffiliate />,
       },
     ],
   },
