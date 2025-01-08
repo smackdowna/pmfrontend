@@ -7,9 +7,10 @@ const KYC = () => {
     const navigate = useNavigate();
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-neutral-90 ">
-        KYC Verification
-      </h1>
+      <div className="flex flex-col gap-1">
+        <h1 className="text-2xl font-semibold text-neutral-90">KYC Verification</h1>
+        <p className="text-neutral-90">Write something here</p>
+      </div>
       <div className="flex flex-col items-center">
       
       {isKYCVerified ? (

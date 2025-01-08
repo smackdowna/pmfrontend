@@ -28,7 +28,8 @@ import SortVertical from "../assets/Icons/SortVertical.svg";
 import Play from "../assets/Icons/Play.svg";
 import AltArrowLeft from "../assets/Icons/AltArrowLeft.svg";
 import AltArrowRight from "../assets/Icons/AltArrowRight.svg";
-
+import ArrowUp from "../assets/Icons/ArrowUp.png";
+import Cart from "../assets/Icons/Cart.png";
 // Importing Images
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
 import heroImg from "../assets/Images/hero-img.png";
@@ -68,6 +69,8 @@ export const ICONS = {
     Play,
     AltArrowLeft,
     AltArrowRight,
+    ArrowUp,
+    Cart,
 };
 
 export const IMAGES = {

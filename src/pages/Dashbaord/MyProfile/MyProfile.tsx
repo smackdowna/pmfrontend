@@ -4,10 +4,12 @@ import PersonalInfo from "../../../components/MyProfilePage/PersonalInfo/Persona
 import IdentityInfo from "../../../components/MyProfilePage/KycDetails/IdentityInfo";
 import UploadProof from "../../../components/MyProfilePage/KycDetails/UploadProof";
 import BankInfo from "../../../components/MyProfilePage/KycDetails/BankInfo";
+import { FormProvider, useForm } from "react-hook-form";
 
 const MyProfile = () => {
-  
+  const methods = useForm(); 
   return (
+    <FormProvider {...methods}>
     <div className="flex flex-col gap-8">
       <div className="flex items-center justify-start gap-3">
         <img src={ICONS.ArrowLeft} alt="Profile" className="w-9 h-9" />
@@ -22,7 +24,10 @@ const MyProfile = () => {
         <div className="bg-white w-full rounded-2xl p-6">
           <div className="flex justify-between items-center">
             <p className="text-neutral-90 font-semibold">KYC Status</p>
-            <div className="bg-secondary-35 rounded-md p-2">In-Progress</div>
+            <div className="bg-secondary-35 rounded-md p-2 text-secondary-65">In-Progress</div>
+            {/* <div className="bg-neutral-100 rounded-md p-2 text-neutral-30">Pending </div>
+            <div className="bg-secondary-40 rounded-md p-2 text-secondary-55">Approved </div>
+            <div className="bg-secondary-45 rounded-md p-2 text-secondary-60">Rejected</div> */}
           </div>
           
         </div>
@@ -34,6 +39,7 @@ const MyProfile = () => {
       </div>
       
     </div>
+    </FormProvider>
   );
 };
 

@@ -2,8 +2,13 @@ import { Link } from "react-router-dom";
 import { ICONS } from "../../../assets";
 const HeaderDashboard = () => {
   return (
-    <div className="bg-white h-12 text-3xl flex justify-end items-center">
+    <div className="bg-white h-12 text-3xl flex justify-end items-center pr-4">
       <ul className="flex gap-5">
+      <li>
+          <Link to="/dashboard">
+            <img src={ICONS.Cart} />
+          </Link>
+        </li>
         <li>
           <Link to="/dashboard">
             <img src={ICONS.Bell} />
