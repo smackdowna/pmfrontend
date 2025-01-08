@@ -29,9 +29,7 @@ const VerifyPhoneNumber = () => {
                     label="Enter the OTP to verify"
                     placeholder="Enter 6 Digit OTP"
                     type="tel"
-                    validation={{
-                        required: "OTP is required",
-                    }}
+                    
                     error={errors.otp}
                     {...register("otp", {
                         required: "OTP is required",

@@ -13,7 +13,7 @@ const Home = () => {
     return (
         <div>
             <Helmet>
-                <title>PM Guruokul | Achieve Digital Excellence</title>
+                <title>PM Gurukul | Achieve Digital Excellence</title>
             </Helmet>
             <Hero />
             <FeaturedOn />
