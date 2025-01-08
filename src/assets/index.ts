@@ -15,6 +15,7 @@ import addCircle from "../assets/Icons/Add Circle.svg"
 import copy from "../assets/Icons/Copy.svg"
 import mp4 from "../assets/Icons/mp4.svg"
 import closeRed from "../assets/Icons/Close Circle.svg"
+import closeBg from "../assets/Icons/close-bg.svg"
 
 import design from "../assets/Icons/design.svg";
 import development from "../assets/Icons/html.svg";
@@ -42,6 +43,7 @@ export const ICONS = {
     close,
     mp4,
     closeRed,
+    closeBg,
 
     design,
     development,

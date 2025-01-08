@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ICONS } from "../../../../assets";
 import Textarea from "../../../../components/Reusable/TextArea/TextArea";
 import TextInput from "../../../../components/Reusable/TextInput/TextInput";
