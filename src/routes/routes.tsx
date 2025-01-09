@@ -18,6 +18,7 @@ import MyCourseVideo from "../pages/Dashbaord/MyCourses/MyCourseVideo";
 import KYCStatusPage from "../pages/Dashbaord/KYC/KYCStatusPage";
 import CourseVideoLayout from "../layouts/CourseVideoLayout/CourseVideoLayout";
 import Forum from "../pages/Dashbaord/MyCourses/Forum";
+import CourseDetails from "../pages/CourseDetails/CourseDetails";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "/courses",
         element: <Courses />,
+      },
+      {
+        path: "/course/:id",
+        element: <CourseDetails />,
       },
       {
         path: "/contact-us",

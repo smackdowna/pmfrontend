@@ -30,6 +30,7 @@ import AltArrowLeft from "../assets/Icons/AltArrowLeft.svg";
 import AltArrowRight from "../assets/Icons/AltArrowRight.svg";
 import ArrowUp from "../assets/Icons/ArrowUp.png";
 import Cart from "../assets/Icons/Cart.png";
+
 // Importing Images
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
 import heroImg from "../assets/Images/hero-img.png";
@@ -37,6 +38,7 @@ import enrollment from "../assets/Images/enrollment.png";
 import sessionAnnouncement from "../assets/Images/session-announcement.png";
 import courseImg from "../assets/Images/course-img.png";
 import KycBG from "../assets/Images/KycBG.png";
+import courseDetailsImg from "../assets/Images/image 609.png";
 
 export const ICONS = {
     hamburgerMenu,
@@ -80,4 +82,5 @@ export const IMAGES = {
     sessionAnnouncement,
     courseImg,
     KycBG,
+    courseDetailsImg,
 };
