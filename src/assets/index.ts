@@ -30,6 +30,7 @@ import AltArrowLeft from "../assets/Icons/AltArrowLeft.svg";
 import AltArrowRight from "../assets/Icons/AltArrowRight.svg";
 import ArrowUp from "../assets/Icons/ArrowUp.png";
 import Cart from "../assets/Icons/Cart.png";
+import video from "../assets/Icons/video.svg";
 
 // Importing Images
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
@@ -73,6 +74,7 @@ export const ICONS = {
     AltArrowRight,
     ArrowUp,
     Cart,
+    video,
 };
 
 export const IMAGES = {

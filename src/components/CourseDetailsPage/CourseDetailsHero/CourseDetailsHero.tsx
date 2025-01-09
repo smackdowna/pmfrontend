@@ -9,7 +9,7 @@ const CourseDetailsHero = () => {
     return (
         <HeroContainer classNames="pt-12">
             <Container>
-                <div className="font-Inter flex flex-col lg:flex-row justify-between py-[80px]">
+                <div className="font-Inter flex flex-col-reverse lg:flex-row gap-12 xl:gap-0 justify-between py-6 md:py-12 xl:py-[80px]">
                     <div className="flex flex-col justify-center">
                         <Badge title="Design" />
                         <h1 className="text-white text-[48px] font-bold leading-[64px] mt-1 max-w-[599px]">UI UX Design Decoded</h1>
@@ -26,7 +26,7 @@ const CourseDetailsHero = () => {
                         </div>
                     </div>
 
-                    <img src={IMAGES.courseDetailsImg} alt="" className="h-full max-h-[300px] w-full max-w-[404px]" />
+                    <img src={IMAGES.courseDetailsImg} alt="" className="h-full max-h-full md:max-h-[349px] xl:max-h-[300px] w-full max-w-full xl:max-w-[404px] rounded-2xl" />
                 </div>
             </Container>
         </HeroContainer>
