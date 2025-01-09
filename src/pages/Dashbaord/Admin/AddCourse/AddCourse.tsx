@@ -3,6 +3,7 @@ import { ICONS } from "../../../../assets";
 import Textarea from "../../../../components/Reusable/TextArea/TextArea";
 import TextInput from "../../../../components/Reusable/TextInput/TextInput";
 import AddVideo from "../../../../components/AddVideo/AddVideo";
+import { Link } from "react-router-dom";
 
 const AddCourse = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -22,9 +23,11 @@ const AddCourse = () => {
     <div className="flex flex-col p-6 bg-[#F8FAFC] gap-8 w-full">
       <div className="flex items-center w-full justify-between">
         <div className="flex gap-[10px] items-center">
-          <button>
-            <img src={ICONS.arrowLeft} className="w-9 h-9" alt="" />
-          </button>
+          <Link to="/admin/courses">
+            <button>
+              <img src={ICONS.arrowLeft} className="w-9 h-9" alt="" />
+            </button>
+          </Link>
           <span className="text-[#0F172A] font-Inter font-semibold leading-7 tracking-tighter text-2xl">
             Add a course
           </span>

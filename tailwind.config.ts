@@ -28,7 +28,14 @@ export default {
           15 : "#EFD881",
           20 : '#F4E28C',
           25 : "#ffe466",
-          30 : "#ffffff80"
+          30 : "#ffffff80",
+          35 : "#FFE5A0", 
+          40 : "#6BB870",
+          45 : "#FFCFC9",
+          50 : "#D4EDBC",
+          55 : "#11734B",
+          60 : "#B10202",
+          65 : "#473821"
         },
         blue: {
           10: "#0073DF"
@@ -50,6 +57,10 @@ export default {
           70 : "#fcfcfd",
           75 : "#6e78831f",
           80 : "#F8FAFC",
+          85 : "#64748B",
+          90 : "#0F172A",
+          95 : "#686972",
+          100 : "#E6E6E6",
         },
         textGray: {
           10: "#6B788E",
@@ -72,6 +83,7 @@ export default {
         "gradient-dark-blue": "linear-gradient(90deg, #122755 0%, #051539 100%)",
         "gradient-light-rose": "linear-gradient(0deg, rgba(255, 162, 57, 0.10) 0%, rgba(255, 162, 57, 0.10) 100%), #FFF",
         "gradient-gray": "linear-gradient(180deg, rgba(241, 233, 255, 0.80) 0%, #FAF7FF 100%)",
+        'custom-gradient': 'linear-gradient(0deg, rgba(0, 0, 0, 0.30) -14.5%, rgba(0, 0, 0, 0.00) 87.5%)',
       },
 
       

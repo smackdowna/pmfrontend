@@ -1,5 +1,6 @@
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
 import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
+import TransactionHistory from "../../../../components/ReferralPayoutsPage/TransactionHistory";
 
 const PurchaseHistory = () => {
   return (
@@ -16,6 +17,7 @@ const PurchaseHistory = () => {
         <DashboardCard title="Content" count={200} />
         <DashboardCard title="Content" count={"00.00%"} />
       </div>
+      <TransactionHistory />
     </>
   );
 };

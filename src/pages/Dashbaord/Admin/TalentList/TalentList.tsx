@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
 import AddTalent from "../../../../components/AddTalent/AddTalent";
+import TransactionHistory from "../../../../components/ReferralPayoutsPage/TransactionHistory";
 
 const TalentList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,12 +24,13 @@ const TalentList = () => {
           Add a Talent
         </button>
       </div>
-      <div className="flex items-center justify-start w-full flex-wrap gap-4">
+      <div className="grid grid-cols-4 items-center w-full gap-4">
         <DashboardCard title="Total Courses" count={5} />
         <DashboardCard title="Total Courses" count={5} />
         <DashboardCard title="Total Courses" count={5} />
         <DashboardCard title="Total Courses" count={5} />
       </div>
+      <TransactionHistory />
       <AddTalent isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
   );

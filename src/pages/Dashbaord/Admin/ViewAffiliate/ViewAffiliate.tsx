@@ -2,8 +2,14 @@ import { useState } from "react";
 import { ICONS } from "../../../../assets";
 import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import ReasonForRejection from "../../../../components/ReasonForRejection/ReasonForRejection";
+import PersonalInfo from "../../../../components/MyProfilePage/PersonalInfo/PersonalInfo";
+import KycDetails from "../../../../components/MyProfilePage/KycDetails/KycDetails";
+import TransactionHistory from "../../../../components/ReferralPayoutsPage/TransactionHistory";
+import { FormProvider, useForm } from "react-hook-form";
 
 const ViewAffiliate = () => {
+  const methods = useForm();
+
   // State to manage the modal visibility
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -49,6 +55,11 @@ const ViewAffiliate = () => {
         <DashboardCard title="Content" count={200} />
         <DashboardCard title="Content" count={"00.00%"} />
       </div>
+      <PersonalInfo />
+      <FormProvider {...methods}>
+        <KycDetails />
+      </FormProvider>
+      <TransactionHistory />
 
       {/* ReasonForRejection Modal */}
       <ReasonForRejection open={isModalOpen} onClose={closeModal} />
