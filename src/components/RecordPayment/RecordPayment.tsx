@@ -35,8 +35,36 @@ const RecordPayment: React.FC<RecordPaymentProps> = ({ isOpen, onClose }) => {
         </div>
         <form className="flex flex-col gap-4 w-full">
           <TextInput label="Author Name" name="authorName" placeholder="Name" />
+          <div className="flex items-center gap-1">
+            <input
+              type="checkbox"
+              name="receivedFullAmount"
+              id="receivedFullAmount"
+            />
+            <label htmlFor="receivedFullAmount" className="text-neutral-65">
+              Received full amount of{" "}
+              <span className="text-[#243757] font-medium">$200</span>
+            </label>
+          </div>
+          <TextInput label="Payment Date" type="date" name="paymentDate" />
+          <div className="flex flex-col gap-2 font-Inter">
+            <label htmlFor="paymentMode" className="text-neutral-65">
+              Payment Mode
+            </label>
+            <select className="w-full px-[18px] py-[14px] rounded-lg bg-neutral-70 border border-neutral-75">
+              <option value="bank">Bank</option>
+              <option value="cash">Cash</option>
+              <option value="paypal">Paypal</option>
+            </select>
+          </div>
           <TextInput label="Reference #" name="reference" placeholder="#" />
           <Textarea label="Note" name="note" placeholder="Write your notes" />
+          <div className="flex items-center gap-1">
+            <input type="checkbox" name="notify" id="notify" />
+            <label htmlFor="notify" className="text-neutral-65">
+              Notify client about this paymnent
+            </label>
+          </div>
           <hr className="h-[1px] w-full bg-[#DFE2E6]" />
           <div className="flex items-center gap-[10px]">
             <button

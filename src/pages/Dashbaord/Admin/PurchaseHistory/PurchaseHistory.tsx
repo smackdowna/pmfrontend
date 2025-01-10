@@ -2,6 +2,70 @@ import DashboardHeader from "../../../../components/Reusable/DashboardHeader/Das
 import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import TransactionHistory from "../../../../components/ReferralPayoutsPage/TransactionHistory";
 
+const PurchaseHistoryHeaders = [
+  { key: "no", label: "No.", sortable: true },
+  { key: "orderID", label: "Order #", sortable: true },
+  { key: "customerName", label: "Customer Name", sortable: true },
+  { key: "mobile", label: "Mobile Number", sortable: true },
+  { key: "noOfItems", label: "No. of Items", sortable: true },
+  { key: "amount", label: "Amount", sortable: true },
+  { key: "paymentStatus", label: "Payment Status", sortable: true },
+  { key: "action", label: "Action", sortable: false },
+];
+
+const purchaseHistoryData = [
+  {
+    no: 1,
+    orderID: "ORD-001",
+    customerName: "John Jacobs",
+    mobile: "+91-93642-34274",
+    noOfItems: 5,
+    amount: "₹249",
+    paymentStatus: "Paid",
+    action: "",
+  },
+  {
+    no: 1,
+    orderID: "ORD-001",
+    customerName: "John Jacobs",
+    mobile: "+91-93642-34274",
+    noOfItems: 5,
+    amount: "₹249",
+    paymentStatus: "Paid",
+    action: "",
+  },
+  {
+    no: 1,
+    orderID: "ORD-001",
+    customerName: "John Jacobs",
+    mobile: "+91-93642-34274",
+    noOfItems: 5,
+    amount: "₹249",
+    paymentStatus: "Paid",
+    action: "",
+  },
+  {
+    no: 1,
+    orderID: "ORD-001",
+    customerName: "John Jacobs",
+    mobile: "+91-93642-34274",
+    noOfItems: 5,
+    amount: "₹249",
+    paymentStatus: "Paid",
+    action: "",
+  },
+  {
+    no: 1,
+    orderID: "ORD-001",
+    customerName: "John Jacobs",
+    mobile: "+91-93642-34274",
+    noOfItems: 5,
+    amount: "₹249",
+    paymentStatus: "Paid",
+    action: "",
+  },
+];
+
 const PurchaseHistory = () => {
   return (
     <>
@@ -17,7 +81,11 @@ const PurchaseHistory = () => {
         <DashboardCard title="Content" count={200} />
         <DashboardCard title="Content" count={"00.00%"} />
       </div>
-      <TransactionHistory />
+      <TransactionHistory
+        headers={PurchaseHistoryHeaders}
+        data={purchaseHistoryData}
+        showHeader={true}
+      />
     </>
   );
 };

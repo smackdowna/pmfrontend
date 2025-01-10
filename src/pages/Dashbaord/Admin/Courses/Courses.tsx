@@ -2,6 +2,65 @@ import TransactionHistory from "../../../../components/ReferralPayoutsPage/Trans
 import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
 import { Link } from "react-router-dom";
+
+const coursesHeaders = [
+  { key: "courseName", label: "COURSE NAME", sortable: true },
+  { key: "category", label: "CATEGORY", sortable: true },
+  { key: "creator", label: "CREATOR", sortable: true },
+  { key: "price", label: "PRICE", sortable: true },
+  { key: "status", label: "STATUS", sortable: true },
+  { key: "publishedOn", label: "PUBLISHED ON", sortable: true },
+  { key: "action", label: "ACTION", sortable: false },
+];
+
+const coursesData = [
+  {
+    courseName: "Course Name",
+    category: "Category",
+    creator: "Creator",
+    price: "₹249",
+    status: "Active",
+    publishedOn: "01/01/2021",
+    action: "",
+  },
+  {
+    courseName: "Course Name",
+    category: "Category",
+    creator: "Creator",
+    price: "₹249",
+    status: "Active",
+    publishedOn: "01/01/2021",
+    action: "",
+  },
+  {
+    courseName: "Course Name",
+    category: "Category",
+    creator: "Creator",
+    price: "₹249",
+    status: "Active",
+    publishedOn: "01/01/2021",
+    action: "",
+  },
+  {
+    courseName: "Course Name",
+    category: "Category",
+    creator: "Creator",
+    price: "₹249",
+    status: "Active",
+    publishedOn: "01/01/2021",
+    action: "",
+  },
+  {
+    courseName: "Course Name",
+    category: "Category",
+    creator: "Creator",
+    price: "₹249",
+    status: "Active",
+    publishedOn: "01/01/2021",
+    action: "",
+  },
+];
+
 const AdminCourses = () => {
   return (
     <>
@@ -22,7 +81,11 @@ const AdminCourses = () => {
         <DashboardCard title="Total Courses" count={5} />
         <DashboardCard title="Total Courses" count={5} />
       </div>
-      <TransactionHistory />
+      <TransactionHistory
+        headers={coursesHeaders}
+        data={coursesData}
+        showHeader={true}
+      />
     </>
   );
 };

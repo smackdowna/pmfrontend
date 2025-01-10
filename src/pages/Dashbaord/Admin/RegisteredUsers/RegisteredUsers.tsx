@@ -2,6 +2,54 @@ import DashboardHeader from "../../../../components/Reusable/DashboardHeader/Das
 import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import TransactionHistory from "../../../../components/ReferralPayoutsPage/TransactionHistory";
 
+const registeredUsersData = [
+  {
+    id: 1,
+    userId: "PM123456",
+    fullName: "John Jacobs",
+    email: "johnjacobs@gmail.com",
+    mobile: "+91-93642-34274",
+    joined: "24th Dec, 2024",
+    action: "",
+  },
+  {
+    id: 1,
+    userId: "PM123456",
+    fullName: "John Jacobs",
+    email: "johnjacobs@gmail.com",
+    mobile: "+91-93642-34274",
+    joined: "24th Dec, 2024",
+    action: "",
+  },
+  {
+    id: 1,
+    userId: "PM123456",
+    fullName: "John Jacobs",
+    email: "johnjacobs@gmail.com",
+    mobile: "+91-93642-34274",
+    joined: "24th Dec, 2024",
+    action: "",
+  },
+  {
+    id: 1,
+    userId: "PM123456",
+    fullName: "John Jacobs",
+    email: "johnjacobs@gmail.com",
+    mobile: "+91-93642-34274",
+    joined: "24th Dec, 2024",
+    action: "",
+  },
+];
+
+const headers = [
+  { key: "userId", label: "User ID", sortable: true },
+  { key: "fullName", label: "Full Name", sortable: true },
+  { key: "email", label: "Email", sortable: true },
+  { key: "mobile", label: "Mobile", sortable: true },
+  { key: "joined", label: "Joined", sortable: true },
+  { key: "action", label: "Action", sortable: false },
+];
+
 const RegisteredUsers = () => {
   return (
     <>
@@ -27,7 +75,11 @@ const RegisteredUsers = () => {
         <DashboardCard title="Content" count={"00.00%"} />
         <DashboardCard title="Content" count={"00.00%"} />
       </div>
-      <TransactionHistory />
+      <TransactionHistory
+        data={registeredUsersData}
+        headers={headers}
+        showHeader={true}
+      />
     </>
   );
 };

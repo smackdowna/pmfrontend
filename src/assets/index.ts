@@ -37,7 +37,10 @@ import Play from "../assets/Icons/Play.svg";
 import AltArrowLeft from "../assets/Icons/AltArrowLeft.svg";
 import AltArrowRight from "../assets/Icons/AltArrowRight.svg";
 import ArrowUp from "../assets/Icons/ArrowUp.png";
-import Cart from "../assets/Icons/Cart.png";import folderUpload from "../assets/Icons/empty 1.svg"
+import Cart from "../assets/Icons/Cart.png";
+import folderUpload from "../assets/Icons/empty 1.svg"
+import menuDots from "../assets/Icons/Menu Dots.svg"
+
 
 // Importing Images
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
@@ -61,6 +64,7 @@ export const ICONS = {
     mp4,
     closeRed,
     closeBg,
+    menuDots,
 
     design,
     development,

@@ -4,6 +4,52 @@ import DashboardHeader from "../../../../components/Reusable/DashboardHeader/Das
 import AddTalent from "../../../../components/AddTalent/AddTalent";
 import TransactionHistory from "../../../../components/ReferralPayoutsPage/TransactionHistory";
 
+const talentListHeaders = [
+  { key: "authorName", label: "Author Name", sortable: true },
+  { key: "noOfCourses", label: "Number of Courses", sortable: true },
+  { key: "status", label: "Status", sortable: true },
+  { key: "joinedOn", label: "Joined On", sortable: true },
+  { key: "action", label: "Action", sortable: false },
+];
+
+const talentListData = [
+  {
+    authorName: "John Jacobs",
+    noOfCourses: 5,
+    status: "Active",
+    joinedOn: "01/01/2021",
+    action: "",
+  },
+  {
+    authorName: "John Jacobs",
+    noOfCourses: 5,
+    status: "Active",
+    joinedOn: "01/01/2021",
+    action: "",
+  },
+  {
+    authorName: "John Jacobs",
+    noOfCourses: 5,
+    status: "Active",
+    joinedOn: "01/01/2021",
+    action: "",
+  },
+  {
+    authorName: "John Jacobs",
+    noOfCourses: 5,
+    status: "Active",
+    joinedOn: "01/01/2021",
+    action: "",
+  },
+  {
+    authorName: "John Jacobs",
+    noOfCourses: 5,
+    status: "Active",
+    joinedOn: "01/01/2021",
+    action: "",
+  },
+];
+
 const TalentList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -30,7 +76,11 @@ const TalentList = () => {
         <DashboardCard title="Total Courses" count={5} />
         <DashboardCard title="Total Courses" count={5} />
       </div>
-      <TransactionHistory />
+      <TransactionHistory
+        headers={talentListHeaders}
+        data={talentListData}
+        showHeader={true}
+      />
       <AddTalent isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
   );

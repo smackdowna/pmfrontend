@@ -6,6 +6,91 @@ import PersonalInfo from "../../../../components/MyProfilePage/PersonalInfo/Pers
 import KycDetails from "../../../../components/MyProfilePage/KycDetails/KycDetails";
 import TransactionHistory from "../../../../components/ReferralPayoutsPage/TransactionHistory";
 import { FormProvider, useForm } from "react-hook-form";
+import IdentityInfo from "../../../../components/MyProfilePage/KycDetails/IdentityInfo";
+import UploadProof from "../../../../components/MyProfilePage/KycDetails/UploadProof";
+import BankInfo from "../../../../components/MyProfilePage/KycDetails/BankInfo";
+
+const payoutHeaders = [
+  { key: "no", label: "No.", sortable: true },
+  { key: "affiliateName", label: "Affiliate Name", sortable: true },
+  { key: "mobile", label: "MOBILE", sortable: true },
+  { key: "payoutDate", label: "Payout Date", sortable: true },
+  { key: "amount", label: "Amount", sortable: true },
+  { key: "adminCharge", label: "Admin Charge", sortable: true },
+  { key: "total", label: "Total", sortable: true },
+  { key: "tds", label: "TDS", sortable: true },
+  { key: "payableAmount", label: "Payable Amount", sortable: true },
+  { key: "payoutStatus", label: "Payout Status", sortable: true },
+  { key: "action", label: "Action", sortable: true },
+];
+
+const payoutData = [
+  {
+    no: 1,
+    affiliateName: "John Jacobs",
+    mobile: "+91-93642-34274",
+    payoutDate: "01/01/2021",
+    amount: "₹249",
+    adminCharge: "₹249",
+    total: "₹249",
+    tds: "₹249",
+    payableAmount: "₹249",
+    payoutStatus: "Paid",
+    action: "",
+  },
+  {
+    no: 1,
+    affiliateName: "John Jacobs",
+    mobile: "+91-93642-34274",
+    payoutDate: "01/01/2021",
+    amount: "₹249",
+    adminCharge: "₹249",
+    total: "₹249",
+    tds: "₹249",
+    payableAmount: "₹249",
+    payoutStatus: "Paid",
+    action: "",
+  },
+  {
+    no: 1,
+    affiliateName: "John Jacobs",
+    mobile: "+91-93642-34274",
+    payoutDate: "01/01/2021",
+    amount: "₹249",
+    adminCharge: "₹249",
+    total: "₹249",
+    tds: "₹249",
+    payableAmount: "₹249",
+    payoutStatus: "Paid",
+    action: "",
+  },
+  {
+    no: 1,
+    affiliateName: "John Jacobs",
+    mobile: "+91-93642-34274",
+    payoutDate: "01/01/2021",
+    amount: "₹249",
+    adminCharge: "₹249",
+    total: "₹249",
+    tds: "₹249",
+    payableAmount: "₹249",
+    payoutStatus: "Paid",
+    action: "",
+  },
+  {
+    no: 1,
+    affiliateName: "John Jacobs",
+    mobile: "+91-93642-34274",
+    payoutDate: "01/01/2021",
+    amount: "₹249",
+    adminCharge: "₹249",
+    total: "₹249",
+    tds: "₹249",
+    payableAmount: "₹249",
+    payoutStatus: "Paid",
+    action: "",
+  },
+];
 
 const ViewAffiliate = () => {
   const methods = useForm();
@@ -57,9 +142,29 @@ const ViewAffiliate = () => {
       </div>
       <PersonalInfo />
       <FormProvider {...methods}>
-        <KycDetails />
+        <div className="grid grid-cols-4 gap-6">
+          <div className="col-span-2 gap-4 flex flex-col">
+            <div className="bg-white w-full rounded-2xl p-6">
+              <div className="flex justify-between items-center">
+                <p className="text-neutral-90 font-semibold">KYC Status</p>
+                <div className="bg-secondary-35 rounded-md p-2">
+                  In-Progress
+                </div>
+              </div>
+            </div>
+            <IdentityInfo />
+            <UploadProof />
+          </div>
+          <div className="col-span-2">
+            <BankInfo />
+          </div>
+        </div>
       </FormProvider>
-      <TransactionHistory />
+      <TransactionHistory
+        headers={payoutHeaders}
+        data={payoutData}
+        showHeader={true}
+      />
 
       {/* ReasonForRejection Modal */}
       <ReasonForRejection open={isModalOpen} onClose={closeModal} />

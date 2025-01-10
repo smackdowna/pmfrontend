@@ -8,7 +8,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   pageDesc,
 }) => {
   return (
-    <div className="flex flex-col flex-1 font-Inter text-[#0F172A]">
+    <div className="flex flex-col font-Inter text-[#0F172A]">
       <span className="text-2xl font-semibold leading-7 tracking-tighter">
         {pageName}
       </span>
