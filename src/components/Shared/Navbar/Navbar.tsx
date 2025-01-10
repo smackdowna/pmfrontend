@@ -40,10 +40,10 @@ const Navbar = () => {
                         </div>
 
                         <div className="flex items-center gap-8">
-                           <Link to={"/cart"}>
-                           <img src={ICONS.cartWhite} alt="cart-icon" className="size-6" />
-                           </Link>
-                        <button className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">Get Started</button>
+                            <Link to={"/cart"}>
+                                <img src={location.pathname === "/cart" ? ICONS.cartYellow : ICONS.cartWhite} alt="cart-icon" className="size-6" />
+                            </Link>
+                            <button className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">Get Started</button>
                         </div>
                     </div>
                 </div>
