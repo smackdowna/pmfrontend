@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { IMAGES } from "../../../assets";
+import { ICONS, IMAGES } from "../../../assets";
 import Container from "../Container/Container";
 
 const Navbar = () => {
@@ -39,7 +39,12 @@ const Navbar = () => {
                             }
                         </div>
 
+                        <div className="flex items-center gap-8">
+                           <Link to={"/cart"}>
+                           <img src={ICONS.cartWhite} alt="cart-icon" className="size-6" />
+                           </Link>
                         <button className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">Get Started</button>
+                        </div>
                     </div>
                 </div>
             </Container>

@@ -19,6 +19,7 @@ import KYCStatusPage from "../pages/Dashbaord/KYC/KYCStatusPage";
 import CourseVideoLayout from "../layouts/CourseVideoLayout/CourseVideoLayout";
 import Forum from "../pages/Dashbaord/MyCourses/Forum";
 import CourseDetails from "../pages/CourseDetails/CourseDetails";
+import Cart from "../pages/Cart/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

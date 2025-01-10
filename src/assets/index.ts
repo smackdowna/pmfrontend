@@ -31,6 +31,9 @@ import AltArrowRight from "../assets/Icons/AltArrowRight.svg";
 import ArrowUp from "../assets/Icons/ArrowUp.png";
 import Cart from "../assets/Icons/Cart.png";
 import video from "../assets/Icons/video.svg";
+import cartWhite from "../assets/Icons/cart-white.svg";
+import cartYellow from "../assets/Icons/cart-yellow.svg";
+import deleteIcon from "../assets/Icons/delete.svg";
 
 // Importing Images
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
@@ -40,6 +43,9 @@ import sessionAnnouncement from "../assets/Images/session-announcement.png";
 import courseImg from "../assets/Images/course-img.png";
 import KycBG from "../assets/Images/KycBG.png";
 import courseDetailsImg from "../assets/Images/image 609.png";
+import securePayment from "../assets/Images/secure.png";
+import secureSSL from "../assets/Images/secure-ssl.png";
+import razorpay from "../assets/Images/razorpay.png";
 
 export const ICONS = {
     hamburgerMenu,
@@ -75,6 +81,9 @@ export const ICONS = {
     ArrowUp,
     Cart,
     video,
+    cartWhite,
+    cartYellow,
+    deleteIcon,
 };
 
 export const IMAGES = {
@@ -85,4 +94,7 @@ export const IMAGES = {
     courseImg,
     KycBG,
     courseDetailsImg,
+    securePayment,
+    secureSSL,
+    razorpay,
 };
