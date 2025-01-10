@@ -33,7 +33,7 @@ const FAQ = () => {
         setIsAccordionOpen((prevIndex) => (prevIndex === index ? -1 : index));
 
     return (
-        <div className="bg-white py-[96px] flex flex-col items-center justify-center text-center gap-[56px]">
+        <div className="bg-white py-[96px] flex flex-col items-center justify-center gap-[56px]">
             <SectionHeading heading="Got Questions? We’ve Got Answers!" description="Here’s everything you’ve been wondering about, explained." />
 
             <div className="flex gap-3 flex-col items-center justify-center w-full">

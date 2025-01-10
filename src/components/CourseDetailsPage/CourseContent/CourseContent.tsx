@@ -83,7 +83,7 @@ const CourseContent = () => {
 
     return (
         <div>
-            <div className="py-12 md:py-[64px] bg-white flex gap-[64px] font-Inter">
+            <div className="py-12 md:py-[64px] bg-white flex flex-col xl:flex-row gap-[64px] font-Inter">
                 <div>
                     <CourseOverview />
                     <CourseObjective courseObjectives={courseObjectives} />
