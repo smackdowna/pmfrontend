@@ -45,7 +45,7 @@
 
 // export default TextInput;
 
-import  { forwardRef } from "react";
+import { forwardRef } from "react";
 import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
 
 interface TextInputProps {
@@ -55,6 +55,8 @@ interface TextInputProps {
   type?: string;
   error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
 
+  value?: string; // Add value for controlled input
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // Add onChange for controlled input
 }
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
@@ -76,7 +78,9 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           }`}
           {...rest}
         />
-        {error?.message && <span className="text-red-500 text-sm">{String(error.message)}</span>}
+        {error?.message && (
+          <span className="text-red-500 text-sm">{String(error.message)}</span>
+        )}
       </div>
     );
   }

@@ -38,6 +38,9 @@ export default {
           60 : "#B10202",
           65 : "#473821"
         },
+        blue: {
+          10: "#0073DF"
+        },
 
         neutral : {
           10 : "#8A9BB1",
@@ -61,7 +64,21 @@ export default {
           100 : "#E6E6E6",
           110 : '#94A3B8',
         }
+        },
+        textGray: {
+          10: "#6B788E",
+          20: "#64748B",
+          30: "#94A3B8",
+          80: "#1E293B"
+        },
+        borderColor: {
+          10: "#DFE2E6",
+          20: "rgba(110, 120, 131, 0.12)"
+        },
+        error:"#DC2626",
+        success:"#16A34A"
       },
+
 
       backgroundImage: {
         "primary-gradient": "linear-gradient(180deg, #EFD881 0%, #FFB200 100%)",
@@ -71,6 +88,7 @@ export default {
         "gradient-gray": "linear-gradient(180deg, rgba(241, 233, 255, 0.80) 0%, #FAF7FF 100%)",
         'custom-gradient': 'linear-gradient(0deg, rgba(0, 0, 0, 0.30) -14.5%, rgba(0, 0, 0, 0.00) 87.5%)',
       },
+
       
 
       boxShadow : {

@@ -20,6 +20,16 @@ import CourseVideoLayout from "../layouts/CourseVideoLayout/CourseVideoLayout";
 import Forum from "../pages/Dashbaord/MyCourses/Forum";
 import CourseDetails from "../pages/CourseDetails/CourseDetails";
 import Cart from "../pages/Cart/Cart";
+import AdminCourses from "../pages/Dashbaord/Admin/Courses/Courses";
+import AddCourse from "../pages/Dashbaord/Admin/AddCourse/AddCourse";
+import OrderDetails from "../pages/Dashbaord/Admin/OrderDetails/OrderDetails";
+import Payouts from "../pages/Dashbaord/Admin/Payouts/Payouts";
+import Affiliates from "../pages/Dashbaord/Admin/Affiliates/Affiliates";
+import RegisteredUsers from "../pages/Dashbaord/Admin/RegisteredUsers/RegisteredUsers";
+import TalentList from "../pages/Dashbaord/Admin/TalentList/TalentList";
+import PurchaseHistory from "../pages/Dashbaord/Admin/PurchaseHistory/PurchaseHistory";
+import ViewAffiliate from "../pages/Dashbaord/Admin/ViewAffiliate/ViewAffiliate";
+
 
 export const router = createBrowserRouter([
   {
@@ -83,9 +93,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "forum",
-        element: <Forum onClose={function (): void {
-          throw new Error("Function not implemented.");
-        } }/>,
+        element: (
+          <Forum
+            onClose={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
+        ),
       },
       {
         path: "referral",
@@ -96,17 +110,17 @@ export const router = createBrowserRouter([
         element: <KYC />,
       },
       {
-        path: "kycregister",
+        path: "kyc-register",
         element: <KYCFormPage />,
       },
       {
-        path: "kycstatus",
+        path: "kyc-status",
         element: <KYCStatusPage />,
-      }
+      },
     ],
   },
   {
-    path: "coursevideo",
+    path: "course-video",
     element: <CourseVideoLayout />,
     errorElement: <NotFound />,
     children: [
@@ -114,6 +128,53 @@ export const router = createBrowserRouter([
         path: "my-course-video",
         element: <MyCourseVideo />,
       },
-    ]
-  }
+    ],
+  },
+  {
+    path: "admin",
+    element: <DashboardLayout />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: "courses",
+        element: <AdminCourses />,
+      },
+      {
+        path: "add-course",
+        element: <AddCourse />,
+      },
+      {
+        path: "order-details",
+        element: <OrderDetails />,
+      },
+      {
+        path: "payouts",
+        element: <Payouts />,
+      },
+      {
+        path: "affiliates",
+        element: <Affiliates />,
+      },
+      {
+        path: "registered-users",
+        element: <RegisteredUsers />,
+      },
+      {
+        path: "talent-list",
+        element: <TalentList />,
+      },
+      {
+        path: "registered-users",
+        element: <RegisteredUsers />,
+      },
+      {
+        path: "purchase-history",
+        element: <PurchaseHistory />,
+      },
+      {
+        path: "view-affiliate",
+        element: <ViewAffiliate />,
+      },
+    ],
+  },
 ]);

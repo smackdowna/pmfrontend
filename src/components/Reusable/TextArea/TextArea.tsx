@@ -44,7 +44,7 @@
 // };
 
 // export default Textarea;
-import  { forwardRef } from "react";
+import { forwardRef } from "react";
 import { FieldError } from "react-hook-form";
 
 interface TextareaProps {
@@ -53,6 +53,8 @@ interface TextareaProps {
   placeholder?: string;
   rows?: number;
   error?: FieldError;
+  value?: string; // Add value for controlled component
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void; // Add onChange for controlled component
 }
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(

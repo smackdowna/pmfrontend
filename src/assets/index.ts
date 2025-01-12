@@ -8,7 +8,15 @@ import search from "../assets/Icons/search.svg";
 import user from "../assets/Icons/user.svg";
 import starWhite from "../assets/Icons/star-white.svg";
 import pen from "../assets/Icons/pen.svg";
-import ArrowLeft from "../assets/Icons/ArrowLeft.svg";
+import arrowLeft from "../assets/Icons/Arrow Left.svg"
+import arrowDown from "../assets/Icons/arrow-down.svg"
+import close from "../assets/Icons/x.svg"
+import addCircle from "../assets/Icons/Add Circle.svg"
+import copy from "../assets/Icons/Copy.svg"
+import mp4 from "../assets/Icons/mp4.svg"
+import closeRed from "../assets/Icons/Close Circle.svg"
+import closeBg from "../assets/Icons/close-bg.svg"
+import ArrowLeft from "../assets/Icons/ArrowLeft.svg"; 
 import design from "../assets/Icons/design.svg";
 import development from "../assets/Icons/html.svg";
 import itSoftware from "../assets/Icons/it-software.svg";
@@ -34,6 +42,9 @@ import video from "../assets/Icons/video.svg";
 import cartWhite from "../assets/Icons/cart-white.svg";
 import cartYellow from "../assets/Icons/cart-yellow.svg";
 import deleteIcon from "../assets/Icons/delete.svg";
+import folderUpload from "../assets/Icons/empty 1.svg"
+import menuDots from "../assets/Icons/Menu Dots.svg"
+
 
 // Importing Images
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
@@ -57,7 +68,12 @@ export const ICONS = {
     search,
     user,
     pen,
-    ArrowLeft,
+    ArrowLeft,    close,
+    mp4,
+    closeRed,
+    closeBg,
+    menuDots,
+
     design,
     development,
     itSoftware,
@@ -84,6 +100,11 @@ export const ICONS = {
     cartWhite,
     cartYellow,
     deleteIcon,
+    arrowLeft,
+    arrowDown,
+    folderUpload,
+    addCircle,
+    copy
 };
 
 export const IMAGES = {
