@@ -116,7 +116,7 @@ const ReferralPayouts = () => {
       </div>
       <div className="flex flex-col ">
       <h1 className="text-lg font-semibold mb-4">Transaction History</h1>
-      <TransactionHistory />
+      <TransactionHistory data={[]} headers={[]} showHeader={false} />
       </div>
       
     </div>
