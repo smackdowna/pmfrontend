@@ -38,6 +38,10 @@ import AltArrowLeft from "../assets/Icons/AltArrowLeft.svg";
 import AltArrowRight from "../assets/Icons/AltArrowRight.svg";
 import ArrowUp from "../assets/Icons/ArrowUp.png";
 import Cart from "../assets/Icons/Cart.png";
+import video from "../assets/Icons/video.svg";
+import cartWhite from "../assets/Icons/cart-white.svg";
+import cartYellow from "../assets/Icons/cart-yellow.svg";
+import deleteIcon from "../assets/Icons/delete.svg";
 import folderUpload from "../assets/Icons/empty 1.svg"
 import menuDots from "../assets/Icons/Menu Dots.svg"
 
@@ -49,6 +53,10 @@ import enrollment from "../assets/Images/enrollment.png";
 import sessionAnnouncement from "../assets/Images/session-announcement.png";
 import courseImg from "../assets/Images/course-img.png";
 import KycBG from "../assets/Images/KycBG.png";
+import courseDetailsImg from "../assets/Images/image 609.png";
+import securePayment from "../assets/Images/secure.png";
+import secureSSL from "../assets/Images/secure-ssl.png";
+import razorpay from "../assets/Images/razorpay.png";
 
 export const ICONS = {
     hamburgerMenu,
@@ -88,6 +96,10 @@ export const ICONS = {
     AltArrowRight,
     ArrowUp,
     Cart,
+    video,
+    cartWhite,
+    cartYellow,
+    deleteIcon,
     arrowLeft,
     arrowDown,
     folderUpload,
@@ -102,4 +114,8 @@ export const IMAGES = {
     sessionAnnouncement,
     courseImg,
     KycBG,
+    courseDetailsImg,
+    securePayment,
+    secureSSL,
+    razorpay,
 };
