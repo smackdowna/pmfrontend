@@ -30,6 +30,7 @@ const AddVideo: React.FC<AddVideoProps> = ({ isOpen, onClose, onSubmit }) => {
   };
 
   const simulateUpload = (file: File) => {
+    console.log(file)
     let progress = 0;
     const interval = setInterval(() => {
       progress += 10; // Simulating 10% progress at a time

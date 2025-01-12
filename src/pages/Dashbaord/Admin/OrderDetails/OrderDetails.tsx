@@ -3,7 +3,6 @@ import { ICONS } from "../../../../assets";
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
 import Card from "../../../../components/Reusable/OrderDetailsCard/OrderDetailsCard";
 import CustomerDetails from "../../../../components/CustomerDetails/CustomerDetails";
-import OrderSummary from "../../../../components/OrderSummaryCard/OrderSummaryCard";
 
 // Default order details
 const defaultOrder = {
