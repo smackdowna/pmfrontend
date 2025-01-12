@@ -1,70 +1,60 @@
-// import { IMAGES } from "../../../assets";
-// import { Link } from "react-router-dom";
-// const Sidebar = () => {
-//   return (
-//     <div className=" w-60 min-w-60 h-screen px-4 py-14 text-white">
-//       <Link to={"/"} className="flex items-center gap-2 w-full mb-8">
-//         <img src={IMAGES.pmGurukulLogo} alt="PM-Gurukul" className="size-12" />
-//         <h1 className="text-black">PM Gurukul</h1>
-//       </Link>
-//       <div>
-//         <ul className="flex flex-col gap-6">
-//             <li className="px-3">
-//                 <Link to={"/dashboard"} className="text-neutral-85">
-//                 Dashboard
-//                 </Link>
-//             </li>
-//             <li className="px-3">
-//                 <Link to={"/dashboard/my-courses"} className="text-neutral-85">
-//                 My Courses
-//                 </Link>
-//             </li>
-//             <li className="px-3">
-//                 <Link to={"/dashboard/referral"} className="text-neutral-85">
-//                 Referrals & Payouts
-//                 </Link>
-//             </li>
-//             <li className="px-3">
-//                 <Link to={"/dashboard/kyc"} className="text-neutral-85">
-//                 KYC
-//                 </Link>
-//             </li>
-//         </ul>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Sidebar;
 import { IMAGES } from "../../../assets";
 import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 const Sidebar: React.FC = () => {
   const location = useLocation();
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+  // Set isAdmin based on the current route
+  useEffect(() => {
+    setIsAdmin(location.pathname.startsWith("/admin"));
+  }, [location.pathname]);
 
   // Helper function to check if the link is active
   const isActive = (path: string): boolean => location.pathname === path;
 
+  // Objects to store the menus and their links
+  const userMenus = [
+    { name: "Dashboard", link: "/dashboard" },
+    { name: "My Courses", link: "/dashboard/my-courses" },
+    { name: "Referrals & Payouts", link: "/dashboard/referral" },
+    { name: "KYC", link: "/dashboard/kyc" },
+  ];
+
+  const adminMenus = [
+    { name: "Dashboard", link: "/admin/dashboard" },
+    { name: "Registered Users", link: "/admin/registered-users" },
+    { name: "Affiliates", link: "/admin/affiliates" },
+    { name: "Courses", link: "/admin/courses" },
+    { name: "Payouts", link: "/admin/payouts" },
+    { name: "Talent List", link: "/admin/talent-list" },
+    { name: "Purchase History", link: "/admin/purchase-history" },
+  ];
+
+  // Choose menus based on user type
+  const menus = isAdmin ? adminMenus : userMenus;
+
   return (
-    <div className="w-60 min-w-60 h-screen px-4 py-14 text-white ">
+    <div className="w-60 min-w-60 h-screen px-4 py-14 text-white">
       <Link to="/" className="flex items-center gap-2 w-full pb-4 mb-2">
         <img src={IMAGES.pmGurukulLogo} alt="PM-Gurukul" className="size-10" />
         <h1 className="text-primary-10 text-xl font-medium">PM Gurukul</h1>
       </Link>
       <div>
         <ul className="flex flex-col gap-2">
-          <li className={`px-3 py-2 ${isActive("/dashboard") ? "bg-neutral-60 text-primary-10 rounded-lg" : "text-neutral-85"}`}>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li className={`px-3 py-2 ${isActive("/dashboard/my-courses") ? "bg-neutral-60 text-primary-10 rounded-lg" : "text-neutral-85"}`}>
-            <Link to="/dashboard/my-courses">My Courses</Link>
-          </li>
-          <li className={`px-3 py-2 ${isActive("/dashboard/referral") ? "bg-neutral-60 text-primary-10 rounded-lg" : "text-neutral-85"}`}>
-            <Link to="/dashboard/referral">Referrals & Payouts</Link>
-          </li>
-          <li className={`px-3 py-2 ${isActive("/dashboard/kyc") ? "bg-neutral-60 text-primary-10 rounded-lg" : "text-neutral-85"}`}>
-            <Link to="/dashboard/kyc">KYC</Link>
-          </li>
+          {menus.map((menu) => (
+            <li
+              key={menu.link}
+              className={`px-3 py-2 ${
+                isActive(menu.link)
+                  ? "bg-neutral-60 text-primary-10 rounded-lg"
+                  : "text-neutral-85"
+              }`}
+            >
+              <Link to={menu.link}>{menu.name}</Link>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

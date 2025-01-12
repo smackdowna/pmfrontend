@@ -1,4 +1,3 @@
-
 import BankInfo from "./BankInfo";
 import IdentityInfo from "./IdentityInfo";
 import UploadProof from "./UploadProof";

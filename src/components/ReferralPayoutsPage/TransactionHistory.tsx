@@ -1,29 +1,29 @@
 import { ICONS } from "../../assets";
 import { useState } from "react";
 
-const TransactionHistory = () => {
-  const [data] = useState([
-    { id: 1, date: "23 Oct 2023", customer: "John Jacobs", course: "Adobe Premier Pro", amount: "₹500" },
-    { id: 2, date: "22 Oct 2024", customer: "Jane Doe", course: "Adobe Photoshop", amount: "₹600" },
-    { id: 3, date: "21 Oct 2024", customer: "Mark Spencer", course: "Adobe Illustrator", amount: "₹400" },
-    { id: 4, date: "22 Oct 2024", customer: "Jane Doe", course: "Adobe Photoshop", amount: "₹600" },
-    { id: 5, date: "25 Oct 2024", customer: "Mark Spencer", course: "Adobe Illustrator", amount: "₹400" },
-    { id: 6, date: "20 Oct 2024", customer: "Jane Doe", course: "Adobe Photoshop", amount: "₹600" },
-    { id: 7, date: "21 Oct 2024", customer: "Mark Spencer", course: "Adobe Illustrator", amount: "₹400" },
-    { id: 8, date: "20 Oct 2024", customer: "Jane Doe", course: "Adobe Photoshop", amount: "₹600" },
-    { id: 9, date: "21 Oct 2024", customer: "Mark Spencer", course: "Adobe Illustrator", amount: "₹400" },
-    { id: 10, date: "20 Oct 2024", customer: "Jane Doe", course: "Adobe Photoshop", amount: "₹600" },
-    { id: 11, date: "21 Oct 2024", customer: "Mark Spencer", course: "Adobe Illustrator", amount: "₹400" },
-    { id: 12, date: "27 Oct 2024", customer: "Mark Spencer", course: "Adobe Illustrator", amount: "₹400" },
-    { id: 13, date: "30 Sept 2024", customer: "Mark Spencer", course: "Adobe Illustrator", amount: "₹400" },
-    { id: 14, date: "21 Oct 2024", customer: "Mark Spencer", course: "Adobe Illustrator", amount: "₹400" },
-   
-  ]);
+// Define the type for the header props
+interface Header {
+  key: string;
+  label: string;
+  sortable?: boolean;
+}
 
+interface RowData {
+  [key: string]: string | number; // Each row can have multiple fields (key-value pairs), and values can be strings or numbers.
+}
+
+// Table component with typed props
+interface TableProps {
+  headers: Header[];
+  data: RowData[];
+  showHeader: boolean;
+}
+
+const Table = ({ headers = [], data = [], showHeader = true }: TableProps) => {
   const rowsPerPage = 10;
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isSortedAsc, setIsSortedAsc] = useState(true);
-  const [displayData, setDisplayData] = useState(data); 
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [isSortedAsc, setIsSortedAsc] = useState<boolean>(true);
+  const [displayData, setDisplayData] = useState<RowData[]>(data);
 
   const totalPages = Math.ceil(displayData.length / rowsPerPage);
 
@@ -32,29 +32,24 @@ const TransactionHistory = () => {
     currentPage * rowsPerPage
   );
 
+  // Handle pagination
   const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
   const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
 
-  // Export 
+  // Handle export as CSV
   const handleExport = () => {
-    const csvHeaders = "SR.NO,DATE OF PURCHASE,CUSTOMER NAME,COURSE,AMOUNT EARNED\n";
-    const csvRows = displayData.map(
-      (row, index) =>
-        `${index + 1},${row.date},${row.customer},${row.course},${row.amount}`
+    const csvHeaders = headers.map((header) => header.label).join(",") + "\n";
+    const csvRows = displayData.map((row) =>
+      headers.map((header) => row[header.key] || "").join(",")
     );
     const csvContent = csvHeaders + csvRows.join("\n");
     const blob = new Blob([csvContent], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
-
     const link = document.createElement("a");
     link.href = url;
     link.download = "TransactionHistory.csv";
@@ -63,22 +58,36 @@ const TransactionHistory = () => {
     document.body.removeChild(link);
   };
 
-  // Sort 
-  const handleSortByDate = () => {
+  // Handle sorting by any sortable column
+  const handleSort = (key: string) => {
     const sortedData = [...data].sort((a, b) => {
-      const dateA = new Date(a.date).getTime();
-      const dateB = new Date(b.date).getTime();
-      return isSortedAsc ? dateA - dateB : dateB - dateA;
+      const valueA = a[key];
+      const valueB = b[key];
+      if (isSortedAsc) {
+        return valueA < valueB ? -1 : 1;
+      }
+      return valueA > valueB ? -1 : 1;
     });
     setDisplayData(sortedData);
     setIsSortedAsc(!isSortedAsc);
-    setCurrentPage(1); 
+    setCurrentPage(1);
+  };
+
+  // Conditional class for kycStatus column
+  const getKycStatusColor = (status: string | number) => {
+    if (status === "Pending" || status === "Overdue") {
+      return "bg-red-100  text-red-700 px-2 py-1 rounded";
+    }
+    if (status === "Approved" || status === "Active" || status === "Paid") {
+      return "bg-green-100 text-green-700 px-2 rounded";
+    }
+    return "";
   };
 
   return (
-    <div className="">
-      <div className="overflow-x-auto">
-        <div className="bg-white rounded-xl flex flex-col border border-neutral-55">
+    <div className="overflow-x-auto">
+      <div className="bg-white rounded-xl flex flex-col border border-neutral-55">
+        {showHeader && (
           <div className="flex p-[10px] justify-between items-center">
             <div className="border flex gap-2 border-neutral-55 rounded-xl p-2 max-w-[190px]">
               <img src={ICONS.search} alt="Search Icon" />
@@ -96,7 +105,7 @@ const TransactionHistory = () => {
                   className={`px-1 py-2 rounded ${
                     currentPage === 1
                       ? "text-neutral-10 cursor-not-allowed"
-                      : " text-neutral-30"
+                      : "text-neutral-30"
                   }`}
                 >
                   <img src={ICONS.AltArrowLeft} alt="Previous Page" />
@@ -110,7 +119,7 @@ const TransactionHistory = () => {
                   className={`px-1 py-2 rounded ${
                     currentPage === totalPages
                       ? "text-neutral-15 cursor-not-allowed"
-                      : "text-neutral-30 "
+                      : "text-neutral-30"
                   }`}
                 >
                   <img src={ICONS.AltArrowRight} alt="Next Page" />
@@ -120,7 +129,7 @@ const TransactionHistory = () => {
                 <button onClick={handleExport}>Export</button>
               </div>
               <div className="flex bg-neutral-60 p-2 rounded-lg">
-                <button onClick={handleSortByDate}>
+                <button onClick={() => handleSort("date")}>
                   <img src={ICONS.SortVertical} alt="Sort Icon" />
                 </button>
               </div>
@@ -129,40 +138,78 @@ const TransactionHistory = () => {
               </div>
             </div>
           </div>
-          <table className="table-auto w-full rounded-b-xl border-none text-left">
-            <thead>
-              <tr className="bg-neutral-60">
-                <th className="px-4 py-2 font-Inter">SR.NO</th>
-                <th className="px-4 py-2 font-Inter">DATE OF PURCHASE</th>
-                <th className="px-4 py-2 font-Inter">CUSTOMER NAME</th>
-                <th className="px-4 py-2 font-Inter">COURSE</th>
-                <th className="px-4 py-2 font-Inter">AMOUNT EARNED</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentData.map((row, index) => (
-                <tr key={row.id}>
-                  <td className="px-4 py-2 font-Inter border-b">
-                    {(currentPage - 1) * rowsPerPage + index + 1}
-                  </td>
-                  <td className="px-4 py-2 font-Inter border-b">{row.date}</td>
-                  <td className="px-4 py-2 font-Inter border-b">
-                    {row.customer}
-                  </td>
-                  <td className="px-4 py-2 font-Inter border-b">
-                    {row.course}
-                  </td>
-                  <td className="px-4 py-2 font-Inter border-b">
-                    {row.amount}
-                  </td>
-                </tr>
+        )}
+        <table className="table-auto w-full rounded-b-xl border-none text-left">
+          <thead>
+            <tr className="bg-neutral-60">
+              {headers.map((header) => (
+                <th
+                  key={header.key}
+                  className="px-4 py-2 font-Inter cursor-pointer"
+                  onClick={
+                    header.sortable ? () => handleSort(header.key) : undefined
+                  }
+                >
+                  {header.label}
+                </th>
               ))}
-            </tbody>
-          </table>
-        </div>
+            </tr>
+          </thead>
+          <tbody>
+            {currentData.map((row, index) => (
+              <tr key={index}>
+                {headers.map((header) => (
+                  <td
+                    key={header.key}
+                    className="px-4 py-2 font-Inter border-b"
+                  >
+                    <span
+                      className={`${
+                        header.key == "kycStatus" ||
+                        header.key == "status" ||
+                        header.key === "payoutStatus" ||
+                        header.key === "paymentStatus"
+                          ? getKycStatusColor(row[header.key])
+                          : ""
+                      }
+                      `}
+                    >
+                      {header.key === "action" ? (
+                        <button className="mx-auto">
+                          <img
+                            src={ICONS.menuDots}
+                            className="w-5 h-5"
+                            alt=""
+                          />
+                        </button>
+                      ) : (
+                        row[header.key]
+                      )}
+                    </span>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
+};
+
+// TransactionHistory component to encapsulate Table
+interface TransactionHistoryProps {
+  data: RowData[];
+  headers: Header[];
+  showHeader: boolean;
+}
+
+const TransactionHistory = ({
+  data = [],
+  headers = [],
+  showHeader = true,
+}: TransactionHistoryProps) => {
+  return <Table data={data} headers={headers} showHeader={showHeader} />;
 };
 
 export default TransactionHistory;

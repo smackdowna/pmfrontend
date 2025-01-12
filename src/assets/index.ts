@@ -8,6 +8,14 @@ import search from "../assets/Icons/search.svg";
 import user from "../assets/Icons/user.svg";
 import starWhite from "../assets/Icons/star-white.svg";
 import pen from "../assets/Icons/pen.svg";
+import arrowLeft from "../assets/Icons/Arrow Left.svg"
+import arrowDown from "../assets/Icons/arrow-down.svg"
+import close from "../assets/Icons/x.svg"
+import addCircle from "../assets/Icons/Add Circle.svg"
+import copy from "../assets/Icons/Copy.svg"
+import mp4 from "../assets/Icons/mp4.svg"
+import closeRed from "../assets/Icons/Close Circle.svg"
+import closeBg from "../assets/Icons/close-bg.svg"
 import ArrowLeft from "../assets/Icons/ArrowLeft.svg"; 
 import design from "../assets/Icons/design.svg";
 import development from "../assets/Icons/html.svg";
@@ -30,6 +38,10 @@ import AltArrowLeft from "../assets/Icons/AltArrowLeft.svg";
 import AltArrowRight from "../assets/Icons/AltArrowRight.svg";
 import ArrowUp from "../assets/Icons/ArrowUp.png";
 import Cart from "../assets/Icons/Cart.png";
+import folderUpload from "../assets/Icons/empty 1.svg"
+import menuDots from "../assets/Icons/Menu Dots.svg"
+
+
 // Importing Images
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
 import heroImg from "../assets/Images/hero-img.png";
@@ -48,7 +60,12 @@ export const ICONS = {
     search,
     user,
     pen,
-    ArrowLeft,
+    ArrowLeft,    close,
+    mp4,
+    closeRed,
+    closeBg,
+    menuDots,
+
     design,
     development,
     itSoftware,
@@ -71,6 +88,11 @@ export const ICONS = {
     AltArrowRight,
     ArrowUp,
     Cart,
+    arrowLeft,
+    arrowDown,
+    folderUpload,
+    addCircle,
+    copy
 };
 
 export const IMAGES = {
