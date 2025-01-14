@@ -3,3 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.heading6 {
+  @apply text-primary-30 font-semibold leading-6 text-sm md:text-base;
+};

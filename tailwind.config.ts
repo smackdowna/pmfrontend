@@ -12,71 +12,67 @@ export default {
       fontFamily: {
         Inter: ['Inter', 'serif'],
       },
-
-      colors : {
-        white : "#FFF",
-
-        primary : {
-          10 : "#051539",
-          15 : "#263238",
-          20 : '#2E3238',
-          25 : '#303D5C'
-        }, 
-        
-        secondary : {
-          10 : "#FFD614",
-          15 : "#EFD881",
-          20 : '#F4E28C',
-          25 : "#ffe466",
-          30 : "#ffffff80",
-          35 : "#FFE5A0", 
-          40 : "#6BB870",
-          45 : "#FFCFC9",
-          50 : "#D4EDBC",
-          55 : "#11734B",
-          60 : "#B10202",
-          65 : "#473821"
+      colors: {
+        white: "#FFF",
+        primary: {
+          10: "#051539",
+          15: "#263238",
+          20: '#2E3238',
+          25: '#303D5C',
+          30: "#1E293B",
+        },
+        secondary: {
+          10: "#FFD614",
+          15: "#EFD881",
+          20: '#F4E28C',
+          25: "#ffe466",
+          30: "#ffffff80",
+          35: "#FFE5A0", 
+          40: "#6BB870",
+          45: "#FFCFC9",
+          50: "#D4EDBC",
+          55: "#11734B",
+          60: "#B10202",
+          65: "#473821",
         },
         blue: {
-          10: "#0073DF"
+          10: "#0073DF",
         },
-
-        neutral : {
-          10 : "#8A9BB1",
-          15 : "#CBD5E1",
-          20 : "#FAFAFA",
-          25 : '#F9F9F9',
-          30 : '#4A4A5A',
-          35 : "#CAD0D9",
-          40 : '#F3F4F6',
-          45 : '#B6B7C3',
-          50 : "#e9ebeb",
-          55 : '#E2E8F0',
-          60 : '#F1F5F9',
-          65 : "#6E7883",
-          70 : "#fcfcfd",
-          75 : "#6e78831f",
-          80 : "#F8FAFC",
-          85 : "#64748B",
-          90 : "#0F172A",
-          95 : "#686972",
-          100 : "#E6E6E6",
+        neutral: {
+          10: "#8A9BB1",
+          15: "#CBD5E1",
+          20: "#FAFAFA",
+          25: '#F9F9F9',
+          30: '#4A4A5A',
+          35: "#CAD0D9",
+          40: '#F3F4F6',
+          45: '#B6B7C3',
+          50: "#e9ebeb",
+          55: '#E2E8F0',
+          60: '#F1F5F9',
+          65: "#6E7883",
+          70: "#fcfcfd",
+          75: "#6e78831f",
+          80: "#F8FAFC",
+          85: "#64748B",
+          90: "#0F172A",
+          95: "#686972",
+          100: "#E6E6E6",
+          110: '#94A3B8',
         },
         textGray: {
           10: "#6B788E",
           20: "#64748B",
           30: "#94A3B8",
-          80: "#1E293B"
+          80: "#1E293B",
         },
         borderColor: {
           10: "#DFE2E6",
-          20: "rgba(110, 120, 131, 0.12)"
+          20: "rgba(110, 120, 131, 0.12)",
         },
-        error:"#DC2626",
-        success:"#16A34A"
+        error: "#DC2626",
+        success: "#16A34A",
       },
-
-
       backgroundImage: {
         "primary-gradient": "linear-gradient(180deg, #EFD881 0%, #FFB200 100%)",
         "primary-gradient-light": "linear-gradient(180deg, #EFD881 0%, #C59629 100%)",
@@ -85,15 +81,11 @@ export default {
         "gradient-gray": "linear-gradient(180deg, rgba(241, 233, 255, 0.80) 0%, #FAF7FF 100%)",
         'custom-gradient': 'linear-gradient(0deg, rgba(0, 0, 0, 0.30) -14.5%, rgba(0, 0, 0, 0.00) 87.5%)',
       },
-
-      
-
-      boxShadow : {
-        "primary-shadow" : "0px 16px 28px -5px rgba(239, 216, 129, 0.15)",
-        "shadow-light-gray" : "0px 20px 250px -20px rgba(151, 71, 255, 0.15)",
-      }
+      boxShadow: {
+        "primary-shadow": "0px 16px 28px -5px rgba(239, 216, 129, 0.15)",
+        "shadow-light-gray": "0px 20px 250px -20px rgba(151, 71, 255, 0.15)",
+      },
     },
   },
   plugins: [],
 }
-

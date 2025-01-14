@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
 import AddTalent from "../../../../components/AddTalent/AddTalent";

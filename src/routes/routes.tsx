@@ -18,6 +18,8 @@ import MyCourseVideo from "../pages/Dashbaord/MyCourses/MyCourseVideo";
 import KYCStatusPage from "../pages/Dashbaord/KYC/KYCStatusPage";
 import CourseVideoLayout from "../layouts/CourseVideoLayout/CourseVideoLayout";
 import Forum from "../pages/Dashbaord/MyCourses/Forum";
+import CourseDetails from "../pages/CourseDetails/CourseDetails";
+import Cart from "../pages/Cart/Cart";
 import AdminCourses from "../pages/Dashbaord/Admin/Courses/Courses";
 import AddCourse from "../pages/Dashbaord/Admin/AddCourse/AddCourse";
 import OrderDetails from "../pages/Dashbaord/Admin/OrderDetails/OrderDetails";
@@ -27,6 +29,7 @@ import RegisteredUsers from "../pages/Dashbaord/Admin/RegisteredUsers/Registered
 import TalentList from "../pages/Dashbaord/Admin/TalentList/TalentList";
 import PurchaseHistory from "../pages/Dashbaord/Admin/PurchaseHistory/PurchaseHistory";
 import ViewAffiliate from "../pages/Dashbaord/Admin/ViewAffiliate/ViewAffiliate";
+
 
 export const router = createBrowserRouter([
   {
@@ -43,8 +46,16 @@ export const router = createBrowserRouter([
         element: <Courses />,
       },
       {
+        path: "/course/:id",
+        element: <CourseDetails />,
+      },
+      {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

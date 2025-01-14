@@ -3,7 +3,6 @@ import { ICONS } from "../../../../assets";
 import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import ReasonForRejection from "../../../../components/ReasonForRejection/ReasonForRejection";
 import PersonalInfo from "../../../../components/MyProfilePage/PersonalInfo/PersonalInfo";
-import KycDetails from "../../../../components/MyProfilePage/KycDetails/KycDetails";
 import TransactionHistory from "../../../../components/ReferralPayoutsPage/TransactionHistory";
 import { FormProvider, useForm } from "react-hook-form";
 import IdentityInfo from "../../../../components/MyProfilePage/KycDetails/IdentityInfo";
