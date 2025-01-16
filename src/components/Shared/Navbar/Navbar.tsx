@@ -2,23 +2,9 @@ import { Link, useLocation } from "react-router-dom";
 import { ICONS, IMAGES } from "../../../assets";
 import Container from "../Container/Container";
 import HamburgerMenu from "./HamburgerMenu";
+import { navlinks } from "./navlinks";
 
 const Navbar = () => {
-    const navlinks = [
-        {
-            label: "Home",
-            path: "/",
-        },
-        {
-            label: "Courses",
-            path: "/courses",
-        },
-        {
-            label: "Contact",
-            path: "/contact-us",
-        },
-    ];
-
     const location = useLocation();
 
     return (

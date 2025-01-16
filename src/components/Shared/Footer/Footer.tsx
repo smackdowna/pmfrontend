@@ -1,51 +1,9 @@
 import { Link } from "react-router-dom";
 import Container from "../Container/Container";
+import { footerLinks } from "./footerLinks";
 
 const Footer = () => {
-    const footerLinks = [
-        {
-            heading: "Product",
-            links: [
-                {
-                    label: "Courses",
-                    path: "/courses"
-                },
-                {
-                    label: "About Us",
-                    path: "/about-us"
-                },
-                {
-                    label: "Blogs",
-                    path: "/blogs"
-                },
-                {
-                    label: "Pricing",
-                    path: "/pricing"
-                },
-            ]
-        },
-        {
-            heading: "Resources",
-            links: [
-                {
-                    label: "Disclaimer",
-                    path: "/disclaimer"
-                },
-                {
-                    label: "Contact us",
-                    path: "/contact-us"
-                },
-                {
-                    label: "Privacy Policy",
-                    path: "/privacy-policy"
-                },
-                {
-                    label: "Terms and Conditions",
-                    path: "/terms-and-conditions"
-                },
-            ]
-        },
-    ]
+    
     return (
         <div className="bg-primary-10 py-[64px] font-Inter">
             <Container>
@@ -73,9 +31,7 @@ const Footer = () => {
                             }
                         </div>
                     </div>
-
                     <hr className="border border-primary-20 h-[1px]" />
-
                     <p className="text-neutral-35 leading-6 max-w-[377px]">© 2024 TouchToRate. All rights reserved</p>
                 </div>
             </Container>

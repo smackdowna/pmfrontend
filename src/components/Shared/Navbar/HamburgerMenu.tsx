@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { ICONS } from "../../../assets";
+import { navlinks } from "./navlinks";
 
-const HamburgerMenu = () => {
+const HamburgerMenu: React.FC = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
 
   const toggleHamburgerMenu = () => {
@@ -10,8 +11,9 @@ const HamburgerMenu = () => {
   };
 
   useEffect(() => {
-    const handleOutsideClick = (event) => {
-      const closestDropdown = event.target.closest(".hamburgerMenu");
+    const handleOutsideClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const closestDropdown = target.closest(".hamburgerMenu");
       if (isHamburgerOpen && closestDropdown === null) {
         setIsHamburgerOpen(false);
       }
@@ -24,20 +26,7 @@ const HamburgerMenu = () => {
     };
   }, [isHamburgerOpen]);
 
-  const sidebarLinks = [
-    {
-      label: "3-4 yrs",
-      path: "/all-products",
-    },
-    {
-      label: "5-6 yrs",
-      path: "/all-products",
-    },
-    {
-      label: "7-8 yrs",
-      path: "/all-products",
-    },
-  ];
+  const location = useLocation();
 
   return (
     <div className="relative hamburgerMenu block lg:hidden">
@@ -58,11 +47,21 @@ const HamburgerMenu = () => {
 
       {/* Side Menu */}
       <div
-        className={`fixed inset-y-0 left-0 z-50 bg-white w-[330px] overflow-y-auto h-screen transition-all duration-300 transform ${
-          isHamburgerOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed inset-y-0 right-0 z-50 py-5 px-6 bg-white w-[270px] overflow-y-auto h-screen transition-all duration-300 transform flex flex-col gap-8 ${
+          isHamburgerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <Link to={"/"} className="">Hi</Link>
+        {navlinks.map((link, index) => (
+          <Link
+            key={index}
+            to={link.path}
+            className={`${
+              location.pathname === link.path ? "font-semibold" : "font-normal"
+            } text-primary-10 text-lg leading-6`}
+          >
+            {link.label}
+          </Link>
+        ))}
       </div>
     </div>
   );

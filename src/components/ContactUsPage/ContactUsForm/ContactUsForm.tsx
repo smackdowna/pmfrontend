@@ -115,6 +115,7 @@
 import { useForm } from "react-hook-form";
 import TextInput from "../../Reusable/TextInput/TextInput";
 import Textarea from "../../Reusable/TextArea/TextArea";
+import Container from "../../Shared/Container/Container";
 
 interface FormData {
   fullName: string;
@@ -136,6 +137,7 @@ const ContactUsForm = () => {
 
   return (
     <div className="bg-neutral-20 py-[64px]">
+      <Container>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white border border-neutral-75 max-w-[644px] mx-auto rounded-2xl"
@@ -210,6 +212,7 @@ const ContactUsForm = () => {
           </button>
         </div>
       </form>
+      </Container>
     </div>
   );
 };

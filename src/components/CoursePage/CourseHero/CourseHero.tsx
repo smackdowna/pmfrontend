@@ -5,12 +5,11 @@ import HeroContainer from "../../Reusable/HeroContainer/HeroContainer";
 import Paragraph from "../../Reusable/Paragraph/Parahraph";
 import Container from "../../Shared/Container/Container";
 
-
 const CourseHero = () => {
     return (
         <HeroContainer>
             <Container>
-                <div className="flex flex-col items-center justify-center py-[64px]">
+                <div className="flex flex-col items-start md:items-center justify-center py-[64px]">
                     <Badge title="This is a headline for heading" />
                     <Heading1 classNames="text-white mt-[6px]">Our Courses</Heading1>
                     <Paragraph classNames="text-neutral-10">Unleash Your Potential with Our Inspiring Online Courses.</Paragraph>

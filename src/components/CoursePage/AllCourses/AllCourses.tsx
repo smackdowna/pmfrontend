@@ -44,19 +44,25 @@ const AllCourses = () => {
         <Container>
             <div className="font-Inter py-[96px] flex flex-col gap-20">
                 {/* Categories */}
-                <div className="flex items-center justify-center gap-4">
-                    {
-                        categories?.map((category) =>
-                            <button onClick={() => setSelectedCategory(category?.name)} key={category?.name} className={`${category?.name === selectedCategory ? "bg-primary-10 border-primary-10 text-white font-semibold" : "border-neutral-10 bg-white text-neutral-10 font-medium"} text-xl leading-7 border px-5 py-3 flex items-center gap-[10px] rounded-[100px]`}>
-                                {
-                                    category?.icon &&
-                                    <img src={category.icon} alt="" />
-                                }
+                <div className="w-full overflow-x-auto lg:flex lg:justify-center">
+                    <div className="flex items-center gap-4 min-w-max">
+                        {categories?.map((category) => (
+                            <button
+                                key={category?.name}
+                                onClick={() => setSelectedCategory(category?.name)}
+                                className={`${category?.name === selectedCategory
+                                        ? "bg-primary-10 border-primary-10 text-white font-semibold"
+                                        : "border-neutral-10 bg-white text-neutral-10 font-medium"
+                                    } text-xl leading-7 border px-5 py-3 flex items-center gap-[10px] rounded-[100px] whitespace-nowrap`}
+                            >
+                                {category?.icon && <img src={category.icon} alt="" />}
                                 {category?.name}
                             </button>
-                        )
-                    }
+                        ))}
+                    </div>
                 </div>
+
+
 
                 {/* Courses */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1000px] mx-auto">
