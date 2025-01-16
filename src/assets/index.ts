@@ -104,7 +104,7 @@ export const ICONS = {
     arrowDown,
     folderUpload,
     addCircle,
-    copy
+    copy,
 };
 
 export const IMAGES = {

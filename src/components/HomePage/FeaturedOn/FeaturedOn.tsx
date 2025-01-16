@@ -5,7 +5,7 @@ const FeaturedOn = () => {
     const logos = [IMAGES.pmGurukulLogo, IMAGES.pmGurukulLogo, IMAGES.pmGurukulLogo, IMAGES.pmGurukulLogo, IMAGES.pmGurukulLogo, IMAGES.pmGurukulLogo, IMAGES.pmGurukulLogo, IMAGES.pmGurukulLogo,]
     return (
         <div className="bg-[#fff6eb] py-[64px] flex flex-col gap-[38px]">
-            <h1 className="text-primary-10 text-[36px] md:text-[40px] font-bold leading-[40px] xl:leading-[48px] text-center">As featured On</h1>
+            <h1 className="text-primary-10 text-[36px] md:text-[40px] font-bold leading-[40px] xl:leading-[48px] text-center">As Featured On</h1>
 
             <Marquee speed={50}>
                 {logos.map((logo, index) => (

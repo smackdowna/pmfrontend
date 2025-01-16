@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SectionHeading from "../../Reusable/SectionHeading/SectionHeading";
 import { ICONS } from "../../../assets";
+import Container from "../Container/Container";
 
 
 const FAQ = () => {
@@ -35,7 +36,7 @@ const FAQ = () => {
     return (
         <div className="bg-white py-[96px] flex flex-col items-center justify-center gap-[56px]">
             <SectionHeading heading="Got Questions? We’ve Got Answers!" description="Here’s everything you’ve been wondering about, explained." />
-
+            <Container>
             <div className="flex gap-3 flex-col items-center justify-center w-full">
                 {faqs.map((faq, index) => (
                     <article
@@ -67,6 +68,7 @@ const FAQ = () => {
                     </article>
                 ))}
             </div>
+            </Container>
         </div>
     );
 };

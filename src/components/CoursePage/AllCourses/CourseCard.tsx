@@ -3,10 +3,10 @@ import { TCourse } from "./course.types";
 import { ICONS } from "../../../assets";
 
 
-const CourseCard: React.FC<TCourse> = ({ _id, title, instructor, enrolled, rating, image }) => {
+const CourseCard: React.FC<TCourse> = ({ _id, poster, title, instructor, enrolled, rating, image }) => {
     return (
         <div className="bg-white border border-neutral-45 rounded-[24px] font-Inter w-[312px] h-[410px] relative">
-            <img src={image} alt="" className="rounded-t-[24px] w-full h-[182px] object-cover" />
+            <img src={poster?.url} alt="" className="rounded-t-[24px] w-full h-[182px] object-cover" />
             <div className="bg-[#6BB870] py-1 px-2 flex items-center gap-[2px] w-fit text-white font-medium text-sm absolute top-4 right-4 rounded-[12px]">
                 <img src={ICONS.starWhite} alt="star-icon" className="size-[14px]" />
                 {rating}

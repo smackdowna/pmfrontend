@@ -7,7 +7,7 @@ const SessionAnnouncement = () => {
     return (
         <div className='bg-white py-[96px] font-Inter'>
             <Container>
-                <div className='flex items-center justify-between'>
+                <div className='flex flex-col lg:flex-row gap-8 lg:gap-0 items-center justify-between'>
                     <img src={IMAGES.sessionAnnouncement} alt="session-announcement" className='w-full max-w-[600px]' />
                     <div>
                         <div className='flex flex-col gap-4'>

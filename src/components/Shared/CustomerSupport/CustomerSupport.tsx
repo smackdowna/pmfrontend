@@ -8,7 +8,7 @@ const CustomerSupport = () => {
                 <div className="flex flex-col gap-7">
                     <div>
                         <Heading1 classNames="text-primary-10 font-bold">PM Gurukul Customer Support</Heading1>
-                        <div className='rounded-3xl bg-secondary-25 border border-secondary-30 px-4 py-3 text-primary-10 font-medium leading-6 text-center w-fit mt-4'>(Available Monday to Saturday, 9:15 AM to 5:00 PM)</div>
+                        <div className='rounded-3xl bg-secondary-25 border border-secondary-30 px-3 md:px-4 py-[10px] md:py-3 text-primary-10 font-medium leading-6 text-center w-fit mt-4 text-sm md:text-base'>(Available Monday to Saturday, 9:15 AM to 5:00 PM)</div>
                     </div>
                     <div className="flex items-center gap-3">
                         <a href="tel:+918800383344" target="_blank" rel="noreferrer">
