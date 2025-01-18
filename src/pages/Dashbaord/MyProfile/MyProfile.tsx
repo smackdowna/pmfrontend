@@ -4,13 +4,21 @@ import PersonalInfo from "../../../components/MyProfilePage/PersonalInfo/Persona
 import IdentityInfo from "../../../components/MyProfilePage/KycDetails/IdentityInfo";
 import UploadProof from "../../../components/MyProfilePage/KycDetails/UploadProof";
 import BankInfo from "../../../components/MyProfilePage/KycDetails/BankInfo";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 const MyProfile = () => {
-  const methods = useForm(); 
+  const {
+          register,
+          handleSubmit,
+          formState: { errors },
+      } = useForm<FormData>();
+
+      const handleSetupProfile = (data) => {
+        console.log(data);
+      }
   return (
-    <FormProvider {...methods}>
-    <div className="flex flex-col gap-8">
+    <div>
+    <form onSubmit={handleSubmit(handleSetupProfile)} className="flex flex-col gap-8">
       <div className="flex items-center justify-start gap-3">
         <img src={ICONS.ArrowLeft} alt="Profile" className="w-9 h-9" />
         <h1 className="text-2xl font-semibold text-neutral-90">My Profile</h1>
@@ -31,15 +39,15 @@ const MyProfile = () => {
           </div>
           
         </div>
-        <IdentityInfo />
-        <UploadProof />
+        <IdentityInfo register={register} errors={errors} />
+        <UploadProof register={register} errors={errors} />
       </div>
-      <BankInfo />
+      <BankInfo register={register} errors={errors} />
     </div>
       </div>
       
+    </form>
     </div>
-    </FormProvider>
   );
 };
 

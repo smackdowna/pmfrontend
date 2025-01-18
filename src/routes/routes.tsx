@@ -29,6 +29,7 @@ import RegisteredUsers from "../pages/Dashbaord/Admin/RegisteredUsers/Registered
 import TalentList from "../pages/Dashbaord/Admin/TalentList/TalentList";
 import PurchaseHistory from "../pages/Dashbaord/Admin/PurchaseHistory/PurchaseHistory";
 import ViewAffiliate from "../pages/Dashbaord/Admin/ViewAffiliate/ViewAffiliate";
+import SetupProfile from "../pages/Auth/SetupProfile/SetupProfile";
 
 
 export const router = createBrowserRouter([
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: "verify-phone",
         element: <VerifyPhoneNumber />,
+      },
+      {
+        path: "setup-profile",
+        element: <SetupProfile />,
       },
     ],
   },

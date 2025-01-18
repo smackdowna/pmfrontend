@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <HelmetProvider>
     <Provider store={store}>
       <RouterProvider router={router} />
-      <Toaster position="top-center" richColors />
+      <Toaster position="bottom-left" richColors />
     </Provider>
     </HelmetProvider>
   </React.StrictMode>

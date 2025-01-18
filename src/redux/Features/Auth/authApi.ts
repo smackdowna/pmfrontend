@@ -2,9 +2,9 @@ import { baseApi } from "../../Api/baseApi";
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation({
+    sendOtp: builder.mutation({
       query: (userInfo) => ({
-        url: "/auth/login",
+        url: "/send-otp",
         method: "POST",
         body: userInfo,
         credentials: "include",
@@ -22,11 +22,11 @@ const authApi = baseApi.injectEndpoints({
       invalidatesTags: ["user"],
     }),
 
-    verifyAccount: builder.mutation({
-      query: (verifyAccountData) => ({
-        url: "/auth/verify",
+    verifyOtp: builder.mutation({
+      query: (verifyOtpData) => ({
+        url: "/verify-otp",
         method: "POST",
-        body: verifyAccountData,
+        body: verifyOtpData,
         credentials: "include",
       }),
       invalidatesTags: ["user"],
@@ -85,9 +85,9 @@ const authApi = baseApi.injectEndpoints({
 });
 
 export const {
-  useLoginMutation,
+  useSendOtpMutation,
   useSignupMutation,
-  useVerifyAccountMutation,
+  useVerifyOtpMutation,
   useGetMeQuery,
   useUpdateProfileMutation,
   useLogoutUserQuery,
