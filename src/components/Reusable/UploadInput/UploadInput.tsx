@@ -10,7 +10,7 @@ interface UploadInputProps {
   [key: string]: any;
 }
 
-const UploadInput: React.FC<UploadInputProps> = ({ label, name, accept, error, ...rest }) => {
+const UploadInput: React.FC<UploadInputProps> = ({ label, name, accept, error }) => {
   const [fileName, setFileName] = useState<string>("");
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,11 +35,7 @@ const UploadInput: React.FC<UploadInputProps> = ({ label, name, accept, error, .
           name={name}
           accept={accept}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-          onChange={(event) => {
-            handleFileChange(event);
-            rest.onChange?.(event);
-          }}
-          {...rest}
+          onChange={(event) => handleFileChange(event)}
         />
         <div className="flex justify-between items-center">
           <span className="text-neutral-65">

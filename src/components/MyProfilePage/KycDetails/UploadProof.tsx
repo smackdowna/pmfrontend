@@ -10,8 +10,8 @@ const UploadProof = ({register, errors}) => {
           label="Aadhaar Card Image"
           // name="aadhaarCardImage"
           accept="image/*"
-          error={errors.aadhaarCardImage}
-          {...register("aadhaarCardImage", {
+          error={errors.adImageFile}
+          {...register("adImageFile", {
             required: "Aadhaar Card Image is required",
           })}
         />
@@ -19,12 +19,12 @@ const UploadProof = ({register, errors}) => {
           label="PAN Card Image"
           // name="panCardImage"
           accept="image/*"
-          error={errors.panCardImage}
-          {...register("panCardImage", {
+          error={errors.panImageFile}
+          {...register("panImageFile", {
             required: "PAN Card Image is required",
           })}
         />
-        <UploadInput
+        {/* <UploadInput
           label="Cancel Cheque/Passbook Image"
           // name="cancelChequeImage"
           accept="image/*"
@@ -32,7 +32,7 @@ const UploadProof = ({register, errors}) => {
           {...register("cancelChequeImage", {
             required: "Cancel Cheque/Passbook Image is required",
           })}
-        />
+        /> */}
       </div>
     </div>
   );

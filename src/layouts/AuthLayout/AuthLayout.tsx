@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 const AuthLayout = () => {
     return (
-        <div>
+        <div className="bg-neutral-80">
             <Outlet />
         </div>
     );

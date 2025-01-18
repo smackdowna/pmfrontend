@@ -1,32 +1,7 @@
 import TextInput from "../../../components/Reusable/TextInput/TextInput";
 import Dropdown from "../../../components/Reusable/Dropdown/Dropdown";
-import { useForm } from "react-hook-form";
 
-interface FormData {
-  fullName: string;
-  email: string;
-  gender: string;
-  language: string;
-  state: string;
-  pincode: string;
-  dateOfBirth: string;
-  mobileNumber: string;
-  occupation: string;
-  country: string;
-  city: string;
-}
-
-const PersonalInfo = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>();
-
-  const onSubmit = (data: FormData) => {
-    console.log("Form Data:", data);
-  };
-
+const PersonalInfo = ({register, errors}) => {
   const genderOptions = ["Male", "Female", "Other"];
   const languageOptions = ["English", "Hindi"];
   const stateOptions = ["Maharashtra", "Gujrat"];
@@ -35,8 +10,7 @@ const PersonalInfo = () => {
   return (
     <div className="flex flex-col gap-4">
       <p className="text-neutral-90 font-semibold">Personal Information</p>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
+      <div
         className="bg-white w-full rounded-2xl"
       >
         <div className="grid grid-cols-2 gap-5 p-8">
@@ -45,8 +19,8 @@ const PersonalInfo = () => {
             label="Full Name"
             // name="fullName"
             placeholder="Enter full name"
-            error={errors.fullName}
-            {...register("fullName", {
+            error={errors.full_name}
+            {...register("full_name", {
               required: "Full Name is required",
               minLength: {
                 value: 3,
@@ -157,7 +131,7 @@ const PersonalInfo = () => {
             />
           </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
