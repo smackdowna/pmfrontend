@@ -4,8 +4,8 @@ const courseApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         
         getAllCourses: builder.query({
-            query: () => ({
-                url: "/courses",
+            query: ({searchQuery, categoryQuery}) => ({
+                url: `/courses?search=${searchQuery}&category=${categoryQuery}`,
                 method: "GET",
                 credentials: "include",
             }),
