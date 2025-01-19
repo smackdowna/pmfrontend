@@ -1,6 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import TextInput from "../../Reusable/TextInput/TextInput";
 
-const IdentityInfo = ({register, errors}) => {
+type TIdentityInfo = {
+  register?: any;
+  errors?: any;
+};
+const IdentityInfo:React.FC<TIdentityInfo> = ({register, errors}) => {
 
   return (
     <div className="bg-white w-full rounded-2xl p-6">
@@ -20,14 +25,14 @@ const IdentityInfo = ({register, errors}) => {
         />
         <TextInput
           label="Aadhaar Card"
-          {...register("aadhaarNumber", {
+          {...register("adNumber", {
             required: "Aadhaar Number is required",
             pattern: {
               value: /^[2-9]{1}[0-9]{11}$/,
               message: "Enter a valid Aadhaar Number",
             },
           })}
-          error={errors.aadhaarNumber}
+          error={errors.adNumber}
           placeholder="Enter your Aadhaar Number"
         />
       </div>

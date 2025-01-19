@@ -12,9 +12,9 @@ const authApi = baseApi.injectEndpoints({
       invalidatesTags: ["user"],
     }),
 
-    signup: builder.mutation({
+    setupProfile: builder.mutation({
       query: (userInfo) => ({
-        url: "/auth/register",
+        url: "/register",
         method: "POST",
         body: userInfo,
         credentials: "include",
@@ -86,7 +86,7 @@ const authApi = baseApi.injectEndpoints({
 
 export const {
   useSendOtpMutation,
-  useSignupMutation,
+  useSetupProfileMutation,
   useVerifyOtpMutation,
   useGetMeQuery,
   useUpdateProfileMutation,

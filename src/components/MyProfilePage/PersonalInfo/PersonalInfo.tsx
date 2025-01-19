@@ -1,7 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import TextInput from "../../../components/Reusable/TextInput/TextInput";
-import Dropdown from "../../../components/Reusable/Dropdown/Dropdown";
+import SelectDropdown from "../../Reusable/Dropdown/SelectDropdown";
 
-const PersonalInfo = ({register, errors}) => {
+type TPersonalInfo = {
+  register?: any;
+  errors?: any;
+  mobileNumber?: string | number;
+};
+
+const PersonalInfo:React.FC<TPersonalInfo> = ({register, errors, mobileNumber}) => {
   const genderOptions = ["Male", "Female", "Other"];
   const languageOptions = ["English", "Hindi"];
   const stateOptions = ["Maharashtra", "Gujrat"];
@@ -40,7 +47,7 @@ const PersonalInfo = ({register, errors}) => {
                 },
               })}
             />
-            <Dropdown
+            <SelectDropdown
               label="Gender"
               options={genderOptions}
               error={errors.gender}
@@ -49,7 +56,7 @@ const PersonalInfo = ({register, errors}) => {
               })}
               
             />
-            <Dropdown
+            <SelectDropdown
               label="Language"
               options={languageOptions}
               error={errors.language}
@@ -57,7 +64,7 @@ const PersonalInfo = ({register, errors}) => {
                 required: "Language is required",
               })}
             />
-            <Dropdown
+            <SelectDropdown
               label="State"
               options={stateOptions}
               error={errors.state}
@@ -68,9 +75,9 @@ const PersonalInfo = ({register, errors}) => {
             <TextInput
               label="Pincode"
               placeholder="Enter your pincode"
-              error={errors.pincode}
-              {...register("pincode", {
-                required: "Pincode is required",
+              error={errors.pinCode}
+              {...register("pinCode", {
+                required: "Pinc ode is required",
               })}
             />
           </div>
@@ -80,8 +87,8 @@ const PersonalInfo = ({register, errors}) => {
               label="Date of Birth"
               placeholder="DD/MM/YYYY"
               type="date"
-              error={errors.dateOfBirth}
-              {...register("dateOfBirth", {
+              error={errors.dob}
+              {...register("dob", {
                 required: "Date of Birth is required",
               })}
             />
@@ -104,8 +111,10 @@ const PersonalInfo = ({register, errors}) => {
                   message: "Mobile Number must be at most 10 characters",
                 },
               })}
+              defaultValue={mobileNumber ? mobileNumber : ""}
+              isDisabled={true}
             />
-            <Dropdown
+            <SelectDropdown
               label="Occupation"
               options={occupationOptions}
               error={errors.occupation}
@@ -113,7 +122,7 @@ const PersonalInfo = ({register, errors}) => {
                 required: "Occupation is required",
               })}
             />
-            <Dropdown
+            <SelectDropdown
               label="Country"
               options={countryOptions}
               error={errors.country}
@@ -127,6 +136,14 @@ const PersonalInfo = ({register, errors}) => {
               error={errors.city}
               {...register("city", {
                 required: "City is required",
+              })}
+            />
+            <TextInput
+              label="Referral Code"
+              placeholder="Enter your referral Code"
+              error={errors.city}
+              {...register("refralCode", {
+                required: "Referral Code is required",
               })}
             />
           </div>

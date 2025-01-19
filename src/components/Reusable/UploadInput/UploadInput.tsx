@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
 import { ICONS } from "../../../assets";
 
 interface UploadInputProps {
@@ -7,17 +6,14 @@ interface UploadInputProps {
   name: string;
   accept?: string;
   error?: any;
-  [key: string]: any;
+  fileName: string;
+  onFileChange: (name: string, file: File | null) => void;
 }
 
-const UploadInput: React.FC<UploadInputProps> = ({ label, name, accept, error }) => {
-  const [fileName, setFileName] = useState<string>("");
-
+const UploadInput: React.FC<UploadInputProps> = ({ label, name, accept, error, fileName, onFileChange }) => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setFileName(file.name);
-    }
+    const file = event.target.files?.[0] || null;
+    onFileChange(name, file);
   };
 
   return (
@@ -35,7 +31,7 @@ const UploadInput: React.FC<UploadInputProps> = ({ label, name, accept, error })
           name={name}
           accept={accept}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-          onChange={(event) => handleFileChange(event)}
+          onChange={handleFileChange}
         />
         <div className="flex justify-between items-center">
           <span className="text-neutral-65">

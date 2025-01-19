@@ -29,8 +29,9 @@ const Navbar = () => {
 
                         <div className="flex items-center gap-5 lg:gap-8">
                             <div className="flex flex-row-reverse lg:flex-row items-center gap-5 lg:gap-8">
-                            <Link to={"/cart"}>
+                            <Link to={"/cart"} className="relative">
                                 <img src={location.pathname === "/cart" ? ICONS.cartYellow : ICONS.cartWhite} alt="cart-icon" className="size-6" />
+                                <div className="size-4 rounded-full bg-secondary-10 text-primary-10 flex items-center justify-center text-xs absolute -top-2 -right-2">0</div>
                             </Link>
                             <button className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">Get Started</button>
                             </div>

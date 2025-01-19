@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../../components/Reusable/Sidebar/Sidebar";
 import HeaderDashboard from "../../components/Reusable/HeaderDashboard/HeaderDashboard";
+import ScrollToTop from "../../hooks/useScrollToTop";
 
 const DashboardLayout = () => {
   return (
@@ -12,6 +13,7 @@ const DashboardLayout = () => {
           <Outlet />
         </div>
       </div>
+      <ScrollToTop/>
     </div>
   );
 };

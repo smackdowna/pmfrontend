@@ -1,38 +1,43 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React from "react";
 import UploadInput from "../../Reusable/UploadInput/UploadInput";
 
-const UploadProof = ({register, errors}) => {
+interface UploadProofProps {
+  register: any;
+  errors: any;
+  fileNames: { [key: string]: string };
+  onFileChange: (name: string, file: File | null) => void;
+}
 
+const UploadProof: React.FC<UploadProofProps> = ({ errors, fileNames, onFileChange }) => {
   return (
     <div className="bg-white w-full rounded-2xl p-6">
       <div className="flex flex-col gap-4">
         <p className="text-neutral-90 font-semibold">Upload Proof</p>
         <UploadInput
           label="Aadhaar Card Image"
-          // name="aadhaarCardImage"
+          name="adImageFile"
           accept="image/*"
           error={errors.adImageFile}
-          {...register("adImageFile", {
-            required: "Aadhaar Card Image is required",
-          })}
+          fileName={fileNames.adImageFile}
+          onFileChange={onFileChange}
         />
         <UploadInput
           label="PAN Card Image"
-          // name="panCardImage"
+          name="panImageFile"
           accept="image/*"
           error={errors.panImageFile}
-          {...register("panImageFile", {
-            required: "PAN Card Image is required",
-          })}
+          fileName={fileNames.panImageFile}
+          onFileChange={onFileChange}
         />
-        {/* <UploadInput
+        <UploadInput
           label="Cancel Cheque/Passbook Image"
-          // name="cancelChequeImage"
+          name="passbookImageFile"
           accept="image/*"
-          error={errors.cancelChequeImage}
-          {...register("cancelChequeImage", {
-            required: "Cancel Cheque/Passbook Image is required",
-          })}
-        /> */}
+          error={errors.passbookImageFile}
+          fileName={fileNames.passbookImageFile}
+          onFileChange={onFileChange}
+        />
       </div>
     </div>
   );

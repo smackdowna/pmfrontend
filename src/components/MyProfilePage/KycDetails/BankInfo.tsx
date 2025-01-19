@@ -1,7 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import TextInput from "../../Reusable/TextInput/TextInput";
-import Dropdown from "../../Reusable/Dropdown/Dropdown";
+import { ChangeEvent } from "react";
+import { BankInfoField } from "../../../pages/Auth/SetupProfile/SetupProfile";
+import SelectDropdown from "../../Reusable/Dropdown/SelectDropdown";
 
-const BankInfo = ({register, errors}) => {
+type TBankInfo = {
+  register?: any;
+  errors?: any;
+  handleBankInfoChange: (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>, field: BankInfoField) => void;
+};
+const BankInfo:React.FC<TBankInfo> = ({register, errors, handleBankInfoChange}) => {
 
   return (
     <div className="bg-white w-full rounded-2xl p-6">
@@ -13,6 +21,7 @@ const BankInfo = ({register, errors}) => {
             {...register("holderName", { required: "Account Holder's Name is required" })}
             error={errors.holderName}
             placeholder="Enter Account Holder's Name"
+            onChange={(e) => handleBankInfoChange(e, "accountHolderName")}
           />
           <TextInput
             label="Account Number"
@@ -23,18 +32,20 @@ const BankInfo = ({register, errors}) => {
                     message: "Enter a valid Account Number",
                 },
             })}
+            onChange={(e) => handleBankInfoChange(e, "accountNumber")}
             error={errors.accountNumber}
             placeholder="Enter Account Number"
           />
         </div>
-        <Dropdown
+        <SelectDropdown
           label="Account Type"
-          {...register("accountType", { required: "Account Type is required" })}
-          error={errors.accountType}
-          options={["Savings", "Current"]}
-        />
-        <TextInput
-          label="IFSC Code"
+            {...register("accountType", { required: "Account Type is required" })}
+            error={errors.accountType}
+            options={["Savings", "Current", "Other"]}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleBankInfoChange(e, "accountType")}
+          />
+          <TextInput
+            label="IFSC Code"
           {...register("ifscCode", {
             required: "IFSC Code is required",
             pattern: {
@@ -42,6 +53,7 @@ const BankInfo = ({register, errors}) => {
               message: "Enter a valid IFSC Code",
             },
           })}
+          onChange={(e) => handleBankInfoChange(e, "ifscCode")}
           error={errors.ifscCode}
           placeholder="Enter IFSC Code"
         />
@@ -51,12 +63,14 @@ const BankInfo = ({register, errors}) => {
             {...register("bankName", { required: "Bank Name is required" })}
             error={errors.bankName}
             placeholder="Enter Bank Name"
+            onChange={(e) => handleBankInfoChange(e, "bankName")}
           />
           <TextInput
             label="Branch Name"
-            {...register("branchName", { required: "Branch Name is required" })}
-            error={errors.branchName}
+            {...register("bankBranch", { required: "Branch Name is required" })}
+            error={errors.bankBranch}
             placeholder="Enter Branch Name"
+            onChange={(e) => handleBankInfoChange(e, "bankBranch")}
           />
         </div>
         <div className="flex flex-col xl:flex-row gap-4">
@@ -65,12 +79,14 @@ const BankInfo = ({register, errors}) => {
             {...register("nomineeName", { required: "Nominee Name is required" })}
             error={errors.nomineeName}
             placeholder="Enter Nominee Name"
+            onChange={(e) => handleBankInfoChange(e, "nomineeName")}
           />
           <TextInput
             label="Nominee Relation"
             {...register("nomineeRelation", { required: "Nominee Relation is required" })}
             error={errors.nomineeRelation}
             placeholder="Enter Nominee Relation"
+            onChange={(e) => handleBankInfoChange(e, "nomineeRelation")}
           />
         </div>
       </div>

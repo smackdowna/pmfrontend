@@ -8,13 +8,14 @@ interface TextInputProps {
   placeholder?: string;
   type?: string;
   error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
-
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  defaultValue?: any;
+  isDisabled? : boolean;
 }
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  ({ label, name, placeholder = "", type = "text", error, ...rest }, ref) => {
+  ({ label, name, placeholder = "", type = "text", error, defaultValue, isDisabled = false, ...rest }, ref) => {
     return (
       <div className="flex flex-col gap-2 font-Inter">
         <label htmlFor={name} className="text-neutral-65">
@@ -26,7 +27,9 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           name={name}
           type={type}
           placeholder={placeholder}
+          defaultValue={defaultValue}
           ref={ref}
+          disabled={isDisabled}
           className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border focus:outline-none focus:border-primary-10 transition duration-300 ${
             error ? "border-red-500" : "border-neutral-75"
           }`}
