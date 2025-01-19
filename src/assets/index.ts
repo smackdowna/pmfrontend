@@ -44,6 +44,7 @@ import cartYellow from "../assets/Icons/cart-yellow.svg";
 import deleteIcon from "../assets/Icons/delete.svg";
 import folderUpload from "../assets/Icons/empty 1.svg"
 import menuDots from "../assets/Icons/Menu Dots.svg"
+import tickMark from "../assets/Icons/tick-mark.svg"
 
 
 // Importing Images
@@ -68,7 +69,8 @@ export const ICONS = {
     search,
     user,
     pen,
-    ArrowLeft,    close,
+    ArrowLeft,    
+    close,
     mp4,
     closeRed,
     closeBg,
@@ -105,6 +107,7 @@ export const ICONS = {
     folderUpload,
     addCircle,
     copy,
+    tickMark,
 };
 
 export const IMAGES = {
