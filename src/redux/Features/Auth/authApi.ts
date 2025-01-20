@@ -32,34 +32,6 @@ const authApi = baseApi.injectEndpoints({
       invalidatesTags: ["user"],
     }),
 
-    getMyPurchasedCourses: builder.query({
-      query: () => ({
-        url: "/purchased/course",
-        method: "GET",
-        credentials: "include",
-      }),
-      providesTags: ["user", "course"],
-    }),
-
-    getMe: builder.query({
-      query: () => ({
-        url: "/auth/me",
-        method: "GET",
-        credentials: "include",
-      }),
-      providesTags: ["user"],
-    }),
-
-    updateProfile: builder.mutation({
-      query: (profileUpdatedData) => ({
-        method: "PUT",
-        url: `/auth/me/update`,
-        body: profileUpdatedData,
-        credentials: "include",
-      }),
-      invalidatesTags: ["user"],
-    }),
-
     logoutUser: builder.query({
       query: () => ({
         method: "PUT",
@@ -97,9 +69,6 @@ export const {
   useSendOtpMutation,
   useSetupProfileMutation,
   useVerifyOtpMutation,
-  useGetMyPurchasedCoursesQuery,
-  useGetMeQuery,
-  useUpdateProfileMutation,
   useLogoutUserQuery,
   useForgotPasswordMutation,
   useResetPasswordMutation

@@ -1,9 +1,10 @@
 import MyCoursesCardLoader from "../../../components/Loaders/MyCourseCardLoader/MyCourseCardLoader";
 import MyCoursesCard from "../../../components/MyCoursesPage/MyCoursesCard";
-import { useGetMyPurchasedCoursesQuery } from "../../../redux/Features/Auth/authApi";
+import { useGetMyPurchasedCoursesQuery } from "../../../redux/Features/User/userApi";
 
 const MyCourses = () => {
   const {data:myPurchasedCourses, isLoading} = useGetMyPurchasedCoursesQuery({});
+  console.log(myPurchasedCourses);
 
   return (
     <div className="flex flex-col gap-8">
