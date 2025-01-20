@@ -6,7 +6,7 @@ import UploadProof from "../../../components/MyProfilePage/KycDetails/UploadProo
 import PersonalInfo from "../../../components/MyProfilePage/PersonalInfo/PersonalInfo";
 import { useEffect, useState } from "react";
 import { useSetupProfileMutation } from "../../../redux/Features/Auth/authApi";
-import LoadingSpinner from "../../../components/Shared/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../../components/Loaders/LoadingSpinner/LoadingSpinner";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { ICONS } from "../../../assets";

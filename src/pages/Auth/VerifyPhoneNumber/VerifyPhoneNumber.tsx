@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useVerifyOtpMutation } from "../../../redux/Features/Auth/authApi";
 import { toast } from "sonner";
-import LoadingSpinner from "../../../components/Shared/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../../components/Loaders/LoadingSpinner/LoadingSpinner";
 import { OtpFormData } from "../Login/Login";
 import useOtpDataFromLocalStorage from "../../../hooks/useOtpDataFromLocalStorage";
 
@@ -87,8 +87,8 @@ const VerifyPhoneNumber = () => {
                     error={errors.otp}
                     {...register("otp", {
                         required: "Please enter your OTP",
-                        minLength : {value : 6, message : "OTP must be 6 characters"},
-                        maxLength : {value : 6, message : "OTP must be 6 characters"}
+                        minLength : {value : 6, message : "OTP must be 6 digits"},
+                        maxLength : {value : 6, message : "OTP must be 6 digits"}
                     })}
                 />
                 <button

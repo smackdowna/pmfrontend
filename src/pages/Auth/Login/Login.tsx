@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import TextInput from "../../../components/Reusable/TextInput/TextInput";
 import { useSendOtpMutation } from "../../../redux/Features/Auth/authApi";
 import { toast } from "sonner";
-import LoadingSpinner from "../../../components/Shared/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../../components/Loaders/LoadingSpinner/LoadingSpinner";
 import { useNavigate } from "react-router-dom";
 import useOtpDataFromLocalStorage from "../../../hooks/useOtpDataFromLocalStorage";
 import { useEffect } from "react";

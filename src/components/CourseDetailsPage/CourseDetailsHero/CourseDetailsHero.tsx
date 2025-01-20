@@ -5,40 +5,40 @@ import Badge from "../../Reusable/Badge/Badge";
 import { IMAGES } from "../../../assets";
 import { toast } from "sonner";
 import SuccessWithTick from "../../Reusable/SuccessWithTick/SuccessWithTick";
-import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../Loaders/LoadingSpinner/LoadingSpinner";
+import useCart from "../../../hooks/useCartData";
 
 const CourseDetailsHero = ({ courseDetails }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isAdded, setIsAdded] = useState(false);
+    const { cartData:cartInfo, addCourseToCart } = useCart();
 
     const handleAddCourseToCart = () => {
-        const cartData = {
-            _id: courseDetails._id,
-            title: courseDetails.title,
-            category: courseDetails?.category,
-            image: courseDetails?.poster?.url,
-            basePrice: courseDetails?.basePrice,
-            discountedPrice: courseDetails.discountedPrice
-        };
-
-        const existingCartData = localStorage.getItem("cart");
-        const cartArray = existingCartData ? JSON.parse(existingCartData) : [];
-
-        const courseAlreadyInCart = cartArray.some((item: { _id: string }) => item._id === courseDetails._id);
-
-        if (courseAlreadyInCart) {
-            toast.error("Course already added to cart.");
-            return;
-        }
-
         setIsLoading(true);
-
+        setIsAdded(false);
         setTimeout(() => {
-            cartArray.push(cartData);
-            localStorage.setItem('cart', JSON.stringify(cartArray));
+            const cartData = {
+                _id: courseDetails._id,
+                title: courseDetails.title,
+                category: courseDetails?.category,
+                image: courseDetails?.poster?.url,
+                basePrice: courseDetails?.basePrice,
+                discountedPrice: courseDetails.discountedPrice
+            };
+
+            const isCourseAlreadyInCart = cartInfo.some((item) => item._id === courseDetails._id);
+
+            if (isCourseAlreadyInCart) {
+                toast.error("Course is already in the cart!");
+                setIsLoading(false);
+                setIsAdded(false);
+                return;
+            }
+
+            addCourseToCart(cartData);
+            toast.success("Course added to cart!");
             setIsLoading(false);
             setIsAdded(true);
-            toast.success("Course added to cart.");
         }, 1000);
     };
 
