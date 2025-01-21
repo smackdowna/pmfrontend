@@ -11,11 +11,11 @@ import { useGetSingleCourseByIdQuery } from "../../redux/Features/Course/courseA
 
 const CourseDetails = () => {
     const { id } = useParams();
-    const {data:courseDetails} = useGetSingleCourseByIdQuery(id)
+    const {data:courseDetails, isLoading} = useGetSingleCourseByIdQuery(id)
     console.log(courseDetails);
     return (
         <div>
-            <CourseDetailsHero courseDetails={courseDetails?.course} />
+            <CourseDetailsHero courseDetails={courseDetails?.course} isDetailsLoading={isLoading} />
             <Container>
                 <CourseContent />
                 <TrendingCourses />

@@ -7,11 +7,13 @@ import { toast } from "sonner";
 import SuccessWithTick from "../../Reusable/SuccessWithTick/SuccessWithTick";
 import LoadingSpinner from "../../Loaders/LoadingSpinner/LoadingSpinner";
 import { useCart } from "../../../Providers/CartProvider/CartProvider";
+import CourseDetailsHeroLoader from "../../Loaders/CourseDetailsHeroLoader/CourseDetailsHeroLoader";
 
-const CourseDetailsHero = ({ courseDetails }) => {
+const CourseDetailsHero = ({ courseDetails, isDetailsLoading }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isAdded, setIsAdded] = useState(false);
     const { cartData:cartInfo, addCourseToCart } = useCart();
+    const isCourseAlreadyInCart = cartInfo?.some((item) => item?._id === courseDetails?._id);
 
     const handleAddCourseToCart = () => {
         setIsLoading(true);
@@ -25,8 +27,6 @@ const CourseDetailsHero = ({ courseDetails }) => {
                 basePrice: courseDetails?.basePrice,
                 discountedPrice: courseDetails.discountedPrice
             };
-
-            const isCourseAlreadyInCart = cartInfo.some((item) => item._id === courseDetails._id);
 
             if (isCourseAlreadyInCart) {
                 toast.error("Course is already in the cart!");
@@ -45,6 +45,11 @@ const CourseDetailsHero = ({ courseDetails }) => {
     return (
         <HeroContainer classNames="pt-12">
             <Container>
+                {
+                    isDetailsLoading ?
+                    <CourseDetailsHeroLoader/>
+                    :
+                
                 <div className="font-Inter flex flex-col-reverse lg:flex-row gap-12 xl:gap-0 justify-between py-6 md:py-12 xl:py-[80px]">
                     <div className="flex flex-col justify-center">
                         <Badge title={courseDetails?.category} />
@@ -68,13 +73,15 @@ const CourseDetailsHero = ({ courseDetails }) => {
                         <div className="flex items-center gap-5 mt-7">
                             <button className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">Buy now for ₹{courseDetails?.discountedPrice}</button>
                             <button onClick={handleAddCourseToCart} className="text-secondary-15 font-semibold leading-6 rounded-[10px] border border-secondary-15 px-5 py-[10px]">
-                                {isLoading ? <LoadingSpinner fontSize="text-[15px]" /> : isAdded ? <SuccessWithTick message="Added" /> : "Add to Cart"}
+                                {
+                                isLoading ? <LoadingSpinner fontSize="text-[15px]" /> : isAdded || isCourseAlreadyInCart ? <SuccessWithTick message="Added" /> : "Add to Cart"}
                             </button>
                         </div>
                     </div>
 
                     <img src={courseDetails?.poster?.url} alt="" className="h-full max-h-full md:max-h-[349px] xl:max-h-[300px] w-full max-w-full xl:max-w-[404px] rounded-2xl" />
                 </div>
+                }
             </Container>
         </HeroContainer>
     );
