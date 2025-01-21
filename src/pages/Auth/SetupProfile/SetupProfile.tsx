@@ -32,22 +32,23 @@ type TSetupProfileData = {
     adNumber: string;
     bankInfo: [
         {
-            accountHolderName: string;
-            accountNumber: string;
-            accountType: "Savings" | "Current" | "Other";
+            accholderName: string;
+            accNumber: string;
+            accType: "Savings" | "Current" | "Other";
             ifscCode: string;
             bankName: string;
             bankBranch: string;
-            nomineeName: string;
-            nomineeRelation: string;
+            nominName: string;
+            nomiRelation: string;
         }
     ];
     panImageFile: any;
     adImageFile: any;
+    passbookImageFile: any;
     refralCode: string;
 };
 
-export type BankInfoField = 'accountHolderName' | 'accountNumber' | 'accountType' | 'ifscCode' | 'bankName' | 'bankBranch' | 'nomineeName' | 'nomineeRelation';
+export type BankInfoField = 'accholderName' | 'accNumber' | 'accType' | 'ifscCode' | 'bankName' | 'bankBranch' | 'nominName' | 'nomiRelation';
 
 const SetupProfile = () => {
     const dispatch = useDispatch();
@@ -74,14 +75,14 @@ const SetupProfile = () => {
 
     const [bankInfo, setBankInfo] = useState([
         {
-            accountHolderName: "",
-            accountNumber: "",
-            accountType: "Savings",
+            accholderName: "",
+            accNumber: "",
+            accType: "Savings",
             ifscCode: "",
             bankName: "",
             bankBranch: "",
-            nomineeName: "",
-            nomineeRelation: "",
+            nominName: "",
+            nomiRelation: "",
         },
     ]);
 
@@ -179,7 +180,6 @@ const SetupProfile = () => {
                 reset();
 
             }
-            console.log(response);
         } catch (err) {
             toast.error((err as any)?.data?.message);
         }
