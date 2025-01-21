@@ -6,7 +6,8 @@ import Requirements from "./Requirements";
 import SkillsCovered from "./SkillsCovered";
 
 
-const CourseContent = () => {
+const CourseContent = ({ courseDetails }) => {
+    console.log(courseDetails);
     const courseObjectives = [
         "Design principles (layout, composition, color theory)",
         "Typography and visual hierarchy",
@@ -50,15 +51,15 @@ const CourseContent = () => {
         },
         {
             level: "Categories",
-            value: "Development",
+            value: courseDetails?.category,
         },
         {
             level: "Total Hours",
-            value: "19.78 Hours",
+            value: courseDetails?.totalDuration,
         },
         {
             level: "Total Lessons",
-            value: "20"
+            value: courseDetails?.numOfVideos
         }
     ];
 
@@ -91,7 +92,7 @@ const CourseContent = () => {
                     <SkillsCovered skillsCovered={skillsCovered} />
                 </div>
 
-                <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-8 capitalize">
                     <CourseContentCard title="Course Categories">
                         {
                             courseCategories?.map((category, index) =>
@@ -104,12 +105,12 @@ const CourseContent = () => {
                     </CourseContentCard>
                     <CourseContentCard title="Our Playlist">
                         {
-                            ourPlaylist?.map((category, index) =>
+                            courseDetails?.lectures?.map((lecture, index) =>
                                 <div key={index} className="flex items-center justify-between">
-                                    <p className="text-primary-10 text-sm leading-7">{index}. {category?.level}</p>
+                                    <p className="text-primary-10 text-sm leading-7 capitalize">{index}. {lecture?.title}</p>
                                     <div className="flex items-center gap-[5px]">
                                         <img src={ICONS.video} alt="video-icon" className="size-[14px]" />
-                                        <p className="text-primary-10 text-sm leading-7">{category?.value}</p>
+                                        <p className="text-primary-10 text-sm leading-7">{lecture?.videoDuration}</p>
                                     </div>
                                 </div>
                             )

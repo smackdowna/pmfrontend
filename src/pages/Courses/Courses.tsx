@@ -10,33 +10,33 @@ import { useState } from "react";
 
 const Courses = () => {
     const [searchQuery, setSearchQuery] = useState("");
-    
-        const [categoryQuery, setCategoryQuery] = useState("");
-    const { data: allCourses, isLoading, isFetching } = useGetAllCoursesQuery({searchQuery, categoryQuery})
-        console.log(allCourses);
-        const [selectedCategory, setSelectedCategory] = useState("All Courses");
-        
+
+    const [categoryQuery, setCategoryQuery] = useState("");
+    const { data: allCourses, isLoading, isFetching } = useGetAllCoursesQuery({ searchQuery, categoryQuery });
+    // console.log(allCourses);
+    const [selectedCategory, setSelectedCategory] = useState("All Courses");
+
     return (
         <div>
             <Helmet>
                 <title>PM Gurukul | Explore Courses</title>
             </Helmet>
             <CourseHero
-            setSearchQuery={setSearchQuery}
-            setCategoryQuery={setCategoryQuery}
+                setSearchQuery={setSearchQuery}
+                setCategoryQuery={setCategoryQuery}
             />
             <AllCourses
-            allCourses={allCourses}
-            isLoading={isLoading}
-            isFetching={isFetching}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-            
+                allCourses={allCourses}
+                isLoading={isLoading}
+                isFetching={isFetching}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+
             />
-            <WhyUs/>
-            <Testimonials/>
-            <FAQ/>
-            <CustomerSupport/>
+            <WhyUs />
+            <Testimonials />
+            <FAQ />
+            <CustomerSupport />
         </div>
     );
 };
