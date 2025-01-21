@@ -56,7 +56,6 @@ const VerifyPhoneNumber = () => {
                 otp: data.otp,
             };
             const response = await verifyOtp(verifyOtpData).unwrap();
-            console.log(response);
             if (response?.message) {
                 toast.success(response?.message);
                 if (response?.newUser) {
@@ -70,6 +69,7 @@ const VerifyPhoneNumber = () => {
                     }
                     dispatch(setUser({ user }));
                     navigate("/dashboard/my-profile");
+                    localStorage.removeItem("otpData");
                 }
             }
         } catch (err) {

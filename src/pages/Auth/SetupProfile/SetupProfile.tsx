@@ -175,6 +175,7 @@ const SetupProfile = () => {
                 dispatch(setUser({ user }));
                 removeOtpDataFromLocalStorage();
                 navigate("/dashboard/my-courses");
+                localStorage.removeItem("otpData");
                 reset();
 
             }
