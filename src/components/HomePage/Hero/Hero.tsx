@@ -3,6 +3,7 @@ import { ICONS, IMAGES } from "../../../assets";
 import Container from "../../Shared/Container/Container";
 import HeroContainer from "../../Reusable/HeroContainer/HeroContainer";
 import Badge from "../../Reusable/Badge/Badge";
+import Ripple from "../../Reusable/Ripple/Ripple";
 
 const Hero = () => {
     return (
@@ -14,7 +15,10 @@ const Hero = () => {
                         <h1 className="text-white text-[48px] font-bold leading-[64px] mt-1 max-w-[599px]">Achieve Digital Excellence with PM Gurukul</h1>
                         <p className="text-neutral-10 leading-6 mt-1 max-w-[467px]">Unlock your potential with our comprehensive e-learning resources and master the skills to Learn, Implement & Grow.</p>
                         <div className="flex items-center gap-5 mt-7">
+                            
+                            <Ripple styles="rounded-xl">
                             <Link to={"/auth/login"} className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">Register Now</Link>
+                            </Ripple>
                             <Link to={"/courses"} className="text-secondary-15 font-semibold leading-6">Find Courses</Link>
                         </div>
 

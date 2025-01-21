@@ -4,6 +4,7 @@ import Container from "../../Shared/Container/Container";
 import CourseCard from "./CourseCard";
 import { TCourse } from "./course.types";
 import CourseCardLoader from "../../Loaders/CourseCardLoader/CourseCardLoader";
+import Ripple from "../../Reusable/Ripple/Ripple";
 
 type TAllCourses = {
     allCourses: {
@@ -51,17 +52,20 @@ const AllCourses: React.FC<TAllCourses> = ({ allCourses, isLoading, isFetching, 
                 <div className="w-full overflow-x-auto lg:flex lg:justify-center">
                     <div className="flex items-center gap-4 min-w-max">
                         {categories?.map((category) => (
-                            <button
-                                key={category?.name}
-                                onClick={() => setSelectedCategory(category?.name)}
-                                className={`${category?.name === selectedCategory
-                                    ? "bg-primary-10 border-primary-10 text-white font-semibold"
-                                    : "border-neutral-10 bg-white text-neutral-10 font-medium"
-                                    } text-xl leading-7 border px-5 py-3 flex items-center gap-[10px] rounded-[100px] whitespace-nowrap`}
-                            >
-                                {category?.icon && <img src={category.icon} alt="" />}
-                                {category?.name}
-                            </button>
+                            <Ripple key={category?.name} styles="rounded-[100px]">
+                                <button
+
+                                    onClick={() => setSelectedCategory(category?.name)}
+                                    className={`${category?.name === selectedCategory
+                                        ? "bg-primary-10 border-primary-10 text-white font-semibold"
+                                        : "border-neutral-10 bg-white text-neutral-10 font-medium"
+                                        } transition duration-700 text-xl leading-7 border px-5 py-3 flex items-center gap-[10px] rounded-[100px] whitespace-nowrap`}
+                                >
+                                    {category?.icon && <img src={category.icon} alt="" />}
+                                    {category?.name}
+                                </button>
+                            </Ripple>
+
                         ))}
                     </div>
                 </div>

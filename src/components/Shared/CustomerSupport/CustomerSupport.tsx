@@ -1,4 +1,5 @@
 import Heading1 from "../../Reusable/Heading1/Heading1";
+import Ripple from "../../Reusable/Ripple/Ripple";
 import Container from "../Container/Container";
 
 const CustomerSupport = () => {
@@ -12,10 +13,14 @@ const CustomerSupport = () => {
                     </div>
                     <div className="flex items-center gap-3">
                         <a href="tel:+918800383344" target="_blank" rel="noreferrer">
-                            <button className="px-7 py-[14px] border border-primary-10 rounded-[14px] text-primary-10 font-semibold text-xl leading-6">Toll Free</button>
+                            <Ripple styles="rounded-[14px]">
+                                <button className="px-7 py-[14px] border border-primary-10 rounded-[14px] text-primary-10 font-semibold text-xl leading-6">Toll Free</button>
+                            </Ripple>
                         </a>
                         <a href="whatsapp://send?phone=+918800383344" target="_blank" rel="noreferrer">
-                            <button className="px-7 py-[14px] border border-primary-10 rounded-[14px] bg-primary-10 text-white font-semibold text-xl leading-6">Whatsapp</button>
+                            <Ripple styles="rounded-xl">
+                                <button className="px-7 py-[14px] border border-primary-10 rounded-[14px] bg-primary-10 text-white font-semibold text-xl leading-6">Whatsapp</button>
+                            </Ripple>
                         </a>
                     </div>
                     <p className="text-primary-10/70 leading-6 max-w-[695px]">Disclaimer: PM Gurukul is not responsible for payments made outside our official website or authorized affiliate links.</p>

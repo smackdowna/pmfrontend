@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { TCourse } from "./course.types";
 import { ICONS } from "../../../assets";
+import Ripple from "../../Reusable/Ripple/Ripple";
 
 
 const CourseCard: React.FC<TCourse> = ({ _id, poster, title, author, enrolled, rating, image }) => {
@@ -28,9 +29,12 @@ const CourseCard: React.FC<TCourse> = ({ _id, poster, title, author, enrolled, r
                     <h1 className="text-primary-10 font-medium leading-6">{author}</h1>
                 </div>
 
-                <Link to={`/course/${_id}`} className="bg-neutral-60 border border-neutral-55 py-[10px] px-4 text-primary-10 text-sm leading-5 font-semibold w-full rounded-lg text-center">
-                    View Course
-                </Link>
+
+                <Ripple styles="rounded-lg">
+                    <Link to={`/course/${_id}`} className="bg-neutral-60 border border-neutral-55 py-[10px] px-4 text-primary-10 text-sm leading-5 font-semibold w-full rounded-lg text-center">
+                        View Course
+                    </Link>
+                </Ripple>
             </div>
         </div>
     );

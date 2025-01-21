@@ -4,6 +4,7 @@ import Container from "../Container/Container";
 import HamburgerMenu from "./HamburgerMenu";
 import { navlinks } from "./navlinks";
 import { useCart } from "../../../Providers/CartProvider/CartProvider";
+import Ripple from './../../Reusable/Ripple/Ripple';
 
 const Navbar = () => {
     const location = useLocation();
@@ -35,7 +36,10 @@ const Navbar = () => {
                                 <img src={location.pathname === "/cart" ? ICONS.cartYellow : ICONS.cartWhite} alt="cart-icon" className="size-6" />
                                 <div className="size-4 rounded-full bg-secondary-10 text-primary-10 flex items-center justify-center text-xs absolute -top-2 -right-2">{cartData?.length}</div>
                             </Link>
+                            <Ripple styles="rounded-xl">
                             <Link to={"/auth/login"} className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">Get Started</Link>
+                            </Ripple>
+                           
                             </div>
                             <HamburgerMenu />
                         </div>
