@@ -1,14 +1,19 @@
+import { useSelector } from "react-redux";
 import { ICONS } from "../../../assets";
 import TransactionHistory from "../../../components/ReferralPayoutsPage/TransactionHistory";
 import { useMyReferralSummaryQuery } from "../../../redux/Features/User/userApi";
+import { useCurrentUser } from "../../../redux/Features/Auth/authSlice";
+import { useState } from "react";
+import ReferralLoader from "../../../components/Loaders/ReferralLoader/ReferralLoader";
 
 const ReferralPayouts = () => {
-  const { data: referralSummary } = useMyReferralSummaryQuery({});
-  console.log(referralSummary);
+  const user = useSelector(useCurrentUser);
+  const [isCopied, setIsCopied] = useState<boolean>(false);
+  const { data: referralSummary, isLoading } = useMyReferralSummaryQuery({});
   const handleCopy = () => {
     const referralCode = "PM 4454 8698";
     navigator.clipboard.writeText(referralCode).then(() => {
-      alert("Referral code copied to clipboard!");
+      setIsCopied(true);
     });
   };
 
@@ -52,11 +57,12 @@ const ReferralPayouts = () => {
           </h1>
           <p className="text-neutral-90">Write something here</p>
         </div>
+        {/* Referral Code */}
         <div className="flex justify-between items-center bg-white rounded-lg border border-neutral-75">
           <div className="flex flex-col px-4">
             <p className="text-neutral-10">Referral Code</p>
             <p className="text-primary-10 text-lg font-semibold">
-              PM 4454 8698
+              {user?.referralCode}
             </p>
           </div>
           <div
@@ -64,11 +70,22 @@ const ReferralPayouts = () => {
             className="bg-neutral-15 p-4 rounded-r-lg cursor-pointer"
             title="Copy to clipboard"
           >
+            {
+              isCopied ?
+              <svg width="30" height="30" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+                <path className="checkmark" fill="none" stroke="#4CAF50" stroke-width="6" d="M18 36 L30 48 L54 24" />
+              </svg>
+            :
             <img src={ICONS.Copy} alt="Copy" className="" />
+            }
           </div>
         </div>
       </div>
-      {/* Rest of the component remains unchanged */}
+
+      {
+        isLoading ?
+        <ReferralLoader/>
+      :
       <div className="flex flex-row flex-wrap xl:flex-nowrap justify-between items-center gap-6">
         <div className="bg-white w-1/2 rounded-2xl border border-neutral-75 h-[218px] flex flex-col gap-4 justify-between ">
           <div className="flex justify-between items-center p-6 pb-0">
@@ -145,6 +162,7 @@ const ReferralPayouts = () => {
           </div>
         </div>
       </div>
+      }
       <div className="flex flex-col ">
         <h1 className="text-lg font-semibold mb-4">Transaction History</h1>
         <TransactionHistory data={[]} headers={[]} showHeader={false} />

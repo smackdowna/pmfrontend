@@ -8,7 +8,6 @@ import { useCart } from "../../../Providers/CartProvider/CartProvider";
 const Navbar = () => {
     const location = useLocation();
     const {cartData} = useCart();
-    console.log(cartData);
 
     return (
         <div className="bg-primary-10 py-4 font-Inter">

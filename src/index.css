@@ -7,3 +7,19 @@
 .heading6 {
   @apply text-primary-30 font-semibold leading-6 text-sm md:text-base;
 };
+
+.checkmark {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw 1s ease-in-out forwards;
+}
+
+@keyframes draw {
+  from {
+      stroke-dashoffset: 100;
+  }
+  to {
+      stroke-dashoffset: 0;
+  }
+}
+
