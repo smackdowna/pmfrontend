@@ -13,6 +13,8 @@ import { ICONS } from "../../../assets";
 import { removeOtpDataFromLocalStorage } from "../../../utils/removeOtpDataFromLocalStorage";
 import useOtpDataFromLocalStorage from "../../../hooks/useOtpDataFromLocalStorage";
 import { OtpFormData } from "../Login/Login";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../redux/Features/Auth/authSlice";
 
 type TSetupProfileData = {
     full_name: string;
@@ -48,6 +50,7 @@ type TSetupProfileData = {
 export type BankInfoField = 'accountHolderName' | 'accountNumber' | 'accountType' | 'ifscCode' | 'bankName' | 'bankBranch' | 'nomineeName' | 'nomineeRelation';
 
 const SetupProfile = () => {
+    const dispatch = useDispatch();
     // Getting OTP data from localstorage
     const [otpData] = useOtpDataFromLocalStorage<OtpFormData>("otpData");
     const {
@@ -109,7 +112,6 @@ const SetupProfile = () => {
     };
 
 
-
     const handleBankInfoChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, field: BankInfoField) => {
         setBankInfo(prev => {
             const updatedBankInfo = [...prev];
@@ -162,6 +164,14 @@ const SetupProfile = () => {
             const response = await setupProfile(formData).unwrap();
             if (response?.user) {
                 toast.success(response?.message);
+                // Setting user to redux store
+                const user = {
+                    _id: response?.user?._id,
+                    name: response?.user?.full_name,
+                    role: response?.user?.role,
+                    email: response?.user?.email,
+                }
+                dispatch(setUser({ user }));
                 removeOtpDataFromLocalStorage();
                 navigate("/dashboard/my-courses");
                 reset();
