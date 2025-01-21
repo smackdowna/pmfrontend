@@ -23,7 +23,7 @@ const userApi = baseApi.injectEndpoints({
 
     getMe: builder.query({
       query: () => ({
-        url: "/auth/me",
+        url: "/myprofile",
         method: "GET",
         credentials: "include",
       }),

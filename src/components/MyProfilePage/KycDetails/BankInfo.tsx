@@ -7,7 +7,7 @@ import SelectDropdown from "../../Reusable/Dropdown/SelectDropdown";
 type TBankInfo = {
   register?: any;
   errors?: any;
-  handleBankInfoChange: (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>, field: BankInfoField) => void;
+  handleBankInfoChange?: (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>, field: BankInfoField) => void;
 };
 const BankInfo:React.FC<TBankInfo> = ({register, errors, handleBankInfoChange}) => {
 
@@ -21,7 +21,7 @@ const BankInfo:React.FC<TBankInfo> = ({register, errors, handleBankInfoChange}) 
             {...register("holderName", { required: "Account Holder's Name is required" })}
             error={errors.holderName}
             placeholder="Enter Account Holder's Name"
-            onChange={(e) => handleBankInfoChange(e, "accountHolderName")}
+            onChange={(e) => handleBankInfoChange && handleBankInfoChange(e, "accountHolderName")}
           />
           <TextInput
             label="Account Number"
@@ -32,7 +32,7 @@ const BankInfo:React.FC<TBankInfo> = ({register, errors, handleBankInfoChange}) 
                     message: "Enter a valid Account Number",
                 },
             })}
-            onChange={(e) => handleBankInfoChange(e, "accountNumber")}
+            onChange={(e) => handleBankInfoChange && handleBankInfoChange(e, "accountNumber")}
             error={errors.accountNumber}
             placeholder="Enter Account Number"
           />
@@ -42,7 +42,7 @@ const BankInfo:React.FC<TBankInfo> = ({register, errors, handleBankInfoChange}) 
             {...register("accountType", { required: "Account Type is required" })}
             error={errors.accountType}
             options={["Savings", "Current", "Other"]}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleBankInfoChange(e, "accountType")}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleBankInfoChange && handleBankInfoChange(e, "accountType")}
           />
           <TextInput
             label="IFSC Code"
@@ -53,7 +53,7 @@ const BankInfo:React.FC<TBankInfo> = ({register, errors, handleBankInfoChange}) 
               message: "Enter a valid IFSC Code",
             },
           })}
-          onChange={(e) => handleBankInfoChange(e, "ifscCode")}
+          onChange={(e) => handleBankInfoChange && handleBankInfoChange(e, "ifscCode")}
           error={errors.ifscCode}
           placeholder="Enter IFSC Code"
         />
@@ -63,14 +63,14 @@ const BankInfo:React.FC<TBankInfo> = ({register, errors, handleBankInfoChange}) 
             {...register("bankName", { required: "Bank Name is required" })}
             error={errors.bankName}
             placeholder="Enter Bank Name"
-            onChange={(e) => handleBankInfoChange(e, "bankName")}
+            onChange={(e) => handleBankInfoChange && handleBankInfoChange(e, "bankName")}
           />
           <TextInput
             label="Branch Name"
             {...register("bankBranch", { required: "Branch Name is required" })}
             error={errors.bankBranch}
             placeholder="Enter Branch Name"
-            onChange={(e) => handleBankInfoChange(e, "bankBranch")}
+            onChange={(e) => handleBankInfoChange && handleBankInfoChange(e, "bankBranch")}
           />
         </div>
         <div className="flex flex-col xl:flex-row gap-4">
@@ -79,14 +79,14 @@ const BankInfo:React.FC<TBankInfo> = ({register, errors, handleBankInfoChange}) 
             {...register("nomineeName", { required: "Nominee Name is required" })}
             error={errors.nomineeName}
             placeholder="Enter Nominee Name"
-            onChange={(e) => handleBankInfoChange(e, "nomineeName")}
+            onChange={(e) => handleBankInfoChange && handleBankInfoChange(e, "nomineeName")}
           />
           <TextInput
             label="Nominee Relation"
             {...register("nomineeRelation", { required: "Nominee Relation is required" })}
             error={errors.nomineeRelation}
             placeholder="Enter Nominee Relation"
-            onChange={(e) => handleBankInfoChange(e, "nomineeRelation")}
+            onChange={(e) => handleBankInfoChange && handleBankInfoChange(e, "nomineeRelation")}
           />
         </div>
       </div>

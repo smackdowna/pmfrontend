@@ -5,13 +5,70 @@ import IdentityInfo from "../../../components/MyProfilePage/KycDetails/IdentityI
 import UploadProof from "../../../components/MyProfilePage/KycDetails/UploadProof";
 import BankInfo from "../../../components/MyProfilePage/KycDetails/BankInfo";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { useGetMeQuery } from "../../../redux/Features/User/userApi";
+
+type TProfileData = {
+  full_name: string;
+  email: string;
+  gender: string;
+  language: string;
+  dob: string;
+  mobileNumber: string;
+  occupation: string;
+  country: string;
+  state: string;
+  city: string;
+  pinCode: string;
+  panNumber: string;
+  adNumber: string;
+  bankInfo: [
+      {
+          accountHolderName: string;
+          accountNumber: string;
+          accountType: "Savings" | "Current" | "Other";
+          ifscCode: string;
+          bankName: string;
+          bankBranch: string;
+          nomineeName: string;
+          nomineeRelation: string;
+      }
+  ];
+  panImageFile: string;
+  adImageFile: string;
+  refralCode: string;
+};
 
 const MyProfile = () => {
+  // Getting loggedin user profile data
+  const {data : myProfile} = useGetMeQuery({});
+  console.log(myProfile);
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>();
+          register,
+          handleSubmit,
+          formState: { errors },
+          setValue,
+      } = useForm<TProfileData>();
+
+      useEffect(() => {
+        if (myProfile) {
+          setValue("full_name", myProfile?.user?.full_name);
+          setValue("email", myProfile?.user?.email);
+          setValue("mobileNumber", myProfile?.user?.mobileNumber);
+          setValue("gender", myProfile?.user?.gender);
+          setValue("dob", myProfile?.user?.dob);
+          setValue("city", myProfile?.user?.city);
+          setValue("state", myProfile?.user?.state);
+          setValue("country", myProfile?.user?.country);
+          setValue("pinCode", myProfile?.user?.pinCode);
+          setValue("occupation", myProfile?.user?.occupation);
+          setValue("language", myProfile?.user?.language);
+          setValue("refralCode", myProfile?.user?.refralCode);
+          setValue("adNumber", myProfile?.user?.addharCard?.adNumber);
+          setValue("panNumber", myProfile?.user?.panCard?.panNumber);
+          // Set other fields as necessary
+        }
+      }, [myProfile, setValue]);
 
   const handleSetupProfile = (data) => {
     console.log(data);
@@ -24,7 +81,7 @@ const MyProfile = () => {
           <h1 className="text-2xl font-semibold text-neutral-90">My Profile</h1>
         </div>
 
-        {/* <PersonalInfo /> */}
+        <PersonalInfo register={register} errors={errors} />
         <div className="flex flex-col gap-4">
           <p className="text-neutral-90 font-semibold">KYC Details</p>
           <div className="grid grid-cols-2 gap-4">
@@ -42,7 +99,7 @@ const MyProfile = () => {
               <IdentityInfo register={register} errors={errors} />
               {/* <UploadProof register={register} errors={errors} /> */}
             </div>
-            {/* <BankInfo register={register} errors={errors} /> */}
+            <BankInfo register={register} errors={errors} />
           </div>
         </div>
       </form>

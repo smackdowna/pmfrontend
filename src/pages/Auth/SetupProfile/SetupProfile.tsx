@@ -60,6 +60,7 @@ const SetupProfile = () => {
         reset,
         setValue,
     } = useForm<TSetupProfileData>();
+    
     useEffect(() => {
         if (otpData) {
             setValue("mobileNumber", otpData.mobileNumber);
