@@ -24,7 +24,7 @@ const MyProfile = () => {
           <h1 className="text-2xl font-semibold text-neutral-90">My Profile</h1>
         </div>
 
-        <PersonalInfo />
+        {/* <PersonalInfo /> */}
         <div className="flex flex-col gap-4">
           <p className="text-neutral-90 font-semibold">KYC Details</p>
           <div className="grid grid-cols-2 gap-4">
@@ -40,9 +40,9 @@ const MyProfile = () => {
 
               </div>
               <IdentityInfo register={register} errors={errors} />
-              <UploadProof register={register} errors={errors} />
+              {/* <UploadProof register={register} errors={errors} /> */}
             </div>
-            <BankInfo register={register} errors={errors} />
+            {/* <BankInfo register={register} errors={errors} /> */}
           </div>
         </div>
       </form>

@@ -27,6 +27,7 @@ const ReferralPayouts = () => {
     "December",
   ];
 
+  // Daily, Weekly & Monthly earnings status
   const earnings = [
     {
       title: "Daily",
@@ -99,13 +100,13 @@ const ReferralPayouts = () => {
 
           <div className="border-t border-neutral-45">
             <div className="flex justify-start gap-2 py-3 items-center p-6">
-              <div className="bg-neutral-80 rounded-[100px] p-3">
+              {/* <div className="bg-neutral-80 rounded-[100px] p-3">
                 <img src={ICONS.Wallet} />
-              </div>
-              <p className="text-neutral-10 border-r-2 border-neutral-15 pr-2">
+              </div> */}
+              {/* <p className="text-neutral-10 border-r-2 border-neutral-15 pr-2">
                 Approved Payout
-              </p>
-              <p className="text-primary-10 text-lg font-semibold">₹2,304</p>
+              </p> */}
+              {/* <p className="text-primary-10 text-lg font-semibold">₹2,304</p> */}
             </div>
           </div>
         </div>

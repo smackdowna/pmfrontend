@@ -9,14 +9,17 @@ import { toast } from "sonner";
 import LoadingSpinner from "../../../components/Loaders/LoadingSpinner/LoadingSpinner";
 import { OtpFormData } from "../Login/Login";
 import useOtpDataFromLocalStorage from "../../../hooks/useOtpDataFromLocalStorage";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../redux/Features/Auth/authSlice";
 
 interface FormData {
     otp: string;
 }
 
 const VerifyPhoneNumber = () => {
+    const dispatch = useDispatch();
     const [verifyOtp, { isLoading }] = useVerifyOtpMutation();
-        // Getting OTP data from localstorage
+    // Getting OTP data from localstorage
     const [otpData] = useOtpDataFromLocalStorage<OtpFormData>("otpData");
     const navigate = useNavigate();
     const [timeLeft, setTimeLeft] = useState(59);
@@ -59,6 +62,13 @@ const VerifyPhoneNumber = () => {
                 if (response?.newUser) {
                     navigate("/auth/setup-profile");
                 } else {
+                    const user = {
+                        _id: response?.user?._id,
+                        name: response?.user?.full_name,
+                        role: response?.user?.role,
+                        email: response?.user?.email,
+                    }
+                    dispatch(setUser({ user }));
                     navigate("/dashboard/my-profile");
                 }
             }
@@ -87,8 +97,8 @@ const VerifyPhoneNumber = () => {
                     error={errors.otp}
                     {...register("otp", {
                         required: "Please enter your OTP",
-                        minLength : {value : 6, message : "OTP must be 6 digits"},
-                        maxLength : {value : 6, message : "OTP must be 6 digits"}
+                        minLength: { value: 6, message: "OTP must be 6 digits" },
+                        maxLength: { value: 6, message: "OTP must be 6 digits" }
                     })}
                 />
                 <button
