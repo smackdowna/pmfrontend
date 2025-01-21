@@ -35,7 +35,7 @@ const authApi = baseApi.injectEndpoints({
     logoutUser: builder.query({
       query: () => ({
         method: "PUT",
-        url: `/auth/logout`,
+        url: `/logout`,
         credentials: "include",
       }),
       providesTags: ["user"],

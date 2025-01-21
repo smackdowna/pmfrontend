@@ -45,6 +45,7 @@ import deleteIcon from "../assets/Icons/delete.svg";
 import folderUpload from "../assets/Icons/empty 1.svg"
 import menuDots from "../assets/Icons/Menu Dots.svg"
 import tickMark from "../assets/Icons/tick-mark.svg"
+import logout from "../assets/Icons/logout.svg"
 
 
 // Importing Images
@@ -108,6 +109,7 @@ export const ICONS = {
     addCircle,
     copy,
     tickMark,
+    logout,
 };
 
 export const IMAGES = {
