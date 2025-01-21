@@ -3,11 +3,12 @@ import { ICONS, IMAGES } from "../../../assets";
 import Container from "../Container/Container";
 import HamburgerMenu from "./HamburgerMenu";
 import { navlinks } from "./navlinks";
-import useCart from "../../../hooks/useCartData";
+import { useCart } from "../../../Providers/CartProvider/CartProvider";
 
 const Navbar = () => {
     const location = useLocation();
     const {cartData} = useCart();
+    console.log(cartData);
 
     return (
         <div className="bg-primary-10 py-4 font-Inter">

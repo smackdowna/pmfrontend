@@ -2,7 +2,7 @@ import CartItem from "../../components/CartPage/CartItem/CartItem";
 import CartTotal from "../../components/CartPage/CartTotal/CartTotal";
 import Heading1 from "../../components/Reusable/Heading1/Heading1";
 import Container from "../../components/Shared/Container/Container";
-import useCart from "../../hooks/useCartData";
+import { useCart } from "../../Providers/CartProvider/CartProvider";
 
 const Cart = () => {
     const { cartData } = useCart();

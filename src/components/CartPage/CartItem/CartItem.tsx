@@ -1,5 +1,5 @@
 import { ICONS } from "../../../assets";
-import useCart from "../../../hooks/useCartData";
+import { useCart } from "../../../Providers/CartProvider/CartProvider";
 import { TCartData } from "../../../types/cartData.types";
 
 

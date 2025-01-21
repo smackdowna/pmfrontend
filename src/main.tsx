@@ -7,14 +7,17 @@ import { Toaster } from 'sonner'
 import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
+import { CartProvider } from './Providers/CartProvider/CartProvider'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <HelmetProvider>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-      <Toaster position="bottom-left" richColors />
-    </Provider>
+      <Provider store={store}>
+        <CartProvider>
+          <RouterProvider router={router} />
+          <Toaster position="bottom-left" richColors />
+        </CartProvider>
+      </Provider>
     </HelmetProvider>
   </React.StrictMode>
 )

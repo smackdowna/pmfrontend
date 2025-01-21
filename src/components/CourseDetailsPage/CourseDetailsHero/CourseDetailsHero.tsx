@@ -6,7 +6,7 @@ import { IMAGES } from "../../../assets";
 import { toast } from "sonner";
 import SuccessWithTick from "../../Reusable/SuccessWithTick/SuccessWithTick";
 import LoadingSpinner from "../../Loaders/LoadingSpinner/LoadingSpinner";
-import useCart from "../../../hooks/useCartData";
+import { useCart } from "../../../Providers/CartProvider/CartProvider";
 
 const CourseDetailsHero = ({ courseDetails }) => {
     const [isLoading, setIsLoading] = useState(false);
