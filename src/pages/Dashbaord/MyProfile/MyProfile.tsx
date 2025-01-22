@@ -37,12 +37,12 @@ type TProfileData = {
   pinCode: string;
   panNumber: string;
   adNumber: string;
-  bankInfo: TBankInfo[]; // Array of bank info
+  bankInfo: TBankInfo[];
   panImageFile: string;
   adImageFile: string;
   refralCode: string;
 } & {
-  // Allow dynamic access for bankInfo properties
+  // dynamic access for bankInfo properties
   [key: `bankInfo.${number}.${keyof TBankInfo}`]: any;
 };
 

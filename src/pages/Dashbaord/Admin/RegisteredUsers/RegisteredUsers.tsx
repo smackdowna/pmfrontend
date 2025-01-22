@@ -59,7 +59,7 @@ const RegisteredUsers = () => {
           pageDesc="Write something here."
         />
       </div>
-      <div className="grid grid-cols-7 items-center w-full  gap-4">
+      <div className="grid grid-cols-7 items-center w-full gap-4">
         <DashboardCard title="Content" count={"00.00%"} />
         <DashboardCard title="Content" count={"00.00%"} />
         <DashboardCard title="Content" count={200} />

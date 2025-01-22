@@ -19,7 +19,7 @@ interface TableProps {
   showHeader: boolean;
 }
 
-const Table = ({ headers = [], data = [], showHeader = true }: TableProps) => {
+export const Table = ({ headers = [], data = [], showHeader = true }: TableProps) => {
   const rowsPerPage = 10;
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isSortedAsc, setIsSortedAsc] = useState<boolean>(true);
@@ -145,7 +145,7 @@ const Table = ({ headers = [], data = [], showHeader = true }: TableProps) => {
               {headers.map((header) => (
                 <th
                   key={header.key}
-                  className="px-4 py-2 font-Inter cursor-pointer"
+                  className="px-4 py-2 font-Inter text-neutral-90 text-sm"
                   onClick={
                     header.sortable ? () => handleSort(header.key) : undefined
                   }

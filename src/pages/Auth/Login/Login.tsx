@@ -52,7 +52,7 @@ const Login = () => {
     return (
         <div className="bg-neutral-80 h-screen flex items-center justify-center font-Inter p-5">
             <form onSubmit={handleSubmit(handleLogin)} className="bg-white border border-neutral-15 rounded-[20px] p-5 md:p-[60px] flex flex-col gap-5  w-[529px] max-auto">
-                <h1 className="text-primary-25 text-[28px] leading-8 font-semibold text-center mb-5">Login to get started</h1>
+                <h1 className="text-primary-25 text-[28px] leading-8 font-semibold text-center mb-5 capitalize">Login to get started</h1>
                 <TextInput
                     label="Email"
                     placeholder="Enter email"

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { ICONS } from "../../../assets";
-import TransactionHistory from "../../../components/ReferralPayoutsPage/TransactionHistory";
+import { Table } from "../../../components/ReferralPayoutsPage/TransactionHistory";
 import { useMyReferralSummaryQuery } from "../../../redux/Features/User/userApi";
 import { useCurrentUser } from "../../../redux/Features/Auth/authSlice";
 import { useState } from "react";
@@ -46,7 +46,39 @@ const ReferralPayouts = () => {
       title: "Monthly",
       value: referralSummary?.data?.monthlyEarnings
     },
-  ]
+  ];
+
+  const referralPayoutTableHeaders = [
+    { key: "sl", label: "SR.NO.", sortable: true },
+    { key: "purchasedDate", label: "DATE OF PURCHASE", sortable: true },
+    { key: "customerName", label: "CUSTOMER NAME", sortable: true },
+    { key: "courseName", label: "COURSE", sortable: true },
+    { key: "amountEarned", label: "AMOUNT EARNED", sortable: true },
+  ];
+  
+  const referralPayoutTableData = [
+    {
+      sl: "1",
+      purchasedDate: "23 Oct 2024",
+      customerName: "Rahul Sutradhar",
+      courseName: "Web Development",
+      amountEarned: "₹500",
+    },
+    {
+      sl: "2",
+      purchasedDate: "23 Oct 2024",
+      customerName: "Rahul Sutradhar",
+      courseName: "Web Development",
+      amountEarned: "₹500",
+    },
+    {
+      sl: "3",
+      purchasedDate: "23 Oct 2024",
+      customerName: "Rahul Sutradhar",
+      courseName: "Web Development",
+      amountEarned: "₹500",
+    },
+  ];
 
   return (
     <div className="flex flex-col gap-8">
@@ -165,7 +197,7 @@ const ReferralPayouts = () => {
       }
       <div className="flex flex-col ">
         <h1 className="text-lg font-semibold mb-4">Transaction History</h1>
-        <TransactionHistory data={[]} headers={[]} showHeader={false} />
+        <Table data={referralPayoutTableData} headers={referralPayoutTableHeaders} showHeader={true} />
       </div>
 
     </div>

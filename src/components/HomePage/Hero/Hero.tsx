@@ -12,10 +12,9 @@ const Hero = () => {
                 <div className="font-Inter flex flex-col lg:flex-row justify-between">
                     <div className="flex flex-col justify-center">
                         <Badge title="This is a headline for heading" />
-                        <h1 className="text-white text-[48px] font-bold leading-[64px] mt-1 max-w-[599px]">Achieve Digital Excellence with PM Gurukul</h1>
+                        <h1 className="text-white text-[48px] font-bold leading-[64px] mt-1 max-w-[599px]">Achieve Digital Excellence With PM Gurukul</h1>
                         <p className="text-neutral-10 leading-6 mt-1 max-w-[467px]">Unlock your potential with our comprehensive e-learning resources and master the skills to Learn, Implement & Grow.</p>
                         <div className="flex items-center gap-5 mt-7">
-                            
                             <Ripple styles="rounded-xl">
                             <Link to={"/auth/login"} className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">Register Now</Link>
                             </Ripple>
