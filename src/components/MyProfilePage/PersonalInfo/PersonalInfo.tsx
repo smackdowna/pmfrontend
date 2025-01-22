@@ -1,32 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import TextInput from "../../../components/Reusable/TextInput/TextInput";
-import Dropdown from "../../../components/Reusable/Dropdown/Dropdown";
-import { useForm } from "react-hook-form";
+import SelectDropdown from "../../Reusable/Dropdown/SelectDropdown";
 
-interface FormData {
-  fullName: string;
-  email: string;
-  gender: string;
-  language: string;
-  state: string;
-  pincode: string;
-  dateOfBirth: string;
-  mobileNumber: string;
-  occupation: string;
-  country: string;
-  city: string;
-}
+type TPersonalInfo = {
+  register?: any;
+  errors?: any;
+  mobileNumber?: string | number;
+};
 
-const PersonalInfo = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>();
-
-  const onSubmit = (data: FormData) => {
-    console.log("Form Data:", data);
-  };
-
+const PersonalInfo:React.FC<TPersonalInfo> = ({register, errors, mobileNumber}) => {
   const genderOptions = ["Male", "Female", "Other"];
   const languageOptions = ["English", "Hindi"];
   const stateOptions = ["Maharashtra", "Gujrat"];
@@ -35,8 +17,7 @@ const PersonalInfo = () => {
   return (
     <div className="flex flex-col gap-4">
       <p className="text-neutral-90 font-semibold">Personal Information</p>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
+      <div
         className="bg-white w-full rounded-2xl"
       >
         <div className="grid grid-cols-2 gap-5 p-8">
@@ -45,8 +26,8 @@ const PersonalInfo = () => {
             label="Full Name"
             // name="fullName"
             placeholder="Enter full name"
-            error={errors.fullName}
-            {...register("fullName", {
+            error={errors.full_name}
+            {...register("full_name", {
               required: "Full Name is required",
               minLength: {
                 value: 3,
@@ -66,7 +47,7 @@ const PersonalInfo = () => {
                 },
               })}
             />
-            <Dropdown
+            <SelectDropdown
               label="Gender"
               options={genderOptions}
               error={errors.gender}
@@ -75,7 +56,7 @@ const PersonalInfo = () => {
               })}
               
             />
-            <Dropdown
+            <SelectDropdown
               label="Language"
               options={languageOptions}
               error={errors.language}
@@ -83,7 +64,7 @@ const PersonalInfo = () => {
                 required: "Language is required",
               })}
             />
-            <Dropdown
+            <SelectDropdown
               label="State"
               options={stateOptions}
               error={errors.state}
@@ -94,9 +75,9 @@ const PersonalInfo = () => {
             <TextInput
               label="Pincode"
               placeholder="Enter your pincode"
-              error={errors.pincode}
-              {...register("pincode", {
-                required: "Pincode is required",
+              error={errors.pinCode}
+              {...register("pinCode", {
+                required: "Pinc ode is required",
               })}
             />
           </div>
@@ -106,8 +87,8 @@ const PersonalInfo = () => {
               label="Date of Birth"
               placeholder="DD/MM/YYYY"
               type="date"
-              error={errors.dateOfBirth}
-              {...register("dateOfBirth", {
+              error={errors.dob}
+              {...register("dob", {
                 required: "Date of Birth is required",
               })}
             />
@@ -130,8 +111,10 @@ const PersonalInfo = () => {
                   message: "Mobile Number must be at most 10 characters",
                 },
               })}
+              defaultValue={mobileNumber ? mobileNumber : ""}
+              isDisabled={true}
             />
-            <Dropdown
+            <SelectDropdown
               label="Occupation"
               options={occupationOptions}
               error={errors.occupation}
@@ -139,7 +122,7 @@ const PersonalInfo = () => {
                 required: "Occupation is required",
               })}
             />
-            <Dropdown
+            <SelectDropdown
               label="Country"
               options={countryOptions}
               error={errors.country}
@@ -155,9 +138,17 @@ const PersonalInfo = () => {
                 required: "City is required",
               })}
             />
+            <TextInput
+              label="Referral Code"
+              placeholder="Enter your referral Code"
+              error={errors.city}
+              {...register("refralCode", {
+                required: "Referral Code is required",
+              })}
+            />
           </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

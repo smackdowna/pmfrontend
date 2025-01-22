@@ -1,33 +1,34 @@
-import React, { useState } from "react";
-import { TMyCourse } from "./mycourse.types";
+import { useState } from "react";
 import { ICONS } from "../../assets";
 import Forum from "../../pages/Dashbaord/MyCourses/Forum";
 
-const MyCoursesCard: React.FC<TMyCourse> = ({
+const MyCoursesCard = ({
   title,
-  instructor,
+  author,
   enrolled,
-  progress,
-  image,
+  numOfVideos,
+  poster,
 }) => {
+  const completedLesson = 1;
   const [showForum, setShowForum] = useState(false);
+  const progress = (completedLesson / numOfVideos) * 100;
 
   return (
     <>
-      <div className="bg-white border border-neutral-55 rounded-[24px] font-Inter w-[270px] h-[360px] relative">
+      <div className="bg-white capitalize border border-neutral-55 rounded-2xl font-Inter w-[290px] relative">
         <img
-          src={image}
+          src={poster?.url}
           alt=""
-          className="rounded-t-[24px] w-full h-[130px] object-cover"
+          className="rounded-t-2xl w-full h-[130px] object-cover"
         />
         <div className="rounded-full bg-[rgba(5,21,57,0.65)] backdrop-blur-[7.5px] py-[3px] px-1 pr-[9px] flex items-center gap-1 w-fit absolute top-3 left-3">
           <img src={ICONS.avatar} alt={""} className="size-5 rounded-full" />
-          <h1 className="text-white font-normal text-[13px] leading-6">{instructor}</h1>
+          <h1 className="text-white font-normal text-[13px] leading-6">{author}</h1>
         </div>
-        <div className="flex items-center gap-1 p-3 bg-neutral-50 w-full">
+        <div className="flex items-center gap-1 px-4 py-[10px] bg-neutral-60 w-full">
           <img src={ICONS.Calendar} alt="user-icon" className="size-[14px]" />
-          <p className="text-primary-10 text-sm leading-7">
-            Enrolled on {enrolled}
+          <p className="text-primary-10 text-sm">
+            Enrolled On {enrolled}
           </p>
         </div>
 
@@ -55,7 +56,7 @@ const MyCoursesCard: React.FC<TMyCourse> = ({
           <div className="flex gap-2">
             <button
               onClick={() => setShowForum(true)}
-              className="bg-neutral-60 flex items-center border border-neutral-55 py-[5px] px-1  text-primary-10 text-sm leading-5 font-semibold w-full rounded-lg text-center"
+              className="bg-neutral-60 flex items-center border border-neutral-55 py-[10px] px-4  text-primary-10 text-sm leading-5 font-semibold w-full rounded-lg text-center"
             >
               Check Forum
             </button>

@@ -1,24 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
 import { ICONS, IMAGES } from "../../../assets";
 import Container from "../Container/Container";
+import HamburgerMenu from "./HamburgerMenu";
+import { navlinks } from "./navlinks";
+import { useCart } from "../../../Providers/CartProvider/CartProvider";
+import Ripple from './../../Reusable/Ripple/Ripple';
 
 const Navbar = () => {
-    const navlinks = [
-        {
-            label: "Home",
-            path: "/",
-        },
-        {
-            label: "Courses",
-            path: "/courses",
-        },
-        {
-            label: "Contact",
-            path: "/contact-us",
-        },
-    ];
-
     const location = useLocation();
+    const {cartData} = useCart();
+
     return (
         <div className="bg-primary-10 py-4 font-Inter">
             <Container>
@@ -29,7 +20,7 @@ const Navbar = () => {
                     </Link>
 
                     <div className="flex items-center gap-8">
-                        <div className="flex items-center gap-8">
+                        <div className="hidden lg:flex items-center gap-8">
                             {
                                 navlinks.map((link, index) => (
                                     <Link key={index} to={link.path} className={`${location.pathname === link.path ? "text-secondary-20" : "text-neutral-10"} leading-6`}>
@@ -39,11 +30,18 @@ const Navbar = () => {
                             }
                         </div>
 
-                        <div className="flex items-center gap-8">
-                            <Link to={"/cart"}>
+                        <div className="flex items-center gap-5 lg:gap-8">
+                            <div className="flex flex-row-reverse lg:flex-row items-center gap-5 lg:gap-8">
+                            <Link to={"/cart"} className="relative">
                                 <img src={location.pathname === "/cart" ? ICONS.cartYellow : ICONS.cartWhite} alt="cart-icon" className="size-6" />
+                                <div className="size-4 rounded-full bg-secondary-10 text-primary-10 flex items-center justify-center text-xs absolute -top-2 -right-2">{cartData?.length}</div>
                             </Link>
-                            <button className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">Get Started</button>
+                            <Ripple styles="rounded-xl">
+                            <Link to={"/auth/login"} className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">Get Started</Link>
+                            </Ripple>
+                           
+                            </div>
+                            <HamburgerMenu />
                         </div>
                     </div>
                 </div>

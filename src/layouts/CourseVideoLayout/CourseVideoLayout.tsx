@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import ScrollToTop from "../../hooks/useScrollToTop";
 
 const CourseVideoLayout = () => {
   return (
@@ -6,6 +7,7 @@ const CourseVideoLayout = () => {
       <div className="flex flex-col w-full">
         <Outlet />
       </div>
+      <ScrollToTop/>
     </div>
   );
 };

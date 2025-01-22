@@ -5,8 +5,8 @@ import ContactUs from "../pages/ContactUs/ContactUs";
 import MainLayout from "../layouts/MainLayout/MainLayout";
 import Courses from "../pages/Courses/Courses";
 import AuthLayout from "../layouts/AuthLayout/AuthLayout";
-import Login from "../pages/Login/Login";
-import VerifyPhoneNumber from "../pages/VerifyPhoneNumber/VerifyPhoneNumber";
+import Login from "../pages/Auth/Login/Login";
+import VerifyPhoneNumber from "../pages/Auth/VerifyPhoneNumber/VerifyPhoneNumber";
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import DashboardHome from "../pages/Dashbaord/DashboardHome/DashboardHome";
 import MyCourses from "../pages/Dashbaord/MyCourses/MyCourses";
@@ -29,6 +29,8 @@ import RegisteredUsers from "../pages/Dashbaord/Admin/RegisteredUsers/Registered
 import TalentList from "../pages/Dashbaord/Admin/TalentList/TalentList";
 import PurchaseHistory from "../pages/Dashbaord/Admin/PurchaseHistory/PurchaseHistory";
 import ViewAffiliate from "../pages/Dashbaord/Admin/ViewAffiliate/ViewAffiliate";
+import SetupProfile from "../pages/Auth/SetupProfile/SetupProfile";
+import MyOrders from "../pages/Dashbaord/User/MyOrders/MyOrders";
 
 
 export const router = createBrowserRouter([
@@ -71,6 +73,10 @@ export const router = createBrowserRouter([
       {
         path: "verify-phone",
         element: <VerifyPhoneNumber />,
+      },
+      {
+        path: "setup-profile",
+        element: <SetupProfile />,
       },
     ],
   },
@@ -116,6 +122,10 @@ export const router = createBrowserRouter([
       {
         path: "kyc-status",
         element: <KYCStatusPage />,
+      },
+      {
+        path: "my-orders",
+        element: <MyOrders />,
       },
     ],
   },

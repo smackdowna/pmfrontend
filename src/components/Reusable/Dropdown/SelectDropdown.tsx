@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // interface DropdownProps {
 //   label: string;
 //   options: string[];
@@ -44,7 +45,7 @@ interface DropdownProps {
   error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
 }
 
-const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
+const SelectDropdown = forwardRef<HTMLSelectElement, DropdownProps>(
   ({ label, options, error, ...rest }, ref) => {
     return (
       <div className="flex flex-col gap-2 font-Inter">
@@ -54,7 +55,7 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
         </label>
         <select
           ref={ref}
-          className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border text-neutral-65 ${
+          className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border text-neutral-65 focus:outline-none focus:border-primary-10 transition duration-300 ${
             error ? "border-red-500" : "border-neutral-75"
           }`}
           {...rest}
@@ -74,6 +75,6 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
   }
 );
 
-Dropdown.displayName = "Dropdown";
+SelectDropdown.displayName = "SelectDropdown";
 
-export default Dropdown;
+export default SelectDropdown;

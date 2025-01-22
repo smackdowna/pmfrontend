@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import CourseContent from "../../components/CourseDetailsPage/CourseContent/CourseContent";
 import CourseDetailsHero from "../../components/CourseDetailsPage/CourseDetailsHero/CourseDetailsHero";
 import TrendingCourses from "../../components/CourseDetailsPage/TrendingCourses/TrendingCourses";
@@ -6,14 +7,29 @@ import WhyUs from "../../components/HomePage/WhyUs/WhyUs";
 import Container from "../../components/Shared/Container/Container";
 import CustomerSupport from "../../components/Shared/CustomerSupport/CustomerSupport";
 import FAQ from "../../components/Shared/FAQ/FAQ";
+import { useGetAllCoursesQuery, useGetSingleCourseByIdQuery } from "../../redux/Features/Course/courseApi";
+import { Helmet } from "react-helmet-async";
 
 const CourseDetails = () => {
+    const { id } = useParams();
+    const { data: courseDetails, isLoading } = useGetSingleCourseByIdQuery(id);
+    const { data: allCourses, isLoading: isCourseLoading } = useGetAllCoursesQuery({ searchQuery: "", categoryQuery: "" });
+
+    const trendingCourses = allCourses?.courses?.filter((course) => course?._id !== courseDetails?.course?._id);
+
+    const courseTitle = courseDetails?.course?.title;
+
     return (
         <div>
-            <CourseDetailsHero />
+            {courseTitle && (
+                <Helmet>
+                    <title>PM Gurukul | {courseTitle}</title>
+                </Helmet>
+            )}
+            <CourseDetailsHero courseDetails={courseDetails?.course} isDetailsLoading={isLoading} />
             <Container>
-                <CourseContent />
-                <TrendingCourses />
+                <CourseContent courseDetails={courseDetails?.course} />
+                <TrendingCourses trendingCourses={trendingCourses} isCourseLoading={isCourseLoading} />
             </Container>
 
             <WhyUs />

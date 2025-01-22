@@ -1,7 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { ICONS } from "../../../assets";
 import { useState, useEffect } from "react";
+import { useCart } from "../../../Providers/CartProvider/CartProvider";
 const HeaderDashboard = () => {
+  const {cartData} = useCart();
   const location = useLocation();
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -15,10 +17,11 @@ const HeaderDashboard = () => {
       <ul className="flex gap-5">
         {!isAdmin && (
           <>
-            <li>
-              <Link to="/dashboard">
+            <li className="relative">
+              <Link to="/cart">
                 <img src={ICONS.Cart} />
               </Link>
+              <div className="size-4 rounded-full bg-blue-10 text-white flex items-center justify-center text-xs absolute -top-2 -right-2">{cartData?.length}</div>
             </li>
           </>
         )}

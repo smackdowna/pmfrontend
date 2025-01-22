@@ -1,15 +1,23 @@
+import { useSelector } from "react-redux";
 import { ICONS } from "../../../assets";
-import TransactionHistory from "../../../components/ReferralPayoutsPage/TransactionHistory";
+import { Table } from "../../../components/ReferralPayoutsPage/TransactionHistory";
+import { useMyReferralSummaryQuery } from "../../../redux/Features/User/userApi";
+import { useCurrentUser } from "../../../redux/Features/Auth/authSlice";
+import { useState } from "react";
+import ReferralLoader from "../../../components/Loaders/ReferralLoader/ReferralLoader";
 
 const ReferralPayouts = () => {
+  const user = useSelector(useCurrentUser);
+  const [isCopied, setIsCopied] = useState<boolean>(false);
+  const { data: referralSummary, isLoading } = useMyReferralSummaryQuery({});
   const handleCopy = () => {
     const referralCode = "PM 4454 8698";
     navigator.clipboard.writeText(referralCode).then(() => {
-      alert("Referral code copied to clipboard!");
+      setIsCopied(true);
     });
   };
 
-  const month = [
+  const months = [
     "January",
     "February",
     "March",
@@ -24,20 +32,69 @@ const ReferralPayouts = () => {
     "December",
   ];
 
+  // Daily, Weekly & Monthly earnings status
+  const earnings = [
+    {
+      title: "Daily",
+      value: referralSummary?.data?.dailyEarnings
+    },
+    {
+      title: "Weekly",
+      value: referralSummary?.data?.weeklyEarnings
+    },
+    {
+      title: "Monthly",
+      value: referralSummary?.data?.monthlyEarnings
+    },
+  ];
+
+  const referralPayoutTableHeaders = [
+    { key: "sl", label: "SR.NO.", sortable: true },
+    { key: "purchasedDate", label: "DATE OF PURCHASE", sortable: true },
+    { key: "customerName", label: "CUSTOMER NAME", sortable: true },
+    { key: "courseName", label: "COURSE", sortable: true },
+    { key: "amountEarned", label: "AMOUNT EARNED", sortable: true },
+  ];
+  
+  const referralPayoutTableData = [
+    {
+      sl: "1",
+      purchasedDate: "23 Oct 2024",
+      customerName: "Rahul Sutradhar",
+      courseName: "Web Development",
+      amountEarned: "₹500",
+    },
+    {
+      sl: "2",
+      purchasedDate: "23 Oct 2024",
+      customerName: "Rahul Sutradhar",
+      courseName: "Web Development",
+      amountEarned: "₹500",
+    },
+    {
+      sl: "3",
+      purchasedDate: "23 Oct 2024",
+      customerName: "Rahul Sutradhar",
+      courseName: "Web Development",
+      amountEarned: "₹500",
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-8">
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-semibold text-neutral-90">
-          Referral & Payouts
-        </h1>
-        <p className="text-neutral-90">Write something here</p>
+          <h1 className="text-2xl font-semibold text-neutral-90">
+            Referral & Payouts
+          </h1>
+          <p className="text-neutral-90">Write something here</p>
         </div>
+        {/* Referral Code */}
         <div className="flex justify-between items-center bg-white rounded-lg border border-neutral-75">
           <div className="flex flex-col px-4">
             <p className="text-neutral-10">Referral Code</p>
             <p className="text-primary-10 text-lg font-semibold">
-              PM 4454 8698
+              {user?.referralCode}
             </p>
           </div>
           <div
@@ -45,37 +102,60 @@ const ReferralPayouts = () => {
             className="bg-neutral-15 p-4 rounded-r-lg cursor-pointer"
             title="Copy to clipboard"
           >
+            {
+              isCopied ?
+              <svg width="30" height="30" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+                <path className="checkmark" fill="none" stroke="#4CAF50" stroke-width="6" d="M18 36 L30 48 L54 24" />
+              </svg>
+            :
             <img src={ICONS.Copy} alt="Copy" className="" />
+            }
           </div>
         </div>
       </div>
-      {/* Rest of the component remains unchanged */}
+
+      {
+        isLoading ?
+        <ReferralLoader/>
+      :
       <div className="flex flex-row flex-wrap xl:flex-nowrap justify-between items-center gap-6">
         <div className="bg-white w-1/2 rounded-2xl border border-neutral-75 h-[218px] flex flex-col gap-4 justify-between ">
           <div className="flex justify-between items-center p-6 pb-0">
             <div className="flex gap-2">
-              <p className="text-neutral-65">My Commission</p>
+              <p className="text-neutral-65">My Earnings</p>
               <img src={ICONS.InfoCircle} alt="commission" className="" />
             </div>
-            <select className=" p-2 rounded-lg bg-neutral-60 ">
-              {month.map((month, index) => (
+            <select className=" p-2 rounded-lg bg-neutral-60">
+              {months.map((month, index) => (
                 <option key={index} value={month}>
                   {month}
                 </option>
               ))}
             </select>
           </div>
-          <p className="text-primary-10 text-5xl font-bold px-6">₹0</p>
+          <div className="flex items-center gap-3 px-6">
+            {
+              earnings?.map(item =>
+                <div key={item?.title} className="w-full bg-neutral-60 p-2 rounded-lg flex items-center gap-3">
+                  <div className="bg-neutral-15/40 size-9 rounded-full flex items-center justify-center text-xl">₹</div>
+                  <div>
+                    <p className="text-sm">{item?.title}</p>
+                    <h1 className="text-primary-10 font-bold">₹{item?.value}</h1>
+                  </div>
+                </div>
+              )
+            }
+          </div>
 
           <div className="border-t border-neutral-45">
             <div className="flex justify-start gap-2 py-3 items-center p-6">
-              <div className="bg-neutral-80 rounded-[100px] p-3">
+              {/* <div className="bg-neutral-80 rounded-[100px] p-3">
                 <img src={ICONS.Wallet} />
-              </div>
-              <p className="text-neutral-10 border-r-2 border-neutral-15 pr-2">
+              </div> */}
+              {/* <p className="text-neutral-10 border-r-2 border-neutral-15 pr-2">
                 Approved Payout
-              </p>
-              <p className="text-primary-10 text-lg font-semibold">₹2,304</p>
+              </p> */}
+              {/* <p className="text-primary-10 text-lg font-semibold">₹2,304</p> */}
             </div>
           </div>
         </div>
@@ -89,7 +169,7 @@ const ReferralPayouts = () => {
               <div>
                 <p className="text-neutral-10 ">Total Earnings</p>
                 <p className="text-primary-10 text-xl font-semibold">
-                  ₹1,00,00,230.98
+                  ₹{referralSummary?.data?.totalEarnings}
                 </p>
               </div>
             </div>
@@ -99,7 +179,7 @@ const ReferralPayouts = () => {
               </div>
               <div>
                 <p className="text-neutral-10 ">Total Referrals</p>
-                <p className="text-primary-10 text-xl font-semibold">2,000</p>
+                <p className="text-primary-10 text-xl font-semibold">{referralSummary?.data?.referredUsers?.length}</p>
               </div>
             </div>
           </div>
@@ -109,16 +189,17 @@ const ReferralPayouts = () => {
             </div>
             <div>
               <p className="text-neutral-10 ">Total Duration</p>
-              <p className="text-primary-10 text-xl font-semibold">2,000</p>
+              <p className="text-primary-10 text-xl font-semibold">{referralSummary?.data?.durationOnPlatform}</p>
             </div>
           </div>
         </div>
       </div>
+      }
       <div className="flex flex-col ">
-      <h1 className="text-lg font-semibold mb-4">Transaction History</h1>
-      <TransactionHistory data={[]} headers={[]} showHeader={false} />
+        <h1 className="text-lg font-semibold mb-4">Transaction History</h1>
+        <Table data={referralPayoutTableData} headers={referralPayoutTableHeaders} showHeader={true} />
       </div>
-      
+
     </div>
   );
 };
