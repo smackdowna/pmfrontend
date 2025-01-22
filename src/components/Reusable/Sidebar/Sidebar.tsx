@@ -26,6 +26,7 @@ const Sidebar: React.FC = () => {
     { name: "My Courses", link: "/dashboard/my-courses" },
     { name: "Referrals & Payouts", link: "/dashboard/referral" },
     { name: "My Profile / KYC", link: "/dashboard/my-profile" },
+    { name: "My Orders", link: "/dashboard/my-orders" },
   ];
 
   const adminMenus = [

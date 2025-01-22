@@ -30,6 +30,7 @@ import TalentList from "../pages/Dashbaord/Admin/TalentList/TalentList";
 import PurchaseHistory from "../pages/Dashbaord/Admin/PurchaseHistory/PurchaseHistory";
 import ViewAffiliate from "../pages/Dashbaord/Admin/ViewAffiliate/ViewAffiliate";
 import SetupProfile from "../pages/Auth/SetupProfile/SetupProfile";
+import MyOrders from "../pages/Dashbaord/User/MyOrders/MyOrders";
 
 
 export const router = createBrowserRouter([
@@ -121,6 +122,10 @@ export const router = createBrowserRouter([
       {
         path: "kyc-status",
         element: <KYCStatusPage />,
+      },
+      {
+        path: "my-orders",
+        element: <MyOrders />,
       },
     ],
   },
