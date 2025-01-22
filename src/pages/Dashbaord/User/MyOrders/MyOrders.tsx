@@ -44,7 +44,7 @@ const MyOrders = () => {
     return (
         <div>
             <DashboardHeader
-                pageName="Your Orders"
+                pageName="My Orders"
                 pageDesc="Write Something Here"
             />
 
