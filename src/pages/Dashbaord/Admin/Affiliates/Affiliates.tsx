@@ -32,7 +32,7 @@ const Affiliates = () => {
       email: user?.email,
       mobile: user?.mobileNumber,
       joined: formatDate(user?.createdAt),
-      payouts: user?.earnings?.total,
+      payouts: `₹${user?.earnings?.total}`,
       kycStatus: user?.kyc_status,
       action: "View",
     }))

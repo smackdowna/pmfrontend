@@ -30,8 +30,8 @@ const AdminCourses = () => {
       courseName: course?.title,
       category: course?.category,
       creator: course?.author,
-      basePrice: course?.basePrice,
-      discountedPrice: course?.discountedPrice,
+      basePrice: `₹${course?.basePrice}`,
+      discountedPrice: `₹${course?.discountedPrice}`,
       publishedOn: formatDate(course?.createdAt),
       action: "View",
     }))

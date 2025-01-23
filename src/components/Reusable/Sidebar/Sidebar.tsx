@@ -30,7 +30,7 @@ const Sidebar: React.FC = () => {
     { name: "Affiliates", link: "/admin/affiliates" },
     { name: "Courses", link: "/admin/courses" },
     { name: "Payouts", link: "/admin/payouts" },
-    { name: "Talent List", link: "/admin/talent-list" },
+    // { name: "Talent List", link: "/admin/talent-list" },
     { name: "Purchase History", link: "/admin/purchase-history" },
   ];
 

@@ -21,19 +21,30 @@ const adminApi = baseApi.injectEndpoints({
       providesTags: ["user"],
     }),
 
-    updateProfile: builder.mutation({
-      query: (profileUpdatedData) => ({
-        method: "PUT",
-        url: `/auth/me/update`,
-        body: profileUpdatedData,
+    getAllEarnings: builder.query({
+      query: () => ({
+        url: "/earnings",
+        method: "GET",
         credentials: "include",
       }),
-      invalidatesTags: ["user"],
+      providesTags: ["user"],
     }),
+
+    getAllOrders: builder.query({
+      query: () => ({
+        url: "/allorders",
+        method: "GET",
+        credentials: "include",
+      }),
+      providesTags: ["user"],
+    }),
+
   }),
 });
 
 export const {
     useGetAllUserQuery,
     useGetAllPendingKYCQuery,
+    useGetAllEarningsQuery,
+    useGetAllOrdersQuery,
 } = adminApi;
