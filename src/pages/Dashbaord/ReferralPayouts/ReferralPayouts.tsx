@@ -24,7 +24,7 @@ const ReferralPayouts = () => {
   const { data: referralSummary, isLoading } = useMyReferralSummaryQuery({});
   const referralTransactions = referralSummary?.data?.referredUsers?.filter((data) => data?.purchasedCourses?.length > 0);
   const handleCopy = () => {
-    const referralCode = "PM 4454 8698";
+    const referralCode = user?.referralCode;
     navigator.clipboard.writeText(referralCode).then(() => {
       setIsCopied(true);
     });

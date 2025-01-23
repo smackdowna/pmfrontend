@@ -39,6 +39,15 @@ const adminApi = baseApi.injectEndpoints({
       providesTags: ["user"],
     }),
 
+    getSingleOrderById: builder.query({
+      query: (id) => ({
+        url: `/order/${id}`,
+        method: "GET",
+        credentials: "include",
+      }),
+      providesTags: ["user"],
+    }),
+
     getSingleUserById: builder.query({
       query: (id) => ({
         url: `/user/${id}`,
@@ -70,11 +79,12 @@ const adminApi = baseApi.injectEndpoints({
 });
 
 export const {
-    useGetAllUserQuery,
-    useGetAllPendingKYCQuery,
-    useGetAllEarningsQuery,
-    useGetAllOrdersQuery,
-    useGetSingleUserByIdQuery,
-    useApproveKycMutation,
-    useDeleteCourseMutation,
+  useGetAllUserQuery,
+  useGetAllPendingKYCQuery,
+  useGetAllEarningsQuery,
+  useGetAllOrdersQuery,
+  useGetSingleOrderByIdQuery,
+  useGetSingleUserByIdQuery,
+  useApproveKycMutation,
+  useDeleteCourseMutation,
 } = adminApi;

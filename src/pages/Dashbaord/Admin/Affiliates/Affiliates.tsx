@@ -69,11 +69,8 @@ const Affiliates = () => {
           pageDesc="Grow with Affiliate Partnerships"
         />
       </div>
-      <div className="grid grid-cols-4 items-center w-full gap-4">
-        <DashboardCard title="Content" count={"00.00%"} />
-        <DashboardCard title="Content" count={"00.00%"} />
-        <DashboardCard title="Content" count={200} />
-        <DashboardCard title="Content" count={"00.00%"} />
+      <div className="flex items-center w-full gap-4">
+        <DashboardCard title="Total Pending KYC" count={pendingKyc?.users?.length} />
       </div>
 
       {
