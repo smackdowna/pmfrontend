@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { ICONS } from "../../../../assets";
-import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import ReasonForRejection from "../../../../components/ReasonForRejection/ReasonForRejection";
 import PersonalInfo from "../../../../components/MyProfilePage/PersonalInfo/PersonalInfo";
 import { useForm } from "react-hook-form";
@@ -119,12 +118,6 @@ const ViewAffiliate = () => {
             }
           </button>
         </div>
-      </div>
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 items-center justify-start w-full flex-wrap gap-4">
-        <DashboardCard title="Content" count={"00.00%"} />
-        <DashboardCard title="Content" count={"00.00%"} />
-        <DashboardCard title="Content" count={200} />
-        <DashboardCard title="Content" count={"00.00%"} />
       </div>
       <div className="flex flex-col gap-8 mt-8">
         <PersonalInfo register={register} errors={errors} />

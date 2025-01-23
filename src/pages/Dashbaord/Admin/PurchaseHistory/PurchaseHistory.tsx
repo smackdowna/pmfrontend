@@ -1,12 +1,14 @@
-import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
-import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
-import { Table } from "../../../../components/ReferralPayoutsPage/TransactionHistory";
-import { useGetAllOrdersQuery } from "../../../../redux/Features/Admin/adminApi";
-import { formatDate } from "../../../../utils/formatDate";
-import Spinner from "../../../../components/Loaders/Spinner/Spinner";
-import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
+import { pdf } from '@react-pdf/renderer';
+import { useNavigate } from 'react-router-dom';
+import { useGetAllOrdersQuery } from '../../../../redux/Features/Admin/adminApi';
+import Invoice from './Invoice';
+import DashboardHeader from '../../../../components/Reusable/DashboardHeader/DashboardHeader';
+import DashboardCard from '../../../../components/Reusable/DashboardCard/DashboardCard';
+import Spinner from '../../../../components/Loaders/Spinner/Spinner';
+import { Table } from '../../../../components/ReferralPayoutsPage/TransactionHistory';
+import NoDataFound from '../../../../components/Shared/NoDataFound/NoDataFound';
 
-type TOrders = {
+export type TOrders = {
   _id: string;
   user: {
     _id: string;
@@ -25,32 +27,52 @@ type TOrders = {
 };
 
 const PurchaseHistory = () => {
+  const navigate = useNavigate();
   const { data: allOrdersHistory, isLoading } = useGetAllOrdersQuery({});
+
+  const handleDownloadInvoice = async (order:TOrders) => {
+    const blob = await pdf(<Invoice order={order} />).toBlob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `invoice_${order._id}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
 
   // All orders history user table headers
   const allOrdersHistoryTableHeaders = [
-    { key: "no", label: "No.", sortable: true },
-    { key: "orderID", label: "Order #", sortable: true },
-    { key: "customerName", label: "Customer Name", sortable: true },
-    { key: "mobile", label: "Mobile Number", sortable: true },
-    { key: "noOfItems", label: "No. of Items", sortable: true },
-    { key: "amount", label: "Amount", sortable: true },
-    { key: "orderDate", label: "Order Date", sortable: true },
-    { key: "action", label: "Action", sortable: false },
+    { key: 'no', label: 'No.', sortable: true },
+    { key: 'orderID', label: 'Order #', sortable: true },
+    { key: 'customerName', label: 'Customer Name', sortable: true },
+    { key: 'mobile', label: 'Mobile Number', sortable: true },
+    { key: 'noOfItems', label: 'No. of Items', sortable: true },
+    { key: 'amount', label: 'Amount', sortable: true },
+    { key: 'orderDate', label: 'Order Date', sortable: true },
+    { key: 'action', label: 'Action', sortable: false },
   ];
 
   // All orders history user table data
   const allOrdersHistoryTableData = allOrdersHistory?.orders?.length
-    ? allOrdersHistory?.orders?.map((order: TOrders, index: number) => ({
-      no: `${index + 1}`,
-      orderID: order?._id,
-      customerName: order?.user?.full_name,
-      mobile: order?.user?.mobileNumber,
-      noOfItems: order?.course?.length || 0,
-      amount: `₹${order?.totalPrice}`,
-      orderDate: formatDate(order?.createdAt),
-      action: "View",
-    }))
+    ? allOrdersHistory.orders.map((order:TOrders, index:number) => ({
+        no: `${index + 1}`,
+        orderID: order._id,
+        customerName: order.user.full_name,
+        mobile: order.user.mobileNumber,
+        noOfItems: order.course.length || 0,
+        amount: `₹${order.totalPrice}`,
+        orderDate: new Date(order.createdAt).toLocaleDateString(),
+        action: [
+          {
+            label: 'View Order',
+            onClick: () => navigate(`/admin/order-details/${order._id}`),
+          },
+          { label: 'Download Invoice', 
+            onClick: () => handleDownloadInvoice(order) },
+        ],
+      }))
     : [];
 
   return (
@@ -62,24 +84,24 @@ const PurchaseHistory = () => {
         />
       </div>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 items-center justify-start w-full flex-wrap gap-4">
-        <DashboardCard title="Total Orders" count={allOrdersHistory?.orders?.length} />
+        <DashboardCard
+          title="Total Orders"
+          count={allOrdersHistory?.orders?.length}
+        />
       </div>
-      {
-        isLoading ?
-          <div className="flex items-center justify-center mt-5">
-            <Spinner />
-          </div>
-          :
-          allOrdersHistoryTableData?.length > 0
-            ?
-            <Table
-              headers={allOrdersHistoryTableHeaders}
-              data={allOrdersHistoryTableData}
-              showHeader={true}
-            />
-            :
-            <NoDataFound message={"No order found."} />
-      }
+      {isLoading ? (
+        <div className="flex items-center justify-center mt-5">
+          <Spinner />
+        </div>
+      ) : allOrdersHistoryTableData.length > 0 ? (
+        <Table
+          headers={allOrdersHistoryTableHeaders}
+          data={allOrdersHistoryTableData}
+          showHeader={true}
+        />
+      ) : (
+        <NoDataFound message="No order found." />
+      )}
     </>
   );
 };

@@ -3,6 +3,7 @@ import { ICONS } from "../../../../assets";
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
 import Card from "../../../../components/Reusable/OrderDetailsCard/OrderDetailsCard";
 import CustomerDetails from "../../../../components/CustomerDetails/CustomerDetails";
+import { useParams } from "react-router-dom";
 
 // Default order details
 const defaultOrder = {
@@ -23,6 +24,7 @@ const defaultOrder = {
 
 // Main Component
 const OrderDetails: React.FC = () => {
+  const {id} = useParams();
   const order = defaultOrder;
 
   // Copy function for orderId

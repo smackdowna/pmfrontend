@@ -62,7 +62,7 @@ const Payouts = () => {
   return (
     <>
       <div className="flex items-center justify-between w-full">
-        <DashboardHeader pageName="Payouts" pageDesc="Write something here." />
+        <DashboardHeader pageName="Payouts" pageDesc="Manage and Track Payments" />
       </div>
       <div className="grid grid-cols-5 items-center w-full  gap-4">
         <DashboardCard title="Content" count={"00.00%"} />

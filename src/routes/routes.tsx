@@ -154,7 +154,7 @@ export const router = createBrowserRouter([
         element: <AddCourse />,
       },
       {
-        path: "order-details",
+        path: "order-details/:id",
         element: <OrderDetails />,
       },
       {

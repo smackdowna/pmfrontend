@@ -66,7 +66,7 @@ const Affiliates = () => {
       <div className="flex items-center justify-between w-full">
         <DashboardHeader
           pageName="Affiliates"
-          pageDesc="Write something here."
+          pageDesc="Grow with Affiliate Partnerships"
         />
       </div>
       <div className="grid grid-cols-4 items-center w-full gap-4">
