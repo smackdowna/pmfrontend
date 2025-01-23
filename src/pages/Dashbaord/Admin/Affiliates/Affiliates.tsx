@@ -1,16 +1,34 @@
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
 import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import { Table } from "../../../../components/ReferralPayoutsPage/TransactionHistory";
-import { useGetAllPendingKYCQuery } from "../../../../redux/Features/Admin/adminApi";
+import { useApproveKycMutation, useGetAllPendingKYCQuery } from "../../../../redux/Features/Admin/adminApi";
 import { TUser } from "../../../../types/user.types";
 import { formatDate } from "../../../../utils/formatDate";
 import Spinner from "../../../../components/Loaders/Spinner/Spinner";
 import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
+import { toast } from "sonner";
 
 
 
 const Affiliates = () => {
   const { data: pendingKyc, isLoading } = useGetAllPendingKYCQuery({});
+  const [approveKyc] = useApproveKycMutation();
+
+const handleApproveKyc = async (id: string) => {
+  try {
+    await toast.promise(
+      approveKyc(id).unwrap(),
+      {
+        loading: "Loading...",
+        success: "KYC approved successfully!",
+        error: "Failed to approve KYC. Please try again.",
+      }
+    );
+  } catch (err) {
+    console.error("Error approving KYC:", err);
+  }
+};
+
 
   // Pending KYC user table headers
   const pendingKycTableHeader = [
@@ -34,7 +52,11 @@ const Affiliates = () => {
       joined: formatDate(user?.createdAt),
       payouts: `₹${user?.earnings?.total}`,
       kycStatus: user?.kyc_status,
-      action: "View",
+      action: [
+        { label: "View Affiliate", onClick: () => console.log("View Affiliate", user._id) },
+        { label: "Approve", onClick: () => handleApproveKyc(user._id) },
+        { label: "Reject", onClick: () => console.log("Reject", user._id) },
+      ],
     }))
     : [];
 

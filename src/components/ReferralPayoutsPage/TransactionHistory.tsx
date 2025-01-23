@@ -21,6 +21,17 @@ interface TableProps {
 }
 
 export const Table = ({ headers = [], data = [], showHeader = true }: TableProps) => {
+  const [openDropdownId, setOpenDropdownId] = useState<number | string | null>(
+    null
+  );
+
+  const toggleDropdown = (id: number | string) => {
+    setOpenDropdownId((prevId) => (prevId === id ? null : id));
+  };
+
+  const closeDropdown = () => {
+    setOpenDropdownId(null);
+  };
   const rowsPerPage = 10;
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isSortedAsc, setIsSortedAsc] = useState<boolean>(true);
@@ -103,11 +114,10 @@ export const Table = ({ headers = [], data = [], showHeader = true }: TableProps
                 <button
                   onClick={handlePrevPage}
                   disabled={currentPage === 1}
-                  className={`px-1 py-2 rounded ${
-                    currentPage === 1
+                  className={`px-1 py-2 rounded ${currentPage === 1
                       ? "text-neutral-10 cursor-not-allowed"
                       : "text-neutral-30"
-                  }`}
+                    }`}
                 >
                   <img src={ICONS.AltArrowLeft} alt="Previous Page" />
                 </button>
@@ -117,11 +127,10 @@ export const Table = ({ headers = [], data = [], showHeader = true }: TableProps
                 <button
                   onClick={handleNextPage}
                   disabled={currentPage === totalPages}
-                  className={`px-1 py-2 rounded ${
-                    currentPage === totalPages
+                  className={`px-1 py-2 rounded ${currentPage === totalPages
                       ? "text-neutral-15 cursor-not-allowed"
                       : "text-neutral-30"
-                  }`}
+                    }`}
                 >
                   <img src={ICONS.AltArrowRight} alt="Next Page" />
                 </button>
@@ -165,27 +174,52 @@ export const Table = ({ headers = [], data = [], showHeader = true }: TableProps
                     className="px-4 py-2 font-Inter border-b"
                   >
                     <span
-                      className={`${
-                        header.key == "kycStatus" ||
-                        header.key == "status" ||
-                        header.key === "payoutStatus" ||
-                        header.key === "paymentStatus"
+                      className={`${header.key == "kycStatus" ||
+                          header.key == "status" ||
+                          header.key === "payoutStatus" ||
+                          header.key === "paymentStatus"
                           ? getKycStatusColor(row[header.key])
                           : ""
-                      }
+                        }
                       `}
                     >
                       {header.key === "action" ? (
-                        <button className="mx-auto">
-                          <img
-                            src={ICONS.menuDots}
-                            className="w-5 h-5"
-                            alt=""
-                          />
-                        </button>
-                      ) : (
-                        row[header.key]
-                      )}
+        <div className="relative">
+          {/* Menu button */}
+          <button
+            className="mx-auto"
+            onClick={() => toggleDropdown(index)}
+          >
+            <img src={ICONS.menuDots} className="w-5 h-5" alt="Actions" />
+          </button>
+
+          {/* Dropdown menu */}
+          {openDropdownId === index && (
+            <div
+              className="absolute top-8 right-0 z-10 bg-white shadow-md border rounded-md w-40"
+              onBlur={closeDropdown}
+            >
+              {row[header.key].map(
+                (action: { label: string; onClick: () => void }, idx: number) => (
+                  <button
+                    key={idx}
+                    className="w-full text-left px-4 py-2 hover:bg-gray-100 text-sm text-neutral-900"
+                    onClick={() => {
+                      action.onClick();
+                      // closeDropdown();
+                    }}
+                  >
+                    {action.label}
+                  </button>
+                )
+              )}
+            </div>
+          )}
+        </div>
+      ) : (
+        row[header.key]
+      )}
+
                     </span>
                   </td>
                 ))}

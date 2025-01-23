@@ -39,6 +39,15 @@ const adminApi = baseApi.injectEndpoints({
       providesTags: ["user"],
     }),
 
+    approveKyc: builder.mutation({
+      query: (id) => ({
+        url: `/user/${id}`,
+        method: "PUT",
+        credentials: "include",
+      }),
+      invalidatesTags: ["user"],
+    }),
+
   }),
 });
 
@@ -47,4 +56,5 @@ export const {
     useGetAllPendingKYCQuery,
     useGetAllEarningsQuery,
     useGetAllOrdersQuery,
+    useApproveKycMutation,
 } = adminApi;
