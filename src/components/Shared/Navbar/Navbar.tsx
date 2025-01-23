@@ -39,7 +39,6 @@ const Navbar = () => {
                             <Ripple styles="rounded-xl">
                             <Link to={"/auth/login"} className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">Get Started</Link>
                             </Ripple>
-                           
                             </div>
                             <HamburgerMenu />
                         </div>

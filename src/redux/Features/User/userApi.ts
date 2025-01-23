@@ -30,6 +30,15 @@ const userApi = baseApi.injectEndpoints({
       providesTags: ["user"],
     }),
 
+    myOrders: builder.query({
+      query: () => ({
+        url: "/myorder",
+        method: "GET",
+        credentials: "include",
+      }),
+      providesTags: ["user"],
+    }),
+
     updateProfile: builder.mutation({
       query: (profileUpdatedData) => ({
         method: "PUT",
@@ -46,5 +55,6 @@ export const {
   useGetMyPurchasedCoursesQuery,
   useMyReferralSummaryQuery,
   useGetMeQuery,
+  useMyOrdersQuery,
   useUpdateProfileMutation,
 } = userApi;

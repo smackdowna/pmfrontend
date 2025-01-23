@@ -7,8 +7,7 @@ interface DashboardCardProps {
 const DashboardCard = ({ title, count, width }: DashboardCardProps) => {
   return (
     <div
-      className={`flex flex-col gap-2 p-4 bg-white rounded-lg border-[1px] border-[#E2E8F0] font-Inter`}
-      style={{ minWidth: width ? width : "200px" }}
+      className={`flex flex-col gap-2 p-4 bg-white rounded-lg border-[1px] border-[#E2E8F0] font-Inter w-[218px]`}
     >
       <span className="text-[#6B788E] text-base font-normal leading-6 tracking-tight">
         {title}

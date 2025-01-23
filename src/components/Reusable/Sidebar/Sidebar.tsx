@@ -1,8 +1,8 @@
 import { ICONS, IMAGES } from "../../../assets";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { logout } from "../../../redux/Features/Auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, useCurrentUser } from "../../../redux/Features/Auth/authSlice";
 import { toast } from "sonner";
 import Ripple from "../Ripple/Ripple";
 
@@ -10,12 +10,7 @@ const Sidebar: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
-
-  // Set isAdmin based on the current route
-  useEffect(() => {
-    setIsAdmin(location.pathname.startsWith("/admin"));
-  }, [location.pathname]);
+  const user = useSelector(useCurrentUser);
 
   // Helper function to check if the link is active
   const isActive = (path: string): boolean => location.pathname === path;
@@ -58,7 +53,7 @@ const Sidebar: React.FC = () => {
   };
 
   // Choose menus based on user type
-  const menus = isAdmin ? adminMenus : userMenus;
+  const menus = user?.role === "admin" ? adminMenus : userMenus;
 
   return (
     <div className="w-60 min-w-60 h-screen px-4 pt-14 pb-6 font-Inter flex flex-col justify-between">

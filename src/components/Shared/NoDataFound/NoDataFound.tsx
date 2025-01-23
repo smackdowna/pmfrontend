@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { IMAGES } from "../../../assets";
 
 
-const NoCourseFound = ({ message, isBtnAvailable }: { message: string; isBtnAvailable?: boolean; }) => {
+const NoDataFound = ({ message, isBtnAvailable }: { message: string; isBtnAvailable?: boolean; }) => {
     return (
         <div className="flex flex-col gap-4 items-center">
             <img src={IMAGES.KycBG} alt="KYC" className="max-w-[300px]" />
@@ -20,4 +20,4 @@ const NoCourseFound = ({ message, isBtnAvailable }: { message: string; isBtnAvai
     );
 };
 
-export default NoCourseFound;
+export default NoDataFound;

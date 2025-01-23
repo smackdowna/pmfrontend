@@ -9,13 +9,13 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
 }) => {
   return (
     <div className="flex flex-col font-Inter text-[#0F172A]">
-      <span className="text-2xl font-semibold leading-7 tracking-tighter">
+      <h1 className="text-2xl font-semibold leading-7 tracking-tighter">
         {pageName}
-      </span>
+      </h1>
       {pageDesc && (
-        <span className="text-base font-normal leading-6 tracking-tight">
+        <p className="text-base font-normal leading-6 tracking-tight mt-1">
           {pageDesc}
-        </span>
+        </p>
       )}
     </div>
   );

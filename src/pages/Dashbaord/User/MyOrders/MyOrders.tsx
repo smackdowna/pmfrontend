@@ -1,58 +1,63 @@
+import Spinner from "../../../../components/Loaders/Spinner/Spinner";
 import { Table } from "../../../../components/ReferralPayoutsPage/TransactionHistory";
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
+import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
+import { useMyOrdersQuery } from "../../../../redux/Features/User/userApi";
+
+type TMyOrders = {
+  _id: string;
+  user: string;
+  course: string[];
+  discountedPrice: number;
+  gst: number;
+  totalPrice: number;
+  commission: number;
+  tds: number;
+  amountCredited: number;
+  createdAt: string; // ISO date string
+  __v: number;
+}
 
 const MyOrders = () => {
-    const myOrdersTableHeaders = [
-        { key: "no", label: "NO.", sortable: true },
-        { key: "orderId", label: "Order #", sortable: true },
-        { key: "noOfItems", label: "No. of Items", sortable: true },
-        { key: "amount", label: "Amount", sortable: true },
-        { key: "paymentStatus", label: "Payment Status", sortable: true },
-        { key: "action", label: "Action" },
-      ];
-      
-      const myOrdersTableData = [
-        {
-          no: "1",
-          orderId: "98324283",
-          noOfItems: "2",
-          amount: "₹15,000.00",
-          paymentStatus: "Paid",
-        },
-        {
-          no: "1",
-          orderId: "98324283",
-          noOfItems: "2",
-          amount: "₹15,000.00",
-          paymentStatus: "Paid",
-        },
-        {
-          no: "1",
-          orderId: "98324283",
-          noOfItems: "2",
-          amount: "₹15,000.00",
-          paymentStatus: "Paid",
-        },
-        {
-          no: "1",
-          orderId: "98324283",
-          noOfItems: "2",
-          amount: "₹15,000.00",
-          paymentStatus: "Paid",
-        },
-      ];
-    return (
-        <div>
-            <DashboardHeader
-                pageName="My Orders"
-                pageDesc="Write Something Here"
-            />
+  const { data: myOrders, isLoading } = useMyOrdersQuery({});
 
-           <div className="mt-8">
-           <Table data={myOrdersTableData} headers={myOrdersTableHeaders} showHeader={true} />
-           </div>
-        </div>
-    );
+  const myOrdersTableHeaders = [
+    { key: "no", label: "NO.", sortable: true },
+    { key: "orderId", label: "Order #", sortable: true },
+    { key: "noOfItems", label: "No. of Items", sortable: true },
+    { key: "amount", label: "Amount", sortable: true },
+    { key: "action", label: "Action" },
+  ];
+
+  // Table data
+  const myOrdersTableData = myOrders?.orders?.length
+    ? myOrders?.orders?.map((order:TMyOrders, index:number) => ({
+        no: `${index + 1}`,
+        orderId: order?._id,
+        noOfItems: order?.course?.length,
+        amount: `₹${order?.amountCredited}`,
+        action: "View",
+      }))
+    : [];
+
+  return (
+    <div>
+      <DashboardHeader pageName="My Orders" pageDesc="View Your Recent Order History" />
+
+      <div className="mt-8">
+        {/* Show loading state or table */}
+        {isLoading ? (
+           <div className="flex items-center justify-center mt-20">
+           <Spinner />
+         </div>
+        ) : myOrdersTableData.length > 0 ? (
+          <Table data={myOrdersTableData} headers={myOrdersTableHeaders} showHeader={true} />
+        ) : (
+          <NoDataFound message={"You haven’t Enrolled on any course"} isBtnAvailable={true} />
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default MyOrders;

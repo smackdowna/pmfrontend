@@ -8,7 +8,6 @@ const payoutHeaders = [
   { key: "mobile", label: "MOBILE", sortable: true },
   { key: "payoutDate", label: "Payout Date", sortable: true },
   { key: "amount", label: "Amount", sortable: true },
-  { key: "adminCharge", label: "Admin Charge", sortable: true },
   { key: "total", label: "Total", sortable: true },
   { key: "tds", label: "TDS", sortable: true },
   { key: "payableAmount", label: "Payable Amount", sortable: true },

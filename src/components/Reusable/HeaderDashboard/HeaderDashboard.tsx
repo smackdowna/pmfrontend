@@ -25,11 +25,11 @@ const HeaderDashboard = () => {
             </li>
           </>
         )}
-        <li>
+        {/* <li>
           <Link to="/dashboard">
             <img src={ICONS.Bell} />
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/dashboard">
             <img src={ICONS.UserCircle} />

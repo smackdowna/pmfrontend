@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ICONS } from "../../assets";
 import { useState } from "react";
 
@@ -9,7 +10,7 @@ interface Header {
 }
 
 interface RowData {
-  [key: string]: string | number; // Each row can have multiple fields (key-value pairs), and values can be strings or numbers.
+  [key: string]: string | number | any;
 }
 
 // Table component with typed props
