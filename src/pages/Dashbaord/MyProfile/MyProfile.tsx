@@ -11,41 +11,7 @@ import { useGetMeQuery } from "../../../redux/Features/User/userApi";
 import { Helmet } from "react-helmet-async";
 import UploadedProofs from "../../../components/MyProfilePage/UploadedProofs/UploadedProofs";
 import KYCStatus from "../../../components/MyProfilePage/KycDetails/KYCStatus/KYCStatus";
-
-type TBankInfo = {
-  accholderName: string;
-  accNumber: string;
-  accType: "Savings" | "Current" | "Other";
-  ifscCode: string;
-  bankName: string;
-  bankBranch: string;
-  nominName: string;
-  nomiRelation: string;
-};
-
-type TProfileData = {
-  full_name: string;
-  email: string;
-  gender: string;
-  language: string;
-  dob: string;
-  mobileNumber: string;
-  occupation: string;
-  country: string;
-  state: string;
-  city: string;
-  pinCode: string;
-  panNumber: string;
-  adNumber: string;
-  bankInfo: TBankInfo[];
-  panImageFile: string;
-  adImageFile: string;
-  refralCode: string;
-} & {
-  // dynamic access for bankInfo properties
-  [key: `bankInfo.${number}.${keyof TBankInfo}`]: any;
-};
-
+import { TBankInfo, TProfileData } from "../../../types/profileData.types";
 
 const MyProfile = () => {
   // Getting loggedin user profile data

@@ -182,7 +182,7 @@ export const router = createBrowserRouter([
         element: <PurchaseHistory />,
       },
       {
-        path: "view-affiliate",
+        path: "view-affiliate/:id",
         element: <ViewAffiliate />,
       },
     ],

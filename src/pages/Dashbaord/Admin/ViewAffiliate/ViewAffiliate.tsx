@@ -1,98 +1,80 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ICONS } from "../../../../assets";
 import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import ReasonForRejection from "../../../../components/ReasonForRejection/ReasonForRejection";
 import PersonalInfo from "../../../../components/MyProfilePage/PersonalInfo/PersonalInfo";
-import TransactionHistory from "../../../../components/ReferralPayoutsPage/TransactionHistory";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import IdentityInfo from "../../../../components/MyProfilePage/KycDetails/IdentityInfo";
-import UploadProof from "../../../../components/MyProfilePage/KycDetails/UploadProof";
 import BankInfo from "../../../../components/MyProfilePage/KycDetails/BankInfo";
-
-const payoutHeaders = [
-  { key: "no", label: "No.", sortable: true },
-  { key: "affiliateName", label: "Affiliate Name", sortable: true },
-  { key: "mobile", label: "MOBILE", sortable: true },
-  { key: "payoutDate", label: "Payout Date", sortable: true },
-  { key: "amount", label: "Amount", sortable: true },
-  { key: "adminCharge", label: "Admin Charge", sortable: true },
-  { key: "total", label: "Total", sortable: true },
-  { key: "tds", label: "TDS", sortable: true },
-  { key: "payableAmount", label: "Payable Amount", sortable: true },
-  { key: "payoutStatus", label: "Payout Status", sortable: true },
-  { key: "action", label: "Action", sortable: true },
-];
-
-const payoutData = [
-  {
-    no: 1,
-    affiliateName: "John Jacobs",
-    mobile: "+91-93642-34274",
-    payoutDate: "01/01/2021",
-    amount: "₹249",
-    adminCharge: "₹249",
-    total: "₹249",
-    tds: "₹249",
-    payableAmount: "₹249",
-    payoutStatus: "Paid",
-    action: "",
-  },
-  {
-    no: 1,
-    affiliateName: "John Jacobs",
-    mobile: "+91-93642-34274",
-    payoutDate: "01/01/2021",
-    amount: "₹249",
-    adminCharge: "₹249",
-    total: "₹249",
-    tds: "₹249",
-    payableAmount: "₹249",
-    payoutStatus: "Paid",
-    action: "",
-  },
-  {
-    no: 1,
-    affiliateName: "John Jacobs",
-    mobile: "+91-93642-34274",
-    payoutDate: "01/01/2021",
-    amount: "₹249",
-    adminCharge: "₹249",
-    total: "₹249",
-    tds: "₹249",
-    payableAmount: "₹249",
-    payoutStatus: "Paid",
-    action: "",
-  },
-  {
-    no: 1,
-    affiliateName: "John Jacobs",
-    mobile: "+91-93642-34274",
-    payoutDate: "01/01/2021",
-    amount: "₹249",
-    adminCharge: "₹249",
-    total: "₹249",
-    tds: "₹249",
-    payableAmount: "₹249",
-    payoutStatus: "Paid",
-    action: "",
-  },
-  {
-    no: 1,
-    affiliateName: "John Jacobs",
-    mobile: "+91-93642-34274",
-    payoutDate: "01/01/2021",
-    amount: "₹249",
-    adminCharge: "₹249",
-    total: "₹249",
-    tds: "₹249",
-    payableAmount: "₹249",
-    payoutStatus: "Paid",
-    action: "",
-  },
-];
+import { TBankInfo, TProfileData } from "../../../../types/profileData.types";
+import KYCStatus from "../../../../components/MyProfilePage/KycDetails/KYCStatus/KYCStatus";
+import UploadedProofs from "../../../../components/MyProfilePage/UploadedProofs/UploadedProofs";
+import { useNavigate, useParams } from "react-router-dom";
+import { useApproveKycMutation, useGetSingleUserByIdQuery } from "../../../../redux/Features/Admin/adminApi";
+import { toast } from "sonner";
+import LoadingSpinner from "../../../../components/Loaders/LoadingSpinner/LoadingSpinner";
 
 const ViewAffiliate = () => {
-  const methods = useForm();
+  const navigate = useNavigate();
+  const { id } = useParams();
+  // Getting user profile data
+  const { data: user } = useGetSingleUserByIdQuery(id);
+  const [approveKyc, { isLoading }] = useApproveKycMutation();
+
+  const {
+    register,
+    formState: { errors },
+    setValue,
+  } = useForm<TProfileData>();
+
+  useEffect(() => {
+    if (user) {
+      setValue("full_name", user?.user?.full_name);
+      setValue("email", user?.user?.email);
+      setValue("mobileNumber", user?.user?.mobileNumber);
+      setValue("gender", user?.user?.gender);
+      const formattedDob = user?.user?.dob
+        ? new Date(user.user.dob).toISOString().split('T')[0]
+        : '';
+      setValue("dob", formattedDob);
+      setValue("city", user?.user?.city);
+      setValue("state", user?.user?.state);
+      setValue("country", user?.user?.country);
+      setValue("pinCode", user?.user?.pinCode);
+      setValue("occupation", user?.user?.occupation);
+      setValue("language", user?.user?.language);
+      setValue("refralCode", user?.user?.refralCode);
+      setValue("adNumber", user?.user?.addharCard?.adNumber);
+      setValue("panNumber", user?.user?.panCard?.panNumber);
+      if (user?.user?.bankInfo) {
+        user.user.bankInfo.forEach((bank: TBankInfo, index: number) => {
+          setValue(`bankInfo.${index}.accholderName` as keyof TProfileData, bank.accholderName);
+          setValue(`bankInfo.${index}.accNumber` as keyof TProfileData, bank.accNumber);
+          setValue(`bankInfo.${index}.accType` as keyof TProfileData, bank.accType);
+          setValue(`bankInfo.${index}.ifscCode` as keyof TProfileData, bank.ifscCode);
+          setValue(`bankInfo.${index}.bankName` as keyof TProfileData, bank.bankName);
+          setValue(`bankInfo.${index}.bankBranch` as keyof TProfileData, bank.bankBranch);
+          setValue(`bankInfo.${index}.nominName` as keyof TProfileData, bank.nominName);
+          setValue(`bankInfo.${index}.nomiRelation` as keyof TProfileData, bank.nomiRelation);
+        });
+      }
+    }
+  }, [user, setValue]);
+
+
+
+  const handleApproveKyc = async () => {
+    try {
+      const response = await approveKyc(id).unwrap();
+      console.log(response);
+      if (response?.success) {
+        toast.success("KYC approved successfully!");
+        navigate("/admin/affiliates")
+      }
+    } catch (err) {
+      console.error("Error approving KYC:", err);
+    }
+  };
 
   // State to manage the modal visibility
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -128,8 +110,13 @@ const ViewAffiliate = () => {
           >
             Reject
           </button>
-          <button className="px-4 py-2 bg-success border-[#051539] rounded-lg text-white">
-            Approve KYC
+          <button disabled={isLoading} onClick={handleApproveKyc} className="px-4 py-2 bg-success border-[#051539] rounded-lg text-white">
+            {
+              isLoading ?
+                <LoadingSpinner />
+                :
+                "Approve KYC"
+            }
           </button>
         </div>
       </div>
@@ -139,31 +126,32 @@ const ViewAffiliate = () => {
         <DashboardCard title="Content" count={200} />
         <DashboardCard title="Content" count={"00.00%"} />
       </div>
-      <PersonalInfo />
-      <FormProvider {...methods}>
-        <div className="grid grid-cols-4 gap-6">
-          <div className="col-span-2 gap-4 flex flex-col">
-            <div className="bg-white w-full rounded-2xl p-6">
-              <div className="flex justify-between items-center">
-                <p className="text-neutral-90 font-semibold">KYC Status</p>
-                <div className="bg-secondary-35 rounded-md p-2">
-                  In-Progress
-                </div>
-              </div>
+      <div className="flex flex-col gap-8 mt-8">
+        <PersonalInfo register={register} errors={errors} />
+        <div className="flex flex-col gap-4">
+          <p className="text-neutral-90 font-semibold">KYC Details</p>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex flex-col gap-4">
+              <KYCStatus kycStatus={user?.user?.kyc_status} />
+              <IdentityInfo register={register} errors={errors} />
+              {/* <UploadProof register={register} errors={errors} /> */}
+              <UploadedProofs
+                addharCardImage={user?.user?.addharCard?.adImage?.url}
+                panCardImage={user?.user?.panCard?.panImage?.url}
+                passBookImage={user?.user?.passbookImage?.url}
+              />
             </div>
-            <IdentityInfo />
-            <UploadProof />
-          </div>
-          <div className="col-span-2">
-            <BankInfo />
+            {user?.user?.bankInfo?.map((bank: TBankInfo, index: number) => (
+              <BankInfo
+                key={index}
+                index={index}
+                register={register}
+                errors={errors}
+              />
+            ))}
           </div>
         </div>
-      </FormProvider>
-      <TransactionHistory
-        headers={payoutHeaders}
-        data={payoutData}
-        showHeader={true}
-      />
+      </div>
 
       {/* ReasonForRejection Modal */}
       <ReasonForRejection open={isModalOpen} onClose={closeModal} />

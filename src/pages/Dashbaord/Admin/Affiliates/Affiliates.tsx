@@ -7,10 +7,12 @@ import { formatDate } from "../../../../utils/formatDate";
 import Spinner from "../../../../components/Loaders/Spinner/Spinner";
 import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 
 
 const Affiliates = () => {
+  const navigate = useNavigate();
   const { data: pendingKyc, isLoading } = useGetAllPendingKYCQuery({});
   const [approveKyc] = useApproveKycMutation();
 
@@ -53,7 +55,7 @@ const handleApproveKyc = async (id: string) => {
       payouts: `₹${user?.earnings?.total}`,
       kycStatus: user?.kyc_status,
       action: [
-        { label: "View Affiliate", onClick: () => console.log("View Affiliate", user._id) },
+        { label: "View Affiliate", onClick: () => navigate(`/admin/view-affiliate/${user._id}`) },
         { label: "Approve", onClick: () => handleApproveKyc(user._id) },
         { label: "Reject", onClick: () => console.log("Reject", user._id) },
       ],
