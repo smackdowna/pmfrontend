@@ -16,21 +16,20 @@ const Affiliates = () => {
   const { data: pendingKyc, isLoading } = useGetAllPendingKYCQuery({});
   const [approveKyc] = useApproveKycMutation();
 
-const handleApproveKyc = async (id: string) => {
-  try {
-    await toast.promise(
-      approveKyc(id).unwrap(),
-      {
-        loading: "Loading...",
-        success: "KYC approved successfully!",
-        error: "Failed to approve KYC. Please try again.",
-      }
-    );
-  } catch (err) {
-    console.error("Error approving KYC:", err);
-  }
-};
-
+  const handleApproveKyc = async (id: string) => {
+    try {
+      await toast.promise(
+        approveKyc(id).unwrap(),
+        {
+          loading: "Loading...",
+          success: "KYC approved successfully!",
+          error: "Failed to approve KYC. Please try again.",
+        }
+      );
+    } catch (err) {
+      console.error("Error approving KYC:", err);
+    }
+  };
 
   // Pending KYC user table headers
   const pendingKycTableHeader = [

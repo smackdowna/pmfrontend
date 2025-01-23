@@ -57,6 +57,15 @@ const adminApi = baseApi.injectEndpoints({
       invalidatesTags: ["user"],
     }),
 
+    deleteCourse: builder.mutation({
+      query: (id) => ({
+        url: `/course/${id}`,
+        method: "DELETE",
+        credentials: "include",
+      }),
+      invalidatesTags: ["course"],
+    }),
+
   }),
 });
 
@@ -67,4 +76,5 @@ export const {
     useGetAllOrdersQuery,
     useGetSingleUserByIdQuery,
     useApproveKycMutation,
+    useDeleteCourseMutation,
 } = adminApi;

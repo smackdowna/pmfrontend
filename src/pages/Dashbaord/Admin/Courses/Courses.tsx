@@ -6,9 +6,27 @@ import { useGetAllCoursesQuery } from "../../../../redux/Features/Course/courseA
 import { formatDate } from "../../../../utils/formatDate";
 import Spinner from "../../../../components/Loaders/Spinner/Spinner";
 import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
+import { toast } from "sonner";
+import { useDeleteCourseMutation } from "../../../../redux/Features/Admin/adminApi";
 
 const AdminCourses = () => {
   const { data: allCourses, isLoading } = useGetAllCoursesQuery({ searchQuery: "", categoryQuery: "" });
+  const [deleteCourse] = useDeleteCourseMutation();
+
+  const handleDeleteCourse = async (id: string) => {
+    try {
+      await toast.promise(
+        deleteCourse(id).unwrap(),
+        {
+          loading: "Loading...",
+          success: "Course deleted successfully!",
+          error: "Failed to delete course. Please try again.",
+        }
+      );
+    } catch (err) {
+      console.error("Error deleting course:", err);
+    }
+  };
 
   // Pending KYC user table headers
   const allCoursesTableHeaders = [
@@ -33,7 +51,9 @@ const AdminCourses = () => {
       basePrice: `₹${course?.basePrice}`,
       discountedPrice: `₹${course?.discountedPrice}`,
       publishedOn: formatDate(course?.createdAt),
-      action: "View",
+      action: [
+        { label: "Delete Course", onClick: () => handleDeleteCourse(course._id) },
+      ],
     }))
     : [];
 
