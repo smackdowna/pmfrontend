@@ -44,11 +44,12 @@ const Playlist: React.FC<PlaylistProps> = ({ changeVideo, currentVideo }) => {
         {playlists.map((module, index) => (
           <div
             key={index}
-            className={`bg-white rounded-lg border ${
+            className={`bg-white rounded-lg border cursor-pointer ${
               currentVideo === module.videoUrl
                 ? "border-blue-500"
                 : "border-gray-200"
             } flex items-center justify-between pr-3`}
+            onClick={() => module.videoUrl && changeVideo(module)}
           >
             <div className="p-4 flex flex-col">
               <h2 className="text-lg font-medium text-gray-900">
@@ -59,7 +60,6 @@ const Playlist: React.FC<PlaylistProps> = ({ changeVideo, currentVideo }) => {
               </p>
             </div>
             <button
-              onClick={() => module.videoUrl && changeVideo(module)}
               className={`${
                 module.videoUrl
                   ? "text-blue-500 hover:scale-105"

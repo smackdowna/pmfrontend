@@ -103,11 +103,15 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ moduleData }) => {
   return (
     <div
       ref={playerContainerRef}
-      className="w-2/3 h-screen bg-[#F8FAFC] p-5 rounded-md"
+      className={`w-2/3 h-screen bg-[#F8FAFC] ${
+        !isFullScreen ? "p-5" : ""
+      } rounded-md`}
     >
-      <div className="flex flex-col mb-3">
-        <span className="text-2xl font-medium text-gray-900">{module}</span>
-      </div>
+      {!isFullScreen && (
+        <div className="flex flex-col mb-3">
+          <span className="text-2xl font-medium text-gray-900">{module}</span>
+        </div>
+      )}
       <div
         className="relative aspect-video rounded-lg"
         onClick={handlePlayPause}
