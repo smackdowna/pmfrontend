@@ -5,63 +5,7 @@ import { useGetAllUserQuery } from "../../../../redux/Features/Admin/adminApi";
 import { formatDate } from "../../../../utils/formatDate";
 import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
 import Spinner from "../../../../components/Loaders/Spinner/Spinner";
-
-type TUser = {
-  panCard: {
-    panImage: {
-      public_id: string;
-      url: string;
-    };
-    panNumber: string;
-  };
-  addharCard: {
-    adImage: {
-      public_id: string;
-      url: string;
-    };
-    adNumber: string;
-  };
-  passbookImage: {
-    public_id: string;
-    url: string;
-  };
-  earnings: {
-    total: number;
-  };
-  _id: string;
-  email: string;
-  mobileNumber: string;
-  referredBy: string | null;
-  role: "user" | "admin" | "instructor"; // Add other roles as applicable
-  verified: boolean;
-  kyc_status: "Pending" | "Approved" | "Rejected"; // Add other statuses as applicable
-  otp: string | null;
-  otp_expiry: string | null;
-  purchasedCourses: string[]; // Assuming this contains IDs of purchased courses
-  createdAt: string;
-  bankInfo: {
-    accholderName: string;
-    accNumber: string;
-    accType: "Savings" | "Current"; // Add other types as applicable
-    ifscCode: string;
-    bankName: string;
-    bankBranch: string;
-    nominName: string;
-    nomiRelation: string;
-    _id: string;
-  }[];
-  __v: number;
-  city: string;
-  country: string;
-  dob: string; // Use `Date` if this will be converted to a date object
-  full_name: string;
-  gender: "Male" | "Female" | "Other"; // Add other genders as applicable
-  language: string;
-  occupation: string;
-  pinCode: string;
-  refralCode: string;
-  state: string;
-};
+import { TUser } from "../../../../types/user.types";
 
 const RegisteredUsers = () => {
   const { data: allUsers, isLoading } = useGetAllUserQuery({});

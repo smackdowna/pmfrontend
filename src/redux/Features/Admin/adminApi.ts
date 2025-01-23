@@ -12,6 +12,15 @@ const adminApi = baseApi.injectEndpoints({
       providesTags: ["user"],
     }),
 
+    getAllPendingKYC: builder.query({
+      query: () => ({
+        url: "/user/kyc/pending",
+        method: "GET",
+        credentials: "include",
+      }),
+      providesTags: ["user"],
+    }),
+
     updateProfile: builder.mutation({
       query: (profileUpdatedData) => ({
         method: "PUT",
@@ -26,4 +35,5 @@ const adminApi = baseApi.injectEndpoints({
 
 export const {
     useGetAllUserQuery,
+    useGetAllPendingKYCQuery,
 } = adminApi;

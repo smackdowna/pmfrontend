@@ -4,7 +4,7 @@ interface DashboardCardProps {
   width?: string;
 }
 
-const DashboardCard = ({ title, count, width }: DashboardCardProps) => {
+const DashboardCard = ({ title, count }: DashboardCardProps) => {
   return (
     <div
       className={`flex flex-col gap-2 p-4 bg-white rounded-lg border-[1px] border-[#E2E8F0] font-Inter w-[218px]`}
