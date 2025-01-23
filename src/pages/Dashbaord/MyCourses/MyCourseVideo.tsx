@@ -16,7 +16,14 @@ const MyCourseVideo = () => {
   return (
     <div>
       <div className="flex w-full justify-between items-center py-3 px-6">
-        <img src={IMAGES.pmGurukulLogo} alt="pmgurukul" className="size-9" />
+        <Link to={"/"} className="flex items-center gap-2">
+          <img
+            src={IMAGES.pmGurukulLogo}
+            alt="PM-Gurukul"
+            className="size-12"
+          />
+          <h1 className="text-white">PM Gurukul</h1>
+        </Link>{" "}
         <div className="bg-white flex justify-end items-center">
           <ul className="flex gap-5">
             <li>
