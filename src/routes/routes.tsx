@@ -34,6 +34,7 @@ import MyOrders from "../pages/Dashbaord/User/MyOrders/MyOrders";
 import TermsAndConditions from "../pages/TermsAndConditions/TermsAndConditions";
 import AboutUS from "../pages/AboutUS/AboutUS";
 import Disclaimer from "../pages/Disclaimer/Disclaimer";
+import AddCourseVideo from "../pages/Dashbaord/Admin/AddCourse/AddCourseVideo/AddCourseVideo";
 
 
 export const router = createBrowserRouter([
@@ -167,6 +168,10 @@ export const router = createBrowserRouter([
       {
         path: "add-course",
         element: <AddCourse />,
+      },
+      {
+        path: "add-course-video/:id",
+        element: <AddCourseVideo />,
       },
       {
         path: "order-details/:id",

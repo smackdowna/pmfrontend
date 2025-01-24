@@ -21,7 +21,7 @@ type TEarnings = {
   commission: number;
   tds: number;
   amountCredited: number;
-  payout_status: "Pending" | "Completed" | "Failed";
+  payout_status: "Pending" | "Approved" | "Failed";
   createdAt: string;
   updatedAt: string;
   __v: number;
@@ -78,6 +78,8 @@ const Payouts = () => {
     }))
     : [];
 
+    const approvedPayouts = allEarnings?.earnings?.filter((earning: TEarnings) => earning?.payout_status === "Approved");
+
   return (
     <>
       <div className="flex items-center justify-between w-full">
@@ -85,6 +87,7 @@ const Payouts = () => {
       </div>
       <div className="flex items-center w-full  gap-4">
         <DashboardCard title="Total Payouts" count={allEarnings?.earnings?.length} />
+        <DashboardCard title="Approve Payouts" count={approvedPayouts?.length} />
       </div>
       {
         isLoading ?

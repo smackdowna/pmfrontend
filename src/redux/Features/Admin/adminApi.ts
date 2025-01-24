@@ -93,6 +93,35 @@ const adminApi = baseApi.injectEndpoints({
       invalidatesTags: ["course"],
     }),
 
+    createCourse: builder.mutation({
+      query: (courseData) => ({
+        url: `/createcourse`,
+        method: "POST",
+        body: courseData,
+        credentials: "include",
+      }),
+      invalidatesTags: ["course"],
+    }),
+
+    addVideo: builder.mutation({
+      query: ({formData, courseId}) => ({
+        url: `/course/${courseId}`,
+        method: "PUT",
+        body: formData,
+        credentials: "include",
+      }),
+      invalidatesTags: ["course"],
+    }),
+
+    deleteVideo: builder.mutation({
+      query: ({courseId, lectureId}) => ({
+        url: `/lectures?courseId=${courseId}&lectureId=${lectureId}`,
+        method: "DELETE",
+        credentials: "include",
+      }),
+      invalidatesTags: ["course"],
+    }),
+
   }),
 });
 
@@ -107,4 +136,7 @@ export const {
   useRejectKycMutation,
   useApprovePayoutMutation,
   useDeleteCourseMutation,
+  useCreateCourseMutation,
+  useAddVideoMutation,
+  useDeleteVideoMutation,
 } = adminApi;

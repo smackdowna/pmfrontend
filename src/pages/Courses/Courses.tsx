@@ -12,7 +12,6 @@ const Courses = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [categoryQuery, setCategoryQuery] = useState("");
     const { data: allCourses, isLoading, isFetching } = useGetAllCoursesQuery({ searchQuery, categoryQuery });
-    console.log(allCourses);
     const [selectedCategory, setSelectedCategory] = useState("All Courses");
 
     return (
