@@ -32,6 +32,8 @@ import ViewAffiliate from "../pages/Dashbaord/Admin/ViewAffiliate/ViewAffiliate"
 import SetupProfile from "../pages/Auth/SetupProfile/SetupProfile";
 import MyOrders from "../pages/Dashbaord/User/MyOrders/MyOrders";
 import TermsAndConditions from "../pages/TermsAndConditions/TermsAndConditions";
+import AboutUS from "../pages/AboutUS/AboutUS";
+import Disclaimer from "../pages/Disclaimer/Disclaimer";
 
 
 export const router = createBrowserRouter([
@@ -63,6 +65,14 @@ export const router = createBrowserRouter([
       {
         path: "/terms-and-conditions",
         element: <TermsAndConditions />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUS />,
+      },
+      {
+        path: "/disclaimer",
+        element: <Disclaimer />,
       },
     ],
   },
