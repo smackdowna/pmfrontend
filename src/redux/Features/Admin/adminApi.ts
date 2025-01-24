@@ -27,7 +27,7 @@ const adminApi = baseApi.injectEndpoints({
         method: "GET",
         credentials: "include",
       }),
-      providesTags: ["user"],
+      providesTags: ["earning"],
     }),
 
     getAllOrders: builder.query({
@@ -66,6 +66,24 @@ const adminApi = baseApi.injectEndpoints({
       invalidatesTags: ["user"],
     }),
 
+    rejectKyc: builder.mutation({
+      query: (id) => ({
+        url: `/user/reject/${id}`,
+        method: "PUT",
+        credentials: "include",
+      }),
+      invalidatesTags: ["user"],
+    }),
+
+    approvePayout: builder.mutation({
+      query: (id) => ({
+        url: `/approve/payout/${id}`,
+        method: "PUT",
+        credentials: "include",
+      }),
+      invalidatesTags: ["earning"],
+    }),
+
     deleteCourse: builder.mutation({
       query: (id) => ({
         url: `/course/${id}`,
@@ -86,5 +104,7 @@ export const {
   useGetSingleOrderByIdQuery,
   useGetSingleUserByIdQuery,
   useApproveKycMutation,
+  useRejectKycMutation,
+  useApprovePayoutMutation,
   useDeleteCourseMutation,
 } = adminApi;

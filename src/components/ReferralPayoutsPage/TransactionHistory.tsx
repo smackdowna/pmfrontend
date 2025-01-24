@@ -87,7 +87,10 @@ export const Table = ({ headers = [], data = [], showHeader = true }: TableProps
 
   // Conditional class for kycStatus column
   const getKycStatusColor = (status: string | number) => {
-    if (status === "Pending" || status === "Overdue") {
+    if (status === "Pending"){
+      return "bg-yellow-400 bg-opacity-30 text-yellow-700 px-2 py-1 rounded";
+    }
+    if (status === "Rejected") {
       return "bg-red-100  text-red-700 px-2 py-1 rounded";
     }
     if (status === "Approved" || status === "Active" || status === "Paid") {

@@ -1,10 +1,11 @@
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
 import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import { Table } from "../../../../components/ReferralPayoutsPage/TransactionHistory";
-import { useGetAllEarningsQuery } from "../../../../redux/Features/Admin/adminApi";
+import { useApprovePayoutMutation, useGetAllEarningsQuery } from "../../../../redux/Features/Admin/adminApi";
 import { formatDate } from "../../../../utils/formatDate";
 import Spinner from "../../../../components/Loaders/Spinner/Spinner";
 import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
+import { toast } from "sonner";
 
 type TEarnings = {
   _id: string;
@@ -28,6 +29,22 @@ type TEarnings = {
 
 const Payouts = () => {
   const { data: allEarnings, isLoading } = useGetAllEarningsQuery({});
+  const [approvePayout] = useApprovePayoutMutation();
+
+  const handleApprovePayout = async (id: string) => {
+    try {
+      await toast.promise(
+        approvePayout(id).unwrap(),
+        {
+          loading: "Loading...",
+          success: "Payout approved successfully!",
+          error: "Failed to approve payout. Please try again.",
+        }
+      );
+    } catch (err) {
+      console.error("Error approving payout:", err);
+    }
+  };
 
   // All earnings table headers
   const allEarningsTableHeaders = [
@@ -55,7 +72,9 @@ const Payouts = () => {
       tds: `₹${data?.tds}`,
       payableAmount: `₹${data?.amountCredited}`,
       payoutStatus: data?.payout_status,
-      action: "View",
+      action: [
+        { label: "Approve Payout", onClick: () => handleApprovePayout(data?._id) },
+      ],
     }))
     : [];
 

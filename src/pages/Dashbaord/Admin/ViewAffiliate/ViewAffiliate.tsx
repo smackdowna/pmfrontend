@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ICONS } from "../../../../assets";
-import ReasonForRejection from "../../../../components/ReasonForRejection/ReasonForRejection";
 import PersonalInfo from "../../../../components/MyProfilePage/PersonalInfo/PersonalInfo";
 import { useForm } from "react-hook-form";
 import IdentityInfo from "../../../../components/MyProfilePage/KycDetails/IdentityInfo";
@@ -8,8 +7,8 @@ import BankInfo from "../../../../components/MyProfilePage/KycDetails/BankInfo";
 import { TBankInfo, TProfileData } from "../../../../types/profileData.types";
 import KYCStatus from "../../../../components/MyProfilePage/KycDetails/KYCStatus/KYCStatus";
 import UploadedProofs from "../../../../components/MyProfilePage/UploadedProofs/UploadedProofs";
-import { useNavigate, useParams } from "react-router-dom";
-import { useApproveKycMutation, useGetSingleUserByIdQuery } from "../../../../redux/Features/Admin/adminApi";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useApproveKycMutation, useGetSingleUserByIdQuery, useRejectKycMutation } from "../../../../redux/Features/Admin/adminApi";
 import { toast } from "sonner";
 import LoadingSpinner from "../../../../components/Loaders/LoadingSpinner/LoadingSpinner";
 
@@ -18,7 +17,8 @@ const ViewAffiliate = () => {
   const { id } = useParams();
   // Getting user profile data
   const { data: user } = useGetSingleUserByIdQuery(id);
-  const [approveKyc, { isLoading }] = useApproveKycMutation();
+  const [approveKyc, { isLoading: isApproving }] = useApproveKycMutation();
+  const [rejectKyc, { isLoading: isRejecting }] = useRejectKycMutation();
 
   const {
     register,
@@ -61,42 +61,53 @@ const ViewAffiliate = () => {
   }, [user, setValue]);
 
 
-
   const handleApproveKyc = async () => {
     try {
       const response = await approveKyc(id).unwrap();
       console.log(response);
       if (response?.success) {
         toast.success("KYC approved successfully!");
-        navigate("/admin/affiliates")
+        navigate("/admin/affiliates");
       }
     } catch (err) {
       console.error("Error approving KYC:", err);
     }
   };
 
+
+  const handleRejectKyc = async () => {
+    try {
+      const response = await rejectKyc(id).unwrap();
+      console.log(response);
+      if (response?.success) {
+        toast.success("KYC rejected");
+        navigate("/admin/affiliates");
+      }
+    } catch (err) {
+      console.error("Error rejecting KYC:", err);
+    }
+  };
+
   // State to manage the modal visibility
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Function to open the modal
-  const openModal = () => {
-    console.log("Opening Modal"); // Debugging line
-    setIsModalOpen(true);
-  };
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
 
   // Function to close the modal
-  const closeModal = () => {
-    console.log("Closing Modal"); // Debugging line
-    setIsModalOpen(false);
-  };
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  // };
 
   return (
     <div className="flex flex-col p-6 bg-[#F8FAFC] gap-8 w-full">
       <div className="flex items-center w-full justify-between">
         <div className="flex gap-[10px] items-center">
-          <button>
+          <Link to={"/admin/affiliates"}>
             <img src={ICONS.arrowLeft} className="w-9 h-9" alt="" />
-          </button>
+          </Link>
           <span className="text-[#0F172A] font-Inter font-semibold leading-7 tracking-tighter text-2xl">
             View Affiliate
           </span>
@@ -104,14 +115,19 @@ const ViewAffiliate = () => {
         <div className="flex items-center gap-[10px]">
           {/* Reject button that opens the modal */}
           <button
-            onClick={openModal}
+            onClick={handleRejectKyc}
             className="px-4 py-2 bg-error border-[1px] border-[#DFE2E6] rounded-lg text-white"
           >
-            Reject
-          </button>
-          <button disabled={isLoading} onClick={handleApproveKyc} className="px-4 py-2 bg-success border-[#051539] rounded-lg text-white">
             {
-              isLoading ?
+              isRejecting ?
+                <LoadingSpinner />
+                :
+                "Reject"
+            }
+          </button>
+          <button disabled={isApproving} onClick={handleApproveKyc} className="px-4 py-2 bg-success border-[#051539] rounded-lg text-white">
+            {
+              isApproving ?
                 <LoadingSpinner />
                 :
                 "Approve KYC"
@@ -147,7 +163,7 @@ const ViewAffiliate = () => {
       </div>
 
       {/* ReasonForRejection Modal */}
-      <ReasonForRejection open={isModalOpen} onClose={closeModal} />
+      {/* <ReasonForRejection open={isModalOpen} onClose={closeModal} /> */}
     </div>
   );
 };

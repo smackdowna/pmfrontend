@@ -1,7 +1,7 @@
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
 import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import { Table } from "../../../../components/ReferralPayoutsPage/TransactionHistory";
-import { useApproveKycMutation, useGetAllPendingKYCQuery } from "../../../../redux/Features/Admin/adminApi";
+import { useApproveKycMutation, useGetAllPendingKYCQuery, useGetAllUserQuery, useRejectKycMutation } from "../../../../redux/Features/Admin/adminApi";
 import { TUser } from "../../../../types/user.types";
 import { formatDate } from "../../../../utils/formatDate";
 import Spinner from "../../../../components/Loaders/Spinner/Spinner";
@@ -13,8 +13,10 @@ import { useNavigate } from "react-router-dom";
 
 const Affiliates = () => {
   const navigate = useNavigate();
-  const { data: pendingKyc, isLoading } = useGetAllPendingKYCQuery({});
+  const { data: allUsers, isLoading } = useGetAllUserQuery({});
+  const { data: pendingKyc } = useGetAllPendingKYCQuery({});
   const [approveKyc] = useApproveKycMutation();
+  const [rejectKyc] = useRejectKycMutation();
 
   const handleApproveKyc = async (id: string) => {
     try {
@@ -31,6 +33,21 @@ const Affiliates = () => {
     }
   };
 
+  const handleRejectKyc = async (id: string) => {
+    try {
+      await toast.promise(
+        rejectKyc(id).unwrap(),
+        {
+          loading: "Loading...",
+          success: "KYC rejected!",
+          error: "Failed to reject KYC. Please try again.",
+        }
+      );
+    } catch (err) {
+      console.error("Error rejecting KYC:", err);
+    }
+  };
+
   // Pending KYC user table headers
   const pendingKycTableHeader = [
     { key: "no", label: "SR.NO.", sortable: false },
@@ -44,8 +61,8 @@ const Affiliates = () => {
   ];
 
   // Pending KYC user table data
-  const pendingKycUserData = pendingKyc?.users?.length
-    ? pendingKyc?.users?.map((user: TUser, index: number) => ({
+  const pendingKycUserData = allUsers?.users?.length
+    ? allUsers?.users?.map((user: TUser, index: number) => ({
       no: `${index + 1}`,
       fullName: user?.full_name,
       email: user?.email,
@@ -56,10 +73,13 @@ const Affiliates = () => {
       action: [
         { label: "View Affiliate", onClick: () => navigate(`/admin/view-affiliate/${user._id}`) },
         { label: "Approve", onClick: () => handleApproveKyc(user._id) },
-        { label: "Reject", onClick: () => console.log("Reject", user._id) },
+        { label: "Reject", onClick: () => handleRejectKyc( user._id) },
       ],
     }))
     : [];
+
+    const approvedKyc = allUsers?.users?.filter((user:TUser) => user?.kyc_status === "Approved");
+    const rejectedKyc = allUsers?.users?.filter((user:TUser) => user?.kyc_status === "Rejected");
 
   return (
     <>
@@ -70,7 +90,10 @@ const Affiliates = () => {
         />
       </div>
       <div className="flex items-center w-full gap-4">
+        <DashboardCard title="Total KYC" count={allUsers?.users?.length} />
         <DashboardCard title="Total Pending KYC" count={pendingKyc?.users?.length} />
+        <DashboardCard title="Total Approved KYC" count={approvedKyc?.length} />
+        <DashboardCard title="Total Rejected KYC" count={rejectedKyc?.length} />
       </div>
 
       {
