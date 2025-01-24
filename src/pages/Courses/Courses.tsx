@@ -10,8 +10,7 @@ import { useState } from "react";
 
 const Courses = () => {
     const [searchQuery, setSearchQuery] = useState("");
-    const [categoryQuery, setCategoryQuery] = useState("");
-    const { data: allCourses, isLoading, isFetching } = useGetAllCoursesQuery({ searchQuery, categoryQuery });
+    const { data: allCourses, isLoading, isFetching } = useGetAllCoursesQuery(searchQuery);
     const [selectedCategory, setSelectedCategory] = useState("All Courses");
 
     return (
@@ -21,7 +20,6 @@ const Courses = () => {
             </Helmet>
             <CourseHero
                 setSearchQuery={setSearchQuery}
-                setCategoryQuery={setCategoryQuery}
             />
             <AllCourses
                 allCourses={allCourses}

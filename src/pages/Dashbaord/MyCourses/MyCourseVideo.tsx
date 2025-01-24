@@ -6,11 +6,11 @@ import { useState } from "react";
 
 const MyCourseVideo = () => {
   const [currentModule, setCurrentModule] = useState({
-    module: "Module 3: Advanced Techniques",
-    progress: "0 of 3",
-    duration: "6 min",
+    module: "",
+    progress: "",
+    duration: "",
     videoUrl:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "",
   });
 
   return (
@@ -22,7 +22,7 @@ const MyCourseVideo = () => {
             alt="PM-Gurukul"
             className="size-12"
           />
-          <h1 className="text-white">PM Gurukul</h1>
+          <h1 className="text-primary-10 font-semibold text-2xl">PM Gurukul</h1>
         </Link>{" "}
         <div className="bg-white flex justify-end items-center">
           <ul className="flex gap-5">
@@ -43,9 +43,10 @@ const MyCourseVideo = () => {
       <div className="flex flex-1 overflow-y-hidden">
         <VideoPlayer moduleData={currentModule} />
         <Playlist
-          changeVideo={(module) =>
-            setCurrentModule({ ...module, videoUrl: module.videoUrl || "" })
-          }
+          changeVideo={(module) => {
+            console.log(module);
+            setCurrentModule({ ...module, videoUrl: module?.video?.url || "" })
+          } }
           currentVideo={currentModule.videoUrl}
         />
       </div>

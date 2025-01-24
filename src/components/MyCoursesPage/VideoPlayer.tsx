@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useRef, useEffect } from "react";
 import ReactPlayer from "react-player/lazy";
 import Controls from "../Controls/Controls";
@@ -13,7 +14,7 @@ interface VideoPlayerProps {
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ moduleData }) => {
   const { module, videoUrl } = moduleData;
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.8);
   const [isMuted, setIsMuted] = useState(false);
   const [progress, setProgress] = useState(0);

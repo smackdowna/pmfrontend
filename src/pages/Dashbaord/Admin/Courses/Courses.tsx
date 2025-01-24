@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { useDeleteCourseMutation } from "../../../../redux/Features/Admin/adminApi";
 
 const AdminCourses = () => {
-  const { data: allCourses, isLoading } = useGetAllCoursesQuery({ searchQuery: "", categoryQuery: "" });
+  const { data: allCourses, isLoading } = useGetAllCoursesQuery({searchQuery: ""});
   const [deleteCourse] = useDeleteCourseMutation();
 
   const handleDeleteCourse = async (id: string) => {

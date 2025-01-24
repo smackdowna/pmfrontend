@@ -7,10 +7,9 @@ import Container from "../../Shared/Container/Container";
 
 type TCourseHero = {
     setSearchQuery: (query: string) => void;
-    setCategoryQuery: (query: string) => void;
 };
 
-const CourseHero: React.FC<TCourseHero> = ({ setSearchQuery, setCategoryQuery }) => {
+const CourseHero: React.FC<TCourseHero> = ({ setSearchQuery }) => {
     return (
         <HeroContainer>
             <Container>
@@ -23,7 +22,6 @@ const CourseHero: React.FC<TCourseHero> = ({ setSearchQuery, setCategoryQuery })
                         <img src={ICONS.search} alt="search-icon" className="size-5 absolute top-3.5 bottom-0 left-4" />
                         <input onChange={(e) => {
                             setSearchQuery(e.target.value);
-                            setCategoryQuery(e.target.value);
                         }} type="text" placeholder="Search" className="pl-11 pr-4 py-3 bg-white rounded-3xl w-full focus:border focus:border-secondary-10 transition duration-300 focus:outline-none" />
                     </div>
                 </div>
