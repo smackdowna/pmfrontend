@@ -13,7 +13,7 @@ const HeaderDashboard = () => {
   }, [location.pathname]);
 
   return (
-    <div className="bg-white h-12 text-3xl flex justify-end items-center pr-4">
+    <div className="bg-white h-12 text-3xl flex justify-end items-center pr-4 sticky top-0 z-20">
       <ul className="flex gap-5">
         {!isAdmin && (
           <>

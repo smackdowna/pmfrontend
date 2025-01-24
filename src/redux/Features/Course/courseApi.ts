@@ -29,7 +29,16 @@ const courseApi = baseApi.injectEndpoints({
             }),
             providesTags: ["course"],
         }),
+
+        getAllCategories: builder.query({
+            query: () => ({
+                url: `/category`,
+                method: "GET",
+                credentials: "include",
+            }),
+            providesTags: ["course"],
+        }),
     }),
 });
 
-export const {useGetAllCoursesQuery, useGetSingleCourseByIdQuery, useGetCourseLectureQuery} = courseApi;
+export const {useGetAllCoursesQuery, useGetSingleCourseByIdQuery, useGetCourseLectureQuery, useGetAllCategoriesQuery} = courseApi;
