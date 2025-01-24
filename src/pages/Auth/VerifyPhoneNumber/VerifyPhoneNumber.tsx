@@ -70,7 +70,11 @@ const VerifyPhoneNumber = () => {
                         referralCode : response?.user?.refralCode
                     }
                     dispatch(setUser({ user }));
-                    navigate("/dashboard/my-profile");  
+                    if(response?.user?.role === "admin"){
+                        navigate("/admin/registered-users"); 
+                    } else {
+                        navigate("/dashboard/my-profile"); 
+                    }
                     
                     localStorage.removeItem("otpData");
                 }

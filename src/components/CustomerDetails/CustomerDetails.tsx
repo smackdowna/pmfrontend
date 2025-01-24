@@ -1,5 +1,5 @@
 import Card from "../Reusable/OrderDetailsCard/OrderDetailsCard";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // CustomerDetails Component
 interface CustomerDetailsProps {
   fullName: string;
@@ -17,11 +17,11 @@ const CustomerDetails: React.FC<CustomerDetailsProps> = ({
       <span className="text-base text-textGray-80 font-semibold leading-6 tracking-tight">
         Customer Details
       </span>
-      <Link to={link || ""}>
+      {/* <Link to={link || ""}>
         <span className="text-blue-10 text-[14px] leading-5 tracking-tight font-medium underline underline-offset-1">
           View full details
         </span>
-      </Link>
+      </Link> */}
     </div>
     <div className="flex flex-col gap-3">
       <div className="flex items-center justify-between text-textGray-80 text-[14px] leading-5 tracking-tight">

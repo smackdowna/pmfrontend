@@ -31,6 +31,7 @@ import PurchaseHistory from "../pages/Dashbaord/Admin/PurchaseHistory/PurchaseHi
 import ViewAffiliate from "../pages/Dashbaord/Admin/ViewAffiliate/ViewAffiliate";
 import SetupProfile from "../pages/Auth/SetupProfile/SetupProfile";
 import MyOrders from "../pages/Dashbaord/User/MyOrders/MyOrders";
+import TermsAndConditions from "../pages/TermsAndConditions/TermsAndConditions";
 
 
 export const router = createBrowserRouter([
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/terms-and-conditions",
+        element: <TermsAndConditions />,
       },
     ],
   },

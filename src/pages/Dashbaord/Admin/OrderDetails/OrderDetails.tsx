@@ -10,30 +10,12 @@ import { useGetSingleCourseByIdQuery } from "../../../../redux/Features/Course/c
 import CartItem from "../../../../components/CartPage/CartItem/CartItem";
 import Spinner from "../../../../components/Loaders/Spinner/Spinner";
 
-// Default order details
-const defaultOrder = {
-  courseName: "JavaScript Basics",
-  category: "Programming",
-  price: 499,
-  originalPrice: 999,
-  orderId: "ORD123456789",
-  orderedOn: "2025-01-01",
-  paidOn: "2025-01-02",
-  customer: {
-    name: "Alice Johnson",
-    mobile: "+91 98765 43210",
-  },
-  itemTotal: 499,
-  itemTotalOriginal: 999,
-};
-
 // Main Component
 const OrderDetails: React.FC = () => {
   const { id } = useParams();
   const { data, isLoading: isOrderLoading } = useGetSingleOrderByIdQuery(id);
   const { data: userData, isLoading: isUserLoading } = useGetSingleUserByIdQuery(data?.order?.user);
   const { data: courseData, isLoading: isCourseLoading } = useGetSingleCourseByIdQuery(data?.order?.course.map((course: string) => course));
-  const order = defaultOrder;
 
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const handleCopy = () => {
@@ -101,14 +83,10 @@ const OrderDetails: React.FC = () => {
               <span className="text-base text-textGray-80 font-semibold leading-6 tracking-tight">
                 Item Total
               </span>
-              <div className="flex items-center gap-[6px]">
-                <span className="line-through text-[13px] text-textGray-30 leading-5 tracking-tight">
-                  ₹{order.itemTotalOriginal}
-                </span>
                 <span className="text-base text-textGray-80 font-semibold leading-6 tracking-tight">
                   ₹{data?.order?.discountedPrice}
                 </span>
-              </div>
+                
             </div>
             <hr className="bg-neutral-800 w-full h-[1px]" />
             <div className="flex items-center gap-6 justify-between">
@@ -117,15 +95,12 @@ const OrderDetails: React.FC = () => {
                   Amount Paid
                 </span>
                 <span className="text-textGray-20 text-[14px] leading-5 tracking-tight">
-                  Incl. of all taxes and charges
+                  Included 18% GST
                 </span>
               </div>
               <div className="flex flex-col gap-1 items-end">
                 <span className="text-base text-textGray-80 font-semibold leading-6 tracking-tight">
                   ₹{data?.order?.totalPrice}
-                </span>
-                <span className="line-through text-[13px] text-textGray-30 leading-5 tracking-tight">
-                  ₹8,234
                 </span>
               </div>
             </div>
