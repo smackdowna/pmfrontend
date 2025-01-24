@@ -56,7 +56,6 @@ const VerifyPhoneNumber = () => {
                 otp: data.otp,
             };
             const response = await verifyOtp(verifyOtpData).unwrap();
-            console.log(response);
             if (response?.message) {
                 toast.success(response?.message);
                 if (response?.newUser) {
@@ -73,7 +72,7 @@ const VerifyPhoneNumber = () => {
                     if(response?.user?.role === "admin"){
                         navigate("/admin/registered-users"); 
                     } else {
-                        navigate("/dashboard/my-profile"); 
+                        navigate("/dashboard/my-courses"); 
                     }
                     
                     localStorage.removeItem("otpData");

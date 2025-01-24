@@ -151,7 +151,7 @@ export const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
-        path: "my-course-video",
+        path: "my-course-video/:id",
         element: <MyCourseVideo />,
       },
     ],

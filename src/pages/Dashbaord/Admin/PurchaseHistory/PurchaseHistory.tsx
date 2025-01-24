@@ -31,6 +31,7 @@ const PurchaseHistory = () => {
   const { data: allOrdersHistory, isLoading } = useGetAllOrdersQuery({});
 
   const handleDownloadInvoice = async (order:TOrders) => {
+    console.log(order);
     const blob = await pdf(<Invoice order={order} />).toBlob();
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -61,7 +62,7 @@ const PurchaseHistory = () => {
         orderID: order._id,
         customerName: order.user.full_name,
         mobile: order.user.mobileNumber,
-        noOfItems: order.course.length || 0,
+        noOfItems: order?.course?.length || 0,
         amount: `₹${order.totalPrice}`,
         orderDate: new Date(order.createdAt).toLocaleDateString(),
         action: [

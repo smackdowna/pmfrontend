@@ -8,14 +8,24 @@ import UploadInput from "../../../../components/Reusable/UploadInput/UploadInput
 import { useForm } from "react-hook-form";
 import LoadingSpinner from "../../../../components/Loaders/LoadingSpinner/LoadingSpinner";
 
+type TCourseFormData = {
+  title: string;
+  description: string;
+  category: string;
+  basePrice: string;
+  discountedPrice: string;
+  file: File | null;
+  author: string;
+  totalDuration: string;
+}
 const AddCourse = () => {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const [createCourse, {isLoading}] = useCreateCourseMutation();
+  } = useForm<TCourseFormData>();
+  const [createCourse, { isLoading }] = useCreateCourseMutation();
   const editor = useRef(null);
   const [content, setContent] = useState("");
   const [contentError, setContentError] = useState("");
@@ -34,12 +44,12 @@ const AddCourse = () => {
     }
   }, [content]);
 
-  const handleFileChange = (name:string, file: File | null) => {
-      setFileName(file?.name);
-      setSelectedFile(file);
+  const handleFileChange = (name: string, file: File | null) => {
+    setFileName(file?.name ? file?.name : name);
+    setSelectedFile(file);
   };
 
-  const handleCreateCourse = async (data: any) => {
+  const handleCreateCourse = async (data: TCourseFormData) => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("description", content);
@@ -54,7 +64,7 @@ const AddCourse = () => {
     }
 
     const response = await createCourse(formData).unwrap();
-    if(response?.success){
+    if (response?.success) {
       const id = response?.course?._id;
       navigate(`/admin/add-course-video/${id}`);
     }
@@ -76,19 +86,13 @@ const AddCourse = () => {
       </div>
       <div className="flex flex-col lg:w-[80%] w-full p-6 bg-white gap-6 rounded-2xl mx-auto">
         <form onSubmit={handleSubmit(handleCreateCourse)} className="flex flex-col gap-4 w-full">
-          
+
           <TextInput
             label="Course Title"
             placeholder="Enter course title"
             {...register("title", { required: "Course title is required" })}
             error={errors.title}
           />
-          {/* <TextInput
-            label="No Of Videos"
-            placeholder="Enter no of videos"
-            {...register("numOfVideos", { required: "Num Of Videos is required" })}
-            error={errors.numOfVideos}
-          /> */}
           <JoditEditor
             ref={editor}
             value={content}

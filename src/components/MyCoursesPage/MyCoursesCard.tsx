@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { ICONS } from "../../assets";
 import Forum from "../../pages/Dashbaord/MyCourses/Forum";
+import { Link } from "react-router-dom";
 
 const MyCoursesCard = ({
+  _id,
   title,
   author,
   enrolled,
@@ -61,13 +63,13 @@ const MyCoursesCard = ({
               Check Forum
             </button>
 
-            <a
-              href={`/coursevideo/my-course-video`}
+            <Link
+              to={`/course-video/my-course-video/${_id}`}
               className="bg-secondary-20 flex justify-center items-center gap-2 py-[10px] px-4 text-primary-10 text-sm leading-5 font-semibold w-full rounded-lg text-center"
             >
               {progress === 0 ? "Start" : "Resume"}
               <img src={ICONS.PlayCircle} alt="play-icon" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

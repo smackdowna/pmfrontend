@@ -1,20 +1,31 @@
 import { useState } from "react";
 import { ICONS } from "../../../../../assets";
 import AddVideo from "../../../../../components/AddVideo/AddVideo";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGetSingleCourseByIdQuery } from "../../../../../redux/Features/Course/courseApi";
 import { useDeleteVideoMutation } from "../../../../../redux/Features/Admin/adminApi";
-import Spinner from "../../../../../components/Loaders/Spinner/Spinner";
+
+type TVideo = {
+    _id: string;
+    title: string;
+    description: string;
+    video: {
+        public_id: string;
+        url: string;
+    };
+    videoDuration: string;
+};
 
 const AddCourseVideo = () => {
-    const [deleteVideo, {isLoading}] = useDeleteVideoMutation();
-    const {id} = useParams();
-    const {data} = useGetSingleCourseByIdQuery(id);
-    console.log(data?.course?.lectures);
+    const [deleteVideo] = useDeleteVideoMutation();
+    const { id } = useParams();
+    const { data } = useGetSingleCourseByIdQuery(id);
     const [isModalOpen, setModalOpen] = useState(false);
     const [videos, setVideos] = useState<
         { title: string; description: string; videoFile: File | null }[]
     >([]);
+    const [deletingVideoId, setDeletingVideoId] = useState<string | null>(null);
+
 
     const handleAddVideo = (videoData: {
         title: string;
@@ -26,15 +37,30 @@ const AddCourseVideo = () => {
 
     const handledDeleteVideo = async (lectureId: string) => {
         try {
-            const response = await deleteVideo({courseId: id, lectureId}).unwrap();
+            setDeletingVideoId(lectureId);
+            const response = await deleteVideo({ courseId: id, lectureId }).unwrap();
             console.log(response);
         } catch (error) {
             console.log(error);
+        } finally {
+            setDeletingVideoId(null);
         }
-    }
+    };
+
     return (
         <div>
-            <div className="flex flex-col lg:w-[80%] w-full p-6 bg-white gap-6 rounded-2xl mx-auto">
+            <div className="flex justify-between items-center lg:w-[80%] w-full mx-auto">
+                <h1 className="text-[#0F172A] font-Inter font-semibold leading-7 tracking-tighter text-2xl">
+                    Add Course Video
+                </h1>
+                <Link
+                    to={"/admin/courses"}
+                    className="px-4 py-2 bg-[#051539] border-[#051539] rounded-lg text-white"
+                >
+                    Save
+                </Link>
+            </div>
+            <div className="flex flex-col lg:w-[80%] w-full p-6 bg-white gap-6 rounded-2xl mx-auto mt-5">
                 <div className="flex items-center justify-between w-full">
                     <span className="text-[#0F172A] font-Inter text-[20px] font-semibold leading-5 tracking-tight">
                         Upload Course Content
@@ -59,7 +85,7 @@ const AddCourseVideo = () => {
                         </>
                     ) : (
                         <ul className="w-full flex flex-col gap-2 max-h-[240px] overflow-y-auto">
-                            {data?.course?.lectures?.map((video, index) => (
+                            {data?.course?.lectures?.map((video: TVideo, index: number) => (
                                 <li
                                     key={index}
                                     className="flex justify-between border-[1px] border-[#EBEDF0] rounded-[6px] p-[10px]"
@@ -73,15 +99,18 @@ const AddCourseVideo = () => {
                                             {video?.videoDuration}
                                         </span>
                                     </div>
-                                    {
-                                        isLoading ?
-                                        <Spinner/> :
-                                        <button
-                                        onClick={() =>handledDeleteVideo(video?._id)}
+                                    <button
+                                        onClick={() => handledDeleteVideo(video?._id)}
+                                        disabled={deletingVideoId === video?._id} // Optionally disable the button while loading
                                     >
-                                        <img src={ICONS.closeRed} className="w-5 h-5" alt="" />
+                                        {deletingVideoId === video?._id ? (
+                                            <div className="size-5 animate-[spin_1s_linear_infinite] rounded-full border-2 border-r-error border-[#3b9df84b]"></div>
+                                        ) : (
+                                            <img src={ICONS.closeRed} className="w-5 h-5" alt="" />
+                                        )}
                                     </button>
-                                    }
+
+
                                 </li>
                             ))}
                         </ul>
@@ -95,7 +124,7 @@ const AddCourseVideo = () => {
                 </div>
             </div>
             <AddVideo
-            courseId={id}
+                courseId={id ? id : ""}
                 isOpen={isModalOpen}
                 onClose={() => setModalOpen(false)}
                 onSubmit={handleAddVideo}

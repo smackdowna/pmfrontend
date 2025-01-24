@@ -17,12 +17,20 @@ interface AddVideoProps {
   }) => void;
 }
 
-const AddVideo: React.FC<AddVideoProps> = ({ isOpen, onClose, onSubmit, courseId }) => {
+type TVideo = {
+  title: string;
+  description: string;
+  file : File | null;
+  videoDuration: string;
+};
+
+const AddVideo: React.FC<AddVideoProps> = ({ isOpen, onClose, courseId }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+    reset,
+  } = useForm<TVideo>();
   const [addVideo, { isLoading }] = useAddVideoMutation();
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -38,6 +46,7 @@ const AddVideo: React.FC<AddVideoProps> = ({ isOpen, onClose, onSubmit, courseId
   };
 
   const simulateUpload = (file: File) => {
+    console.log(file);
     let progress = 0;
     const interval = setInterval(() => {
       progress += 10;
@@ -49,7 +58,7 @@ const AddVideo: React.FC<AddVideoProps> = ({ isOpen, onClose, onSubmit, courseId
     }, 500);
   };
 
-  const handleAddVideo = async (data) => {
+  const handleAddVideo = async (data:TVideo) => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("description", data.description);
@@ -62,6 +71,7 @@ const AddVideo: React.FC<AddVideoProps> = ({ isOpen, onClose, onSubmit, courseId
     if (response?.success) {
       toast.success("Video added successfully");
       onClose();
+      reset();
     }
 
   }
@@ -89,12 +99,23 @@ const AddVideo: React.FC<AddVideoProps> = ({ isOpen, onClose, onSubmit, courseId
             {...register("videoDuration", { required: "Video duration is required" })}
             error={errors.videoDuration}
           />
-          <TextInput
-            label="Description"
-            placeholder="Enter description"
-            {...register("description", { required: "Description is required" })}
-            error={errors.description}
-          />
+          <div className="flex flex-col gap-2 font-Inter">
+        <label htmlFor="Description" className="text-neutral-65">
+        Description
+          <span className="text-red-600"> *</span>
+        </label>
+        <textarea
+        rows={3}
+          id="Description"
+          placeholder="Enter description"
+          className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border focus:outline-none focus:border-primary-10 transition duration-300 ${
+            errors.description ? "border-red-500" : "border-neutral-75"
+          }`}
+        />
+        {errors?.description?.message && (
+          <span className="text-red-500 text-sm">{String(errors.description.message)}</span>
+        )}
+      </div>
           <div className="flex flex-col gap-4">
             <label htmlFor="courseVideo">Upload a Video</label>
             <div
@@ -136,6 +157,7 @@ const AddVideo: React.FC<AddVideoProps> = ({ isOpen, onClose, onSubmit, courseId
               Cancel
             </button>
             <button
+            disabled={isUploading}
               type="submit"
               className="px-4 py-2 bg-[#051539] text-white border-[1px] border-[#DFE2E6] rounded-lg"
             >
