@@ -10,7 +10,6 @@ interface CustomerDetailsProps {
 const CustomerDetails: React.FC<CustomerDetailsProps> = ({
   fullName,
   mobileNumber,
-  link,
 }) => (
   <Card>
     <div className="flex items-center justify-between">

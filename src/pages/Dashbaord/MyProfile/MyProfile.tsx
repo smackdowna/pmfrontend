@@ -85,7 +85,7 @@ const MyProfile = () => {
                 passBookImage={myProfile?.user?.passbookImage?.url}
               />
             </div>
-            {myProfile?.user?.bankInfo?.map((bank: TBankInfo, index: number) => (
+            {myProfile?.user?.bankInfo?.map((_: TBankInfo, index: number) => (
               <BankInfo
                 key={index}
                 index={index}

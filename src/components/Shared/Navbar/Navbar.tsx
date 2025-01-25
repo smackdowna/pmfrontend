@@ -7,9 +7,10 @@ import { useCart } from "../../../Providers/CartProvider/CartProvider";
 import Ripple from './../../Reusable/Ripple/Ripple';
 import { useSelector } from "react-redux";
 import { useCurrentUser } from "../../../redux/Features/Auth/authSlice";
+import { TLoggedInUser } from "../../../types/user.types";
 
 const Navbar = () => {
-    const user = useSelector(useCurrentUser);
+    const user = useSelector(useCurrentUser) as TLoggedInUser;
     const location = useLocation();
     const {cartData} = useCart();
 

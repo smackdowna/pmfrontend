@@ -150,7 +150,7 @@ const ViewAffiliate = () => {
                 passBookImage={user?.user?.passbookImage?.url}
               />
             </div>
-            {user?.user?.bankInfo?.map((bank: TBankInfo, index: number) => (
+            {user?.user?.bankInfo?.map((_: TBankInfo, index: number) => (
               <BankInfo
                 key={index}
                 index={index}

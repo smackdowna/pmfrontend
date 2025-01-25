@@ -1,8 +1,8 @@
 import { IMAGES } from "../../../assets";
+import { TCartData } from "../../../types/cartData.types";
 
-const CartTotal = ({cartData}) => {
-    const basePriceTotal = cartData?.reduce((acc, currVal) => acc + currVal.basePrice, 0);
-const discountedPriceTotal = cartData?.reduce((acc, currVal) => acc + currVal.discountedPrice, 0);
+const CartTotal = ({cartData} : {cartData:TCartData[]}) => {
+const discountedPriceTotal = cartData && cartData?.reduce((acc, currVal) => acc + currVal.discountedPrice, 0);
 const gst = discountedPriceTotal * 18/100;
 
     return (

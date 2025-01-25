@@ -3,9 +3,10 @@ import CartTotal from "../../components/CartPage/CartTotal/CartTotal";
 import Heading1 from "../../components/Reusable/Heading1/Heading1";
 import Container from "../../components/Shared/Container/Container";
 import { useCart } from "../../Providers/CartProvider/CartProvider";
-
+  
 const Cart = () => {
     const { cartData } = useCart();
+    console.log(cartData);
     return (
         <div className="bg-neutral-20">
             <Container>

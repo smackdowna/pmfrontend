@@ -1,6 +1,5 @@
 import AboutUsContent from "../../components/AboutUsPage/AboutUsContent/AboutUsContent";
-import AboutUsHero from "../../components/AboutUsPage/AboutUsHero/AboutUSHero";
-
+import AboutUsHero from "../../components/AboutUsPage/AboutUsHero/AboutUsHero";
 
 const AboutUS = () => {
     return (

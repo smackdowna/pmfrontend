@@ -12,5 +12,6 @@ export type TCourse = {
   basePrice: number;
   discountedPrice: number;
   createdAt: string;
+  author : string;
   __v: number;
 }

@@ -9,6 +9,7 @@ import ReferralLoader from "../../../components/Loaders/ReferralLoader/ReferralL
 import Spinner from "../../../components/Loaders/Spinner/Spinner";
 import NoDataFound from "../../../components/Shared/NoDataFound/NoDataFound";
 import DashboardHeader from "../../../components/Reusable/DashboardHeader/DashboardHeader";
+import { TLoggedInUser } from "../../../types/user.types";
 
 interface ReferralPayoutData {
   sl: string;
@@ -18,11 +19,19 @@ interface ReferralPayoutData {
   amountEarned: string;
 }
 
+type TRefferedUser = {
+  email : string;
+  name : string;
+  mobileNumber : string;
+  id :string;
+  purchasedCourses : string[];
+}
+
 const ReferralPayouts = () => {
-  const user = useSelector(useCurrentUser);
+  const user = useSelector(useCurrentUser) as TLoggedInUser;
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const { data: referralSummary, isLoading } = useMyReferralSummaryQuery({});
-  const referralTransactions = referralSummary?.data?.referredUsers?.filter((data) => data?.purchasedCourses?.length > 0);
+  const referralTransactions = referralSummary?.data?.referredUsers?.filter((data:TRefferedUser) => data?.purchasedCourses?.length > 0);
   const handleCopy = () => {
     const referralCode = user?.referralCode;
     navigator.clipboard.writeText(referralCode).then(() => {

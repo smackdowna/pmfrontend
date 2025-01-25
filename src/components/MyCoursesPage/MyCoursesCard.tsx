@@ -3,7 +3,15 @@ import { ICONS } from "../../assets";
 import Forum from "../../pages/Dashbaord/MyCourses/Forum";
 import { Link } from "react-router-dom";
 
-const MyCoursesCard = ({
+type TMyCoursesCard = {
+  _id: string;
+  title: string;
+  author: string;
+  enrolled: string;
+  numOfVideos: number;
+  poster: { public_id : string; url: string };
+}
+const MyCoursesCard:React.FC<TMyCoursesCard> = ({
   _id,
   title,
   author,

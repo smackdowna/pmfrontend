@@ -1,4 +1,5 @@
 import { ICONS } from "../../../assets";
+import { TLecture } from "../../../types/lecture.types";
 import CourseContentCard from "../../Reusable/CourseContentCard/CourseContentCard";
 import CourseObjective from "./CourseObjective";
 import CourseOverview from "./CourseOverview";
@@ -6,6 +7,8 @@ import Requirements from "./Requirements";
 import SkillsCovered from "./SkillsCovered";
 
 
+
+  
 const CourseContent = ({ courseDetails }) => {
     console.log(courseDetails);
     const courseObjectives = [
@@ -86,7 +89,7 @@ const CourseContent = ({ courseDetails }) => {
                     </CourseContentCard>
                     <CourseContentCard title="Our Playlist">
                         {
-                            courseDetails?.lectures?.map((lecture, index) =>
+                            courseDetails?.lectures?.map((lecture:TLecture, index:number) =>
                                 <div key={index} className="flex items-center justify-between">
                                     <p className="text-primary-10 text-sm leading-7 capitalize">{index}. {lecture?.title}</p>
                                     <div className="flex items-center gap-[5px]">

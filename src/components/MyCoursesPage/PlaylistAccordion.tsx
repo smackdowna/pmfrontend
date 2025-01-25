@@ -2,6 +2,7 @@ import { CiPlay1 } from "react-icons/ci";
 import { useGetCourseLectureQuery } from "../../redux/Features/Course/courseApi";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { TLecture } from "../../types/lecture.types";
 
 interface Playlist {
   module: string;
@@ -27,7 +28,7 @@ const Playlist: React.FC<PlaylistProps> = ({ changeVideo, currentVideo }) => {
     <div className="bg-white py-8 px-4 flex flex-col gap-6 w-1/3 h-[620px]">
       <h1 className="text-2xl font-semibold">Course Playlist</h1>
       <div className="flex flex-col gap-2 w-full max-w-[600px] overflow-y-scroll scroll no-scrollbar">
-        {data?.lectures.map((lecture) => (
+        {data?.lectures.map((lecture:TLecture) => (
           <div
             key={lecture?._id}
             className={`rounded-lg border cursor-pointer ${currentVideo === lecture?.video.url

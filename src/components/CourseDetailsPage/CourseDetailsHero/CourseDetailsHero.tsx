@@ -10,7 +10,10 @@ import { useCart } from "../../../Providers/CartProvider/CartProvider";
 import CourseDetailsHeroLoader from "../../Loaders/CourseDetailsHeroLoader/CourseDetailsHeroLoader";
 import Ripple from "../../Reusable/Ripple/Ripple";
 
-const CourseDetailsHero = ({ courseDetails, isDetailsLoading }) => {
+type TCourseDetailsHero = {
+    isDetailsLoading : boolean;
+}
+const CourseDetailsHero:React.FC<TCourseDetailsHero> = ({ courseDetails, isDetailsLoading }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isAdded, setIsAdded] = useState(false);
     const { cartData: cartInfo, addCourseToCart } = useCart();
