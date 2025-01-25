@@ -98,7 +98,7 @@ const VerifyPhoneNumber = () => {
                 <TextInput
                     label="Enter the OTP to verify"
                     placeholder="Enter 6 Digit OTP"
-                    type="tel"
+                    type="number"
 
                     error={errors.otp}
                     {...register("otp", {
