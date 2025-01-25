@@ -36,6 +36,7 @@ import AboutUS from "../pages/AboutUS/AboutUS";
 import Disclaimer from "../pages/Disclaimer/Disclaimer";
 import AddCourseVideo from "../pages/Dashbaord/Admin/AddCourse/AddCourseVideo/AddCourseVideo";
 import ProtectedRoute from './ProtectedRoute';
+import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 
 
 export const router = createBrowserRouter([
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
       {
         path: "/disclaimer",
         element: <Disclaimer />,
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy />,
       },
     ],
   },

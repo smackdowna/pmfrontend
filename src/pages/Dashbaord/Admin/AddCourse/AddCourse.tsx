@@ -11,6 +11,8 @@ import LoadingSpinner from "../../../../components/Loaders/LoadingSpinner/Loadin
 type TCourseFormData = {
   title: string;
   description: string;
+  courseOverview : string;
+  courseObjective : string;
   category: string;
   basePrice: string;
   discountedPrice: string;
@@ -52,7 +54,9 @@ const AddCourse = () => {
   const handleCreateCourse = async (data: TCourseFormData) => {
     const formData = new FormData();
     formData.append("title", data.title);
-    formData.append("description", content);
+    formData.append("description", data.description);
+    formData.append("courseOverview", data.courseOverview);
+    formData.append("courseObjective", content);
     formData.append("category", data.category);
     formData.append("basePrice", data.basePrice);
     formData.append("discountedPrice", data.discountedPrice);
@@ -93,11 +97,7 @@ const AddCourse = () => {
             {...register("title", { required: "Course title is required" })}
             error={errors.title}
           />
-          <JoditEditor
-            ref={editor}
-            value={content}
-            onChange={(newContent) => setContent(newContent)}
-          />
+
           {contentError && (
             <span className="text-warning-10 text-start">{contentError}</span>
           )}
@@ -140,6 +140,50 @@ const AddCourse = () => {
             {...register("totalDuration", { required: "Course duration is required" })}
             error={errors.totalDuration}
           />
+          <div className="flex flex-col gap-2 font-Inter">
+            <label htmlFor="Description" className="text-neutral-65">
+              Description
+              <span className="text-red-600"> *</span>
+            </label>
+            <textarea
+              rows={3}
+              id="Description"
+              placeholder="Enter description"
+              className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border focus:outline-none focus:border-primary-10 transition duration-300 ${errors.description ? "border-red-500" : "border-neutral-75"
+                }`}
+            />
+            {errors?.description?.message && (
+              <span className="text-red-500 text-sm">{String(errors.description.message)}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2 font-Inter">
+            <label htmlFor="Description" className="text-neutral-65">
+              Course Overview
+              <span className="text-red-600"> *</span>
+            </label>
+            <textarea
+              rows={3}
+              id="Course Overview"
+              placeholder="Enter course overview"
+              className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border focus:outline-none focus:border-primary-10 transition duration-300 ${errors.courseOverview ? "border-red-500" : "border-neutral-75"
+                }`}
+            />
+            {errors?.courseOverview?.message && (
+              <span className="text-red-500 text-sm">{String(errors.courseOverview.message)}</span>
+            )}
+          </div>
+         <div>
+         <label htmlFor="Description" className="text-neutral-65">
+              Course Objective
+              <span className="text-red-600"> *</span>
+            </label>
+          <JoditEditor
+            ref={editor}
+            value={content}
+            onChange={(newContent) => setContent(newContent)}
+          />
+         </div>
           <UploadInput
             label="Course Banner"
             name="file"
