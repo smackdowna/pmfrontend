@@ -6,11 +6,13 @@ import { useState } from "react";
 
 const MyCourseVideo = () => {
   const [currentModule, setCurrentModule] = useState({
-    module: "",
-    progress: "",
-    duration: "",
-    videoUrl:
-      "",
+    module: "Module 3: Advanced Techniques",
+    progress: "0 of 3",
+    duration: "6 min",
+    video: {
+      title: "Introduction to Advanced Techniques",
+      url: "https://www.youtube.com/watch?v=8ZcmTl_1ER8",
+    },
   });
 
   return (
@@ -43,11 +45,10 @@ const MyCourseVideo = () => {
       <div className="flex flex-1 overflow-y-hidden">
         <VideoPlayer moduleData={currentModule} />
         <Playlist
-          changeVideo={(module) => {
-            console.log(module);
-            setCurrentModule({ ...module, videoUrl: module?.video?.url || "" })
-          } }
-          currentVideo={currentModule.videoUrl}
+          changeVideo={(module) =>
+            setCurrentModule({ ...module, video: module.video || "" })
+          }
+          currentVideo={currentModule.video?.url || ""}
         />
       </div>
     </div>

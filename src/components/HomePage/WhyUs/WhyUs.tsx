@@ -30,7 +30,7 @@ const WhyUs = () => {
             heading="Why PM Gurukul?"
             description="Your Pathway to Growth, Learning, and Success."
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-start md:items-center w-full gap-10 lg:gap-[90px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-start md:items-center mx-auto w-full xl:w-[90%] gap-10 lg:gap-[90px]">
             {whyChooseUsDetails.map((item, index) => (
               <div
                 key={index}
