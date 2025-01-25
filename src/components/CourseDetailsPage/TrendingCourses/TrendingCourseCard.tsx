@@ -23,7 +23,8 @@ const TrendingCourseCard: React.FC<TCourse> = ({ _id, title, author, poster }) =
 
 
                 <div className="flex items-center gap-2">
-                    <img src={ICONS.avatar} alt={""} className="size-8 rounded-full" />
+                    {/* <img src={ICONS.avatar} alt={""} className="size-8 rounded-full" /> */}
+                    <h1 className="text-primary-10/70 text-sm leading-6">By -</h1>
                     <h1 className="text-primary-10 font-medium leading-6">{author}</h1>
                 </div>
             </div>

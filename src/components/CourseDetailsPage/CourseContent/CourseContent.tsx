@@ -1,51 +1,53 @@
 import { ICONS } from "../../../assets";
 import { TLecture } from "../../../types/lecture.types";
+import { TCourse } from "../../CoursePage/AllCourses/course.types";
 import CourseContentCard from "../../Reusable/CourseContentCard/CourseContentCard";
 import CourseObjective from "./CourseObjective";
 import CourseOverview from "./CourseOverview";
-import Requirements from "./Requirements";
-import SkillsCovered from "./SkillsCovered";
+// import Requirements from "./Requirements";
+// import SkillsCovered from "./SkillsCovered";
 
 
-
+type TCourseContent = {
+    courseDetails : TCourse
+}
   
-const CourseContent = ({ courseDetails }) => {
-    console.log(courseDetails);
-    const courseObjectives = [
-        "Design principles (layout, composition, color theory)",
-        "Typography and visual hierarchy",
-        "User research and personas",
-        "Wireframing and low/high-fidelity prototyping",
-        "Design tools (Figma, Adobe XD, Sketch)",
-        "Interaction design and micro-interactions",
-        "Usability testing and accessibility",
-        "Mobile-first and responsive design",
-        "Building and presenting a design portfolio"
-    ];
+const CourseContent:React.FC<TCourseContent> = ({ courseDetails }) => {
+    // const courseObjectives = [
+    //     "Design principles (layout, composition, color theory)",
+    //     "Typography and visual hierarchy",
+    //     "User research and personas",
+    //     "Wireframing and low/high-fidelity prototyping",
+    //     "Design tools (Figma, Adobe XD, Sketch)",
+    //     "Interaction design and micro-interactions",
+    //     "Usability testing and accessibility",
+    //     "Mobile-first and responsive design",
+    //     "Building and presenting a design portfolio"
+    // ];
 
-    const courseRequirments = [
-        "Design principles (layout, composition, color theory)",
-        "Typography and visual hierarchy",
-        "User research and personas",
-        "Wireframing and low/high-fidelity prototyping",
-        "Design tools (Figma, Adobe XD, Sketch)",
-        "Interaction design and micro-interactions",
-        "Usability testing and accessibility",
-        "Mobile-first and responsive design",
-        "Building and presenting a design portfolio"
-    ];
+    // const courseRequirments = [
+    //     "Design principles (layout, composition, color theory)",
+    //     "Typography and visual hierarchy",
+    //     "User research and personas",
+    //     "Wireframing and low/high-fidelity prototyping",
+    //     "Design tools (Figma, Adobe XD, Sketch)",
+    //     "Interaction design and micro-interactions",
+    //     "Usability testing and accessibility",
+    //     "Mobile-first and responsive design",
+    //     "Building and presenting a design portfolio"
+    // ];
 
-    const skillsCovered = [
-        "Design principles (layout, composition, color theory)",
-        "Typography and visual hierarchy",
-        "User research and personas",
-        "Wireframing and low/high-fidelity prototyping",
-        "Design tools (Figma, Adobe XD, Sketch)",
-        "Interaction design and micro-interactions",
-        "Usability testing and accessibility",
-        "Mobile-first and responsive design",
-        "Building and presenting a design portfolio"
-    ];
+    // const skillsCovered = [
+    //     "Design principles (layout, composition, color theory)",
+    //     "Typography and visual hierarchy",
+    //     "User research and personas",
+    //     "Wireframing and low/high-fidelity prototyping",
+    //     "Design tools (Figma, Adobe XD, Sketch)",
+    //     "Interaction design and micro-interactions",
+    //     "Usability testing and accessibility",
+    //     "Mobile-first and responsive design",
+    //     "Building and presenting a design portfolio"
+    // ];
 
     const courseCategories = [
         {
@@ -69,14 +71,14 @@ const CourseContent = ({ courseDetails }) => {
     return (
         <div>
             <div className="py-12 md:py-[64px] bg-white flex flex-col xl:flex-row gap-[64px] font-Inter">
-                <div>
-                    <CourseOverview />
-                    <CourseObjective courseObjectives={courseObjectives} />
-                    <Requirements courseRequirements={courseRequirments} />
-                    <SkillsCovered skillsCovered={skillsCovered} />
+                <div className="w-full xl:w-[70%]">
+                    <CourseOverview courseOverview={courseDetails?.courseOverview} />
+                    <CourseObjective courseObjective={courseDetails?.courseObjective} />
+                    {/* <Requirements courseRequirements={courseRequirments} />
+                    <SkillsCovered skillsCovered={skillsCovered} /> */}
                 </div>
 
-                <div className="flex flex-col gap-8 capitalize">
+                <div className="flex flex-col gap-8 capitalize w-full xl:w-[30%]">
                     <CourseContentCard title="Course Categories">
                         {
                             courseCategories?.map((category, index) =>

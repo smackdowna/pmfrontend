@@ -9,13 +9,14 @@ import CustomerSupport from "../../components/Shared/CustomerSupport/CustomerSup
 import FAQ from "../../components/Shared/FAQ/FAQ";
 import { useGetAllCoursesQuery, useGetSingleCourseByIdQuery } from "../../redux/Features/Course/courseApi";
 import { Helmet } from "react-helmet-async";
+import { TCourse } from "../../components/CoursePage/AllCourses/course.types";
 
 const CourseDetails = () => {
     const { id } = useParams();
     const { data: courseDetails, isLoading } = useGetSingleCourseByIdQuery(id);
     const { data: allCourses, isLoading: isCourseLoading } = useGetAllCoursesQuery({ searchQuery: "", categoryQuery: "" });
 
-    const trendingCourses = allCourses?.courses?.filter((course) => course?._id !== courseDetails?.course?._id);
+    const trendingCourses = allCourses?.courses?.filter((course: TCourse) => course?._id !== courseDetails?.course?._id);
 
     const courseTitle = courseDetails?.course?.title;
 

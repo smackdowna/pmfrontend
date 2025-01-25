@@ -1,3 +1,4 @@
+import { TCourse } from "../../../components/CoursePage/AllCourses/course.types";
 import MyCoursesCardLoader from "../../../components/Loaders/MyCourseCardLoader/MyCourseCardLoader";
 import MyCoursesCard from "../../../components/MyCoursesPage/MyCoursesCard";
 import NoDataFound from "../../../components/Shared/NoDataFound/NoDataFound";
@@ -24,7 +25,7 @@ const MyCourses = () => {
                   <MyCoursesCardLoader key={index} />
                 )
                 :
-                myPurchasedCourses?.purchasedCourses?.map((course) => (
+                myPurchasedCourses?.purchasedCourses?.map((course:TCourse) => (
                   <MyCoursesCard key={course._id} {...course} />
                 ))}
           </div>

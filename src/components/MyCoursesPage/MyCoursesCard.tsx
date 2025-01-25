@@ -7,7 +7,6 @@ type TMyCoursesCard = {
   _id: string;
   title: string;
   author: string;
-  enrolled: string;
   numOfVideos: number;
   poster: { public_id : string; url: string };
 }
@@ -15,7 +14,6 @@ const MyCoursesCard:React.FC<TMyCoursesCard> = ({
   _id,
   title,
   author,
-  enrolled,
   numOfVideos,
   poster,
 }) => {
@@ -38,7 +36,7 @@ const MyCoursesCard:React.FC<TMyCoursesCard> = ({
         <div className="flex items-center gap-1 px-4 py-[10px] bg-neutral-60 w-full">
           <img src={ICONS.Calendar} alt="user-icon" className="size-[14px]" />
           <p className="text-primary-10 text-sm">
-            Enrolled On {enrolled}
+            Enrolled On 22nd JAN, 2025
           </p>
         </div>
 

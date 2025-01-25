@@ -1,17 +1,24 @@
+import { TLecture } from "../../../types/lecture.types";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type TCourse = {
+  author: string;
+  basePrice: number;
+  category: string;
+  courseObjective: string;
+  courseOverview: string;
+  createdAt: string;
+  description: string;
+  discountedPrice: number;
+  lectures: TLecture[];
+  numOfVideos: number;
   poster: {
     public_id: string;
     url: string;
   };
-  _id: string;
   title: string;
-  description: string;
-  numOfVideos: number;
-  category: string;
-  basePrice: number;
-  discountedPrice: number;
-  createdAt: string;
-  author : string;
+  totalDuration: string;
+  totalEnrolled: number;
   __v: number;
-}
+  _id: string;
+};

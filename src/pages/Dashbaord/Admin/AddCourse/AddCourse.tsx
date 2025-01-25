@@ -151,6 +151,7 @@ const AddCourse = () => {
               placeholder="Enter description"
               className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border focus:outline-none focus:border-primary-10 transition duration-300 ${errors.description ? "border-red-500" : "border-neutral-75"
                 }`}
+                {...register("description", { required: "Course description is required" })}
             />
             {errors?.description?.message && (
               <span className="text-red-500 text-sm">{String(errors.description.message)}</span>
@@ -168,6 +169,7 @@ const AddCourse = () => {
               placeholder="Enter course overview"
               className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border focus:outline-none focus:border-primary-10 transition duration-300 ${errors.courseOverview ? "border-red-500" : "border-neutral-75"
                 }`}
+                {...register("courseOverview", { required: "Course course overview is required" })}
             />
             {errors?.courseOverview?.message && (
               <span className="text-red-500 text-sm">{String(errors.courseOverview.message)}</span>

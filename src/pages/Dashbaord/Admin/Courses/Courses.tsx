@@ -8,6 +8,7 @@ import Spinner from "../../../../components/Loaders/Spinner/Spinner";
 import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
 import { toast } from "sonner";
 import { useDeleteCourseMutation } from "../../../../redux/Features/Admin/adminApi";
+import { TCourse } from "../../../../components/CoursePage/AllCourses/course.types";
 
 const AdminCourses = () => {
   const { data: allCourses, isLoading } = useGetAllCoursesQuery({searchQuery: ""});
@@ -43,7 +44,7 @@ const AdminCourses = () => {
 
   // Pending KYC user table data
   const allCoursesTableData = allCourses?.courses?.length
-    ? allCourses?.courses?.map((course, index: number) => ({
+    ? allCourses?.courses?.map((course:TCourse, index: number) => ({
       no: `${index + 1}`,
       courseName: course?.title,
       category: course?.category,
