@@ -1,8 +1,10 @@
+import { TCourse } from "../../CoursePage/AllCourses/course.types";
 import CourseCardLoader from "../../Loaders/CourseCardLoader/CourseCardLoader";
 import TrendingCourseCard from "./TrendingCourseCard";
 
 type TTrendingCourses = {
     isCourseLoading : boolean;
+    trendingCourses : TCourse[];
 }
 
 const TrendingCourses:React.FC<TTrendingCourses> = ({ trendingCourses, isCourseLoading }) => {

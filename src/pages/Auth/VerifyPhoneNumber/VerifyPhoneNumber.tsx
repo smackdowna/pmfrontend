@@ -56,7 +56,6 @@ const VerifyPhoneNumber = () => {
                 otp: data.otp,
             };
             const response = await verifyOtp(verifyOtpData).unwrap();
-            console.log(response);
             if (response?.message) {
                 toast.success(response?.message);
                 if (response?.newUser) {
@@ -70,7 +69,11 @@ const VerifyPhoneNumber = () => {
                         referralCode : response?.user?.refralCode
                     }
                     dispatch(setUser({ user }));
-                    navigate("/dashboard/my-profile");  
+                    if(response?.user?.role === "admin"){
+                        navigate("/admin/registered-users"); 
+                    } else {
+                        navigate("/dashboard/my-courses"); 
+                    }
                     
                     localStorage.removeItem("otpData");
                 }

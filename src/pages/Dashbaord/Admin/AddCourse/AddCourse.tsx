@@ -1,22 +1,77 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ICONS } from "../../../../assets";
-import Textarea from "../../../../components/Reusable/TextArea/TextArea";
 import TextInput from "../../../../components/Reusable/TextInput/TextInput";
-import AddVideo from "../../../../components/AddVideo/AddVideo";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import JoditEditor from "jodit-react";
+import { useCreateCourseMutation } from "../../../../redux/Features/Admin/adminApi";
+import UploadInput from "../../../../components/Reusable/UploadInput/UploadInput";
+import { useForm } from "react-hook-form";
+import LoadingSpinner from "../../../../components/Loaders/LoadingSpinner/LoadingSpinner";
 
+type TCourseFormData = {
+  title: string;
+  description: string;
+  courseOverview : string;
+  courseObjective : string;
+  category: string;
+  basePrice: string;
+  discountedPrice: string;
+  file: File | null;
+  author: string;
+  totalDuration: string;
+}
 const AddCourse = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [videos, setVideos] = useState<
-    { title: string; description: string; videoFile: File | null }[]
-  >([]);
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TCourseFormData>();
+  const [createCourse, { isLoading }] = useCreateCourseMutation();
+  const editor = useRef(null);
+  const [content, setContent] = useState("");
+  const [contentError, setContentError] = useState("");
+  const [fileName, setFileName] = useState<string>("");
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  const handleAddVideo = (videoData: {
-    title: string;
-    description: string;
-    videoFile: File | null;
-  }) => {
-    setVideos((prevVideos) => [...prevVideos, videoData]);
+  // To validate the description text editor
+  useEffect(() => {
+    setContentError("");
+    if (content?.length === 0) {
+      setContentError("");
+    } else if (content?.length < 1) {
+      setContentError("Content is required");
+    } else {
+      setContentError("");
+    }
+  }, [content]);
+
+  const handleFileChange = (name: string, file: File | null) => {
+    setFileName(file?.name ? file?.name : name);
+    setSelectedFile(file);
+  };
+
+  const handleCreateCourse = async (data: TCourseFormData) => {
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("courseOverview", data.courseOverview);
+    formData.append("courseObjective", content);
+    formData.append("category", data.category);
+    formData.append("basePrice", data.basePrice);
+    formData.append("discountedPrice", data.discountedPrice);
+    // formData.append("numOfVideos", data.numOfVideos);
+    formData.append("author", data.author);
+    formData.append("totalDuration", data.totalDuration);
+    if (selectedFile) {
+      formData.append("file", selectedFile);
+    }
+
+    const response = await createCourse(formData).unwrap();
+    if (response?.success) {
+      const id = response?.course?._id;
+      navigate(`/admin/add-course-video/${id}`);
+    }
   };
 
   return (
@@ -32,140 +87,130 @@ const AddCourse = () => {
             Add a course
           </span>
         </div>
-        <div className="flex items-center gap-[10px]">
-          <button className="px-4 py-2 bg-white border-[1px] border-[#DFE2E6] rounded-lg text-[#091E42]">
-            Cancel
-          </button>
-          <button className="px-4 py-2 bg-[#051539] border-[#051539] rounded-lg text-white">
-            Save
-          </button>
-        </div>
       </div>
       <div className="flex flex-col lg:w-[80%] w-full p-6 bg-white gap-6 rounded-2xl mx-auto">
-        <form className="flex flex-col gap-4 w-full">
+        <form onSubmit={handleSubmit(handleCreateCourse)} className="flex flex-col gap-4 w-full">
+
           <TextInput
             label="Course Title"
-            name="courseTitle"
             placeholder="Enter course title"
+            {...register("title", { required: "Course title is required" })}
+            error={errors.title}
           />
-          <Textarea
-            label="Course Description"
-            name="courseDescription"
-            placeholder="Enter course description"
+
+          {contentError && (
+            <span className="text-warning-10 text-start">{contentError}</span>
+          )}
+          <TextInput
+            label="Category"
+            placeholder="Enter course category"
+            {...register("category", { required: "Category is required" })}
+            error={errors.category}
           />
-          <div className="flex flex-col gap-2 font-Inter">
-            <label htmlFor="" className="text-neutral-65">
-              Category
-              <span className="text-red-600"> *</span>
-            </label>
-            <div className="relative inline-block">
-              <select
-                name="category"
-                id=""
-                className="appearance-none px-[18px] py-[14px] rounded-lg bg-neutral-70 border border-neutral-75 w-full text-neutral-65"
-              >
-                <option value="0">Select Category</option>
-                <option value="1" className="text-dark">
-                  Category 1
-                </option>
-                <option value="2">Category 2</option>
-                <option value="3">Category 3</option>
-              </select>
-              <img
-                src={ICONS.arrowDown}
-                alt="Dropdown Icon"
-                className="absolute right-[18px] top-1/2 transform -translate-y-1/2 pointer-events-none"
-              />
-            </div>
-          </div>
 
           <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-4">
             <TextInput
               label="Base Price"
-              name="basePrice"
               placeholder="Enter base price"
+              {...register("basePrice", {
+                required: "Base price is required",
+                valueAsNumber: true,
+              })}
+              error={errors.basePrice}
             />
             <TextInput
               label="Discounted Price"
-              name="DiscountedPrice"
               placeholder="Enter discounted price"
+              {...register("discountedPrice", {
+                required: "Discounted price is required",
+                valueAsNumber: true,
+              })}
+              error={errors.discountedPrice}
             />
           </div>
           <TextInput
-            label="Number of videos"
-            name="noOfVideos"
-            placeholder="Enter Number of videos"
+            label="Author"
+            placeholder="Enter author name"
+            {...register("author", { required: "Author name is required" })}
+            error={errors.author}
           />
+          <TextInput
+            label="Course Duration"
+            placeholder="Enter course duration"
+            {...register("totalDuration", { required: "Course duration is required" })}
+            error={errors.totalDuration}
+          />
+          <div className="flex flex-col gap-2 font-Inter">
+            <label htmlFor="Description" className="text-neutral-65">
+              Description
+              <span className="text-red-600"> *</span>
+            </label>
+            <textarea
+              rows={3}
+              id="Description"
+              placeholder="Enter description"
+              className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border focus:outline-none focus:border-primary-10 transition duration-300 ${errors.description ? "border-red-500" : "border-neutral-75"
+                }`}
+                {...register("description", { required: "Course description is required" })}
+            />
+            {errors?.description?.message && (
+              <span className="text-red-500 text-sm">{String(errors.description.message)}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2 font-Inter">
+            <label htmlFor="Description" className="text-neutral-65">
+              Course Overview
+              <span className="text-red-600"> *</span>
+            </label>
+            <textarea
+              rows={3}
+              id="Course Overview"
+              placeholder="Enter course overview"
+              className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border focus:outline-none focus:border-primary-10 transition duration-300 ${errors.courseOverview ? "border-red-500" : "border-neutral-75"
+                }`}
+                {...register("courseOverview", { required: "Course course overview is required" })}
+            />
+            {errors?.courseOverview?.message && (
+              <span className="text-red-500 text-sm">{String(errors.courseOverview.message)}</span>
+            )}
+          </div>
+         <div>
+         <label htmlFor="Description" className="text-neutral-65">
+              Course Objective
+              <span className="text-red-600"> *</span>
+            </label>
+          <JoditEditor
+            ref={editor}
+            value={content}
+            onChange={(newContent) => setContent(newContent)}
+          />
+         </div>
+          <UploadInput
+            label="Course Banner"
+            name="file"
+            accept="image/*"
+            fileName={fileName}
+            onFileChange={handleFileChange}
+            error={errors.file?.message}
+          />
+
+          <div className="flex items-center justify-end gap-[10px]">
+            <button
+              type="button"
+              className="px-4 py-2 bg-white border-[1px] border-[#DFE2E6] rounded-lg text-[#091E42]"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="px-4 py-2 bg-[#051539] border-[#051539] rounded-lg text-white"
+            >
+              {isLoading ? <LoadingSpinner /> : "Submit"}
+            </button>
+          </div>
         </form>
       </div>
-      <div className="flex flex-col lg:w-[80%] w-full p-6 bg-white gap-6 rounded-2xl mx-auto">
-        <div className="flex items-center justify-between w-full">
-          <span className="text-[#0F172A] font-Inter text-[20px] font-semibold leading-5 tracking-tight">
-            Upload Course Content
-          </span>
-          {videos.length > 0 && (
-            <button className="bg-[#FAFBFB] font-Inter text-[14px] font-semibold leading-5 tracking-tight border-[1px] border-[#DFE2E6] rounded-lg px-3 py-[6px]">
-              Add Video
-            </button>
-          )}
-        </div>
-        <div className="flex flex-col gap-4 items-center justify-center">
-          {videos.length === 0 ? (
-            <>
-              <img
-                src={ICONS.folderUpload}
-                className="w-[165px] h-[165px]"
-                alt=""
-              />
-              <span className="font-Inter text-[14px] text-[#A6AEBB]">
-                No Videos have been added yet
-              </span>
-            </>
-          ) : (
-            <ul className="w-full flex flex-col gap-2 max-h-[240px] overflow-y-auto">
-              {videos.map((video, index) => (
-                <li
-                  key={index}
-                  className="flex justify-between border-[1px] border-[#EBEDF0] rounded-[6px] p-[10px]"
-                >
-                  <div className="flex items-center gap-2">
-                    <img src={ICONS.mp4} className="w-5 h-5" alt="" />
-                    <span className="text-[#091E42] overflow-ellipsis text-[14px] font-medium leading-5 tracking-tight">
-                      {video.title}
-                    </span>
-                    <span className="text-[#98A1B0] overflow-ellipsis text-[14px] leading-5 tracking-tight">
-                      {video.videoFile
-                        ? (video.videoFile.size / (1024 * 1024)).toFixed(2)
-                        : "0.00"}{" "}
-                      mb
-                    </span>
-                  </div>
-                  <button
-                    onClick={() =>
-                      setVideos((prevVideos) =>
-                        prevVideos.filter((_, i) => i !== index)
-                      )
-                    }
-                  >
-                    <img src={ICONS.closeRed} className="w-5 h-5" alt="" />
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-          <button
-            onClick={() => setModalOpen(true)}
-            className="rounded-xl border-[1px] border-[#DFE2E6] px-4 py-[10px]"
-          >
-            Add a video
-          </button>
-        </div>
-      </div>
-      <AddVideo
-        isOpen={isModalOpen}
-        onClose={() => setModalOpen(false)}
-        onSubmit={handleAddVideo}
-      />
     </div>
   );
 };

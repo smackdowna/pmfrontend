@@ -19,8 +19,7 @@ const ReasonForRejection = ({ open, onClose }: ReasonForRejectionProps) => {
       <div
         className={`flex flex-col p-6 gap-6 bg-white md:w-[673px] w-[90%] rounded-2xl 
                   transform ${open ? "translate-y-0" : "translate-y-full"} 
-                  transition-transform duration-500`}
-      >
+                  transition-transform duration-500`}>
         <div className="flex items-center w-full justify-between">
           <span className="text-[#15294B] font-semibold text-[18px] leading-6">
             Reason for Rejection

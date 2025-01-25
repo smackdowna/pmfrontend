@@ -4,8 +4,8 @@ const courseApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         
         getAllCourses: builder.query({
-            query: ({searchQuery, categoryQuery}) => ({
-                url: `/courses?search=${searchQuery}&category=${categoryQuery}`,
+            query: (searchQuery) => ({
+                url: `/courses?keyword=${searchQuery}`,
                 method: "GET",
                 credentials: "include",
             }),
@@ -20,7 +20,25 @@ const courseApi = baseApi.injectEndpoints({
             }),
             providesTags: ["course"],
         }),
+
+        getCourseLecture: builder.query({
+            query: (id) => ({
+                url: `/course/${id}`,
+                method: "GET",
+                credentials: "include",
+            }),
+            providesTags: ["course"],
+        }),
+
+        getAllCategories: builder.query({
+            query: () => ({
+                url: `/category`,
+                method: "GET",
+                credentials: "include",
+            }),
+            providesTags: ["course"],
+        }),
     }),
 });
 
-export const {useGetAllCoursesQuery, useGetSingleCourseByIdQuery} = courseApi;
+export const {useGetAllCoursesQuery, useGetSingleCourseByIdQuery, useGetCourseLectureQuery, useGetAllCategoriesQuery} = courseApi;

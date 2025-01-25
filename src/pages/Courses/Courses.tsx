@@ -5,16 +5,15 @@ import WhyUs from "../../components/HomePage/WhyUs/WhyUs";
 import Testimonials from "../../components/HomePage/Testimonials/Testimonials";
 import FAQ from "../../components/Shared/FAQ/FAQ";
 import CustomerSupport from "../../components/Shared/CustomerSupport/CustomerSupport";
-import { useGetAllCoursesQuery } from "../../redux/Features/Course/courseApi";
+import { useGetAllCategoriesQuery, useGetAllCoursesQuery } from "../../redux/Features/Course/courseApi";
 import { useState } from "react";
 
 const Courses = () => {
     const [searchQuery, setSearchQuery] = useState("");
-
-    const [categoryQuery, setCategoryQuery] = useState("");
-    const { data: allCourses, isLoading, isFetching } = useGetAllCoursesQuery({ searchQuery, categoryQuery });
-    // console.log(allCourses);
+    const { data: allCourses, isLoading, isFetching } = useGetAllCoursesQuery(searchQuery);
+    const {data:allCategories} = useGetAllCategoriesQuery({});
     const [selectedCategory, setSelectedCategory] = useState("All Courses");
+    console.log(allCategories);
 
     return (
         <div>
@@ -23,7 +22,6 @@ const Courses = () => {
             </Helmet>
             <CourseHero
                 setSearchQuery={setSearchQuery}
-                setCategoryQuery={setCategoryQuery}
             />
             <AllCourses
                 allCourses={allCourses}

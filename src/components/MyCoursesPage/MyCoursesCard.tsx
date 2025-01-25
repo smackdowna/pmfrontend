@@ -1,11 +1,19 @@
 import { useState } from "react";
 import { ICONS } from "../../assets";
 import Forum from "../../pages/Dashbaord/MyCourses/Forum";
+import { Link } from "react-router-dom";
 
-const MyCoursesCard = ({
+type TMyCoursesCard = {
+  _id: string;
+  title: string;
+  author: string;
+  numOfVideos: number;
+  poster: { public_id : string; url: string };
+}
+const MyCoursesCard:React.FC<TMyCoursesCard> = ({
+  _id,
   title,
   author,
-  enrolled,
   numOfVideos,
   poster,
 }) => {
@@ -28,7 +36,7 @@ const MyCoursesCard = ({
         <div className="flex items-center gap-1 px-4 py-[10px] bg-neutral-60 w-full">
           <img src={ICONS.Calendar} alt="user-icon" className="size-[14px]" />
           <p className="text-primary-10 text-sm">
-            Enrolled On {enrolled}
+            Enrolled On 22nd JAN, 2025
           </p>
         </div>
 
@@ -61,13 +69,13 @@ const MyCoursesCard = ({
               Check Forum
             </button>
 
-            <a
-              href={`/coursevideo/my-course-video`}
+            <Link
+              to={`/course-video/my-course-video/${_id}`}
               className="bg-secondary-20 flex justify-center items-center gap-2 py-[10px] px-4 text-primary-10 text-sm leading-5 font-semibold w-full rounded-lg text-center"
             >
               {progress === 0 ? "Start" : "Resume"}
               <img src={ICONS.PlayCircle} alt="play-icon" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

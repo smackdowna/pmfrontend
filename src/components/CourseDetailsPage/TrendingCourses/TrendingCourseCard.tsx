@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ICONS } from "../../../assets";
 import { TCourse } from "../../CoursePage/AllCourses/course.types";
 
-const TrendingCourseCard: React.FC<TCourse> = ({ _id, title, author, enrolled, rating, poster }) => {
+const TrendingCourseCard: React.FC<TCourse> = ({ _id, title, author, poster }) => {
     return (
         <Link to={`/course/${_id}`} className="bg-white border border-neutral-45 rounded-[24px] font-Inter w-[312px] h-[344px] relative">
             <img src={poster?.url} alt="" className="rounded-t-[24px] w-full h-[182px] object-cover" />
@@ -23,7 +23,8 @@ const TrendingCourseCard: React.FC<TCourse> = ({ _id, title, author, enrolled, r
 
 
                 <div className="flex items-center gap-2">
-                    <img src={ICONS.avatar} alt={""} className="size-8 rounded-full" />
+                    {/* <img src={ICONS.avatar} alt={""} className="size-8 rounded-full" /> */}
+                    <h1 className="text-primary-10/70 text-sm leading-6">By -</h1>
                     <h1 className="text-primary-10 font-medium leading-6">{author}</h1>
                 </div>
             </div>

@@ -31,6 +31,12 @@ import PurchaseHistory from "../pages/Dashbaord/Admin/PurchaseHistory/PurchaseHi
 import ViewAffiliate from "../pages/Dashbaord/Admin/ViewAffiliate/ViewAffiliate";
 import SetupProfile from "../pages/Auth/SetupProfile/SetupProfile";
 import MyOrders from "../pages/Dashbaord/User/MyOrders/MyOrders";
+import TermsAndConditions from "../pages/TermsAndConditions/TermsAndConditions";
+import AboutUS from "../pages/AboutUS/AboutUS";
+import Disclaimer from "../pages/Disclaimer/Disclaimer";
+import AddCourseVideo from "../pages/Dashbaord/Admin/AddCourse/AddCourseVideo/AddCourseVideo";
+import ProtectedRoute from './ProtectedRoute';
+import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 
 
 export const router = createBrowserRouter([
@@ -59,6 +65,22 @@ export const router = createBrowserRouter([
         path: "/cart",
         element: <Cart />,
       },
+      {
+        path: "/terms-and-conditions",
+        element: <TermsAndConditions />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUS />,
+      },
+      {
+        path: "/disclaimer",
+        element: <Disclaimer />,
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy />,
+      },
     ],
   },
   {
@@ -82,7 +104,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashboardLayout />,
+    element: <ProtectedRoute><DashboardLayout /></ProtectedRoute>,
     errorElement: <NotFound />,
     children: [
       {
@@ -131,18 +153,18 @@ export const router = createBrowserRouter([
   },
   {
     path: "course-video",
-    element: <CourseVideoLayout />,
+    element: <ProtectedRoute><CourseVideoLayout /></ProtectedRoute>,
     errorElement: <NotFound />,
     children: [
       {
-        path: "my-course-video",
+        path: "my-course-video/:id",
         element: <MyCourseVideo />,
       },
     ],
   },
   {
     path: "admin",
-    element: <DashboardLayout />,
+    element: <ProtectedRoute><DashboardLayout /></ProtectedRoute>,
     errorElement: <NotFound />,
     children: [
       {
@@ -154,7 +176,11 @@ export const router = createBrowserRouter([
         element: <AddCourse />,
       },
       {
-        path: "order-details",
+        path: "add-course-video/:id",
+        element: <AddCourseVideo />,
+      },
+      {
+        path: "order-details/:id",
         element: <OrderDetails />,
       },
       {
@@ -182,7 +208,7 @@ export const router = createBrowserRouter([
         element: <PurchaseHistory />,
       },
       {
-        path: "view-affiliate",
+        path: "view-affiliate/:id",
         element: <ViewAffiliate />,
       },
     ],

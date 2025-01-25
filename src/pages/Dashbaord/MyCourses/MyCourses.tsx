@@ -1,7 +1,8 @@
+import { TCourse } from "../../../components/CoursePage/AllCourses/course.types";
 import MyCoursesCardLoader from "../../../components/Loaders/MyCourseCardLoader/MyCourseCardLoader";
 import MyCoursesCard from "../../../components/MyCoursesPage/MyCoursesCard";
+import NoDataFound from "../../../components/Shared/NoDataFound/NoDataFound";
 import { useGetMyPurchasedCoursesQuery } from "../../../redux/Features/User/userApi";
-import NoCourseFound from "../../../components/Shared/NoCourseFound/NoCourseFound";
 
 const MyCourses = () => {
   const { data: myPurchasedCourses, isLoading } = useGetMyPurchasedCoursesQuery({});
@@ -15,7 +16,7 @@ const MyCourses = () => {
       </div>
       {
         myPurchasedCourses?.purchasedCourses?.length < 1 ?
-          <NoCourseFound message={"You haven’t Enrolled on any course"} isBtnAvailable={true} />
+          <NoDataFound message={"You haven’t Enrolled on any course"} isBtnAvailable={true} />
           :
           <div className="grid grid-cols-3 2xl:grid-cols-4 gap-6">
             {
@@ -24,7 +25,7 @@ const MyCourses = () => {
                   <MyCoursesCardLoader key={index} />
                 )
                 :
-                myPurchasedCourses?.purchasedCourses?.map((course) => (
+                myPurchasedCourses?.purchasedCourses?.map((course:TCourse) => (
                   <MyCoursesCard key={course._id} {...course} />
                 ))}
           </div>

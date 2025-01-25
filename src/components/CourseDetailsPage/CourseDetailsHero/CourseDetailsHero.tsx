@@ -9,8 +9,14 @@ import LoadingSpinner from "../../Loaders/LoadingSpinner/LoadingSpinner";
 import { useCart } from "../../../Providers/CartProvider/CartProvider";
 import CourseDetailsHeroLoader from "../../Loaders/CourseDetailsHeroLoader/CourseDetailsHeroLoader";
 import Ripple from "../../Reusable/Ripple/Ripple";
+import { TCourse } from "../../CoursePage/AllCourses/course.types";
 
-const CourseDetailsHero = ({ courseDetails, isDetailsLoading }) => {
+type TCourseDetailsHero = {
+    isDetailsLoading : boolean;
+    courseDetails : TCourse;
+}
+const CourseDetailsHero:React.FC<TCourseDetailsHero> = ({ courseDetails, isDetailsLoading }) => {
+    console.log(courseDetails);
     const [isLoading, setIsLoading] = useState(false);
     const [isAdded, setIsAdded] = useState(false);
     const { cartData: cartInfo, addCourseToCart } = useCart();

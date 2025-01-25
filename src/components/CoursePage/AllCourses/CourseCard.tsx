@@ -4,7 +4,7 @@ import { ICONS } from "../../../assets";
 import Ripple from "../../Reusable/Ripple/Ripple";
 
 
-const CourseCard: React.FC<TCourse> = ({ _id, poster, title, author, enrolled, rating, image }) => {
+const CourseCard: React.FC<TCourse> = ({ _id, poster, title, author }) => {
     return (
         <div className="bg-white border border-neutral-45 rounded-[24px] font-Inter w-[312px] h-[400px] relative">
             <img src={poster?.url} alt="" className="rounded-t-[24px] w-full h-[182px] object-cover" />
@@ -25,7 +25,8 @@ const CourseCard: React.FC<TCourse> = ({ _id, poster, title, author, enrolled, r
 
 
                 <div className="flex items-center gap-2">
-                    <img src={ICONS.avatar} alt={""} className="size-8 rounded-full" />
+                    {/* <img src={ICONS.avatar} alt={""} className="size-8 rounded-full" /> */}
+                    <h1 className="text-primary-10/70 text-sm leading-6">By -</h1>
                     <h1 className="text-primary-10 font-medium leading-6">{author}</h1>
                 </div>
 

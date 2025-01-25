@@ -16,7 +16,7 @@ import { OtpFormData } from "../Login/Login";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/Features/Auth/authSlice";
 
-type TSetupProfileData = {
+export type TSetupProfileData = {
     full_name: string;
     email: string;
     gender: string;

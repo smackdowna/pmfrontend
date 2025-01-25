@@ -32,7 +32,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <hr className="border border-primary-20 h-[1px]" />
-                    <p className="text-neutral-35 leading-6 max-w-[377px]">© 2024 TouchToRate. All rights reserved</p>
+                    <p className="text-neutral-35 leading-6 max-w-[377px]">© 2025 TouchToRate. All rights reserved</p>
                 </div>
             </Container>
         </div>
