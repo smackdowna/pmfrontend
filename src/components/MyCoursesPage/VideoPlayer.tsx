@@ -8,16 +8,13 @@ interface VideoPlayerProps {
     module: string;
     progress: string;
     duration: string;
-    video: {
-      title: string;
-      url: string;
-    };
+    videoUrl: string;
   };
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ moduleData }) => {
-  const { module, video } = moduleData;
-  const [isPlaying, setIsPlaying] = useState(true);
+  const { module, videoUrl } = moduleData;
+  const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.8);
   const [isMuted, setIsMuted] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -94,7 +91,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ moduleData }) => {
     if (playerRef.current) {
       setDuration(playerRef.current.getDuration());
     }
-  }, [video]);
+  }, [videoUrl]);
 
   const handleMouseEnter = () => {
     setShowControls(true);
@@ -124,7 +121,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ moduleData }) => {
       >
         <ReactPlayer
           ref={playerRef}
-          url={video?.url}
+          url={videoUrl}
           playing={isPlaying}
           volume={volume}
           muted={isMuted}
