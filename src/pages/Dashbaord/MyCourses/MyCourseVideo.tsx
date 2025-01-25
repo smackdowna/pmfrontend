@@ -3,14 +3,19 @@ import Playlist from "../../../components/MyCoursesPage/PlaylistAccordion";
 import { ICONS, IMAGES } from "../../../assets";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { TLecture } from "../../../types/lecture.types";
 
 const MyCourseVideo = () => {
-  const [currentModule, setCurrentModule] = useState({
-    module: "",
+  const [currentModule, setCurrentModule] = useState<TLecture>({
+    _id: "",
+    title: "",
+    description: "",
     progress: "",
-    duration: "",
-    videoUrl:
-      "",
+    videoDuration: "",
+    video: {
+      public_id: "",
+      url: "",
+    },
   });
 
   return (
@@ -45,9 +50,19 @@ const MyCourseVideo = () => {
         <Playlist
           changeVideo={(module) => {
             console.log(module);
-            setCurrentModule({ ...module, videoUrl: module?.video?.url || "" })
-          } }
-          currentVideo={currentModule.videoUrl}
+            setCurrentModule({
+              title: module.title || "",
+              video: {
+                public_id: module?.video?.public_id || "",
+                url: module?.video?.url || "",
+              },
+              progress: module.progress || "",
+              description: module.description || "",
+              videoDuration: module.videoDuration || "",
+              _id: module._id || "",
+            });
+          }}
+          currentVideo={currentModule.video.url}
         />
       </div>
     </div>

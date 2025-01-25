@@ -5,15 +5,19 @@ import Controls from "../Controls/Controls";
 
 interface VideoPlayerProps {
   moduleData: {
-    module: string;
-    progress: string;
-    duration: string;
-    videoUrl: string;
+    title: string;
+    progress?: string;
+    description: string;
+    videoDuration: string;
+    video: {
+      public_id: string;
+      url: string;
+    };
   };
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ moduleData }) => {
-  const { module, videoUrl } = moduleData;
+  const { title, video } = moduleData;
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.8);
   const [isMuted, setIsMuted] = useState(false);
@@ -91,7 +95,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ moduleData }) => {
     if (playerRef.current) {
       setDuration(playerRef.current.getDuration());
     }
-  }, [videoUrl]);
+  }, [video]);
 
   const handleMouseEnter = () => {
     setShowControls(true);
@@ -110,7 +114,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ moduleData }) => {
     >
       {!isFullScreen && (
         <div className="flex flex-col mb-3">
-          <span className="text-2xl font-medium text-gray-900">{module}</span>
+          <span className="text-2xl font-medium text-gray-900">{title}</span>
         </div>
       )}
       <div
@@ -121,7 +125,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ moduleData }) => {
       >
         <ReactPlayer
           ref={playerRef}
-          url={videoUrl}
+          url={video.url}
           playing={isPlaying}
           volume={volume}
           muted={isMuted}
