@@ -9,8 +9,10 @@ const MyCourseVideo = () => {
     module: "Module 3: Advanced Techniques",
     progress: "0 of 3",
     duration: "6 min",
-    videoUrl:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    video: {
+      title: "Introduction to Advanced Techniques",
+      url: "https://www.youtube.com/watch?v=8ZcmTl_1ER8",
+    },
   });
 
   return (
@@ -44,9 +46,9 @@ const MyCourseVideo = () => {
         <VideoPlayer moduleData={currentModule} />
         <Playlist
           changeVideo={(module) =>
-            setCurrentModule({ ...module, videoUrl: module.videoUrl || "" })
+            setCurrentModule({ ...module, video: module.video || "" })
           }
-          currentVideo={currentModule.videoUrl}
+          currentVideo={currentModule.video?.url || ""}
         />
       </div>
     </div>
