@@ -12,7 +12,7 @@ import { TLoggedInUser } from "../../../types/user.types";
 const Navbar = () => {
     const user = useSelector(useCurrentUser) as TLoggedInUser;
     const location = useLocation();
-    const {cartData} = useCart();
+    const { cartData } = useCart();
 
     return (
         <div className="bg-primary-10 py-4 font-Inter">
@@ -36,23 +36,30 @@ const Navbar = () => {
 
                         <div className="flex items-center gap-5 lg:gap-8">
                             <div className="flex flex-row-reverse lg:flex-row items-center gap-5 lg:gap-8">
-                            <Link to={"/cart"} className="relative">
-                                <img src={location.pathname === "/cart" ? ICONS.cartYellow : ICONS.cartWhite} alt="cart-icon" className="size-6" />
-                                <div className="size-4 rounded-full bg-secondary-10 text-primary-10 flex items-center justify-center text-xs absolute -top-2 -right-2">{cartData?.length}</div>
-                            </Link>
-                            <Ripple styles="rounded-xl">
-                            <Link 
-                            to={user ? "/dashboard" : "/auth/login"} 
-                            
-                            className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">
-                            {
-                                user?
-                                "Dashboard"
-                                :
-                                "Get Started"
-                            }
-                            </Link>
-                            </Ripple>
+                                <Link to={"/cart"} className="relative">
+                                    <img src={location.pathname === "/cart" ? ICONS.cartYellow : ICONS.cartWhite} alt="cart-icon" className="size-6" />
+                                    <div className="size-4 rounded-full bg-secondary-10 text-primary-10 flex items-center justify-center text-xs absolute -top-2 -right-2">{cartData?.length}</div>
+                                </Link>
+                                <Ripple styles="rounded-xl">
+                                    <Link
+                                        to={
+                                            user
+                                                ? user.role === "user"
+                                                    ? "/dashboard"
+                                                    : user.role === "admin"
+                                                        ? "/admin/registered-users"
+                                                        : "/auth/login"
+                                                : "/auth/login"
+                                        }
+                                        className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">
+                                        {
+                                            user ?
+                                                "Dashboard"
+                                                :
+                                                "Get Started"
+                                        }
+                                    </Link>
+                                </Ripple>
                             </div>
                             <HamburgerMenu />
                         </div>

@@ -45,7 +45,7 @@ const Sidebar: React.FC = () => {
         toast.success("Logged out successfully.");
         navigate("/");
       } else {
-        throw new Error("Logout failed");
+        toast.error("Logout failed");
       }
     } catch (err) {
       toast.error("Failed to log out. Please try again.");

@@ -17,18 +17,15 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   const user = useSelector((state: any) => state.auth.user);
   const location = useLocation();
 
-  if (!user) {
-    // Redirect to login if no user
+  if (!user && location.pathname.startsWith("/dashboard") || location.pathname.startsWith("/admin")) {
     return <Navigate to="/auth/login" state={{ from: location }} replace />;
   }
 
   if (user.role === "admin" && location.pathname.startsWith("/dashboard")) {
-    // Admin trying to access /dashboard -> Redirect to adminPath
     return <Navigate to={adminPath} replace />;
   }
 
   if (user.role === "user" && location.pathname.startsWith("/admin")) {
-    // User trying to access /admin -> Redirect to userPath
     return <Navigate to={userPath} replace />;
   }
 
