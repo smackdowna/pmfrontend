@@ -1,16 +1,16 @@
 import { ICONS, IMAGES } from "../../../assets";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, useCurrentUser } from "../../../redux/Features/Auth/authSlice";
 import { toast } from "sonner";
 import Ripple from "../Ripple/Ripple";
+import { TLoggedInUser } from "../../../types/user.types";
 
 const Sidebar: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const user = useSelector(useCurrentUser);
+  const user = useSelector(useCurrentUser) as TLoggedInUser;
 
   // Helper function to check if the link is active
   const isActive = (path: string): boolean => location.pathname === path;
@@ -52,7 +52,6 @@ const Sidebar: React.FC = () => {
     }
   };
 
-  // Choose menus based on user type
   const menus = user?.role === "admin" ? adminMenus : userMenus;
 
   return (
@@ -84,8 +83,6 @@ const Sidebar: React.FC = () => {
           Logout
         </button>
       </Ripple>
-
-
     </div>
   );
 };

@@ -35,6 +35,7 @@ import TermsAndConditions from "../pages/TermsAndConditions/TermsAndConditions";
 import AboutUS from "../pages/AboutUS/AboutUS";
 import Disclaimer from "../pages/Disclaimer/Disclaimer";
 import AddCourseVideo from "../pages/Dashbaord/Admin/AddCourse/AddCourseVideo/AddCourseVideo";
+import ProtectedRoute from './ProtectedRoute';
 
 
 export const router = createBrowserRouter([
@@ -98,7 +99,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashboardLayout />,
+    element: <ProtectedRoute><DashboardLayout /></ProtectedRoute>,
     errorElement: <NotFound />,
     children: [
       {
@@ -147,7 +148,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "course-video",
-    element: <CourseVideoLayout />,
+    element: <ProtectedRoute><CourseVideoLayout /></ProtectedRoute>,
     errorElement: <NotFound />,
     children: [
       {
@@ -158,7 +159,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "admin",
-    element: <DashboardLayout />,
+    element: <ProtectedRoute><DashboardLayout /></ProtectedRoute>,
     errorElement: <NotFound />,
     children: [
       {

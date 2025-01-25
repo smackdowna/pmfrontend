@@ -63,25 +63,6 @@ const CourseContent = ({ courseDetails }) => {
         }
     ];
 
-    const ourPlaylist = [
-        {
-            level: "Introduction to Android",
-            value: "2min",
-        },
-        {
-            level: "Introduction to Android",
-            value: "3min",
-        },
-        {
-            level: "Introduction to Android",
-            value: "4min",
-        },
-        {
-            level: "Introduction to Android",
-            value: "5min"
-        }
-    ];
-
     return (
         <div>
             <div className="py-12 md:py-[64px] bg-white flex flex-col xl:flex-row gap-[64px] font-Inter">

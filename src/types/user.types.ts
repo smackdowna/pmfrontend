@@ -54,3 +54,12 @@ export type TUser = {
     refralCode: string;
     state: string;
   };
+
+  export type TLoggedInUser = {
+    _id: string;
+    name: string;
+    role: "user" | "admin";
+    email: string;
+    referralCode: string;
+  };
+  
