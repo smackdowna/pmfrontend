@@ -4,7 +4,10 @@ interface Playlist {
   module: string;
   progress: string;
   duration: string;
-  videoUrl?: string;
+  video: {
+    title: string;
+    url: string;
+  };
 }
 
 interface PlaylistProps {
@@ -18,22 +21,28 @@ const Playlist: React.FC<PlaylistProps> = ({ changeVideo, currentVideo }) => {
       module: "Module 1: Introduction to Android Studio",
       progress: "1 of 3",
       duration: "6 min",
-      videoUrl:
-        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      video: {
+        title: "Introduction to Android Studio",
+        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      },
     },
     {
-      module: "Module 2: Intermediate Topics",
-      progress: "2 of 3",
+      module: "Module 1: Introduction to Android Studio",
+      progress: "1 of 3",
       duration: "6 min",
-      videoUrl:
-        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      video: {
+        title: "Introduction to Android Studio",
+        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      },
     },
     {
-      module: "Module 3: Advanced Techniques",
-      progress: "3 of 3",
+      module: "Module 1: Introduction to Android Studio",
+      progress: "1 of 3",
       duration: "6 min",
-      videoUrl:
-        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      video: {
+        title: "Introduction to Android Studio",
+        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      },
     },
   ];
 
@@ -45,11 +54,11 @@ const Playlist: React.FC<PlaylistProps> = ({ changeVideo, currentVideo }) => {
           <div
             key={index}
             className={`bg-white rounded-lg border cursor-pointer ${
-              currentVideo === module.videoUrl
+              currentVideo === module.video?.url
                 ? "border-blue-500"
                 : "border-gray-200"
             } flex items-center justify-between pr-3`}
-            onClick={() => module.videoUrl && changeVideo(module)}
+            onClick={() => module.video?.url && changeVideo(module)}
           >
             <div className="p-4 flex flex-col">
               <h2 className="text-lg font-medium text-gray-900">
@@ -61,7 +70,7 @@ const Playlist: React.FC<PlaylistProps> = ({ changeVideo, currentVideo }) => {
             </div>
             <button
               className={`${
-                module.videoUrl
+                module.video?.url
                   ? "text-blue-500 hover:scale-105"
                   : "text-gray-400"
               }`}
