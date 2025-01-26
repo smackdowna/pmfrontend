@@ -17,7 +17,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   const user = useSelector((state: any) => state.auth.user);
   const location = useLocation();
 
-  if (!user && location.pathname.startsWith("/dashboard") || location.pathname.startsWith("/admin")) {
+  if (!user) {
     return <Navigate to="/auth/login" state={{ from: location }} replace />;
   }
 
