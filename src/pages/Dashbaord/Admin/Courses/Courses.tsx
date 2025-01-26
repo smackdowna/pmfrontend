@@ -62,7 +62,7 @@ const AdminCourses = () => {
     <>
       <div className="flex items-center justify-between w-full">
         <DashboardHeader
-          pageName="My Courses"
+          pageName="All Courses"
           pageDesc="All your courses in one place."
         />
         <Link to="/admin/add-course">

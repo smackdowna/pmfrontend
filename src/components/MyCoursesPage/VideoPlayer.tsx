@@ -114,7 +114,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ moduleData }) => {
     >
       {!isFullScreen && (
         <div className="flex flex-col mb-3">
-          <span className="text-2xl font-medium text-gray-900">{title}</span>
+          <span className="text-2xl font-medium text-gray-900 capitalize">{title}</span>
         </div>
       )}
       <div

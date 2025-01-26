@@ -78,7 +78,6 @@ const AllCourses: React.FC<TAllCourses> = ({
   </div>
 </div>
 
-
         {/* Courses */}
         {isLoading || isFetching ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-[1000px] mx-auto">
@@ -88,7 +87,7 @@ const AllCourses: React.FC<TAllCourses> = ({
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1000px] mx-auto">
-            {filteredCourses.map((course: TCourse) => (
+            {filteredCourses?.map((course: TCourse) => (
               <CourseCard key={course._id} {...course} />
             ))}
           </div>

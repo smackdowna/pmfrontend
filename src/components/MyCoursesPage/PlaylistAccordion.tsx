@@ -3,6 +3,7 @@ import { useGetCourseLectureQuery } from "../../redux/Features/Course/courseApi"
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { TLecture } from "../../types/lecture.types";
+import Spinner from "../Loaders/Spinner/Spinner";
 
 interface Playlist {
   title: string;
@@ -21,13 +22,16 @@ interface PlaylistProps {
 
 const Playlist: React.FC<PlaylistProps> = ({ changeVideo, currentVideo }) => {
   const { id } = useParams();
-  const { data } = useGetCourseLectureQuery(id);
+  const { data, isLoading } = useGetCourseLectureQuery(id);
 
   useEffect(() => {
     changeVideo(data?.lectures[0]);
   }, [data?.lectures]);
 
   return (
+    isLoading ?
+    <Spinner/>
+    :
     <div className="bg-white py-8 px-4 flex flex-col gap-6 w-1/3 h-[620px]">
       <h1 className="text-2xl font-semibold">Course Playlist</h1>
       <div className="flex flex-col gap-2 w-full max-w-[600px] overflow-y-scroll scroll no-scrollbar">
@@ -43,7 +47,7 @@ const Playlist: React.FC<PlaylistProps> = ({ changeVideo, currentVideo }) => {
           >
             <div className="p-4 flex flex-col">
               <h2 className="text-lg font-medium text-gray-900 capitalize">
-                {lecture.title}
+                {lecture?.title}
               </h2>
               {/* <p className="text-sm text-gray-600">
                 {module.progress} | {module.duration}
