@@ -49,20 +49,19 @@ const MyCourseVideo = () => {
         <VideoPlayer moduleData={currentModule} />
         <Playlist
           changeVideo={(module) => {
-            console.log(module);
             setCurrentModule({
-              title: module.title || "",
+              title: module?.title || "",
               video: {
                 public_id: module?.video?.public_id || "",
                 url: module?.video?.url || "",
               },
-              progress: module.progress || "",
-              description: module.description || "",
-              videoDuration: module.videoDuration || "",
-              _id: module._id || "",
+              progress: module?.progress || "",
+              description: module?.description || "",
+              videoDuration: module?.videoDuration || "",
+              _id: module?._id || "",
             });
           }}
-          currentVideo={currentModule.video.url}
+          currentVideo={currentModule?.video?.url}
         />
       </div>
     </div>
