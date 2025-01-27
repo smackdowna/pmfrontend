@@ -123,7 +123,7 @@ const Affiliates = () => {
 
   useEffect(() => {
     console.log("object");
-  }, [selectedFilter])
+  }, [selectedFilter]);
   return (
     <>
       <div className="flex items-center justify-between w-full">

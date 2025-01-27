@@ -37,6 +37,7 @@ import Disclaimer from "../pages/Disclaimer/Disclaimer";
 import AddCourseVideo from "../pages/Dashbaord/Admin/AddCourse/AddCourseVideo/AddCourseVideo";
 import ProtectedRoute from './ProtectedRoute';
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
+import ReferralsAndPayouts from "../pages/Dashbaord/Admin/ReferralsAndPayouts/ReferralsAndPayouts";
 
 
 export const router = createBrowserRouter([
@@ -167,6 +168,10 @@ export const router = createBrowserRouter([
     element: <ProtectedRoute><DashboardLayout /></ProtectedRoute>,
     errorElement: <NotFound />,
     children: [
+      {
+        path: "referrals-and-payouts",
+        element: <ReferralsAndPayouts />,
+      },
       {
         path: "courses",
         element: <AdminCourses />,
