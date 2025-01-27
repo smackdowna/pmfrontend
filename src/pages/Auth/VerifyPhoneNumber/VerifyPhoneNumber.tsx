@@ -74,7 +74,6 @@ const VerifyPhoneNumber = () => {
                     } else {
                         navigate("/dashboard/my-courses"); 
                     }
-                    
                     localStorage.removeItem("otpData");
                 }
             }

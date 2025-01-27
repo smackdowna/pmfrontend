@@ -1,5 +1,4 @@
 import { Table } from "../../../../components/ReferralPayoutsPage/TransactionHistory";
-import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
 import { Link } from "react-router-dom";
 import { useGetAllCoursesQuery } from "../../../../redux/Features/Course/courseApi";
@@ -10,9 +9,10 @@ import { toast } from "sonner";
 import { useDeleteCourseMutation } from "../../../../redux/Features/Admin/adminApi";
 import { TCourse } from "../../../../components/CoursePage/AllCourses/course.types";
 import { Helmet } from "react-helmet-async";
+import DashboardStatusOrLoader from "../../../../components/Reusable/DashboardStatusOrLoader/DashboardStatusOrLoader";
 
 const AdminCourses = () => {
-  const { data: allCourses, isLoading } = useGetAllCoursesQuery({searchQuery: ""});
+  const { data: allCourses, isLoading } = useGetAllCoursesQuery({ searchQuery: "" });
   const [deleteCourse] = useDeleteCourseMutation();
 
   const handleDeleteCourse = async (id: string) => {
@@ -45,7 +45,7 @@ const AdminCourses = () => {
 
   // Pending KYC user table data
   const allCoursesTableData = allCourses?.courses?.length
-    ? allCourses?.courses?.map((course:TCourse, index: number) => ({
+    ? allCourses?.courses?.map((course: TCourse, index: number) => ({
       no: `${index + 1}`,
       courseName: course?.title,
       category: course?.category,
@@ -61,9 +61,9 @@ const AdminCourses = () => {
 
   return (
     <>
-    <Helmet>
-            <title>PM Gurukul | Manage All Courses</title>
-          </Helmet>
+      <Helmet>
+        <title>PM Gurukul | Manage All Courses</title>
+      </Helmet>
       <div className="flex items-center justify-between w-full">
         <DashboardHeader
           pageName="All Courses"
@@ -75,9 +75,16 @@ const AdminCourses = () => {
           </button>
         </Link>
       </div>
-      <div className="grid grid-cols-4 items-center w-full  gap-4">
-        <DashboardCard title="Total Courses" count={allCourses?.courses?.length} />
-      </div>
+      {/* Status cards */}
+      <DashboardStatusOrLoader
+        statusCardInfo={[
+          {
+            title: "Total Courses",
+            valueCount: allCourses?.courses?.length || 0,
+          },
+        ]}
+        isLoading={isLoading}
+      />
 
       {
         isLoading ?

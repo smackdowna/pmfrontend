@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { useGetAllOrdersQuery } from '../../../../redux/Features/Admin/adminApi';
 import Invoice from './Invoice';
 import DashboardHeader from '../../../../components/Reusable/DashboardHeader/DashboardHeader';
-import DashboardCard from '../../../../components/Reusable/DashboardCard/DashboardCard';
 import Spinner from '../../../../components/Loaders/Spinner/Spinner';
 import { Table } from '../../../../components/ReferralPayoutsPage/TransactionHistory';
 import NoDataFound from '../../../../components/Shared/NoDataFound/NoDataFound';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import DashboardStatusOrLoader from '../../../../components/Reusable/DashboardStatusOrLoader/DashboardStatusOrLoader';
 
 export type TOrders = {
   _id: string;
@@ -51,7 +51,7 @@ const PurchaseHistory = () => {
       setIsGeneratingInvoice(false);
     }
   };
-  
+
 
   // All orders history user table headers
   const allOrdersHistoryTableHeaders = [
@@ -67,43 +67,49 @@ const PurchaseHistory = () => {
 
   // All orders history user table data
   const allOrdersHistoryTableData = allOrdersHistory?.orders?.length
-    ? allOrdersHistory.orders.map((order:TOrders, index:number) => ({
-        no: `${index + 1}`,
-        orderID: order._id,
-        customerName: order.user.full_name,
-        mobile: order.user.mobileNumber,
-        noOfItems: order?.course?.length || 0,
-        amount: `₹${order.totalPrice}`,
-        orderDate: new Date(order.createdAt).toLocaleDateString(),
-        action: [
-          {
-            label: 'View Order',
-            onClick: () => navigate(`/admin/order-details/${order._id}`),
-          },
-          { label: `${isGeneratingInvoice ? "Generating Invoice" : "Download Invoice"}`, 
-            onClick: () => handleDownloadInvoice(order && order) 
-          },
-        ],
-      }))
+    ? allOrdersHistory.orders.map((order: TOrders, index: number) => ({
+      no: `${index + 1}`,
+      orderID: order._id,
+      customerName: order.user.full_name,
+      mobile: order.user.mobileNumber,
+      noOfItems: order?.course?.length || 0,
+      amount: `₹${order.totalPrice}`,
+      orderDate: new Date(order.createdAt).toLocaleDateString(),
+      action: [
+        {
+          label: 'View Order',
+          onClick: () => navigate(`/admin/order-details/${order._id}`),
+        },
+        {
+          label: `${isGeneratingInvoice ? "Generating Invoice" : "Download Invoice"}`,
+          onClick: () => handleDownloadInvoice(order && order)
+        },
+      ],
+    }))
     : [];
 
   return (
     <>
-    <Helmet>
-            <title>PM Gurukul | Purchase Histories</title>
-          </Helmet>
+      <Helmet>
+        <title>PM Gurukul | Purchase Histories</title>
+      </Helmet>
       <div className="flex items-center justify-between w-full">
         <DashboardHeader
           pageName="Purchase History"
           pageDesc="Track and Review Past Orders"
         />
       </div>
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 items-center justify-start w-full flex-wrap gap-4">
-        <DashboardCard
-          title="Total Orders"
-          count={allOrdersHistory?.orders?.length}
-        />
-      </div>
+      {/* Status cards */}
+      <DashboardStatusOrLoader
+        statusCardInfo={[
+          {
+            title: "Total Orders",
+            valueCount: allOrdersHistory?.orders?.length,
+          }
+        ]}
+        isLoading={isLoading}
+      />
+
       {isLoading ? (
         <div className="flex items-center justify-center mt-5">
           <Spinner />

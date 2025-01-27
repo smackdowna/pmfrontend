@@ -173,13 +173,13 @@ const SetupProfile = () => {
                     name: response?.user?.full_name,
                     role: response?.user?.role,
                     email: response?.user?.email,
+                    referralCode : response?.user?.refralCode,
                 }
                 dispatch(setUser({ user }));
                 removeOtpDataFromLocalStorage();
                 navigate("/dashboard/my-courses");
                 localStorage.removeItem("otpData");
                 reset();
-
             }
         } catch (err) {
             toast.error((err as any)?.data?.message);

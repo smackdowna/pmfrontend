@@ -34,49 +34,47 @@ const AllCourses: React.FC<TAllCourses> = ({
       <div className="font-Inter py-[96px] flex flex-col gap-20">
         {/* Categories */}
         <div className="w-full overflow-x-auto lg:flex lg:justify-center">
-  <div className="flex items-center gap-4 min-w-max">
-    {isCategoriesLoading ? (
-      [1, 2, 3, 4].map((_, index) => (
-        <div
-          key={index}
-          className="h-[44px] w-[120px] bg-neutral-200 rounded-[100px] animate-pulse"
-        ></div>
-      ))
-    ) : (
-      <>
-        {/* All Courses Button */}
-        <Ripple styles="rounded-[100px]">
-          <button
-            onClick={() => setSelectedCategory("All Courses")}
-            className={`${
-              selectedCategory === "All Courses"
-                ? "bg-primary-10 border-primary-10 text-white font-semibold"
-                : "border-neutral-10 bg-white text-neutral-10 font-medium"
-            } transition duration-700 text-xl leading-7 border px-5 py-3 flex items-center gap-[10px] rounded-[100px] whitespace-nowrap capitalize`}
-          >
-            All Courses
-          </button>
-        </Ripple>
+          <div className="flex items-center gap-4 min-w-max">
+            {isCategoriesLoading ? (
+              [1, 2, 3, 4].map((_, index) => (
+                <div
+                  key={index}
+                  className="h-[44px] w-[120px] bg-neutral-200 rounded-[100px] animate-pulse"
+                ></div>
+              ))
+            ) : (
+              <>
+                {/* All Courses Button */}
+                <Ripple styles="rounded-[100px]">
+                  <button
+                    onClick={() => setSelectedCategory("All Courses")}
+                    className={`${selectedCategory === "All Courses"
+                        ? "bg-primary-10 border-primary-10 text-white font-semibold"
+                        : "border-neutral-10 bg-white text-neutral-10 font-medium"
+                      } transition duration-700 text-xl leading-7 border px-5 py-3 flex items-center gap-[10px] rounded-[100px] whitespace-nowrap capitalize`}
+                  >
+                    All Courses
+                  </button>
+                </Ripple>
 
-        {/* Dynamically Loaded Categories */}
-        {allCategories?.categories?.map((category: string) => (
-          <Ripple key={category} styles="rounded-[100px]">
-            <button
-              onClick={() => setSelectedCategory(category)}
-              className={`${
-                category === selectedCategory
-                  ? "bg-primary-10 border-primary-10 text-white font-semibold"
-                  : "border-neutral-10 bg-white text-neutral-10 font-medium"
-              } transition duration-700 text-xl leading-7 border px-5 py-3 flex items-center gap-[10px] rounded-[100px] whitespace-nowrap capitalize`}
-            >
-              {category}
-            </button>
-          </Ripple>
-        ))}
-      </>
-    )}
-  </div>
-</div>
+                {/* Dynamically Loaded Categories */}
+                {allCategories?.categories?.map((category: string) => (
+                  <Ripple key={category} styles="rounded-[100px]">
+                    <button
+                      onClick={() => setSelectedCategory(category)}
+                      className={`${category === selectedCategory
+                          ? "bg-primary-10 border-primary-10 text-white font-semibold"
+                          : "border-neutral-10 bg-white text-neutral-10 font-medium"
+                        } transition duration-700 text-xl leading-7 border px-5 py-3 flex items-center gap-[10px] rounded-[100px] whitespace-nowrap capitalize`}
+                    >
+                      {category}
+                    </button>
+                  </Ripple>
+                ))}
+              </>
+            )}
+          </div>
+        </div>
 
         {/* Courses */}
         {isLoading || isFetching ? (

@@ -1,5 +1,4 @@
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
-import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import { Table } from "../../../../components/ReferralPayoutsPage/TransactionHistory";
 import { useApproveKycMutation, useGetAllPendingKYCQuery, useGetAllUserQuery, useRejectKycMutation } from "../../../../redux/Features/Admin/adminApi";
 import { TUser } from "../../../../types/user.types";
@@ -10,6 +9,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import DashboardStatusOrLoader from "../../../../components/Reusable/DashboardStatusOrLoader/DashboardStatusOrLoader";
 
 
 
@@ -136,12 +136,31 @@ const Affiliates = () => {
           pageDesc="Grow with Affiliate Partnerships"
         />
       </div>
-      <div className="flex items-center w-full gap-4">
-        <DashboardCard onClick={() => setSelectedFilter("All")} title="Total KYC" count={allUsersData?.length} />
-        <DashboardCard onClick={() => setSelectedFilter("Pending")} title="Total Pending KYC" count={pendingKyc?.users?.length || 0} />
-        <DashboardCard onClick={() => setSelectedFilter("Approved")} title="Total Approved KYC" count={approvedKyc?.length} />
-        <DashboardCard onClick={() => setSelectedFilter("Rejected")} title="Total Rejected KYC" count={rejectedKyc?.length} />
-      </div>
+      <DashboardStatusOrLoader
+        statusCardInfo={[
+          {
+            title: "Total KYC",
+            valueCount: allUsersData?.length,
+            onClick: () => setSelectedFilter("All"),
+          },
+          {
+            title: "Total Pending KYC",
+            valueCount: pendingKyc?.users?.length || 0,
+            onClick: () => setSelectedFilter("Pending"),
+          },
+          {
+            title: "Total Approved KYC",
+            valueCount: approvedKyc?.length,
+            onClick: () => setSelectedFilter("Approved"),
+          },
+          {
+            title: "Total Rejected KYC",
+            valueCount: rejectedKyc?.length,
+            onClick: () => setSelectedFilter("Rejected"),
+          },
+        ]}
+        isLoading={isLoading}
+      />
       {isLoading || isPendingKycLoading ? (
         <div className="flex items-center justify-center mt-5">
           <Spinner />

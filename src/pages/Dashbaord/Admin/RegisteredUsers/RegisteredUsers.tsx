@@ -1,5 +1,4 @@
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
-import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import { Table } from "../../../../components/ReferralPayoutsPage/TransactionHistory";
 import { useGetAllUserQuery } from "../../../../redux/Features/Admin/adminApi";
 import { formatDate } from "../../../../utils/formatDate";
@@ -7,6 +6,7 @@ import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
 import Spinner from "../../../../components/Loaders/Spinner/Spinner";
 import { TUser } from "../../../../types/user.types";
 import { Helmet } from "react-helmet-async";
+import DashboardStatusOrLoader from "../../../../components/Reusable/DashboardStatusOrLoader/DashboardStatusOrLoader";
 
 const RegisteredUsers = () => {
   const { data: allUsers, isLoading } = useGetAllUserQuery({});
@@ -47,10 +47,29 @@ const RegisteredUsers = () => {
           pageDesc="Manage and View User Details"
         />
       </div>
-      <div className="flex items-center w-full gap-4">
-        <DashboardCard title="Total Users" count={allUsers?.users?.length} />
-      </div>
-
+      {/* {
+        isLoading ?
+          <div className="grid grid-cols-4 gap-4">
+            {
+              [1, 2, 3, 4].map((_, index) =>
+                <DashboardStatusCardLoader key={index} />
+              )
+            }
+          </div>
+          :
+          <div className="flex items-center w-full gap-4">
+            <DashboardCard title="Total Users" count={allUsers?.users?.length} />
+          </div>
+      } */}
+      <DashboardStatusOrLoader
+        statusCardInfo={[
+          {
+            title: "Total Users",
+            valueCount: allUsers?.users?.length || 0,
+          },
+        ]}
+        isLoading={isLoading}
+      />
       {
         isLoading ?
           <div className="flex items-center justify-center mt-5">
