@@ -123,7 +123,7 @@ const Affiliates = () => {
 
   useEffect(() => {
     console.log("object");
-  }, [selectedFilter])
+  }, [selectedFilter]);
   return (
     <>
       <div className="flex items-center justify-between w-full">
@@ -134,7 +134,7 @@ const Affiliates = () => {
       </div>
       <div className="flex items-center w-full gap-4">
         <DashboardCard onClick={() => setSelectedFilter("All")} title="Total KYC" count={allUsersData?.length} />
-        <DashboardCard onClick={() => setSelectedFilter("Pending")} title="Total Pending KYC" count={pendingKyc?.users?.length} />
+        <DashboardCard onClick={() => setSelectedFilter("Pending")} title="Total Pending KYC" count={pendingKyc?.users?.length || 0} />
         <DashboardCard onClick={() => setSelectedFilter("Approved")} title="Total Approved KYC" count={approvedKyc?.length} />
         <DashboardCard onClick={() => setSelectedFilter("Rejected")} title="Total Rejected KYC" count={rejectedKyc?.length} />
       </div>
