@@ -10,10 +10,8 @@ type TPersonalInfo = {
 
 const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber }) => {
   const genderOptions = ["Male", "Female", "Other"];
-  const languageOptions = ["English", "Hindi"];
   const stateOptions = ["Maharashtra", "Gujrat"];
   const countryOptions = ["India"];
-  const occupationOptions = ["Engineer", "Doctor", "Teacher", "Artist"];
   return (
     <div className="flex flex-col gap-4">
       <p className="text-neutral-90 font-semibold">Personal Information</p>
@@ -29,10 +27,6 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
               error={errors.full_name}
               {...register("full_name", {
                 required: "Full Name is required",
-                minLength: {
-                  value: 3,
-                  message: "Full Name must be at least 3 characters",
-                },
               })} />
             <TextInput
               label="Email ID"
@@ -55,16 +49,14 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
               {...register("gender", {
                 required: "Gender is required",
               })}
-
             />
-            <SelectDropdown
+            <TextInput
               label="Language"
-              options={languageOptions}
+              placeholder="Enter your language"
               error={errors.language}
               {...register("language", {
                 required: "Language is required",
-              })}
-            />
+              })} />
             <SelectDropdown
               label="State"
               options={stateOptions}
@@ -74,11 +66,11 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
               })}
             />
             <TextInput
-              label="Pincode"
+              label="Pin Code"
               placeholder="Enter your pincode"
               error={errors.pinCode}
               {...register("pinCode", {
-                required: "Pinc ode is required",
+                required: "Pin code is required",
               })}
             />
           </div>
@@ -127,14 +119,13 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
               defaultValue={mobileNumber ? mobileNumber : ""}
               isDisabled={true}
             />
-            <SelectDropdown
+            <TextInput
               label="Occupation"
-              options={occupationOptions}
+              placeholder="Enter your occupation"
               error={errors.occupation}
               {...register("occupation", {
                 required: "Occupation is required",
-              })}
-            />
+              })} />
             <SelectDropdown
               label="Country"
               options={countryOptions}
