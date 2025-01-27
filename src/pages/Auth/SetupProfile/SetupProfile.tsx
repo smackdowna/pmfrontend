@@ -65,6 +65,7 @@ const SetupProfile = () => {
     useEffect(() => {
         if (otpData) {
             setValue("mobileNumber", otpData.mobileNumber);
+            setValue("email", otpData.email);
         }
     }, [otpData, setValue]);
 

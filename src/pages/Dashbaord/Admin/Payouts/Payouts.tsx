@@ -6,6 +6,7 @@ import { formatDate } from "../../../../utils/formatDate";
 import Spinner from "../../../../components/Loaders/Spinner/Spinner";
 import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
 import { toast } from "sonner";
+import { Helmet } from "react-helmet-async";
 
 type TEarnings = {
   _id: string;
@@ -78,10 +79,13 @@ const Payouts = () => {
     }))
     : [];
 
-    const approvedPayouts = allEarnings?.earnings?.filter((earning: TEarnings) => earning?.payout_status === "Approved");
+  const approvedPayouts = allEarnings?.earnings?.filter((earning: TEarnings) => earning?.payout_status === "Approved");
 
   return (
     <>
+      <Helmet>
+        <title>PM Gurukul | Manage Payouts</title>
+      </Helmet>
       <div className="flex items-center justify-between w-full">
         <DashboardHeader pageName="Payouts" pageDesc="Manage and Track Payments" />
       </div>

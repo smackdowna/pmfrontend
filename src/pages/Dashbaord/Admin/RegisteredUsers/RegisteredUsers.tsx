@@ -6,6 +6,7 @@ import { formatDate } from "../../../../utils/formatDate";
 import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
 import Spinner from "../../../../components/Loaders/Spinner/Spinner";
 import { TUser } from "../../../../types/user.types";
+import { Helmet } from "react-helmet-async";
 
 const RegisteredUsers = () => {
   const { data: allUsers, isLoading } = useGetAllUserQuery({});
@@ -37,6 +38,9 @@ const RegisteredUsers = () => {
 
   return (
     <>
+      <Helmet>
+        <title>PM Gurukul | Registered Users</title>
+      </Helmet>
       <div className="flex items-center justify-between w-full">
         <DashboardHeader
           pageName="Registered Users"

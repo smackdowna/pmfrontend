@@ -8,7 +8,7 @@ import LoadingSpinner from "../Loaders/LoadingSpinner/LoadingSpinner";
 
 interface AddVideoProps {
   isOpen: boolean;
-  courseId : string;
+  courseId: string;
   onClose: () => void;
   onSubmit: (data: {
     title: string;
@@ -20,7 +20,7 @@ interface AddVideoProps {
 type TVideo = {
   title: string;
   description: string;
-  file : File | null;
+  file: File | null;
   videoDuration: string;
 };
 
@@ -58,7 +58,7 @@ const AddVideo: React.FC<AddVideoProps> = ({ isOpen, onClose, courseId }) => {
     }, 500);
   };
 
-  const handleAddVideo = async (data:TVideo) => {
+  const handleAddVideo = async (data: TVideo) => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("description", data.description);
@@ -67,7 +67,7 @@ const AddVideo: React.FC<AddVideoProps> = ({ isOpen, onClose, courseId }) => {
       formData.append("file", videoFile);
     }
 
-    const response = await addVideo({formData, courseId}).unwrap();
+    const response = await addVideo({ formData, courseId }).unwrap();
     if (response?.success) {
       toast.success("Video added successfully");
       onClose();
@@ -100,22 +100,21 @@ const AddVideo: React.FC<AddVideoProps> = ({ isOpen, onClose, courseId }) => {
             error={errors.videoDuration}
           />
           <div className="flex flex-col gap-2 font-Inter">
-        <label htmlFor="Description" className="text-neutral-65">
-        Description
-          <span className="text-red-600"> *</span>
-        </label>
-        <textarea
-        rows={3}
-          id="Description"
-          placeholder="Enter description"
-          className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border focus:outline-none focus:border-primary-10 transition duration-300 ${
-            errors.description ? "border-red-500" : "border-neutral-75"
-          }`}
-        />
-        {errors?.description?.message && (
-          <span className="text-red-500 text-sm">{String(errors.description.message)}</span>
-        )}
-      </div>
+            <label htmlFor="Description" className="text-neutral-65">
+              Description
+              <span className="text-red-600"> *</span>
+            </label>
+            <textarea
+              rows={3}
+              id="Description"
+              placeholder="Enter description"
+              className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border focus:outline-none focus:border-primary-10 transition duration-300 ${errors.description ? "border-red-500" : "border-neutral-75"
+                }`}
+            />
+            {errors?.description?.message && (
+              <span className="text-red-500 text-sm">{String(errors.description.message)}</span>
+            )}
+          </div>
           <div className="flex flex-col gap-4">
             <label htmlFor="courseVideo">Upload a Video</label>
             <div
@@ -157,7 +156,7 @@ const AddVideo: React.FC<AddVideoProps> = ({ isOpen, onClose, courseId }) => {
               Cancel
             </button>
             <button
-            disabled={isUploading}
+              disabled={isUploading}
               type="submit"
               className="px-4 py-2 bg-[#051539] text-white border-[1px] border-[#DFE2E6] rounded-lg"
             >

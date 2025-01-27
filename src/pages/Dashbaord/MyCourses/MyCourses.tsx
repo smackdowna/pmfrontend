@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { TCourse } from "../../../components/CoursePage/AllCourses/course.types";
 import MyCoursesCardLoader from "../../../components/Loaders/MyCourseCardLoader/MyCourseCardLoader";
 import MyCoursesCard from "../../../components/MyCoursesPage/MyCoursesCard";
@@ -6,31 +7,34 @@ import { useGetMyPurchasedCoursesQuery } from "../../../redux/Features/User/user
 
 const MyCourses = () => {
   const { data: myPurchasedCourses, isLoading } = useGetMyPurchasedCoursesQuery({});
-  console.log(myPurchasedCourses);
 
   return (
-    <div className="flex flex-col gap-8">
-      <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-semibold text-neutral-90">My Courses</h1>
-        <p className="text-neutral-90">Write something here</p>
-      </div>
-      {
-        myPurchasedCourses?.purchasedCourses?.length < 1 ?
-          <NoDataFound message={"You haven’t Enrolled on any course"} isBtnAvailable={true} />
-          :
-          <div className="grid grid-cols-3 2xl:grid-cols-4 gap-6">
-            {
-              isLoading ?
-                [1, 2, 3, 4].map((_, index) =>
-                  <MyCoursesCardLoader key={index} />
-                )
-                :
-                myPurchasedCourses?.purchasedCourses?.map((course:TCourse) => (
-                  <MyCoursesCard key={course._id} {...course} />
-                ))}
-          </div>
-      }
-    </div>
+    <>
+      <Helmet>
+        <title>PM Gurukul | Start Learning Now</title>
+      </Helmet>
+      <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-1">
+          <h1 className="text-2xl font-semibold text-neutral-90">My Courses</h1>
+          <p className="text-neutral-90">Write something here</p>
+        </div>
+        {
+          myPurchasedCourses?.purchasedCourses?.length < 1 ?
+            <NoDataFound message={"You haven’t Enrolled on any course"} isBtnAvailable={true} />
+            :
+            <div className="grid grid-cols-3 2xl:grid-cols-4 gap-6">
+              {
+                isLoading ?
+                  [1, 2, 3, 4].map((_, index) =>
+                    <MyCoursesCardLoader key={index} />
+                  )
+                  :
+                  myPurchasedCourses?.purchasedCourses?.map((course: TCourse) => (
+                    <MyCoursesCard key={course._id} {...course} />
+                  ))}
+            </div>
+        }
+      </div></>
   );
 };
 

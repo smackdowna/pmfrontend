@@ -8,7 +8,7 @@ type TPersonalInfo = {
   mobileNumber?: string | number;
 };
 
-const PersonalInfo:React.FC<TPersonalInfo> = ({register, errors, mobileNumber}) => {
+const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber }) => {
   const genderOptions = ["Male", "Female", "Other"];
   const languageOptions = ["English", "Hindi"];
   const stateOptions = ["Maharashtra", "Gujrat"];
@@ -22,22 +22,23 @@ const PersonalInfo:React.FC<TPersonalInfo> = ({register, errors, mobileNumber}) 
       >
         <div className="grid grid-cols-2 gap-5 p-8">
           <div className="flex flex-col gap-6">
-          <TextInput
-            label="Full Name"
-            // name="fullName"
-            placeholder="Enter full name"
-            error={errors.full_name}
-            {...register("full_name", {
-              required: "Full Name is required",
-              minLength: {
-                value: 3,
-                message: "Full Name must be at least 3 characters",
-              },
-            })} />
+            <TextInput
+              label="Full Name"
+              // name="fullName"
+              placeholder="Enter full name"
+              error={errors.full_name}
+              {...register("full_name", {
+                required: "Full Name is required",
+                minLength: {
+                  value: 3,
+                  message: "Full Name must be at least 3 characters",
+                },
+              })} />
             <TextInput
               label="Email ID"
               placeholder="Enter your email"
               type="email"
+              isDisabled={true}
               error={errors.email}
               {...register("email", {
                 required: "Email is required",
@@ -54,7 +55,7 @@ const PersonalInfo:React.FC<TPersonalInfo> = ({register, errors, mobileNumber}) 
               {...register("gender", {
                 required: "Gender is required",
               })}
-              
+
             />
             <SelectDropdown
               label="Language"
@@ -90,8 +91,20 @@ const PersonalInfo:React.FC<TPersonalInfo> = ({register, errors, mobileNumber}) 
               error={errors.dob}
               {...register("dob", {
                 required: "Date of Birth is required",
+                validate: (value:any) => {
+                  const today = new Date();
+                  const dob = new Date(value);
+                  const age = today.getFullYear() - dob.getFullYear();
+                  const isBirthdayPassed =
+                    today.getMonth() > dob.getMonth() ||
+                    (today.getMonth() === dob.getMonth() && today.getDate() >= dob.getDate());
+                  const adjustedAge = isBirthdayPassed ? age : age - 1;
+
+                  return adjustedAge >= 18 || "You must be at least 18 years old.";
+                },
               })}
             />
+
             <TextInput
               label="Mobile Number"
               placeholder="Enter your mobile number"
@@ -102,7 +115,7 @@ const PersonalInfo:React.FC<TPersonalInfo> = ({register, errors, mobileNumber}) 
                 pattern: {
                   value: /^\+?[1-9]\d{1,14}$/,
                   message: "Enter a valid mobile number",
-                },minLength: {
+                }, minLength: {
                   value: 10,
                   message: "Mobile Number must be at least 10 characters",
                 },

@@ -9,6 +9,7 @@ import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -126,6 +127,9 @@ const Affiliates = () => {
   }, [selectedFilter]);
   return (
     <>
+    <Helmet>
+        <title>PM Gurukul | All Affiliates</title>
+      </Helmet>
       <div className="flex items-center justify-between w-full">
         <DashboardHeader
           pageName="Affiliates"

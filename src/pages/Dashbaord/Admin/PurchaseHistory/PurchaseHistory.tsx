@@ -8,6 +8,7 @@ import Spinner from '../../../../components/Loaders/Spinner/Spinner';
 import { Table } from '../../../../components/ReferralPayoutsPage/TransactionHistory';
 import NoDataFound from '../../../../components/Shared/NoDataFound/NoDataFound';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 export type TOrders = {
   _id: string;
@@ -88,6 +89,9 @@ const PurchaseHistory = () => {
 
   return (
     <>
+    <Helmet>
+            <title>PM Gurukul | Purchase Histories</title>
+          </Helmet>
       <div className="flex items-center justify-between w-full">
         <DashboardHeader
           pageName="Purchase History"

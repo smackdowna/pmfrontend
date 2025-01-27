@@ -10,6 +10,7 @@ import ReferralLoader from "../../../../components/Loaders/ReferralLoader/Referr
 import Spinner from "../../../../components/Loaders/Spinner/Spinner";
 import { Table } from "../../../../components/ReferralPayoutsPage/TransactionHistory";
 import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
+import { Helmet } from "react-helmet-async";
 
 interface ReferralPayoutData {
     sl: string;
@@ -102,6 +103,10 @@ const ReferralsAndPayouts = () => {
     }
     return (
         <div className="flex flex-col gap-8">
+            <Helmet>
+                <title>PM Gurukul | Referrals & Payouts
+                </title>
+            </Helmet>
             <div className="flex justify-between items-center">
                 <DashboardHeader pageName="Referrals & Payouts" pageDesc="Track Earnings and Referral Status" />
                 {/* Referral Code */}

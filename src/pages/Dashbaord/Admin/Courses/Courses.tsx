@@ -9,6 +9,7 @@ import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
 import { toast } from "sonner";
 import { useDeleteCourseMutation } from "../../../../redux/Features/Admin/adminApi";
 import { TCourse } from "../../../../components/CoursePage/AllCourses/course.types";
+import { Helmet } from "react-helmet-async";
 
 const AdminCourses = () => {
   const { data: allCourses, isLoading } = useGetAllCoursesQuery({searchQuery: ""});
@@ -60,6 +61,9 @@ const AdminCourses = () => {
 
   return (
     <>
+    <Helmet>
+            <title>PM Gurukul | Manage All Courses</title>
+          </Helmet>
       <div className="flex items-center justify-between w-full">
         <DashboardHeader
           pageName="All Courses"

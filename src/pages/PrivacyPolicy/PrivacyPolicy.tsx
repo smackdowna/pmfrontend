@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import PrivacyPolicyContent from "../../components/PrivacyPolicyPage/PrivacyPolicyContent/PrivacyPolicyContent";
 import PrivacyPolicyHero from "../../components/PrivacyPolicyPage/PrivacyPolicyHero/PrivacyPolicyHero";
 
@@ -5,8 +6,11 @@ import PrivacyPolicyHero from "../../components/PrivacyPolicyPage/PrivacyPolicyH
 const PrivacyPolicy = () => {
     return (
         <div>
-            <PrivacyPolicyHero/>
-            <PrivacyPolicyContent/>
+            <Helmet>
+                <title>PM Gurukul | Privacy Policy</title>
+            </Helmet>
+            <PrivacyPolicyHero />
+            <PrivacyPolicyContent />
         </div>
     );
 };

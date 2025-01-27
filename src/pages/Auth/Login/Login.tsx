@@ -68,10 +68,17 @@ const Login = () => {
                     {...register("mobileNumber", {
                         required: "Mobile Number is required",
                         pattern: {
-                            value: /^\+?[1-9]\d{1,14}$/,
-                            message: "Enter a valid mobile number",
+                          value: /^\+?[1-9]\d{1,14}$/,
+                          message: "Enter a valid mobile number",
+                        },minLength: {
+                          value: 10,
+                          message: "Mobile Number must be 10 characters",
                         },
-                    })}
+                        maxLength: {
+                          value: 10,
+                          message: "Mobile Number must be at most 10 characters",
+                        },
+                      })}
                 />
                 <button
                     disabled={isLoading}

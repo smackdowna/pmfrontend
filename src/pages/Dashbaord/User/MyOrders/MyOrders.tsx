@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Spinner from "../../../../components/Loaders/Spinner/Spinner";
 import { Table } from "../../../../components/ReferralPayoutsPage/TransactionHistory";
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
@@ -31,25 +32,28 @@ const MyOrders = () => {
 
   // Table data
   const myOrdersTableData = myOrders?.orders?.length
-    ? myOrders?.orders?.map((order:TMyOrders, index:number) => ({
-        no: `${index + 1}`,
-        orderId: order?._id,
-        noOfItems: order?.course?.length,
-        amount: `₹${order?.amountCredited}`,
-        action: "View",
-      }))
+    ? myOrders?.orders?.map((order: TMyOrders, index: number) => ({
+      no: `${index + 1}`,
+      orderId: order?._id,
+      noOfItems: order?.course?.length,
+      amount: `₹${order?.amountCredited}`,
+      action: "View",
+    }))
     : [];
 
   return (
     <div>
+      <Helmet>
+        <title>PM Gurukul |My Orders</title>
+      </Helmet>
       <DashboardHeader pageName="My Orders" pageDesc="View Your Recent Order History" />
 
       <div className="mt-8">
         {/* Show loading state or table */}
         {isLoading ? (
-           <div className="flex items-center justify-center mt-20">
-           <Spinner />
-         </div>
+          <div className="flex items-center justify-center mt-20">
+            <Spinner />
+          </div>
         ) : myOrdersTableData.length > 0 ? (
           <Table data={myOrdersTableData} headers={myOrdersTableHeaders} showHeader={true} />
         ) : (
