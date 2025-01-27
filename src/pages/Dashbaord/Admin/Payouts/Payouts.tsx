@@ -86,8 +86,8 @@ const Payouts = () => {
         <DashboardHeader pageName="Payouts" pageDesc="Manage and Track Payments" />
       </div>
       <div className="flex items-center w-full  gap-4">
-        <DashboardCard title="Total Payouts" count={allEarnings?.earnings?.length} />
-        <DashboardCard title="Approve Payouts" count={approvedPayouts?.length} />
+        <DashboardCard title="Total Payouts" count={allEarnings?.earnings?.length || 0} />
+        <DashboardCard title="Approve Payouts" count={approvedPayouts?.length || 0} />
       </div>
       {
         isLoading ?

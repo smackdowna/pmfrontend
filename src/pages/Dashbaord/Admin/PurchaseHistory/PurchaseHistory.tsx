@@ -7,6 +7,7 @@ import DashboardCard from '../../../../components/Reusable/DashboardCard/Dashboa
 import Spinner from '../../../../components/Loaders/Spinner/Spinner';
 import { Table } from '../../../../components/ReferralPayoutsPage/TransactionHistory';
 import NoDataFound from '../../../../components/Shared/NoDataFound/NoDataFound';
+import { useState } from 'react';
 
 export type TOrders = {
   _id: string;
@@ -29,19 +30,27 @@ export type TOrders = {
 const PurchaseHistory = () => {
   const navigate = useNavigate();
   const { data: allOrdersHistory, isLoading } = useGetAllOrdersQuery({});
+  const [isGeneratingInvoice, setIsGeneratingInvoice] = useState<boolean>(false);
 
-  const handleDownloadInvoice = async (order:TOrders) => {
-    console.log(order);
-    const blob = await pdf(<Invoice order={order} />).toBlob();
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `invoice_${order._id}.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+  const handleDownloadInvoice = async (order: TOrders) => {
+    setIsGeneratingInvoice(true)
+    try {
+      const blob = await pdf(<Invoice order={order} />).toBlob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `invoice_${order._id}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      setIsGeneratingInvoice(false);
+    } catch (error) {
+      console.error('Failed to generate PDF:', error);
+      setIsGeneratingInvoice(false);
+    }
   };
+  
 
   // All orders history user table headers
   const allOrdersHistoryTableHeaders = [
@@ -70,8 +79,9 @@ const PurchaseHistory = () => {
             label: 'View Order',
             onClick: () => navigate(`/admin/order-details/${order._id}`),
           },
-          { label: 'Download Invoice', 
-            onClick: () => handleDownloadInvoice(order) },
+          { label: `${isGeneratingInvoice ? "Generating Invoice" : "Download Invoice"}`, 
+            onClick: () => handleDownloadInvoice(order && order) 
+          },
         ],
       }))
     : [];
