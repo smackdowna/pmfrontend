@@ -115,8 +115,7 @@ const ReferralsAndPayouts = () => {
                     <div
                         onClick={handleCopy}
                         className="bg-neutral-15 p-4 rounded-r-lg cursor-pointer"
-                        title="Copy to clipboard"
-                    >
+                        title="Copy to clipboard">
                         {
                             isCopied ?
                                 <svg width="30" height="30" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">

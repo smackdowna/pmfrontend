@@ -98,10 +98,10 @@ export const Table = ({ headers = [], data = [], showHeader = true }: TableProps
     }
     return "";
   };
-
+  
   return (
     <div className="overflow-x-auto capitalize">
-      <div className="bg-white rounded-xl flex flex-col border border-neutral-55">
+      <div className="bg-white min-h-[250px] rounded-xl flex flex-col border border-neutral-55">
         {showHeader && (
           <div className="flex p-[10px] justify-between items-center">
             <div className="border flex gap-2 border-neutral-55 rounded-xl p-2 max-w-[190px]">
