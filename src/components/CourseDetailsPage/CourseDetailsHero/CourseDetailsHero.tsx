@@ -16,7 +16,7 @@ type TCourseDetailsHero = {
     courseDetails : TCourse;
 }
 const CourseDetailsHero:React.FC<TCourseDetailsHero> = ({ courseDetails, isDetailsLoading }) => {
-    console.log(courseDetails);
+    // console.log(courseDetails);
     const [isLoading, setIsLoading] = useState(false);
     const [isAdded, setIsAdded] = useState(false);
     const { cartData: cartInfo, addCourseToCart } = useCart();

@@ -47,20 +47,6 @@ const RegisteredUsers = () => {
           pageDesc="Manage and View User Details"
         />
       </div>
-      {/* {
-        isLoading ?
-          <div className="grid grid-cols-4 gap-4">
-            {
-              [1, 2, 3, 4].map((_, index) =>
-                <DashboardStatusCardLoader key={index} />
-              )
-            }
-          </div>
-          :
-          <div className="flex items-center w-full gap-4">
-            <DashboardCard title="Total Users" count={allUsers?.users?.length} />
-          </div>
-      } */}
       <DashboardStatusOrLoader
         statusCardInfo={[
           {
