@@ -61,7 +61,7 @@ const Invoice = ({ order }: { order: TOrders }) => {
       <Page style={styles.page}>
         <View style={styles.headerContainer}>
           <Image src={logo} style={styles.logo} />
-          <Text style={styles.title}>PM Gurukul</Text>
+          <Text style={styles.title}>PMGURUKKUL</Text>
           <Text style={styles.address}>2/130, GEETA COLONY DELHI – 110031</Text>
         </View>
         <View style={styles.section}>

@@ -6,7 +6,7 @@ const AboutUS = () => {
     return (
         <div>
             <Helmet>
-                <title>PM Gurukul | Learn About Us</title>
+                <title>PMGURUKKUL | Learn About Us</title>
             </Helmet>
             <AboutUsHero/>
             <AboutUsContent/>

@@ -4,7 +4,7 @@ const DashboardHome = () => {
     return (
         <div>
             <Helmet>
-                <title>PM Gurukul | Dashboard</title>
+                <title>PMGURUKKUL | Dashboard</title>
             </Helmet>
             Dashboard Home
         </div>

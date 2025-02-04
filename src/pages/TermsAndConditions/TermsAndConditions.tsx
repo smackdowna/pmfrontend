@@ -7,7 +7,7 @@ const TermsAndConditions = () => {
     return (
         <div>
             <Helmet>
-                <title>PM Gurukul | Terms & Conditions</title>
+                <title>PMGURUKKUL | Terms & Conditions</title>
             </Helmet>
             <TermsAndConditionsHero />
             <TermsAndConditionsContent />

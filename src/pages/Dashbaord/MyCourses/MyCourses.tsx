@@ -11,7 +11,7 @@ const MyCourses = () => {
   return (
     <>
       <Helmet>
-        <title>PM Gurukul | Start Learning Now</title>
+        <title>PMGURUKKUL | Start Learning Now</title>
       </Helmet>
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-1">

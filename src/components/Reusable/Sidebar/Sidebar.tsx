@@ -60,7 +60,7 @@ const Sidebar: React.FC = () => {
       <div>
         <Link to="/" className="flex items-center gap-2 w-full pb-4 mb-2">
           <img src={IMAGES.pmGurukulLogo} alt="PM-Gurukul" className="size-10" />
-          <h1 className="text-primary-10 text-xl font-medium">PM Gurukul</h1>
+          <h1 className="text-primary-10 text-xl font-medium">PMGURUKKUL</h1>
         </Link>
         <div>
           <ul className="flex flex-col gap-2">

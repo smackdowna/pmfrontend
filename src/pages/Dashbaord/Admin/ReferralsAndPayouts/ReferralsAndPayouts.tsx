@@ -104,7 +104,7 @@ const ReferralsAndPayouts = () => {
     return (
         <div className="flex flex-col gap-8">
             <Helmet>
-                <title>PM Gurukul | Referrals & Payouts
+                <title>PMGURUKKUL | Referrals & Payouts
                 </title>
             </Helmet>
             <div className="flex justify-between items-center">

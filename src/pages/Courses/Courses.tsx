@@ -16,7 +16,7 @@ const Courses = () => {
     return (
         <div>
             <Helmet>
-                <title>PM Gurukul | Explore Courses</title>
+                <title>PMGURUKKUL | Explore Courses</title>
             </Helmet>
             <CourseHero
                 setSearchQuery={setSearchQuery}

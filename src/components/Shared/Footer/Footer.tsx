@@ -10,8 +10,8 @@ const Footer = () => {
                 <div className="flex flex-col gap-8">
                     <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 justify-between">
                         <div className="flex flex-col gap-[10px]">
-                            <h1 className="text-2xl text-white font-semibold leading-7">PM Gurukul</h1>
-                            <p className="text-neutral-35 leading-6 max-w-[377px]">Focus on building diverse skills instead of running after opportunities. With PM Gurukul's courses, you can grow and learn in a way that helps you become your best self.</p>
+                            <h1 className="text-2xl text-white font-semibold leading-7">PMGURUKKUL</h1>
+                            <p className="text-neutral-35 leading-6 max-w-[420px]">PMGURUKKUL is an opportunity to make a positive change when it comes to upskilling. You can learn, refine your skills and focus on your career growth with India's leading ed-tech company. Join the revolution to move forward on the path to a better financial future.</p>
                         </div>
 
                         <div className="flex flex-col md:flex-row gap-12 md:gap-24">

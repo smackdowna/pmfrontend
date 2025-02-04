@@ -20,7 +20,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-between">
                     <Link to={"/"} className="flex items-center gap-2">
                         <img src={IMAGES.pmGurukulLogo} alt="PM-Gurukul" className="size-12" />
-                        <h1 className="text-white">PM Gurukul</h1>
+                        <h1 className="text-white">PMGURUKKUL</h1>
                     </Link>
 
                     <div className="flex items-center gap-8">

@@ -11,7 +11,7 @@ const Cart = () => {
     return (
         <div className="bg-neutral-20">
             <Helmet>
-                <title>PM Gurukul | Manage Your Cart</title>
+                <title>PMGURUKKUL | Manage Your Cart</title>
             </Helmet>
             <Container>
                 <div className="flex flex-col xl:flex-row gap-8 py-[64px] w-full">

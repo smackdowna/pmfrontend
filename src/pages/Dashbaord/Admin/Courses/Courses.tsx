@@ -62,7 +62,7 @@ const AdminCourses = () => {
   return (
     <>
       <Helmet>
-        <title>PM Gurukul | Manage All Courses</title>
+        <title>PMGURUKKUL | Manage All Courses</title>
       </Helmet>
       <div className="flex items-center justify-between w-full">
         <DashboardHeader

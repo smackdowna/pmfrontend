@@ -51,7 +51,7 @@ const AddCourseVideo = () => {
     return (
         <div>
             <Helmet>
-                <title>PM Gurukul | Add Videos</title>
+                <title>PMGURUKKUL | Add Videos</title>
             </Helmet>
             <div className="flex justify-between items-center lg:w-[80%] w-full mx-auto">
                 <h1 className="text-[#0F172A] font-Inter font-semibold leading-7 tracking-tighter text-2xl">

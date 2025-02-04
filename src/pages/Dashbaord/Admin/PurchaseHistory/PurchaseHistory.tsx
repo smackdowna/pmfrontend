@@ -91,7 +91,7 @@ const PurchaseHistory = () => {
   return (
     <>
       <Helmet>
-        <title>PM Gurukul | Purchase Histories</title>
+        <title>PMGURUKKUL | Purchase Histories</title>
       </Helmet>
       <div className="flex items-center justify-between w-full">
         <DashboardHeader

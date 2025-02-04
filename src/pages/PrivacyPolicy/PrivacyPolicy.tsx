@@ -7,7 +7,7 @@ const PrivacyPolicy = () => {
     return (
         <div>
             <Helmet>
-                <title>PM Gurukul | Privacy Policy</title>
+                <title>PMGURUKKUL | Privacy Policy</title>
             </Helmet>
             <PrivacyPolicyHero />
             <PrivacyPolicyContent />

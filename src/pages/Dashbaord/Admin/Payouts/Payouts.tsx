@@ -84,7 +84,7 @@ const Payouts = () => {
   return (
     <>
       <Helmet>
-        <title>PM Gurukul | Manage Payouts</title>
+        <title>PMGURUKKUL | Manage Payouts</title>
       </Helmet>
       <div className="flex items-center justify-between w-full">
         <DashboardHeader pageName="Payouts" pageDesc="Manage and Track Payments" />

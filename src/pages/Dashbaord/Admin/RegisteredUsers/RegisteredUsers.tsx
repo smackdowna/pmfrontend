@@ -39,7 +39,7 @@ const RegisteredUsers = () => {
   return (
     <>
       <Helmet>
-        <title>PM Gurukul | Registered Users</title>
+        <title>PMGURUKKUL | Registered Users</title>
       </Helmet>
       <div className="flex items-center justify-between w-full">
         <DashboardHeader

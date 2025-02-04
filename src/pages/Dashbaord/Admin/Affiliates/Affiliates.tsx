@@ -128,7 +128,7 @@ const Affiliates = () => {
   return (
     <>
     <Helmet>
-        <title>PM Gurukul | All Affiliates</title>
+        <title>PMGURUKKUL | All Affiliates</title>
       </Helmet>
       <div className="flex items-center justify-between w-full">
         <DashboardHeader

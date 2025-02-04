@@ -10,7 +10,7 @@ const Disclaimer = () => {
     return (
         <div>
             <Helmet>
-                <title>PM Gurukul | Disclaimer</title>
+                <title>PMGURUKKUL | Disclaimer</title>
             </Helmet>
             <DisclaimerHero />
             <div className="font-Inter py-[64px] max-w-full xl:max-w-[1080px] mx-auto">

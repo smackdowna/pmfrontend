@@ -7,7 +7,7 @@ const ContactUs = () => {
     return (
         <div className="text-gray-900">
             <Helmet>
-                <title>PM Gurukul | Reach Us Out</title>
+                <title>PMGURUKKUL | Reach Us Out</title>
             </Helmet>
             <ContactUsHero />
             <ContactUsForm />

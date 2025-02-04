@@ -64,7 +64,7 @@ const MyProfile = () => {
   return (
     <div>
       <Helmet>
-        <title>PM Gurukul | My Profile</title>
+        <title>PMGURUKKUL | My Profile</title>
       </Helmet>
       <div className="flex items-center justify-start gap-3">
         <img src={ICONS.ArrowLeft} alt="Profile" className="size-9" />

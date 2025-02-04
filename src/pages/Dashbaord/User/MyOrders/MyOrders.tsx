@@ -44,7 +44,7 @@ const MyOrders = () => {
   return (
     <div>
       <Helmet>
-        <title>PM Gurukul |My Orders</title>
+        <title>PMGURUKKUL |My Orders</title>
       </Helmet>
       <DashboardHeader pageName="My Orders" pageDesc="View Your Recent Order History" />
 

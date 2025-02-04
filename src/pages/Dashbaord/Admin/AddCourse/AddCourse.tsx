@@ -78,7 +78,7 @@ const AddCourse = () => {
   return (
     <>
       <Helmet>
-        <title>PM Gurukul | Add New Course</title>
+        <title>PMGURUKKUL | Add New Course</title>
       </Helmet>
       <div className="flex flex-col p-6 bg-[#F8FAFC] gap-8 w-full">
         <div className="flex items-center w-full justify-between">
