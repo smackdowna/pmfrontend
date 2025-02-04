@@ -54,12 +54,12 @@ export const socialMediaLinks = [
     {
         icon: ICONS.youtube,
         path: "https://www.youtube.com/pmgurukkul/",
-        size: 38
+        size: 42
     },
     {
         icon: ICONS.instagram,
         path: "https://www.instagram.com/pmgurukkul/",
-        size: 38
+        size: 36
     },
     {
         icon: ICONS.twitter,
@@ -69,12 +69,12 @@ export const socialMediaLinks = [
     {
         icon: ICONS.linkedin,
         path: "https://www.linkedin.com/company/pmgurukkul/",
-        size: 40
+        size: 42
     },
     {
         icon: ICONS.whatsapp,
         path: "https://wa.me/your-whatsapp-number",
-        size: 33
+        size: 35
     },
     {
         icon: ICONS.telegram,
