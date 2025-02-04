@@ -60,7 +60,7 @@ import telegram from "../assets/Icons/telegram.svg";
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
 import heroImg from "../assets/Images/hero-img.svg";
 import enrollment from "../assets/Images/enrollment.jpg";
-import sessionAnnouncement from "../assets/Images/session-announcement.png";
+import sessionAnnouncement from "../assets/Images/session-announcement.svg";
 import courseImg from "../assets/Images/course-img.png";
 import KycBG from "../assets/Images/KycBG.png";
 import courseDetailsImg from "../assets/Images/image 609.png";

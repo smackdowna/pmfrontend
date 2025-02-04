@@ -10,14 +10,17 @@ import { useCart } from "../../../Providers/CartProvider/CartProvider";
 import CourseDetailsHeroLoader from "../../Loaders/CourseDetailsHeroLoader/CourseDetailsHeroLoader";
 import Ripple from "../../Reusable/Ripple/Ripple";
 import { TCourse } from "../../CoursePage/AllCourses/course.types";
+import { useNavigate } from "react-router-dom";
 
 type TCourseDetailsHero = {
-    isDetailsLoading : boolean;
-    courseDetails : TCourse;
+    isDetailsLoading: boolean;
+    courseDetails: TCourse;
 }
-const CourseDetailsHero:React.FC<TCourseDetailsHero> = ({ courseDetails, isDetailsLoading }) => {
+const CourseDetailsHero: React.FC<TCourseDetailsHero> = ({ courseDetails, isDetailsLoading }) => {
+    const navigate = useNavigate();
     // console.log(courseDetails);
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoading2, setIsLoading2] = useState(false);
     const [isAdded, setIsAdded] = useState(false);
     const { cartData: cartInfo, addCourseToCart } = useCart();
     const isCourseAlreadyInCart = cartInfo?.some((item) => item?._id === courseDetails?._id);
@@ -46,6 +49,34 @@ const CourseDetailsHero:React.FC<TCourseDetailsHero> = ({ courseDetails, isDetai
             toast.success("Course added to cart!");
             setIsLoading(false);
             setIsAdded(true);
+        }, 1000);
+    };
+
+    const handleAddCourseToCartAndRedirect = () => {
+        setIsLoading2(true);
+        setIsAdded(false);
+        setTimeout(() => {
+            const cartData = {
+                _id: courseDetails._id,
+                title: courseDetails.title,
+                category: courseDetails?.category,
+                image: courseDetails?.poster?.url,
+                basePrice: courseDetails?.basePrice,
+                discountedPrice: courseDetails.discountedPrice
+            };
+
+            if (isCourseAlreadyInCart) {
+                toast.error("Course is already in the cart!");
+                setIsLoading2(false);
+                setIsAdded(false);
+                return;
+            }
+
+            addCourseToCart(cartData);
+            toast.success("Course added to cart!");
+            setIsLoading2(false);
+            setIsAdded(true);
+            navigate("/cart")
         }, 1000);
     };
 
@@ -78,7 +109,11 @@ const CourseDetailsHero:React.FC<TCourseDetailsHero> = ({ courseDetails, isDetai
                                 </div>
                                 <div className="flex items-center gap-5 mt-7">
                                     <Ripple styles="rounded-[10px]">
-                                        <button className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">Buy now for ₹{courseDetails?.discountedPrice}</button>
+                                        <button onClick={handleAddCourseToCartAndRedirect} className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow min-w-[186px]">
+                                            {
+                                                isLoading2 ? <LoadingSpinner fontSize="text-[15px]" /> : isAdded || isCourseAlreadyInCart ? "Already Added To Cart" : `Buy now for ₹${courseDetails?.discountedPrice}`}
+
+                                        </button>
                                     </Ripple>
                                     <Ripple styles="rounded-[10px]">
                                         <button onClick={handleAddCourseToCart} className="text-secondary-15 font-semibold leading-6 rounded-[10px] border border-secondary-15 px-5 py-[10px]">

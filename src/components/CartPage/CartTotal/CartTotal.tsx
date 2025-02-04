@@ -15,7 +15,7 @@ const gst = discountedPriceTotal * 18/100;
                 </div>
             </div>
             <div className="flex items-center justify-between">
-                <h1 className="heading6 text-sm">GST</h1>
+                <h1 className="heading6 text-sm">18% GST</h1>
                 <div className="flex items-center gap-[6px]">
                     <h1 className="heading6 text-sm">₹ {gst}</h1>
                 </div>
