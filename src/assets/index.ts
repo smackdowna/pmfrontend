@@ -51,7 +51,7 @@ import logout from "../assets/Icons/logout.svg"
 // Importing Images
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
 import heroImg from "../assets/Images/hero-img.png";
-import enrollment from "../assets/Images/enrollment.png";
+import enrollment from "../assets/Images/enrollment.jpg";
 import sessionAnnouncement from "../assets/Images/session-announcement.png";
 import courseImg from "../assets/Images/course-img.png";
 import KycBG from "../assets/Images/KycBG.png";
