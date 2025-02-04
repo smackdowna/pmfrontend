@@ -46,6 +46,14 @@ import folderUpload from "../assets/Icons/empty 1.svg"
 import menuDots from "../assets/Icons/Menu Dots.svg"
 import tickMark from "../assets/Icons/tick-mark.svg"
 import logout from "../assets/Icons/logout.svg"
+// Social Media icons
+import facebook from "../assets/Icons/facebook.svg";
+import youtube from "../assets/Icons/youtube.svg";
+import instagram from "../assets/Icons/instagram.svg";
+import twitter from "../assets/Icons/twitter.svg";
+import linkedin from "../assets/Icons/linkedin.svg";
+import whatsapp from "../assets/Icons/whatsapp.svg";
+import telegram from "../assets/Icons/telegram.svg";
 
 
 // Importing Images
@@ -110,6 +118,13 @@ export const ICONS = {
     copy,
     tickMark,
     logout,
+    facebook,
+    youtube,
+    instagram,
+    twitter,
+    linkedin,
+    whatsapp,
+    telegram,
 };
 
 export const IMAGES = {
