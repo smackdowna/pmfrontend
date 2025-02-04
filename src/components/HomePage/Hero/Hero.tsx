@@ -10,13 +10,13 @@ const Hero = () => {
     <HeroContainer classNames="pt-12">
       <Container>
         <div className="font-Inter flex flex-col lg:flex-row justify-between">
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center pb-10">
             <Badge title="This is a headline for heading" />
-            <h1 className="text-white text-[48px] font-bold leading-[64px] mt-1 max-w-[650px]">
-            Build Your Digital Skills and Achieve Digital Excellence with PMGURUKKUL
+            <h1 className="text-white text-[48px] font-bold leading-[64px] mt-1 max-w-[700px]">
+              Build Your Digital Skills and Achieve Digital Excellence with PMGURUKKUL
             </h1>
-            <p className="text-neutral-10 leading-6 mt-1 max-w-[700px]">
-            We help everyone to learn digital skills through our courses. We provide affordability, flexibility and accessibility, enabling working professionals, students and aspiring learners to upskill and reskill at their own pace.
+            <p className="text-neutral-10 leading-6 mt-1 max-w-[800px]">
+              We help everyone to learn digital skills through our courses. We provide affordability, flexibility and accessibility, enabling working professionals, students and aspiring learners to upskill and reskill at their own pace.
             </p>
             <div className="flex items-center gap-5 mt-7">
               <Ripple styles="rounded-xl">
@@ -61,7 +61,7 @@ const Hero = () => {
           <img
             src={IMAGES.heroImg}
             alt=""
-            className="max-h-[497px] md:h-fit object-contain"
+            className="h-[431px] w-[496px]"
           />
         </div>
       </Container>

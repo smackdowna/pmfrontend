@@ -58,7 +58,7 @@ import telegram from "../assets/Icons/telegram.svg";
 
 // Importing Images
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
-import heroImg from "../assets/Images/hero-img.png";
+import heroImg from "../assets/Images/hero-img.svg";
 import enrollment from "../assets/Images/enrollment.jpg";
 import sessionAnnouncement from "../assets/Images/session-announcement.png";
 import courseImg from "../assets/Images/course-img.png";
