@@ -62,6 +62,7 @@ import heroImg from "../assets/Images/hero-img.svg";
 import enrollment from "../assets/Images/enrollment.jpg";
 import sessionAnnouncement from "../assets/Images/session-announcement.svg";
 import courseImg from "../assets/Images/course-img.png";
+import contactUsImg from "../assets/Images/contact-us.svg";
 import KycBG from "../assets/Images/KycBG.png";
 import courseDetailsImg from "../assets/Images/image 609.png";
 import securePayment from "../assets/Images/secure.png";
@@ -133,6 +134,7 @@ export const IMAGES = {
     enrollment,
     sessionAnnouncement,
     courseImg,
+    contactUsImg,
     KycBG,
     courseDetailsImg,
     securePayment,
