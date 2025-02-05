@@ -9,7 +9,7 @@ const FeaturedOn = () => {
         <div className="bg-[#fff6eb] py-[64px] flex flex-col gap-[38px]">
             <h1 className="text-primary-10 text-[36px] md:text-[40px] font-bold leading-[40px] xl:leading-[48px] text-center">Our Upcoming Courses </h1>
 
-            <Marquee speed={50}>
+            <Marquee speed={50} pauseOnHover>
                 {logos.map((_, index) => (
                     <div key={index} className="bg-white border border-neutral-45 rounded-[24px] font-Inter w-[312px] h-[310px] mr-10">
                         <img src={IMAGES.courseImg} alt="" className="rounded-t-[24px] w-full h-[200px] object-cover" />
