@@ -1,12 +1,12 @@
 import Marquee from "react-fast-marquee";
 import { IMAGES } from "../../../assets";
 
-const FeaturedOn = () => {
+const UpcomingCourses = () => {
     const logos = [IMAGES.pmGurukulLogo, IMAGES.pmGurukulLogo, IMAGES.pmGurukulLogo, IMAGES.pmGurukulLogo, IMAGES.pmGurukulLogo, IMAGES.pmGurukulLogo, IMAGES.pmGurukulLogo, IMAGES.pmGurukulLogo];
 
     const title = "Learn Modern Web Development with JavaScript";
     return (
-        <div className="bg-[#fff6eb] py-[64px] flex flex-col gap-[38px]">
+        <div className="bg-secondary-80 py-[64px] flex flex-col gap-[38px]">
             <h1 className="text-primary-10 text-[36px] md:text-[40px] font-bold leading-[40px] xl:leading-[48px] text-center">Our Upcoming Courses </h1>
 
             <Marquee speed={50} pauseOnHover>
@@ -41,4 +41,4 @@ const FeaturedOn = () => {
     );
 };
 
-export default FeaturedOn;
+export default UpcomingCourses;

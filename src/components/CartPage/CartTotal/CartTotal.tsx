@@ -15,7 +15,7 @@ const CartTotal = ({ cartData }: { cartData: TCartData[] }) => {
                 </div>
             </div>
             <div className="flex items-center justify-between">
-                <h1 className="heading6 text-sm">18% GST</h1>
+                <h1 className="heading6 text-sm">GST 18%</h1>
                 <div className="flex items-center gap-[6px]">
                     <h1 className="heading6 text-sm">₹{gst}</h1>
                 </div>

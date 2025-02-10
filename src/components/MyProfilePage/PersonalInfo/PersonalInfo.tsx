@@ -47,8 +47,7 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
       <div
         className="bg-white w-full rounded-2xl"
       >
-        <div className="grid grid-cols-2 gap-5 p-8">
-          <div className="flex flex-col gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-8">
             <TextInput
               label="Full Name"
               // name="fullName"
@@ -86,25 +85,7 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
               {...register("language", {
                 required: "Language is required",
               })} />
-            <SelectDropdown
-              label="State"
-              options={stateOptions}
-              error={errors.state}
-              {...register("state", {
-                required: "State is required",
-              })}
-            />
-            <TextInput
-              label="Pin Code"
-              placeholder="Enter your pincode"
-              error={errors.pinCode}
-              {...register("pinCode", {
-                required: "Pin code is required",
-              })}
-            />
-          </div>
-
-          <div className="flex flex-col gap-6">
+            
             <TextInput
               label="Date of Birth"
               placeholder="DD/MM/YYYY"
@@ -155,6 +136,7 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
               {...register("occupation", {
                 required: "Occupation is required",
               })} />
+              
             <SelectDropdown
               label="Country"
               options={countryOptions}
@@ -162,6 +144,37 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
               {...register("country", {
                 required: "country is required",
               })}
+            />
+            <SelectDropdown
+              label="State"
+              options={stateOptions}
+              error={errors.state}
+              {...register("state", {
+                required: "State is required",
+              })}
+            />
+            <TextInput
+              label="Pin Code"
+              placeholder="Enter your pincode"
+              error={errors.pinCode}
+              {...register("pinCode", {
+                required: "Pin code is required",
+              })}
+            />
+            <TextInput
+              label="Address Line 1"
+              placeholder="Enter your address"
+              error={errors.city}
+              {...register("addline1", {
+                required: "Address is required",
+              })}
+            />
+            <TextInput
+              label="Address Line 2"
+              placeholder="Enter your address"
+              error={errors.city}
+              {...register("addline2")}
+              isRequired={false}
             />
             <TextInput
               label="City"
@@ -179,7 +192,6 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
                 required: "Referral Code is required",
               })}
             />
-          </div>
         </div>
       </div>
     </div>

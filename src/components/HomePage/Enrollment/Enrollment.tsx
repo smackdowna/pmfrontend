@@ -17,7 +17,7 @@ const Enrollment = () => {
                             </button>
                         </Ripple>
                     </div>
-                    <img src={IMAGES.enrollment} alt="" className="rounded-r-none xl:rounded-r-[64px] rounded-t-3xl xl:rounded-t-none xl:rounded-tr-3xl w-full h-full" />
+                    <img src={IMAGES.enrollment} alt="" className="rounded-r-none xl:rounded-r-[64px] rounded-t-3xl xl:rounded-t-none xl:rounded-tr-[64px] w-full h-full" />
                 </div>
             </Container>
         </div>

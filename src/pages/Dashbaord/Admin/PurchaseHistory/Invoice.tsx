@@ -7,7 +7,7 @@ import { formatDate } from '../../../../utils/formatDate';
 const styles = StyleSheet.create({
   page: { padding: 30, fontSize: 12, position: 'relative' },
   headerContainer: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 },
-  logo: { width: 180, height: 60 },
+  logo: { width: 200, height: 60 },
   address: { textAlign: 'right', fontSize: 10 },
   section: { marginBottom: 10, backgroundColor: '#F2F2F2', padding: 8, borderRadius: 6 },
   section2: { marginBottom: 10 },
