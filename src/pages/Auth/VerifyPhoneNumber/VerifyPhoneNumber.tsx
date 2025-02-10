@@ -86,7 +86,7 @@ const VerifyPhoneNumber = () => {
     return (
         <div className="bg-neutral-80 h-screen flex items-center justify-center font-Inter p-5">
             <form onSubmit={handleSubmit(handleVerifyOtp)} className="bg-white border border-neutral-15 rounded-[20px] p-5 md:p-[60px] flex flex-col gap-5 h-[400px] md:h-[436px] w-[529px] max-auto">
-                <h1 className="text-primary-25 text-[28px] leading-8 font-semibold text-center mb-5 capitalize">Verify your Number</h1>
+                <h1 className="text-primary-25 text-[28px] leading-8 font-semibold text-center capitalize">Verify your Number</h1>
 
                 <div className="flex items-center justify-center gap-2 mb-5">
                     <p className="text-neutral-30 text-sm leading-5">OTP has been sent to <strong>+91 {otpData?.mobileNumber}</strong></p>
@@ -120,7 +120,7 @@ const VerifyPhoneNumber = () => {
                         <Link to={"/auth/login"} className="text-primary-10 text-sm leading-5 font-medium text-center">Resend OTP</Link>
                         :
                         <p className="font-Inter text-neutral-65 text-center">
-                            0:{timeLeft.toString().padStart(2, "0")}
+                            Resend In <strong>0:{timeLeft.toString().padStart(2, "0")}</strong>
                         </p>
                 }
             </form>

@@ -4,9 +4,10 @@ import TextInput from "../../../components/Reusable/TextInput/TextInput";
 import { useSendOtpMutation } from "../../../redux/Features/Auth/authApi";
 import { toast } from "sonner";
 import LoadingSpinner from "../../../components/Loaders/LoadingSpinner/LoadingSpinner";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useOtpDataFromLocalStorage from "../../../hooks/useOtpDataFromLocalStorage";
 import { useEffect } from "react";
+import { IMAGES } from "../../../assets";
 
 export type OtpFormData = {
     email: string;
@@ -52,7 +53,12 @@ const Login = () => {
     return (
         <div className="bg-neutral-80 h-screen flex items-center justify-center font-Inter p-5">
             <form onSubmit={handleSubmit(handleLogin)} className="bg-white border border-neutral-15 rounded-[20px] p-5 md:p-[60px] flex flex-col gap-5  w-[529px] max-auto">
-                <h1 className="text-primary-25 text-[28px] leading-8 font-semibold text-center mb-5 capitalize">Login to get started</h1>
+                <div className="flex items-center gap-5 mb-5">
+                <Link to={"/"} className="flex items-center gap-2">
+                    <img src={IMAGES.pmGurukulFavicon} alt="PM-Gurukul" className="size-16" />
+                </Link>
+                <h1 className="text-primary-25 text-[28px] leading-8 font-semibold text-center capitalize">Login to get started</h1>
+                </div>
                 <TextInput
                     label="Email"
                     placeholder="Enter email"
@@ -68,17 +74,17 @@ const Login = () => {
                     {...register("mobileNumber", {
                         required: "Mobile Number is required",
                         pattern: {
-                          value: /^\+?[1-9]\d{1,14}$/,
-                          message: "Enter a valid mobile number",
-                        },minLength: {
-                          value: 10,
-                          message: "Mobile Number must be 10 characters",
+                            value: /^\+?[1-9]\d{1,14}$/,
+                            message: "Enter a valid mobile number",
+                        }, minLength: {
+                            value: 10,
+                            message: "Mobile Number must be 10 characters",
                         },
                         maxLength: {
-                          value: 10,
-                          message: "Mobile Number must be at most 10 characters",
+                            value: 10,
+                            message: "Mobile Number must be at most 10 characters",
                         },
-                      })}
+                    })}
                 />
                 <button
                     disabled={isLoading}

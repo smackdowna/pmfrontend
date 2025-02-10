@@ -87,7 +87,6 @@ const CourseDetailsHero: React.FC<TCourseDetailsHero> = ({ courseDetails, isDeta
                     isDetailsLoading ?
                         <CourseDetailsHeroLoader />
                         :
-
                         <div className="font-Inter flex flex-col-reverse lg:flex-row gap-12 xl:gap-0 justify-between py-6 md:py-12 xl:py-[80px]">
                             <div className="flex flex-col justify-center">
                                 <Badge title={courseDetails?.category} />
@@ -96,8 +95,8 @@ const CourseDetailsHero: React.FC<TCourseDetailsHero> = ({ courseDetails, isDeta
 
                                 <div className="flex items-center gap-6 mt-7">
                                     <div className="flex items-center gap-2">
-                                        <img src={IMAGES.pmGurukulLogo} alt="avatar" className="size-10" />
-                                        <p className="text-neutral-15 leading-6 text-lg font-medium">{courseDetails?.author}</p>
+                                        <img src={IMAGES.pmGurukulFavicon} alt="avatar" className="size-10" />
+                                        <p className="text-neutral-15 leading-6 text-lg font-medium">{courseDetails?.author ? courseDetails?.author : "PMGURUKKUL"}</p>
                                     </div>
 
                                     <span className="text-neutral-10 text-lg">|</span>

@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     left: 30,
   },
   statusCard: {
-    backgroundColor: '#f21313',
+    backgroundColor: '#25D366',
     color: 'white',
     paddingVertical: 2,
     paddingHorizontal: 8,
@@ -169,7 +169,7 @@ const Invoice = ({ order }: { order: TOrders }) => {
         </View>
 
         {/* Footer Section */}
-        <Text style={styles.clickableLink}>www.pmgurukul.com</Text>
+        <Text style={styles.clickableLink}>www.pmgurukkul.com</Text>
         <View style={styles.footerDetails}>
           <Text>Generated on {new Date().toLocaleString()}</Text>
         </View>

@@ -58,6 +58,7 @@ import telegram from "../assets/Icons/telegram.svg";
 
 // Importing Images
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
+import pmGurukulFavicon from "../assets/Images/pmgurukul-favicon.png";
 import heroImg from "../assets/Images/hero-img.svg";
 import enrollment from "../assets/Images/enrollment.jpg";
 import sessionAnnouncement from "../assets/Images/session-announcement.svg";
@@ -130,6 +131,7 @@ export const ICONS = {
 
 export const IMAGES = {
     pmGurukulLogo,
+    pmGurukulFavicon,
     heroImg,
     enrollment,
     sessionAnnouncement,
