@@ -2,6 +2,7 @@ import { baseApi } from "../../Api/baseApi";
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    
     sendOtp: builder.mutation({
       query: (userInfo) => ({
         url: "/send-otp",

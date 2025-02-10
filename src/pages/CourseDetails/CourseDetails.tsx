@@ -24,7 +24,7 @@ const CourseDetails = () => {
         <div>
             {courseTitle && (
                 <Helmet>
-                    <title>PM Gurukul | {courseTitle}</title>
+                    <title>PMGURUKKUL | {courseTitle}</title>
                 </Helmet>
             )}
             <CourseDetailsHero courseDetails={courseDetails?.course} isDetailsLoading={isLoading} />

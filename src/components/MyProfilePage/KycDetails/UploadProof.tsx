@@ -11,27 +11,18 @@ interface UploadProofProps {
   onFileChange?: (name: string, file: File | null) => void;
 }
 
-const UploadProof: React.FC<UploadProofProps> = ({ errors = {}, fileNames = {}, onFileChange }) => {
+const UploadProof: React.FC<UploadProofProps> = ({ 
+  errors = {}, 
+  fileNames = {}, 
+  onFileChange, 
+}) => {
+
   return (
     <div className="bg-white w-full rounded-2xl p-6">
       <div className="flex flex-col gap-4">
         <p className="text-neutral-90 font-semibold">Upload Proof</p>
-        <UploadInput
-          label="Aadhaar Card Image"
-          name="adImageFile"
-          accept="image/*"
-          error={errors?.adImageFile || ""}
-          fileName={fileNames?.adImageFile || ""}
-          onFileChange={onFileChange || (() => {})}
-        />
-        <UploadInput
-          label="PAN Card Image"
-          name="panImageFile"
-          accept="image/*"
-          error={errors?.panImageFile || ""}
-          fileName={fileNames?.panImageFile || ""}
-          onFileChange={onFileChange || (() => {})}
-        />
+
+        {/* Second Upload Input - Remains the same */}
         <UploadInput
           label="Cancel Cheque/Passbook Image"
           name="passbookImageFile"

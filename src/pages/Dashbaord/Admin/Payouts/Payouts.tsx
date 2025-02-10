@@ -1,11 +1,12 @@
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
-import DashboardCard from "../../../../components/Reusable/DashboardCard/DashboardCard";
 import { Table } from "../../../../components/ReferralPayoutsPage/TransactionHistory";
 import { useApprovePayoutMutation, useGetAllEarningsQuery } from "../../../../redux/Features/Admin/adminApi";
 import { formatDate } from "../../../../utils/formatDate";
 import Spinner from "../../../../components/Loaders/Spinner/Spinner";
 import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
 import { toast } from "sonner";
+import { Helmet } from "react-helmet-async";
+import DashboardStatusOrLoader from "../../../../components/Reusable/DashboardStatusOrLoader/DashboardStatusOrLoader";
 
 type TEarnings = {
   _id: string;
@@ -78,17 +79,30 @@ const Payouts = () => {
     }))
     : [];
 
-    const approvedPayouts = allEarnings?.earnings?.filter((earning: TEarnings) => earning?.payout_status === "Approved");
+  const approvedPayouts = allEarnings?.earnings?.filter((earning: TEarnings) => earning?.payout_status === "Approved");
 
   return (
     <>
+      <Helmet>
+        <title>PMGURUKKUL | Manage Payouts</title>
+      </Helmet>
       <div className="flex items-center justify-between w-full">
         <DashboardHeader pageName="Payouts" pageDesc="Manage and Track Payments" />
       </div>
-      <div className="flex items-center w-full  gap-4">
-        <DashboardCard title="Total Payouts" count={allEarnings?.earnings?.length} />
-        <DashboardCard title="Approve Payouts" count={approvedPayouts?.length} />
-      </div>
+      {/* Status cards */}
+      <DashboardStatusOrLoader
+        statusCardInfo={[
+          {
+            title: "Total Payouts",
+            valueCount: allEarnings?.earnings?.length,
+          },
+          {
+            title: "Approve Payouts",
+            valueCount: approvedPayouts?.length,
+          },
+        ]}
+        isLoading={isLoading}
+      />
       {
         isLoading ?
           <div className="flex items-center justify-center mt-5">

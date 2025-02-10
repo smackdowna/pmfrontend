@@ -46,14 +46,24 @@ import folderUpload from "../assets/Icons/empty 1.svg"
 import menuDots from "../assets/Icons/Menu Dots.svg"
 import tickMark from "../assets/Icons/tick-mark.svg"
 import logout from "../assets/Icons/logout.svg"
+// Social Media icons
+import facebook from "../assets/Icons/facebook.svg";
+import youtube from "../assets/Icons/youtube.svg";
+import instagram from "../assets/Icons/instagram.svg";
+import twitter from "../assets/Icons/twitter.svg";
+import linkedin from "../assets/Icons/linkedin.svg";
+import whatsapp from "../assets/Icons/whatsapp.svg";
+import telegram from "../assets/Icons/telegram.svg";
 
 
 // Importing Images
 import pmGurukulLogo from "../assets/Images/pm-gurukul.png";
-import heroImg from "../assets/Images/hero-img.png";
-import enrollment from "../assets/Images/enrollment.png";
-import sessionAnnouncement from "../assets/Images/session-announcement.png";
+import pmGurukulFavicon from "../assets/Images/pmgurukul-favicon.png";
+import heroImg from "../assets/Images/hero-img.svg";
+import enrollment from "../assets/Images/enrollment.jpg";
+import sessionAnnouncement from "../assets/Images/session-announcement.svg";
 import courseImg from "../assets/Images/course-img.png";
+import contactUsImg from "../assets/Images/contact-us.svg";
 import KycBG from "../assets/Images/KycBG.png";
 import courseDetailsImg from "../assets/Images/image 609.png";
 import securePayment from "../assets/Images/secure.png";
@@ -110,14 +120,23 @@ export const ICONS = {
     copy,
     tickMark,
     logout,
+    facebook,
+    youtube,
+    instagram,
+    twitter,
+    linkedin,
+    whatsapp,
+    telegram,
 };
 
 export const IMAGES = {
     pmGurukulLogo,
+    pmGurukulFavicon,
     heroImg,
     enrollment,
     sessionAnnouncement,
     courseImg,
+    contactUsImg,
     KycBG,
     courseDetailsImg,
     securePayment,

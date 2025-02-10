@@ -27,7 +27,7 @@ const MyCourseVideo = () => {
             alt="PM-Gurukul"
             className="size-12"
           />
-          <h1 className="text-primary-10 font-semibold text-2xl">PM Gurukul</h1>
+          <h1 className="text-primary-10 font-semibold text-2xl">PMGURUKKUL</h1>
         </Link>{" "}
         <div className="bg-white flex justify-end items-center">
           <ul className="flex gap-5">

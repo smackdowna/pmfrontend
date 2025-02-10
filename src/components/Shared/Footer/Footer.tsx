@@ -1,17 +1,34 @@
 import { Link } from "react-router-dom";
 import Container from "../Container/Container";
-import { footerLinks } from "./footerLinks";
+import { footerLinks, socialMediaLinks } from "./footerLinks";
 
 const Footer = () => {
-    
+   
     return (
         <div className="bg-primary-10 py-[64px] font-Inter">
             <Container>
                 <div className="flex flex-col gap-8">
                     <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 justify-between">
                         <div className="flex flex-col gap-[10px]">
-                            <h1 className="text-2xl text-white font-semibold leading-7">PM Gurukul</h1>
-                            <p className="text-neutral-35 leading-6 max-w-[377px]">Focus on building diverse skills instead of running after opportunities. With PM Gurukul's courses, you can grow and learn in a way that helps you become your best self.</p>
+                            <h1 className="text-2xl text-white font-semibold leading-7">PMGURUKKUL</h1>
+                            <p className="text-neutral-35 leading-6 max-w-[420px]">PMGURUKKUL is an opportunity to make a positive change when it comes to upskilling. You can learn, refine your skills and focus on your career growth with India's leading ed-tech company. Join the revolution to move forward on the path to a better financial future.</p>
+
+                            {/* Social Media Links */}
+                            <div className="flex items-center gap-6 mt-5">
+                                {
+                                    socialMediaLinks?.map((link, index) =>
+                                        <a key={index} href={link.path} target="_blank" rel="noopener noreferrer" className="">
+                                            <img
+                                                style={{ width: link?.size, height: link?.size }}
+                                                className="transition-transform duration-300 transform hover:scale-125 hover:-translate-y-1"
+                                                src={link.icon}
+                                                alt="icon"
+                                            />
+
+                                        </a>
+                                    )
+                                }
+                            </div>
                         </div>
 
                         <div className="flex flex-col md:flex-row gap-12 md:gap-24">

@@ -6,7 +6,7 @@ import IdentityInfo from "../../../components/MyProfilePage/KycDetails/IdentityI
 // import UploadProof from "../../../components/MyProfilePage/KycDetails/UploadProof";
 import BankInfo from "../../../components/MyProfilePage/KycDetails/BankInfo";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useGetMeQuery } from "../../../redux/Features/User/userApi";
 import { Helmet } from "react-helmet-async";
 import UploadedProofs from "../../../components/MyProfilePage/UploadedProofs/UploadedProofs";
@@ -16,7 +16,7 @@ import { TBankInfo, TProfileData } from "../../../types/profileData.types";
 const MyProfile = () => {
   // Getting loggedin user profile data
   const { data: myProfile } = useGetMeQuery({});
-  console.log(myProfile);
+  const [isKycClicked, setIsKycClicked] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -36,6 +36,8 @@ const MyProfile = () => {
       setValue("dob", formattedDob);
       setValue("city", myProfile?.user?.city);
       setValue("state", myProfile?.user?.state);
+      setValue("addline1", myProfile?.user?.addline1);
+      setValue("addline2", myProfile?.user?.addline2);
       setValue("country", myProfile?.user?.country);
       setValue("pinCode", myProfile?.user?.pinCode);
       setValue("occupation", myProfile?.user?.occupation);
@@ -57,6 +59,7 @@ const MyProfile = () => {
       }
     }
   }, [myProfile, setValue]);
+  console.log(myProfile);
 
   const handleEditProfileData = (data: TProfileData) => {
     console.log(data);
@@ -64,7 +67,7 @@ const MyProfile = () => {
   return (
     <div>
       <Helmet>
-        <title>PM Gurukul | My Profile</title>
+        <title>PMGURUKKUL | My Profile</title>
       </Helmet>
       <div className="flex items-center justify-start gap-3">
         <img src={ICONS.ArrowLeft} alt="Profile" className="size-9" />
@@ -72,29 +75,38 @@ const MyProfile = () => {
       </div>
       <form onSubmit={handleSubmit(handleEditProfileData)} className="flex flex-col gap-8 mt-8">
         <PersonalInfo register={register} errors={errors} />
-        <div className="flex flex-col gap-4">
-          <p className="text-neutral-90 font-semibold">KYC Details</p>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="flex flex-col gap-4">
-              <KYCStatus kycStatus={myProfile?.user?.kyc_status} />
-              <IdentityInfo register={register} errors={errors} />
-              {/* <UploadProof register={register} errors={errors} /> */}
-              <UploadedProofs
-                addharCardImage={myProfile?.user?.addharCard?.adImage?.url}
-                panCardImage={myProfile?.user?.panCard?.panImage?.url}
-                passBookImage={myProfile?.user?.passbookImage?.url}
-              />
-            </div>
-            {myProfile?.user?.bankInfo?.map((_: TBankInfo, index: number) => (
-              <BankInfo
-                key={index}
-                index={index}
-                register={register}
-                errors={errors}
-              />
-            ))}
-          </div>
+        <div className="flex justify-end">
+          <button
+            onClick={() => setIsKycClicked(!isKycClicked)}
+            type="submit"
+            className="px-6 py-3 bg-primary-10 text-white rounded-xl text-lg font-semibold">
+            Submit KYC Information
+          </button>
         </div>
+        {
+          isKycClicked &&
+          <div className="flex flex-col gap-4">
+            <p className="text-neutral-90 font-semibold">KYC Details</p>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-4">
+                <KYCStatus kycStatus={myProfile?.user?.kyc_status} />
+                <IdentityInfo register={register} errors={errors} />
+                {/* <UploadProof register={register} errors={errors} /> */}
+                <UploadedProofs
+                  addharCardImage={myProfile?.user?.addharCard?.adImage?.url}
+                  panCardImage={myProfile?.user?.panCard?.panImage?.url}
+                  passBookImage={myProfile?.user?.passbookImage?.url}
+                />
+              </div>
+              {(myProfile?.user?.bankInfo?.length ? myProfile.user.bankInfo : [{}]).map(
+                (_: TBankInfo, index: number) => (
+                  <BankInfo key={index} index={index} register={register} errors={errors} />
+                )
+              )}
+
+            </div>
+          </div>
+        }
       </form>
     </div>
   );

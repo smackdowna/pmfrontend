@@ -27,7 +27,7 @@ const WhyUs = () => {
       <Container>
         <div className="flex flex-col gap-9 items-center justify-center">
           <SectionHeading
-            heading="Why PM Gurukul?"
+            heading="Why PMGURUKKUL?"
             description="Your Pathway to Growth, Learning, and Success."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-start md:items-center mx-auto w-full xl:w-[90%] gap-10 lg:gap-[90px]">

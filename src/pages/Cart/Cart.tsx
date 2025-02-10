@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import CartItem from "../../components/CartPage/CartItem/CartItem";
 import CartTotal from "../../components/CartPage/CartTotal/CartTotal";
 import Heading1 from "../../components/Reusable/Heading1/Heading1";
@@ -9,6 +10,9 @@ const Cart = () => {
     console.log(cartData);
     return (
         <div className="bg-neutral-20">
+            <Helmet>
+                <title>PMGURUKKUL | Manage Your Cart</title>
+            </Helmet>
             <Container>
                 <div className="flex flex-col xl:flex-row gap-8 py-[64px] w-full">
                     <div className="font-Inter flex flex-col gap-8 w-full">

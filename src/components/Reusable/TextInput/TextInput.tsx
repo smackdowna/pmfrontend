@@ -11,18 +11,23 @@ interface TextInputProps {
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   defaultValue?: any;
-  isDisabled? : boolean;
+  isDisabled?: boolean;
+  isRequired?: boolean;
 }
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  ({ label, name, placeholder = "", type = "text", error, defaultValue, isDisabled = false, ...rest }, ref) => {
+  ({ label, name, placeholder = "", type = "text", error, defaultValue, isDisabled = false, isRequired = true, ...rest }, ref) => {
     return (
       <div className="flex flex-col gap-2 font-Inter">
         <label htmlFor={name} className="text-neutral-65">
           {label}
-          <span className="text-red-600"> *</span>
+          {
+            isRequired &&
+            <span className="text-red-600"> *</span>
+          }
         </label>
         <input
+          required={isRequired}
           id={name}
           name={name}
           type={type}
@@ -30,9 +35,8 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           defaultValue={defaultValue}
           ref={ref}
           disabled={isDisabled}
-          className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border focus:outline-none focus:border-primary-10 transition duration-300 ${
-            error ? "border-red-500" : "border-neutral-75"
-          }`}
+          className={`px-[18px] py-[14px] rounded-lg bg-neutral-70 border focus:outline-none focus:border-primary-10 transition duration-300 ${error ? "border-red-500" : "border-neutral-75"
+            }`}
           {...rest}
         />
         {error?.message && (

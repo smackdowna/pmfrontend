@@ -1,3 +1,5 @@
+import { ICONS } from "../../../assets";
+
 export const footerLinks = [
     {
         heading: "Product",
@@ -41,4 +43,42 @@ export const footerLinks = [
             },
         ]
     },
+];
+
+export const socialMediaLinks = [
+    {
+        icon: ICONS.facebook,
+        path: "https://www.facebook.com/pmgurukkul/",
+        size: 40
+    },
+    {
+        icon: ICONS.youtube,
+        path: "https://www.youtube.com/pmgurukkul/",
+        size: 42
+    },
+    {
+        icon: ICONS.instagram,
+        path: "https://www.instagram.com/pmgurukkul/",
+        size: 36
+    },
+    {
+        icon: ICONS.twitter,
+        path: "https://www.twitter.com/pmgurukkul/",
+        size: 40
+    },
+    {
+        icon: ICONS.linkedin,
+        path: "https://www.linkedin.com/company/pmgurukkul/",
+        size: 42
+    },
+    {
+        icon: ICONS.whatsapp,
+        path: "https://wa.me/your-whatsapp-number",
+        size: 35
+    },
+    {
+        icon: ICONS.telegram,
+        path: "https://t.me/pmgurukkul",
+        size: 33
+    }
 ];

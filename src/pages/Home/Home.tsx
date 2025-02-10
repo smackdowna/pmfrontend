@@ -1,25 +1,25 @@
 import Enrollment from "../../components/HomePage/Enrollment/Enrollment";
 import Testimonials from "../../components/HomePage/Testimonials/Testimonials";
-import FeaturedOn from "../../components/HomePage/FeaturedOn/FeaturedOn";
 import Hero from "../../components/HomePage/Hero/Hero";
 import SessionAnnouncement from "../../components/HomePage/SessionAnnouncement/SessionAnnouncement";
-import WhyUs from "../../components/HomePage/WhyUs/WhyUs";
+// import WhyUs from "../../components/HomePage/WhyUs/WhyUs";
 import FAQ from "../../components/Shared/FAQ/FAQ";
 import CustomerSupport from "../../components/Shared/CustomerSupport/CustomerSupport";
 import { Helmet } from "react-helmet-async";
+import UpcomingCourses from "../../components/HomePage/UpcomingCourses/UpcomingCourses";
 
 
 const Home = () => {
     return (
         <div>
             <Helmet>
-                <title>PM Gurukul | Achieve Digital Excellence</title>
+                <title>PMGURUKKUL | Achieve Digital Excellence</title>
             </Helmet>
             <Hero />
-            <FeaturedOn />
+            <UpcomingCourses />
             <Enrollment />
             <SessionAnnouncement />
-            <WhyUs />
+            {/* <WhyUs /> */}
             <Testimonials />
             <FAQ />
             <CustomerSupport />

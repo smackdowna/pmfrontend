@@ -4,6 +4,7 @@ import AddVideo from "../../../../../components/AddVideo/AddVideo";
 import { Link, useParams } from "react-router-dom";
 import { useGetSingleCourseByIdQuery } from "../../../../../redux/Features/Course/courseApi";
 import { useDeleteVideoMutation } from "../../../../../redux/Features/Admin/adminApi";
+import { Helmet } from "react-helmet-async";
 
 type TVideo = {
     _id: string;
@@ -49,6 +50,9 @@ const AddCourseVideo = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>PMGURUKKUL | Add Videos</title>
+            </Helmet>
             <div className="flex justify-between items-center lg:w-[80%] w-full mx-auto">
                 <h1 className="text-[#0F172A] font-Inter font-semibold leading-7 tracking-tighter text-2xl">
                     Add Course Video
@@ -101,7 +105,7 @@ const AddCourseVideo = () => {
                                     </div>
                                     <button
                                         onClick={() => handledDeleteVideo(video?._id)}
-                                        disabled={deletingVideoId === video?._id} // Optionally disable the button while loading
+                                        disabled={deletingVideoId === video?._id}
                                     >
                                         {deletingVideoId === video?._id ? (
                                             <div className="size-5 animate-[spin_1s_linear_infinite] rounded-full border-2 border-r-error border-[#3b9df84b]"></div>
