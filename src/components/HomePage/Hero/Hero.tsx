@@ -4,8 +4,12 @@ import Container from "../../Shared/Container/Container";
 import HeroContainer from "../../Reusable/HeroContainer/HeroContainer";
 import Badge from "../../Reusable/Badge/Badge";
 import Ripple from "../../Reusable/Ripple/Ripple";
+import { TLoggedInUser } from "../../../types/user.types";
+import { useCurrentUser } from "../../../redux/Features/Auth/authSlice";
+import { useSelector } from "react-redux";
 
 const Hero = () => {
+  const user = useSelector(useCurrentUser) as TLoggedInUser;
   return (
     <HeroContainer classNames="pt-12">
       <Container>
@@ -21,10 +25,11 @@ const Hero = () => {
             <div className="flex items-center gap-5 mt-7">
               <Ripple styles="rounded-xl">
                 <Link
-                  to={"/auth/login"}
-                  className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow"
-                >
-                  Register Now
+                  to={user ? "/dashboard/my-courses" : "/auth/login"}
+                  className="bg-primary-gradient-light px-5 py-[10px] text-primary-10 font-semibold leading-6 rounded-[10px] shadow-primary-shadow">
+                  {
+                    user ? "Continue Course" : "Register Now"
+                  }
                 </Link>
               </Ripple>
               <Link
