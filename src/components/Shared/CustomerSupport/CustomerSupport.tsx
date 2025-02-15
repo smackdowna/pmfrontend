@@ -14,10 +14,10 @@ const CustomerSupport = () => {
                     <div className="flex items-center gap-3">
                         <a href="tel:+918800383344" target="_blank" rel="noreferrer">
                             <Ripple styles="rounded-[14px]">
-                                <button className="px-7 py-[14px] border border-primary-10 rounded-[14px] text-primary-10 font-semibold text-xl leading-6">Call Now</button>
+                                <button className="px-7 py-[14px] border border-primary-10 rounded-[14px] text-primary-10 font-semibold text-xl leading-6">Mobile</button>
                             </Ripple>
                         </a>
-                        <a href="https://api.whatsapp.com/send?phone=8801572915890&text=Hello,%20I%20want%20to%20know%20more%20about%20your%20courses." target="_blank" rel="noreferrer">
+                        <a href="https://api.whatsapp.com/send?phone=9540143943&text=Hello,%20I%20want%20to%20know%20more%20about%20your%20courses." target="_blank" rel="noreferrer">
                             <Ripple styles="rounded-xl">
                                 <button className="px-7 py-[14px] border border-secondary-75 rounded-[14px] bg-secondary-70 text-white font-semibold text-xl leading-6">
                                     Whatsapp

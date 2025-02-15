@@ -20,7 +20,6 @@ export type TSetupProfileData = {
     full_name: string;
     email: string;
     gender: string;
-    language: string;
     dob: string;
     mobileNumber: string;
     occupation: string;
@@ -150,7 +149,6 @@ const SetupProfile = () => {
             formData.append('full_name', data.full_name);
             formData.append('email', data.email);
             formData.append('gender', data.gender);
-            formData.append('language', data.language);
             formData.append('dob', data.dob);
             if (otpData?.mobileNumber) {
                 formData.append('mobileNumber', otpData?.mobileNumber);
