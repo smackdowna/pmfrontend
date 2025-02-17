@@ -82,6 +82,7 @@ const Login = () => {
                 />
                 <img onClick={() => setIsPasswordVisible(!isPasswordVisible)} src={isPasswordVisible ? ICONS.eyeOpen : ICONS.eyeClose} alt="eye-icon" className="size-5 cursor-pointer absolute top-[50px] bottom-0 right-3" />
                 </div>
+                <Link to={"/auth/forgot-password"} className="font-semibold text-blue-10 text-end text-sm">Forgot Password?</Link>
                 <button
                     disabled={isLoading}
                     type="submit"

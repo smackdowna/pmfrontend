@@ -39,6 +39,7 @@ import ProtectedRoute from './ProtectedRoute';
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 import ReferralsAndPayouts from "../pages/Dashbaord/Admin/ReferralsAndPayouts/ReferralsAndPayouts";
 import Signup from "../pages/Auth/Signup/Signup";
+import ForgotPassword from "../pages/Auth/ForgotPassword/ForgotPassword";
 
 
 export const router = createBrowserRouter([
@@ -97,6 +98,10 @@ export const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword />,
       },
       {
         path: "verify-phone",
