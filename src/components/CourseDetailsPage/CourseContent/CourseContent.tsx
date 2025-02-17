@@ -93,7 +93,7 @@ const CourseContent:React.FC<TCourseContent> = ({ courseDetails }) => {
                         {
                             courseDetails?.lectures?.map((lecture:TLecture, index:number) =>
                                 <div key={index} className="flex items-center justify-between">
-                                    <p className="text-primary-10 text-sm leading-7 capitalize">{index}. {lecture?.title}</p>
+                                    <p className="text-primary-10 text-sm leading-7 capitalize">{index}. {lecture?.title.substring(0, 25)}...</p>
                                     <div className="flex items-center gap-[5px]">
                                         <img src={ICONS.video} alt="video-icon" className="size-[14px]" />
                                         <p className="text-primary-10 text-sm leading-7">{lecture?.videoDuration}</p>
