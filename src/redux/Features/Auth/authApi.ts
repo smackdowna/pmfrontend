@@ -3,6 +3,16 @@ import { baseApi } from "../../Api/baseApi";
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     
+    login: builder.mutation({
+      query: (loginData) => ({
+        url: "/login",
+        method: "POST",
+        body: loginData,
+        credentials: "include",
+      }),
+      invalidatesTags: ["user"],
+    }),
+    
     sendOtp: builder.mutation({
       query: (userInfo) => ({
         url: "/send-otp",
@@ -67,6 +77,7 @@ const authApi = baseApi.injectEndpoints({
 });
 
 export const {
+  useLoginMutation,
   useSendOtpMutation,
   useSetupProfileMutation,
   useVerifyOtpMutation,

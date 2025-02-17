@@ -47,6 +47,8 @@ import menuDots from "../assets/Icons/Menu Dots.svg"
 import tickMark from "../assets/Icons/tick-mark.svg"
 import logout from "../assets/Icons/logout.svg"
 import student from "../assets/Icons/student.svg"
+import eyeOpen from "../assets/Icons/eye-closed.svg"
+import eyeClose from "../assets/Icons/eye-open.svg"
 // Social Media icons
 import facebook from "../assets/Icons/facebook.svg";
 import youtube from "../assets/Icons/youtube.svg";
@@ -129,6 +131,8 @@ export const ICONS = {
     whatsapp,
     telegram,
     student,
+    eyeOpen,
+    eyeClose,
 };
 
 export const IMAGES = {

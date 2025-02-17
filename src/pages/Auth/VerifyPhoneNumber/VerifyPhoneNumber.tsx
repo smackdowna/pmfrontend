@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { useVerifyOtpMutation } from "../../../redux/Features/Auth/authApi";
 import { toast } from "sonner";
 import LoadingSpinner from "../../../components/Loaders/LoadingSpinner/LoadingSpinner";
-import { OtpFormData } from "../Login/Login";
 import useOtpDataFromLocalStorage from "../../../hooks/useOtpDataFromLocalStorage";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/Features/Auth/authSlice";
@@ -15,6 +14,11 @@ import { setUser } from "../../../redux/Features/Auth/authSlice";
 interface FormData {
     otp: string;
 }
+
+ type OtpFormData = {
+    email: string;
+    mobileNumber: string;
+};
 
 const VerifyPhoneNumber = () => {
     const dispatch = useDispatch();

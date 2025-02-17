@@ -38,6 +38,7 @@ import AddCourseVideo from "../pages/Dashbaord/Admin/AddCourse/AddCourseVideo/Ad
 import ProtectedRoute from './ProtectedRoute';
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 import ReferralsAndPayouts from "../pages/Dashbaord/Admin/ReferralsAndPayouts/ReferralsAndPayouts";
+import Signup from "../pages/Auth/Signup/Signup";
 
 
 export const router = createBrowserRouter([
@@ -89,6 +90,10 @@ export const router = createBrowserRouter([
     element: <AuthLayout />,
     errorElement: <NotFound />,
     children: [
+      {
+        path: "signup",
+        element: <Signup />,
+      },
       {
         path: "login",
         element: <Login />,
