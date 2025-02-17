@@ -21,6 +21,8 @@ type OtpFormData = {
 export type TSetupProfileData = {
     full_name: string;
     email: string;
+    password: string;
+    confirm_password: string;
     gender: string;
     dob: string;
     mobileNumber: string;
@@ -150,6 +152,8 @@ const SetupProfile = () => {
             // Appending text fields
             formData.append('full_name', data.full_name);
             formData.append('email', data.email);
+            formData.append('password', data.password);
+            formData.append('confirm_password', data.confirm_password);
             formData.append('gender', data.gender);
             formData.append('dob', data.dob);
             if (otpData?.mobileNumber) {

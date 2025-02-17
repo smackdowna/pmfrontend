@@ -116,6 +116,7 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
             {...register("full_name", {
               required: "Full Name is required",
             })} />
+         
           <TextInput
             label="Email ID"
             placeholder="Enter your email"
@@ -130,6 +131,23 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
               },
             })}
           />
+           <TextInput
+            label="Password"
+            // name="fullName"
+            placeholder="Enter password"
+            error={errors.password}
+            {...register("password", {
+              required: "Password is required",
+            })} />
+           <TextInput
+            label="Confirm Password"
+            // name="fullName"
+            placeholder="Re-Enter password"
+            error={errors.confirm_password}
+            {...register("confirm_password", {
+              required: "Password is required",
+            })} />
+
           <SelectDropdown
             label="Gender"
             options={genderOptions}
