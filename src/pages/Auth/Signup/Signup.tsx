@@ -93,7 +93,7 @@ const Signup = () => {
                 >
                     {isLoading ? <LoadingSpinner /> : "Login"}
                 </button>
-            <p className="text-primary-15 text-sm leading-5 font-medium text-center">Don't Have An Account? <Link to={"/auth/signup"} className="font-bold">Sign Up</Link></p>
+            <p className="text-primary-15 text-sm leading-5 font-medium text-center">Already Have An Account? <Link to={"/auth/login"} className="font-bold">Login</Link></p>
             </form>
         </div>
     );
