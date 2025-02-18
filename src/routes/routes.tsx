@@ -41,6 +41,7 @@ import ReferralsAndPayouts from "../pages/Dashbaord/Admin/ReferralsAndPayouts/Re
 import Signup from "../pages/Auth/Signup/Signup";
 import ForgotPassword from "../pages/Auth/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword/ResetPassword";
+import EmailSent from "../pages/Auth/EmailSent/EmailSent";
 
 
 export const router = createBrowserRouter([
@@ -103,6 +104,10 @@ export const router = createBrowserRouter([
       {
         path: "forgot-password",
         element: <ForgotPassword />,
+      },
+      {
+        path: "email-sent",
+        element: <EmailSent />,
       },
       {
         path: "reset-password/:token",

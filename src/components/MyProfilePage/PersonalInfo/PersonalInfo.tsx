@@ -158,8 +158,8 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
               label="Confirm Password"
               placeholder="Confirm your password"
               type={isConfirmPasswordVisible ? "text" : "password"}
-              error={errors.confirmPassword}
-              {...register("confirmPassword", { required: "Confirm password is required" })}
+              error={errors.confirm_password}
+              {...register("confirm_password", { required: "Confirm password is required" })}
             />
             <img
               onClick={() => setIsConfirmPasswordVisible(!isConfirmPasswordVisible)}

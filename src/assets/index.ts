@@ -50,6 +50,7 @@ import student from "../assets/Icons/student.svg";
 import eyeOpen from "../assets/Icons/eye-closed.svg";
 import eyeClose from "../assets/Icons/eye-open.svg";
 import notFound from "../assets/Icons/404.svg";
+import emailSent from "../assets/Icons/email-sent.svg";
 
 // Social Media icons
 import facebook from "../assets/Icons/facebook.svg";
@@ -136,6 +137,7 @@ export const ICONS = {
     eyeOpen,
     eyeClose,
     notFound,
+    emailSent,
 };
 
 export const IMAGES = {

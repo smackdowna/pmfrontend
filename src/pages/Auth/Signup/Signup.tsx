@@ -91,7 +91,7 @@ const Signup = () => {
                     type="submit"
                     className="px-6 py-3 bg-primary-10 text-white rounded-xl text-lg font-semibold"
                 >
-                    {isLoading ? <LoadingSpinner /> : "Login"}
+                    {isLoading ? <LoadingSpinner /> : "Signup"}
                 </button>
             <p className="text-primary-15 text-sm leading-5 font-medium text-center">Already Have An Account? <Link to={"/auth/login"} className="font-bold">Login</Link></p>
             </form>
