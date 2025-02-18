@@ -2,7 +2,7 @@ import { BaseQueryFn, createApi, FetchBaseQueryError, FetchArgs, fetchBaseQuery 
 
 const baseQuery: BaseQueryFn<FetchArgs, unknown, FetchBaseQueryError> = async (args, api, extraOptions) => {
   const rawBaseQuery = fetchBaseQuery({
-    baseUrl: 'https://pmgurkulbackend-prw4.vercel.app/api/v1',
+    baseUrl: 'https://pmgurkulbackend-roxu.vercel.app/api/v1',
     credentials: 'include',
   });
 

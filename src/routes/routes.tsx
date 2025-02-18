@@ -38,6 +38,10 @@ import AddCourseVideo from "../pages/Dashbaord/Admin/AddCourse/AddCourseVideo/Ad
 import ProtectedRoute from './ProtectedRoute';
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 import ReferralsAndPayouts from "../pages/Dashbaord/Admin/ReferralsAndPayouts/ReferralsAndPayouts";
+import Signup from "../pages/Auth/Signup/Signup";
+import ForgotPassword from "../pages/Auth/ForgotPassword/ForgotPassword";
+import ResetPassword from "../pages/Auth/ResetPassword/ResetPassword";
+import EmailSent from "../pages/Auth/EmailSent/EmailSent";
 
 
 export const router = createBrowserRouter([
@@ -90,8 +94,24 @@ export const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
+        path: "signup",
+        element: <Signup />,
+      },
+      {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "email-sent",
+        element: <EmailSent />,
+      },
+      {
+        path: "reset-password/:token",
+        element: <ResetPassword />,
       },
       {
         path: "verify-phone",

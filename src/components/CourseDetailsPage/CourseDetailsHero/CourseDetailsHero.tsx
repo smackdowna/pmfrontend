@@ -80,6 +80,13 @@ const CourseDetailsHero: React.FC<TCourseDetailsHero> = ({ courseDetails, isDeta
         }, 1000);
     };
 
+    const basePrice = courseDetails?.basePrice;
+    const discountedPrice = courseDetails?.discountedPrice;
+
+    const discountPercentage = ((basePrice - discountedPrice) / basePrice) * 100;
+    console.log(discountPercentage);
+
+
     return (
         <HeroContainer classNames="pt-12">
             <Container>
@@ -104,6 +111,7 @@ const CourseDetailsHero: React.FC<TCourseDetailsHero> = ({ courseDetails, isDeta
                                     <div className="flex items-center gap-2">
                                         <h1 className="text-neutral-15 leading-6 text-lg font-medium">₹{courseDetails?.discountedPrice}</h1>
                                         <span className="line-through text-neutral-10 text-sm">₹{courseDetails?.basePrice}</span>
+                                        <span className="text-neutral-10 text-sm">{discountPercentage.toFixed(0)}% Off</span>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-5 mt-7">

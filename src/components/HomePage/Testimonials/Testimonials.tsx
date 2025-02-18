@@ -18,29 +18,38 @@ const Testimonials = () => {
     const testimonials: Testimonial[] = [
         {
             _id: 1,
-            feedback: "I never thought learning could be this fun and effective. The marketing course gave me the skills I needed to grow my small business online. Truly life-changing!",
-            name: "Harry Potter",
+            feedback: "All the courses of PMGURUKKUL are designed in a very unique way. After doing its goal setting course, I understood for the first time how to make goals in life.",
+            name: "Aarav Sharma",
             role: "Student",
             image: ICONS.avatar,
             rating: 5,
         },
         {
             _id: 2,
-            feedback: "The courses are incredibly well-designed, and the instructors are highly knowledgeable. This platform helped me achieve my career goals!",
-            name: "Emma Watson",
+            feedback: "I am very thankful to PMGURUKKUL for launching such trending courses which help us a lot in our work and we can do them at our convenient time.",
+            name: "Priya Verma",
             role: "Professional",
             image: ICONS.avatar,
             rating: 5,
         },
         {
             _id: 3,
-            feedback: "Learning at my own pace was the best decision. The flexibility and quality of content made the experience enjoyable.",
-            name: "John Doe",
+            feedback: "Learning on PMGURUKKUL has given me the confidence and ability to grow in my career. The videos are beautifully designed and are a joy to watch. I really enjoyed my courses.",
+            name: "Neha Patel",
+            role: "Housewife",
+            image: ICONS.avatar,
+            rating: 5,
+        },
+        {
+            _id: 4,
+            feedback: "From taking courses on PMGURUKKUL, I gained a deep understanding of direct selling from start to finish. Now I have been able to apply the skills and knowledge I gained to multiply my sales.",
+            name: "Rajesh Iyer",
             role: "Entrepreneur",
             image: ICONS.avatar,
-            rating: 4,
+            rating: 5,
         },
     ];
+
 
     return (
         <div style={{

@@ -4,6 +4,7 @@ import { TCourse } from "./course.types";
 import CourseCardLoader from "../../Loaders/CourseCardLoader/CourseCardLoader";
 import Ripple from "../../Reusable/Ripple/Ripple";
 import { useGetAllCategoriesQuery } from "../../../redux/Features/Course/courseApi";
+import NoDataFound from "../../Shared/NoDataFound/NoDataFound";
 
 type TAllCourses = {
   allCourses: {
@@ -49,8 +50,8 @@ const AllCourses: React.FC<TAllCourses> = ({
                   <button
                     onClick={() => setSelectedCategory("All Courses")}
                     className={`${selectedCategory === "All Courses"
-                        ? "bg-primary-10 border-primary-10 text-white font-semibold"
-                        : "border-neutral-10 bg-white text-neutral-10 font-medium"
+                      ? "bg-primary-10 border-primary-10 text-white font-semibold"
+                      : "border-neutral-10 bg-white text-neutral-10 font-medium"
                       } transition duration-700 text-xl leading-7 border px-5 py-3 flex items-center gap-[10px] rounded-[100px] whitespace-nowrap capitalize`}
                   >
                     All Courses
@@ -63,8 +64,8 @@ const AllCourses: React.FC<TAllCourses> = ({
                     <button
                       onClick={() => setSelectedCategory(category)}
                       className={`${category === selectedCategory
-                          ? "bg-primary-10 border-primary-10 text-white font-semibold"
-                          : "border-neutral-10 bg-white text-neutral-10 font-medium"
+                        ? "bg-primary-10 border-primary-10 text-white font-semibold"
+                        : "border-neutral-10 bg-white text-neutral-10 font-medium"
                         } transition duration-700 text-xl leading-7 border px-5 py-3 flex items-center gap-[10px] rounded-[100px] whitespace-nowrap capitalize`}
                     >
                       {category}
@@ -83,13 +84,16 @@ const AllCourses: React.FC<TAllCourses> = ({
               <CourseCardLoader key={index} />
             ))}
           </div>
-        ) : (
+        ) : filteredCourses?.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1000px] mx-auto">
-            {filteredCourses?.map((course: TCourse) => (
+            {filteredCourses.map((course: TCourse) => (
               <CourseCard key={course._id} {...course} />
             ))}
           </div>
+        ) : (
+          <NoDataFound message="No course found." />
         )}
+
 
         {/* Load More Button */}
         {allCourses?.courses?.length > 6 && (

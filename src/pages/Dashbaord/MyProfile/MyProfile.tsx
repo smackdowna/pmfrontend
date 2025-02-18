@@ -41,7 +41,6 @@ const MyProfile = () => {
       setValue("country", myProfile?.user?.country);
       setValue("pinCode", myProfile?.user?.pinCode);
       setValue("occupation", myProfile?.user?.occupation);
-      setValue("language", myProfile?.user?.language);
       setValue("refralCode", myProfile?.user?.refralCode);
       setValue("adNumber", myProfile?.user?.addharCard?.adNumber);
       setValue("panNumber", myProfile?.user?.panCard?.panNumber);

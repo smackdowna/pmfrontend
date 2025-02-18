@@ -22,7 +22,7 @@ const SessionAnnouncement = () => {
                             </Paragraph>
                         </div>
 
-                        <Link to={"/auth/login"}>
+                        <Link to={"/contact-us"}>
                             <Ripple styles="rounded-xl w-fit mt-7">
                                 <button className="bg-primary-gradient px-5 py-[10px] text-primary-10 text-xl font-semibold leading-7 rounded-[10px] w-fit">
                                     Free Register Now

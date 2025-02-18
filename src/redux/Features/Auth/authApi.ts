@@ -3,6 +3,16 @@ import { baseApi } from "../../Api/baseApi";
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     
+    login: builder.mutation({
+      query: (loginData) => ({
+        url: "/login",
+        method: "POST",
+        body: loginData,
+        credentials: "include",
+      }),
+      invalidatesTags: ["user"],
+    }),
+    
     sendOtp: builder.mutation({
       query: (userInfo) => ({
         url: "/send-otp",
@@ -44,7 +54,7 @@ const authApi = baseApi.injectEndpoints({
 
     forgotPassword: builder.mutation({
       query: (forgotPasswordData) => ({
-        url: "/auth/forgot-password",
+        url: "/password/forgot",
         method: "POST",
         body: forgotPasswordData,
         credentials: "include",
@@ -54,8 +64,8 @@ const authApi = baseApi.injectEndpoints({
 
     resetPassword: builder.mutation({
       query: ({resetPasswordData, token}) => ({
-        url: `/auth/reset-password/${token}`,
-        method: "POST",
+        url: `/password/reset/${token}`,
+        method: "PUT",
         body: resetPasswordData,
         credentials: "include",
       }),
@@ -67,6 +77,7 @@ const authApi = baseApi.injectEndpoints({
 });
 
 export const {
+  useLoginMutation,
   useSendOtpMutation,
   useSetupProfileMutation,
   useVerifyOtpMutation,

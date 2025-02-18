@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from "react-hook-form";
-import BankInfo from "../../../components/MyProfilePage/KycDetails/BankInfo";
-import IdentityInfo from "../../../components/MyProfilePage/KycDetails/IdentityInfo";
 import PersonalInfo from "../../../components/MyProfilePage/PersonalInfo/PersonalInfo";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSetupProfileMutation } from "../../../redux/Features/Auth/authApi";
 import LoadingSpinner from "../../../components/Loaders/LoadingSpinner/LoadingSpinner";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,16 +9,21 @@ import { toast } from "sonner";
 import { ICONS } from "../../../assets";
 import { removeOtpDataFromLocalStorage } from "../../../utils/removeOtpDataFromLocalStorage";
 import useOtpDataFromLocalStorage from "../../../hooks/useOtpDataFromLocalStorage";
-import { OtpFormData } from "../Login/Login";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/Features/Auth/authSlice";
 import { Helmet } from "react-helmet-async";
 
+type OtpFormData = {
+    email: string;
+    mobileNumber: string;
+};
+
 export type TSetupProfileData = {
     full_name: string;
     email: string;
+    password: string;
+    confirm_password: string;
     gender: string;
-    language: string;
     dob: string;
     mobileNumber: string;
     occupation: string;
@@ -45,9 +48,9 @@ export type TSetupProfileData = {
         }
     ];
     // document: {
-        doctype: string;
-        documentNumber: string;
-        docImage: any;
+    doctype: string;
+    documentNumber: string;
+    docImage: any;
     // },
     panImageFile: any;
     adImageFile: any;
@@ -61,7 +64,7 @@ const SetupProfile = () => {
     const dispatch = useDispatch();
     // Getting OTP data from localstorage
     const [otpData] = useOtpDataFromLocalStorage<OtpFormData>("otpData");
-    const [selectedDocument, setSelectedDocument] = useState<string>("");
+    // const [selectedDocument, setSelectedDocument] = useState<string>("");
     const {
         register,
         handleSubmit,
@@ -82,54 +85,54 @@ const SetupProfile = () => {
 
     const [setupProfile, { isLoading }] = useSetupProfileMutation();
 
-    const [bankInfo, setBankInfo] = useState([
-        {
-            accholderName: "",
-            accNumber: "",
-            accType: "Savings",
-            ifscCode: "",
-            bankName: "",
-            bankBranch: "",
-            nominName: "",
-            nomiRelation: "",
-        },
-    ]);
+    // const [bankInfo, setBankInfo] = useState([
+    //     {
+    //         accholderName: "",
+    //         accNumber: "",
+    //         accType: "Savings",
+    //         ifscCode: "",
+    //         bankName: "",
+    //         bankBranch: "",
+    //         nominName: "",
+    //         nomiRelation: "",
+    //     },
+    // ]);
 
-    const [fileNames, setFileNames] = useState({
-        adImageFile: "",
-        panImageFile: "",
-        passbookImageFile: "",
-        docImage: "",
-    });
+    // const [fileNames, setFileNames] = useState({
+    //     adImageFile: "",
+    //     panImageFile: "",
+    //     passbookImageFile: "",
+    //     docImage: "",
+    // });
 
-    const [files, setFiles] = useState({
-        adImageFile: null,
-        panImageFile: null,
-        passbookImageFile: null,
-        docImage: null,
-    });
+    // const [files, setFiles] = useState({
+    //     adImageFile: null,
+    //     panImageFile: null,
+    //     passbookImageFile: null,
+    //     docImage: null,
+    // });
 
-    const handleFileChange = (name: string, file: File | null) => {
-        if (file) {
-            setFileNames((prev) => ({
-                ...prev,
-                [name]: file.name,
-            }));
-            setFiles((prev) => ({
-                ...prev,
-                [name]: file,
-            }));
-        }
-    };
+    // const handleFileChange = (name: string, file: File | null) => {
+    //     if (file) {
+    //         setFileNames((prev) => ({
+    //             ...prev,
+    //             [name]: file.name,
+    //         }));
+    //         setFiles((prev) => ({
+    //             ...prev,
+    //             [name]: file,
+    //         }));
+    //     }
+    // };
 
 
-    const handleBankInfoChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, field: BankInfoField) => {
-        setBankInfo(prev => {
-            const updatedBankInfo = [...prev];
-            updatedBankInfo[0][field] = e.target.value;
-            return updatedBankInfo;
-        });
-    };
+    // const handleBankInfoChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, field: BankInfoField) => {
+    //     setBankInfo(prev => {
+    //         const updatedBankInfo = [...prev];
+    //         updatedBankInfo[0][field] = e.target.value;
+    //         return updatedBankInfo;
+    //     });
+    // };
 
 
     const handleSetupProfile = async (data: TSetupProfileData) => {
@@ -149,8 +152,9 @@ const SetupProfile = () => {
             // Appending text fields
             formData.append('full_name', data.full_name);
             formData.append('email', data.email);
+            formData.append('password', data.password);
+            formData.append('confirm_password', data.confirm_password);
             formData.append('gender', data.gender);
-            formData.append('language', data.language);
             formData.append('dob', data.dob);
             if (otpData?.mobileNumber) {
                 formData.append('mobileNumber', otpData?.mobileNumber);
@@ -167,23 +171,23 @@ const SetupProfile = () => {
             formData.append('addline2', data.addline2);
 
             // Appending document details
-            formData.append('doctype', selectedDocument);
-            formData.append('documentNumber', data.documentNumber);
+            // formData.append('doctype', selectedDocument);
+            // formData.append('documentNumber', data.documentNumber);
 
             // Ensure docImage exists before appending
-            if (files.docImage) {
-                if (files.docImage) {
-                    formData.append('docImage', files.docImage);
-                }
-            }
+            // if (files.docImage) {
+            //     if (files.docImage) {
+            //         formData.append('docImage', files.docImage);
+            //     }
+            // }
 
             // Appending bank info
-            formData.append('bankInfo', JSON.stringify(bankInfo));
+            // formData.append('bankInfo', JSON.stringify(bankInfo));
 
             // Appending image files
-            if (files.adImageFile) formData.append('adImageFile', files.adImageFile);
-            if (files.panImageFile) formData.append('panImageFile', files.panImageFile);
-            if (files.passbookImageFile) formData.append('passbookImageFile', files.passbookImageFile);
+            // if (files.adImageFile) formData.append('adImageFile', files.adImageFile);
+            // if (files.panImageFile) formData.append('panImageFile', files.panImageFile);
+            // if (files.passbookImageFile) formData.append('passbookImageFile', files.passbookImageFile);
 
             const response = await setupProfile(formData).unwrap();
             if (response?.user) {
@@ -224,25 +228,27 @@ const SetupProfile = () => {
                     </div>
 
                     <PersonalInfo register={register} errors={errors} mobileNumber={otpData?.mobileNumber} />
-                    <div className="flex flex-col gap-4">
+
+                    {/* <div className="flex flex-col gap-4">
                         <p className="text-neutral-90 font-semibold">KYC Details</p>
                         <div className="grid grid-cols-2 gap-4">
                             <div className="flex flex-col gap-4">
                                 <IdentityInfo register={register} errors={errors} setSelectedDocument={setSelectedDocument} selectedDocument={selectedDocument} fileNames={fileNames}
                                     onFileChange={handleFileChange}
                                 />
-                                {/* Not being used */}
-                                {/* <UploadProof
+                                
+                            </div>
+                            <BankInfo register={register} errors={errors} handleBankInfoChange={handleBankInfoChange} fileNames={fileNames}
+                                onFileChange={handleFileChange} />
+                        </div>
+                    </div> */}
+                    {/* Not being used */}
+                    {/* <UploadProof
                                 register={register}
                                 errors={errors}
                                 fileNames={fileNames}
                                 onFileChange={handleFileChange}
                             /> */}
-                            </div>
-                            <BankInfo register={register} errors={errors} handleBankInfoChange={handleBankInfoChange} fileNames={fileNames}
-                                onFileChange={handleFileChange} />
-                        </div>
-                    </div>
 
                     <div className="flex items-center gap-5 justify-end">
                         <Link

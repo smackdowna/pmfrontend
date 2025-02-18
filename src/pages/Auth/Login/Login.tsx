@@ -1,49 +1,53 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from "react-hook-form";
 import TextInput from "../../../components/Reusable/TextInput/TextInput";
-import { useSendOtpMutation } from "../../../redux/Features/Auth/authApi";
+import { useLoginMutation } from "../../../redux/Features/Auth/authApi";
 import { toast } from "sonner";
 import LoadingSpinner from "../../../components/Loaders/LoadingSpinner/LoadingSpinner";
 import { Link, useNavigate } from "react-router-dom";
-import useOtpDataFromLocalStorage from "../../../hooks/useOtpDataFromLocalStorage";
-import { useEffect } from "react";
-import { IMAGES } from "../../../assets";
+import { ICONS, IMAGES } from "../../../assets";
+import { setUser } from "../../../redux/Features/Auth/authSlice";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 export type OtpFormData = {
     email: string;
-    mobileNumber: string;
+    password: string;
 };
 
 const Login = () => {
-    const [sendOtp, { isLoading }] = useSendOtpMutation();
-    const [otpData] = useOtpDataFromLocalStorage<OtpFormData>("otpData");
+    const dispatch = useDispatch();
+    const [login, { isLoading }] = useLoginMutation();
     const navigate = useNavigate();
+    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
     const {
         register,
         handleSubmit,
         formState: { errors },
-        setValue,
     } = useForm<OtpFormData>();
-
-    // Set default values from localStorage data
-    useEffect(() => {
-        if (otpData) {
-            setValue("email", otpData.email);
-            setValue("mobileNumber", otpData.mobileNumber);
-        }
-    }, [otpData, setValue]);
 
     const handleLogin = async (data: OtpFormData) => {
         try {
-            const otpData = {
-                mobileNumber: data.mobileNumber,
+            const userData = {
                 email: data.email,
+                password: data.password,
             };
-            const response = await sendOtp(otpData).unwrap();
+            const response = await login(userData).unwrap();
             if (response?.success) {
                 toast.success(response?.message);
-                navigate("/auth/verify-phone");
-                localStorage.setItem("otpData", JSON.stringify(otpData));
+                const user = {
+                    _id: response?.user?._id,
+                    name: response?.user?.full_name,
+                    role: response?.user?.role,
+                    email: response?.user?.email,
+                    referralCode : response?.user?.refralCode
+                }
+                dispatch(setUser({ user }));
+                if (response?.user?.role === "admin") {
+                    navigate("/admin/registered-users");
+                } else {
+                    navigate("/dashboard/my-courses");
+                }
             }
         } catch (err) {
             toast.error((err as any)?.data?.message);
@@ -54,10 +58,10 @@ const Login = () => {
         <div className="bg-neutral-80 h-screen flex items-center justify-center font-Inter p-5">
             <form onSubmit={handleSubmit(handleLogin)} className="bg-white border border-neutral-15 rounded-[20px] p-5 md:p-[60px] flex flex-col gap-5  w-[529px] max-auto">
                 <div className="flex items-center gap-5 mb-5">
-                <Link to={"/"} className="flex items-center gap-2">
-                    <img src={IMAGES.pmGurukulFavicon} alt="PM-Gurukul" className="size-16" />
-                </Link>
-                <h1 className="text-primary-25 text-[28px] leading-8 font-semibold text-center capitalize">Login to get started</h1>
+                    <Link to={"/"} className="flex items-center gap-2">
+                        <img src={IMAGES.pmGurukulFavicon} alt="PM-Gurukul" className="size-16" />
+                    </Link>
+                    <h1 className="text-primary-25 text-[28px] leading-8 font-semibold text-center capitalize">Login to get started</h1>
                 </div>
                 <TextInput
                     label="Email"
@@ -66,26 +70,19 @@ const Login = () => {
                     error={errors.email}
                     {...register("email", { required: "Email is required" })}
                 />
+                <div className="relative">
                 <TextInput
-                    label="Mobile Number"
-                    placeholder="Enter mobile number"
-                    type="tel"
-                    error={errors.mobileNumber}
-                    {...register("mobileNumber", {
-                        required: "Mobile Number is required",
-                        pattern: {
-                            value: /^\+?[1-9]\d{1,14}$/,
-                            message: "Enter a valid mobile number",
-                        }, minLength: {
-                            value: 10,
-                            message: "Mobile Number must be 10 characters",
-                        },
-                        maxLength: {
-                            value: 10,
-                            message: "Mobile Number must be at most 10 characters",
-                        },
+                    label="Password"
+                    placeholder="Enter your password"
+                    type={isPasswordVisible ? "text" : "password"}
+                    error={errors.password}
+                    {...register("password", {
+                        required: "Password is required",
                     })}
                 />
+                <img onClick={() => setIsPasswordVisible(!isPasswordVisible)} src={isPasswordVisible ? ICONS.eyeOpen : ICONS.eyeClose} alt="eye-icon" className="size-5 cursor-pointer absolute top-[50px] bottom-0 right-3" />
+                </div>
+                <Link to={"/auth/forgot-password"} className="font-semibold text-blue-10 text-end text-sm">Forgot Password?</Link>
                 <button
                     disabled={isLoading}
                     type="submit"
@@ -93,6 +90,7 @@ const Login = () => {
                 >
                     {isLoading ? <LoadingSpinner /> : "Login"}
                 </button>
+                <p className="text-primary-15 text-sm leading-5 font-medium text-center">Don't Have An Account? <Link to={"/auth/signup"} className="font-bold">Sign Up</Link></p>
             </form>
         </div>
     );

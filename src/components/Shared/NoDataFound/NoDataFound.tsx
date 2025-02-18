@@ -12,7 +12,7 @@ const NoDataFound = ({ message, isBtnAvailable }: { message: string; isBtnAvaila
             </p>
             {
                 isBtnAvailable &&
-                <Link to={"/courses"} className="bg-primary-10 text-white px-9 py-3 font-semibold rounded-xl">
+                <Link to={"/courses"} className="bg-primary-10 text-white px-9 py-3 font-semibold rounded-md">
                     Enroll Now
                 </Link>
             }
