@@ -57,7 +57,7 @@ const Signup = () => {
                 <Link to={"/"} className="flex items-center gap-2">
                     <img src={IMAGES.pmGurukulFavicon} alt="PM-Gurukul" className="size-16" />
                 </Link>
-                <h1 className="text-primary-25 text-[28px] leading-8 font-semibold text-center capitalize">Join Us Today</h1>
+                <h1 className="text-primary-25 text-[28px] leading-8 font-semibold text-center capitalize">Create A New Account</h1>
                 </div>
                 <TextInput
                     label="Email"

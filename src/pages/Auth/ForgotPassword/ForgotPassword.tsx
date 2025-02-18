@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForgotPasswordMutation } from "../../../redux/Features/Auth/authApi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { IMAGES } from "../../../assets";
@@ -14,7 +14,7 @@ export type ForgotPasswordFormData = {
 
 const ForgotPassword = () => {
     const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const {
         register,
         handleSubmit,

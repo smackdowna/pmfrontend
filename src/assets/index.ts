@@ -42,13 +42,15 @@ import video from "../assets/Icons/video.svg";
 import cartWhite from "../assets/Icons/cart-white.svg";
 import cartYellow from "../assets/Icons/cart-yellow.svg";
 import deleteIcon from "../assets/Icons/delete.svg";
-import folderUpload from "../assets/Icons/empty 1.svg"
-import menuDots from "../assets/Icons/Menu Dots.svg"
-import tickMark from "../assets/Icons/tick-mark.svg"
-import logout from "../assets/Icons/logout.svg"
-import student from "../assets/Icons/student.svg"
-import eyeOpen from "../assets/Icons/eye-closed.svg"
-import eyeClose from "../assets/Icons/eye-open.svg"
+import folderUpload from "../assets/Icons/empty 1.svg";
+import menuDots from "../assets/Icons/Menu Dots.svg";
+import tickMark from "../assets/Icons/tick-mark.svg";
+import logout from "../assets/Icons/logout.svg";
+import student from "../assets/Icons/student.svg";
+import eyeOpen from "../assets/Icons/eye-closed.svg";
+import eyeClose from "../assets/Icons/eye-open.svg";
+import notFound from "../assets/Icons/404.svg";
+
 // Social Media icons
 import facebook from "../assets/Icons/facebook.svg";
 import youtube from "../assets/Icons/youtube.svg";
@@ -133,6 +135,7 @@ export const ICONS = {
     student,
     eyeOpen,
     eyeClose,
+    notFound,
 };
 
 export const IMAGES = {
