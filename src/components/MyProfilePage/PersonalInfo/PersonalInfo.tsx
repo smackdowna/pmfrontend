@@ -3,6 +3,7 @@ import { useState } from "react";
 import TextInput from "../../../components/Reusable/TextInput/TextInput";
 import SelectDropdown from "../../Reusable/Dropdown/SelectDropdown";
 import { ICONS } from "../../../assets";
+import { useLocation } from "react-router-dom";
 
 type TPersonalInfo = {
   register?: any;
@@ -11,6 +12,7 @@ type TPersonalInfo = {
 };
 
 const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber }) => {
+  const location = useLocation();
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState<boolean>(false);
   const genderOptions = ["Male", "Female", "Other"];
@@ -136,37 +138,42 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
             })}
           />
           {/* Password Input */}
-          <div className="relative">
-            <TextInput
-              label="Password"
-              placeholder="Enter your password"
-              type={isPasswordVisible ? "text" : "password"}
-              error={errors.password}
-              {...register("password", { required: "Password is required" })}
-            />
-            <img
-              onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-              src={isPasswordVisible ? ICONS.eyeOpen : ICONS.eyeClose}
-              alt="eye-icon"
-              className="size-5 cursor-pointer absolute top-[50px] bottom-0 right-3"
-            />
-          </div>
+          {
+            location.pathname === "/auth/setup-profile" &&
+            <>
+              <div className="relative">
+                <TextInput
+                  label="Password"
+                  placeholder="Enter your password"
+                  type={isPasswordVisible ? "text" : "password"}
+                  error={errors.password}
+                  {...register("password", { required: "Password is required" })}
+                />
+                <img
+                  onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                  src={isPasswordVisible ? ICONS.eyeOpen : ICONS.eyeClose}
+                  alt="eye-icon"
+                  className="size-5 cursor-pointer absolute top-[50px] bottom-0 right-3"
+                />
+              </div>
 
-          {/* Confirm Password Input */}
-          <div className="relative">
-            <TextInput
-              label="Confirm Password"
-              placeholder="Confirm your password"
-              type={isConfirmPasswordVisible ? "text" : "password"}
-              error={errors.confirm_password}
-              {...register("confirm_password", { required: "Confirm password is required" })}
-            />
-            <img
-              onClick={() => setIsConfirmPasswordVisible(!isConfirmPasswordVisible)}
-              src={isConfirmPasswordVisible ? ICONS.eyeOpen : ICONS.eyeClose}
-              alt="eye-icon"
-              className="size-5 cursor-pointer absolute top-[50px] bottom-0 right-3" />
-          </div>
+              {/* Confirm Password Input */}
+              <div className="relative">
+                <TextInput
+                  label="Confirm Password"
+                  placeholder="Confirm your password"
+                  type={isConfirmPasswordVisible ? "text" : "password"}
+                  error={errors.confirm_password}
+                  {...register("confirm_password", { required: "Confirm password is required" })}
+                />
+                <img
+                  onClick={() => setIsConfirmPasswordVisible(!isConfirmPasswordVisible)}
+                  src={isConfirmPasswordVisible ? ICONS.eyeOpen : ICONS.eyeClose}
+                  alt="eye-icon"
+                  className="size-5 cursor-pointer absolute top-[50px] bottom-0 right-3" />
+              </div>
+            </>
+          }
 
           <SelectDropdown
             label="Gender"
