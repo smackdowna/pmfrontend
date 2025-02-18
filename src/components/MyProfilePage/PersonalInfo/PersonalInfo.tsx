@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
 import TextInput from "../../../components/Reusable/TextInput/TextInput";
 import SelectDropdown from "../../Reusable/Dropdown/SelectDropdown";
+import { ICONS } from "../../../assets";
 
 type TPersonalInfo = {
   register?: any;
@@ -9,6 +11,8 @@ type TPersonalInfo = {
 };
 
 const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber }) => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState<boolean>(false);
   const genderOptions = ["Male", "Female", "Other"];
   const stateOptions: string[] = [
     "Andhra Pradesh",
@@ -100,7 +104,7 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
     "Photographer",
     "Interior Designer"
   ];
-  
+
   return (
     <div className="flex flex-col gap-4">
       <p className="text-neutral-90 font-semibold">Personal Information</p>
@@ -116,7 +120,7 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
             {...register("full_name", {
               required: "Full Name is required",
             })} />
-         
+
           <TextInput
             label="Email ID"
             placeholder="Enter your email"
@@ -131,22 +135,38 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
               },
             })}
           />
-           <TextInput
-            label="Password"
-            // name="fullName"
-            placeholder="Enter password"
-            error={errors.password}
-            {...register("password", {
-              required: "Password is required",
-            })} />
-           <TextInput
-            label="Confirm Password"
-            // name="fullName"
-            placeholder="Re-Enter password"
-            error={errors.confirm_password}
-            {...register("confirm_password", {
-              required: "Password is required",
-            })} />
+          {/* Password Input */}
+          <div className="relative">
+            <TextInput
+              label="Password"
+              placeholder="Enter your password"
+              type={isPasswordVisible ? "text" : "password"}
+              error={errors.password}
+              {...register("password", { required: "Password is required" })}
+            />
+            <img
+              onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              src={isPasswordVisible ? ICONS.eyeOpen : ICONS.eyeClose}
+              alt="eye-icon"
+              className="size-5 cursor-pointer absolute top-[50px] bottom-0 right-3"
+            />
+          </div>
+
+          {/* Confirm Password Input */}
+          <div className="relative">
+            <TextInput
+              label="Confirm Password"
+              placeholder="Confirm your password"
+              type={isConfirmPasswordVisible ? "text" : "password"}
+              error={errors.confirmPassword}
+              {...register("confirmPassword", { required: "Confirm password is required" })}
+            />
+            <img
+              onClick={() => setIsConfirmPasswordVisible(!isConfirmPasswordVisible)}
+              src={isConfirmPasswordVisible ? ICONS.eyeOpen : ICONS.eyeClose}
+              alt="eye-icon"
+              className="size-5 cursor-pointer absolute top-[50px] bottom-0 right-3" />
+          </div>
 
           <SelectDropdown
             label="Gender"
