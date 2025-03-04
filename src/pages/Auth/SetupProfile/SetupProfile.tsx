@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from "react-hook-form";
 import PersonalInfo from "../../../components/MyProfilePage/PersonalInfo/PersonalInfo";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSetupProfileMutation } from "../../../redux/Features/Auth/authApi";
 import LoadingSpinner from "../../../components/Loaders/LoadingSpinner/LoadingSpinner";
 import { Link, useNavigate } from "react-router-dom";
@@ -62,6 +62,7 @@ export type BankInfoField = 'accholderName' | 'accNumber' | 'accType' | 'ifscCod
 
 const SetupProfile = () => {
     const dispatch = useDispatch();
+    const [isChecked, setIsChecked] = useState<boolean>(false);
     // Getting OTP data from localstorage
     const [otpData] = useOtpDataFromLocalStorage<OtpFormData>("otpData");
     // const [selectedDocument, setSelectedDocument] = useState<string>("");
@@ -146,6 +147,11 @@ const SetupProfile = () => {
         //     toast.error("Please upload Passbook Image");
         //     return;
         // }
+        if (!isChecked) {
+            toast.error("Please agree to the Terms & Conditions");
+            return;
+        }
+        
         try {
             const formData = new FormData();
 
@@ -250,6 +256,12 @@ const SetupProfile = () => {
                                 onFileChange={handleFileChange}
                             /> */}
 
+                            <div className="flex items-center gap-3">
+                                <input id="confirmationCheckbox" type="checkbox" checked={isChecked}
+                    onChange={(e) => setIsChecked(e.target.checked)} />
+                                <label htmlFor="confirmationCheckbox" className="text-neutral-90 cursor-pointer">I've read and agree to the website <Link to={"/terms-and-conditions"} className="text-blue-10 underline">Terms & Conditions</Link></label>
+                            </div>
+
                     <div className="flex items-center gap-5 justify-end">
                         <Link
                             to={"/auth/login"}
@@ -258,7 +270,7 @@ const SetupProfile = () => {
                             Cancel
                         </Link>
                         <button
-                            disabled={isLoading}
+                           disabled={isLoading}
                             type="submit"
                             className="px-6 py-3 bg-primary-10 text-white rounded-xl text-lg font-semibold">
                             {
