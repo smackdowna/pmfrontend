@@ -4,6 +4,10 @@ import { Table } from "../../../../components/ReferralPayoutsPage/TransactionHis
 import DashboardHeader from "../../../../components/Reusable/DashboardHeader/DashboardHeader";
 import NoDataFound from "../../../../components/Shared/NoDataFound/NoDataFound";
 import { useMyOrdersQuery } from "../../../../redux/Features/User/userApi";
+import { useState } from "react";
+import Invoice from "../../Admin/PurchaseHistory/Invoice";
+import { pdf } from "@react-pdf/renderer";
+import { TOrders } from "../../Admin/PurchaseHistory/PurchaseHistory";
 
 type TMyOrders = {
   _id: string;
@@ -19,6 +23,9 @@ type TMyOrders = {
   __v: number;
 }
 
+type TCombinedOrders = TMyOrders & TOrders;
+
+
 const MyOrders = () => {
   const { data: myOrders, isLoading } = useMyOrdersQuery({});
 
@@ -30,14 +37,42 @@ const MyOrders = () => {
     { key: "action", label: "Action" },
   ];
 
+  const [isGeneratingInvoice, setIsGeneratingInvoice] = useState<boolean>(false);
+
+  const handleDownloadInvoice = async (order: TOrders) => {
+    setIsGeneratingInvoice(true)
+    try {
+      const blob = await pdf(<Invoice order={order} />).toBlob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `invoice_${order._id}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      setIsGeneratingInvoice(false);
+    } catch (error) {
+      console.error('Failed to generate PDF:', error);
+      setIsGeneratingInvoice(false);
+    }
+  };
+
+  console.log(myOrders?.orders);
+
   // Table data
   const myOrdersTableData = myOrders?.orders?.length
-    ? myOrders?.orders?.map((order: TMyOrders, index: number) => ({
+    ? myOrders?.orders?.map((order: TCombinedOrders, index: number) => ({
       no: `${index + 1}`,
       orderId: order?._id,
       noOfItems: order?.course?.length,
       amount: `₹${order?.amountCredited}`,
-      action: "View",
+      action: [
+        {
+          label: `${isGeneratingInvoice ? "Generating Invoice" : "Download Invoice"}`,
+          onClick: () => handleDownloadInvoice(order && order)
+        },
+      ],
     }))
     : [];
 
