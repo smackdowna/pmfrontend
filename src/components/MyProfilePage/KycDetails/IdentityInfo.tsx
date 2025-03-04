@@ -13,13 +13,22 @@ type TIdentityInfo = {
 };
 
 const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocument, setSelectedDocument, onFileChange, fileNames }) => {
+  console.log(selectedDocument);
 
-  const documentLabel =
-    selectedDocument === "Aadhar Card" ? "Aadhaar Card Image" :
-      selectedDocument === "Pan Card" ? "PAN Card Image" :
-        selectedDocument === "Driving License" ? "Driving License Image" :
-          selectedDocument === "Voter ID" ? "Voter ID Image" :
-            selectedDocument === "Passport" ? "Passport Image" :
+  const documentLabel1 =
+    selectedDocument === "Aadhar Card" ? "Aadhaar Card Image (Front Side)" :
+      selectedDocument === "Pan Card" ? "PAN Card Image (Front Side)" :
+        selectedDocument === "Driving License" ? "Driving License Image (Front Side)" :
+          selectedDocument === "Voter ID" ? "Voter ID Image (Front Side)" :
+            selectedDocument === "Passport" ? "Passport Image (Front Side)" :
+              "Identity Proof Image";
+
+  const documentLabel2 =
+    selectedDocument === "Aadhar Card" ? "Aadhaar Card Image (Back Side)" :
+      selectedDocument === "Pan Card" ? "PAN Card Image (Back Side)" :
+        selectedDocument === "Driving License" ? "Driving License Image (Back Side)" :
+          selectedDocument === "Voter ID" ? "Voter ID Image (Back Side)" :
+            selectedDocument === "Passport" ? "Passport Image (Back Side)" :
               "Identity Proof Image";
               
   return (
@@ -112,7 +121,19 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
         {
           selectedDocument &&
           <UploadInput
-            label={documentLabel}
+            label={documentLabel1}
+            name="identityProofFile"
+            accept="image/*"
+            error={errors?.identityProofFile || ""}
+            fileName={fileNames?.identityProofFile || ""}
+            onFileChange={onFileChange || (() => { })}
+          />
+        }
+
+        {
+          selectedDocument &&
+          <UploadInput
+            label={documentLabel2}
             name="identityProofFile"
             accept="image/*"
             error={errors?.identityProofFile || ""}

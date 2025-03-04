@@ -151,7 +151,7 @@ const SetupProfile = () => {
             toast.error("Please agree to the Terms & Conditions");
             return;
         }
-        
+
         try {
             const formData = new FormData();
 
@@ -256,11 +256,11 @@ const SetupProfile = () => {
                                 onFileChange={handleFileChange}
                             /> */}
 
-                            <div className="flex items-center gap-3">
-                                <input id="confirmationCheckbox" type="checkbox" checked={isChecked}
-                    onChange={(e) => setIsChecked(e.target.checked)} />
-                                <label htmlFor="confirmationCheckbox" className="text-neutral-90 cursor-pointer">I've read and agree to the website <Link to={"/terms-and-conditions"} className="text-blue-10 underline">Terms & Conditions</Link></label>
-                            </div>
+                    <div className="flex items-center gap-3">
+                        <input id="confirmationCheckbox" type="checkbox" checked={isChecked}
+                            onChange={(e) => setIsChecked(e.target.checked)} />
+                        <label htmlFor="confirmationCheckbox" className="text-neutral-90 cursor-pointer">I've read and agree to the website <Link to={"/terms-and-conditions"} className="text-blue-10 underline">Terms & Conditions</Link></label>
+                    </div>
 
                     <div className="flex items-center gap-5 justify-end">
                         <Link
@@ -270,7 +270,7 @@ const SetupProfile = () => {
                             Cancel
                         </Link>
                         <button
-                           disabled={isLoading}
+                            disabled={isLoading}
                             type="submit"
                             className="px-6 py-3 bg-primary-10 text-white rounded-xl text-lg font-semibold">
                             {

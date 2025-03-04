@@ -17,6 +17,7 @@ const MyProfile = () => {
   // Getting loggedin user profile data
   const { data: myProfile } = useGetMeQuery({});
   const [isKycClicked, setIsKycClicked] = useState<boolean>(false);
+  const [selectedDocument, setSelectedDocument] = useState<string>("");
   const {
     register,
     handleSubmit,
@@ -89,7 +90,7 @@ const MyProfile = () => {
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-4">
                 <KYCStatus kycStatus={myProfile?.user?.kyc_status} />
-                <IdentityInfo register={register} errors={errors} />
+                <IdentityInfo register={register} errors={errors} setSelectedDocument={setSelectedDocument} selectedDocument={selectedDocument} />
                 {/* <UploadProof register={register} errors={errors} /> */}
                 <UploadedProofs
                   addharCardImage={myProfile?.user?.addharCard?.adImage?.url}
