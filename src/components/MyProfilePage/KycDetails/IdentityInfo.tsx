@@ -8,11 +8,13 @@ type TIdentityInfo = {
   errors?: any;
   selectedDocument?: string;
   setSelectedDocument?: (value: string) => void;
-  fileNames?: { [key: string]: string };
-  onFileChange?: (name: string, file: File | null) => void;
+  frontFileNames?: { [key: string]: string };
+  backFileNames?: { [key: string]: string };
+  onFileChangeFront?: (name: string, file: File | null) => void;
+  onFileChangeBack?: (name: string, file: File | null) => void;
 };
 
-const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocument, setSelectedDocument, onFileChange, fileNames }) => {
+const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocument, setSelectedDocument, onFileChangeFront, onFileChangeBack, frontFileNames, backFileNames }) => {
   console.log(selectedDocument);
 
   const documentLabel1 =
@@ -54,8 +56,8 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
           name="identityProofFile"
           accept="image/*"
           error={errors?.identityProofFile || ""}
-          fileName={fileNames?.identityProofFile || ""}
-          onFileChange={onFileChange || (() => { })}
+          fileName={frontFileNames?.identityProofFile || ""}
+          onFileChange={onFileChangeFront || (() => { })}
           isRequired={false}
         />
 
@@ -125,8 +127,8 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
             name="identityProofFile"
             accept="image/*"
             error={errors?.identityProofFile || ""}
-            fileName={fileNames?.identityProofFile || ""}
-            onFileChange={onFileChange || (() => { })}
+            fileName={frontFileNames?.identityProofFile || ""}
+            onFileChange={onFileChangeFront || (() => { })}
           />
         }
 
@@ -137,8 +139,8 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
             name="identityProofFile"
             accept="image/*"
             error={errors?.identityProofFile || ""}
-            fileName={fileNames?.identityProofFile || ""}
-            onFileChange={onFileChange || (() => { })}
+            fileName={backFileNames?.identityProofFile || ""}
+            onFileChange={onFileChangeBack || (() => { })}
           />
         }
       </div>

@@ -61,6 +61,61 @@ const MyProfile = () => {
   }, [myProfile, setValue]);
   console.log(myProfile);
 
+
+   const [frontFileNames, setFrontFileNames] = useState({
+        adImageFile: "",
+        panImageFile: "",
+        passbookImageFile: "",
+        docImage: "",
+    });
+
+   const [backFileNames, setBackFileNames] = useState({
+        adImageFile: "",
+        panImageFile: "",
+        passbookImageFile: "",
+        docImage: "",
+    });
+
+    const [frontFiles, setFrontFiles] = useState({
+        adImageFile: null,
+        panImageFile: null,
+        passbookImageFile: null,
+        docImage: null,
+    });
+
+    const [backFiles, setBackFiles] = useState({
+        adImageFile: null,
+        panImageFile: null,
+        passbookImageFile: null,
+        docImage: null,
+    });
+
+    const handleFileChangeFront = (name: string, file: File | null) => {
+        if (file) {
+          setFrontFileNames((prev) => ({
+                ...prev,
+                [name]: file.name,
+            }));
+            setFrontFiles((prev) => ({
+                ...prev,
+                [name]: file,
+            }));
+        }
+    };
+
+    const handleFileChangeBack = (name: string, file: File | null) => {
+        if (file) {
+            setBackFileNames((prev) => ({
+                ...prev,
+                [name]: file.name,
+            }));
+            setBackFiles((prev) => ({
+                ...prev,
+                [name]: file,
+            }));
+        }
+    };
+
   const handleEditProfileData = (data: TProfileData) => {
     console.log(data);
   }
@@ -90,7 +145,7 @@ const MyProfile = () => {
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-4">
                 <KYCStatus kycStatus={myProfile?.user?.kyc_status} />
-                <IdentityInfo register={register} errors={errors} setSelectedDocument={setSelectedDocument} selectedDocument={selectedDocument} />
+                <IdentityInfo register={register} errors={errors} setSelectedDocument={setSelectedDocument} selectedDocument={selectedDocument} frontFileNames={frontFileNames} backFileNames={backFileNames} onFileChangeFront={handleFileChangeFront} onFileChangeBack={handleFileChangeBack} />
                 {/* <UploadProof register={register} errors={errors} /> */}
                 <UploadedProofs
                   addharCardImage={myProfile?.user?.addharCard?.adImage?.url}
