@@ -61,7 +61,7 @@ const Affiliates = () => {
     { key: "action", label: "ACTION", sortable: false },
   ];
 
-  const allUsersData = allUsers?.users?.filter((user:TUser) => user?.role !== "admin")
+  const allUsersData = allUsers?.users?.filter((user:TUser) => user?.role !== "admin");
   // Pending KYC user table data
   const pendingKycUserData = allUsersData?.length ? 
     allUsersData?.map((user: TUser, index: number) => ({
