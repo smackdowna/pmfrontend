@@ -11,6 +11,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useApproveKycMutation, useGetSingleUserByIdQuery, useRejectKycMutation } from "../../../../redux/Features/Admin/adminApi";
 import { toast } from "sonner";
 import LoadingSpinner from "../../../../components/Loaders/LoadingSpinner/LoadingSpinner";
+import Ripple from "../../../../components/Reusable/Ripple/Ripple";
 
 const ViewAffiliate = () => {
   const navigate = useNavigate();
@@ -113,6 +114,8 @@ const ViewAffiliate = () => {
           </span>
         </div>
         <div className="flex items-center gap-[10px]">
+        
+
           {/* Reject button that opens the modal */}
           <button
             onClick={handleRejectKyc}
@@ -125,6 +128,7 @@ const ViewAffiliate = () => {
                 "Reject"
             }
           </button>
+         
           <button disabled={isApproving} onClick={handleApproveKyc} className="px-4 py-2 bg-success border-[#051539] rounded-lg text-white">
             {
               isApproving ?
@@ -160,6 +164,19 @@ const ViewAffiliate = () => {
             ))}
           </div>
         </div>
+      </div>
+
+      <div className="flex items-center justify-end gap-4">
+      <Ripple styles="rounded-xl">
+        <Link to={"/admin/affiliates"} className="bg-neutral-60 border border-neutral-55 py-[10px] px-4 text-primary-10 text-sm leading-5 font-semibold w-full rounded-lg text-center flex items-center gap-2 justify-center">
+          Go Back
+        </Link>
+      </Ripple>
+      <Ripple styles="rounded-xl">
+        <button className="bg-primary-10 border border-neutral-55 py-[10px] px-4 text-white text-sm leading-5 font-semibold w-full rounded-lg text-center">
+          Save Details
+        </button>
+      </Ripple>
       </div>
 
       {/* ReasonForRejection Modal */}
