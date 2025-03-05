@@ -102,6 +102,8 @@ const ViewAffiliate = () => {
   //   setIsModalOpen(false);
   // };
 
+  console.log(user?.user?.bankInfo);
+
   return (
     <div className="flex flex-col p-6 bg-[#F8FAFC] gap-8 w-full">
       <div className="flex items-center w-full justify-between">
@@ -114,7 +116,7 @@ const ViewAffiliate = () => {
           </span>
         </div>
         <div className="flex items-center gap-[10px]">
-        
+
 
           {/* Reject button that opens the modal */}
           <button
@@ -128,7 +130,7 @@ const ViewAffiliate = () => {
                 "Reject"
             }
           </button>
-         
+
           <button disabled={isApproving} onClick={handleApproveKyc} className="px-4 py-2 bg-success border-[#051539] rounded-lg text-white">
             {
               isApproving ?
@@ -154,29 +156,39 @@ const ViewAffiliate = () => {
                 passBookImage={user?.user?.passbookImage?.url}
               />
             </div>
-            {user?.user?.bankInfo?.map((_: TBankInfo, index: number) => (
-              <BankInfo
-                key={index}
-                index={index}
-                register={register}
-                errors={errors}
-              />
-            ))}
+            {user?.user?.bankInfo?.length > 0
+              ? user?.user?.bankInfo?.map((_: TBankInfo, index: number) => (
+                <BankInfo
+                  key={index}
+                  index={index}
+                  register={register}
+                  errors={errors}
+                />
+              ))
+              : [0].map((_, index) => (
+                <BankInfo
+                  key={index}
+                  index={index}
+                  register={register}
+                  errors={errors}
+                />
+              ))}
+
           </div>
         </div>
       </div>
 
       <div className="flex items-center justify-end gap-4">
-      <Ripple styles="rounded-xl">
-        <Link to={"/admin/affiliates"} className="bg-neutral-60 border border-neutral-55 py-[10px] px-4 text-primary-10 text-sm leading-5 font-semibold w-full rounded-lg text-center flex items-center gap-2 justify-center">
-          Go Back
-        </Link>
-      </Ripple>
-      <Ripple styles="rounded-xl">
-        <button className="bg-primary-10 border border-neutral-55 py-[10px] px-4 text-white text-sm leading-5 font-semibold w-full rounded-lg text-center">
-          Save Details
-        </button>
-      </Ripple>
+        <Ripple styles="rounded-xl">
+          <Link to={"/admin/affiliates"} className="bg-neutral-60 border border-neutral-55 py-[10px] px-4 text-primary-10 text-sm leading-5 font-semibold w-full rounded-lg text-center flex items-center gap-2 justify-center">
+            Go Back
+          </Link>
+        </Ripple>
+        <Ripple styles="rounded-xl">
+          <button className="bg-primary-10 border border-neutral-55 py-[10px] px-4 text-white text-sm leading-5 font-semibold w-full rounded-lg text-center">
+            Save Details
+          </button>
+        </Ripple>
       </div>
 
       {/* ReasonForRejection Modal */}
