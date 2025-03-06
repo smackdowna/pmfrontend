@@ -70,7 +70,7 @@ const BankInfo: React.FC<TBankInfoProps> = ({
           onChange={(e) => handleBankInfoChange(e, "ifscCode")}
           isRequired={false}
         />
-        <div className="flex flex-col xl:flex-row gap-4">
+        <div className="flex flex-col xl:flex-row gap-4 w-full">
           <TextInput
             label="Bank Name"
             {...register(`bankInfo.${index}.bankName`)}

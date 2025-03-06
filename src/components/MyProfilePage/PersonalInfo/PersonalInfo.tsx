@@ -4,6 +4,7 @@ import TextInput from "../../../components/Reusable/TextInput/TextInput";
 import SelectDropdown from "../../Reusable/Dropdown/SelectDropdown";
 import { ICONS } from "../../../assets";
 import { useLocation } from "react-router-dom";
+import { stateOptions } from "./stateData";
 
 type TPersonalInfo = {
   register?: any;
@@ -16,36 +17,6 @@ const PersonalInfo: React.FC<TPersonalInfo> = ({ register, errors, mobileNumber 
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState<boolean>(false);
   const genderOptions = ["Male", "Female", "Other"];
-  const stateOptions: string[] = [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttar Pradesh",
-    "Uttarakhand",
-    "West Bengal"
-  ];
   const countryOptions: string[] = ["India"];
   const occupationOptions: string[] = [
     "Students",
