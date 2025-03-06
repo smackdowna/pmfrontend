@@ -62,59 +62,60 @@ const MyProfile = () => {
   console.log(myProfile);
 
 
-   const [frontFileNames, setFrontFileNames] = useState({
-        adImageFile: "",
-        panImageFile: "",
-        passbookImageFile: "",
-        docImage: "",
-    });
+  const [frontFileNames, setFrontFileNames] = useState({
+    adImageFile: "",
+    panImageFile: "",
+    passbookImageFile: "",
+    docImage: "",
+  });
 
-   const [backFileNames, setBackFileNames] = useState({
-        adImageFile: "",
-        panImageFile: "",
-        passbookImageFile: "",
-        docImage: "",
-    });
+  const [backFileNames, setBackFileNames] = useState({
+    adImageFile: "",
+    panImageFile: "",
+    passbookImageFile: "",
+    docImage: "",
+  });
 
-    const [frontFiles, setFrontFiles] = useState({
-        adImageFile: null,
-        panImageFile: null,
-        passbookImageFile: null,
-        docImage: null,
-    });
+  const [frontFiles, setFrontFiles] = useState({
+    adImageFile: null,
+    panImageFile: null,
+    passbookImageFile: null,
+    docImage: null,
+  });
 
-    const [backFiles, setBackFiles] = useState({
-        adImageFile: null,
-        panImageFile: null,
-        passbookImageFile: null,
-        docImage: null,
-    });
+  const [backFiles, setBackFiles] = useState({
+    adImageFile: null,
+    panImageFile: null,
+    passbookImageFile: null,
+    docImage: null,
+  });
+  console.log(frontFiles, backFiles);
 
-    const handleFileChangeFront = (name: string, file: File | null) => {
-        if (file) {
-          setFrontFileNames((prev) => ({
-                ...prev,
-                [name]: file.name,
-            }));
-            setFrontFiles((prev) => ({
-                ...prev,
-                [name]: file,
-            }));
-        }
-    };
+  const handleFileChangeFront = (name: string, file: File | null) => {
+    if (file) {
+      setFrontFileNames((prev) => ({
+        ...prev,
+        [name]: file.name,
+      }));
+      setFrontFiles((prev) => ({
+        ...prev,
+        [name]: file,
+      }));
+    }
+  };
 
-    const handleFileChangeBack = (name: string, file: File | null) => {
-        if (file) {
-            setBackFileNames((prev) => ({
-                ...prev,
-                [name]: file.name,
-            }));
-            setBackFiles((prev) => ({
-                ...prev,
-                [name]: file,
-            }));
-        }
-    };
+  const handleFileChangeBack = (name: string, file: File | null) => {
+    if (file) {
+      setBackFileNames((prev) => ({
+        ...prev,
+        [name]: file.name,
+      }));
+      setBackFiles((prev) => ({
+        ...prev,
+        [name]: file,
+      }));
+    }
+  };
 
   const handleEditProfileData = (data: TProfileData) => {
     console.log(data);
@@ -148,7 +149,8 @@ const MyProfile = () => {
                 <IdentityInfo register={register} errors={errors} setSelectedDocument={setSelectedDocument} selectedDocument={selectedDocument} frontFileNames={frontFileNames} backFileNames={backFileNames} onFileChangeFront={handleFileChangeFront} onFileChangeBack={handleFileChangeBack} />
                 {/* <UploadProof register={register} errors={errors} /> */}
                 <UploadedProofs
-                  addharCardImage={myProfile?.user?.addharCard?.adImage?.url}
+                  docName={myProfile?.user?.document?.doctype}
+                  docImage={myProfile?.user?.document?.docFrontImage?.url}
                   panCardImage={myProfile?.user?.panCard?.panImage?.url}
                   passBookImage={myProfile?.user?.passbookImage?.url}
                 />
