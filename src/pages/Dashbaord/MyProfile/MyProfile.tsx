@@ -89,6 +89,7 @@ const MyProfile = () => {
         passbookImageFile: null,
         docImage: null,
     });
+  console.log(frontFiles, backFiles);
 
     const handleFileChangeFront = (name: string, file: File | null) => {
         if (file) {
