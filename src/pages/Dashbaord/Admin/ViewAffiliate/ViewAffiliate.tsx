@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from "react";
 import { ICONS } from "../../../../assets";
 import PersonalInfo from "../../../../components/MyProfilePage/PersonalInfo/PersonalInfo";
 import { useForm } from "react-hook-form";
@@ -8,10 +9,11 @@ import { TBankInfo, TProfileData } from "../../../../types/profileData.types";
 import KYCStatus from "../../../../components/MyProfilePage/KycDetails/KYCStatus/KYCStatus";
 import UploadedProofs from "../../../../components/MyProfilePage/UploadedProofs/UploadedProofs";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useApproveKycMutation, useGetSingleUserByIdQuery, useRejectKycMutation } from "../../../../redux/Features/Admin/adminApi";
+import { useApproveKycMutation, useGetSingleUserByIdQuery, useRejectKycMutation, useUpdateUserDetailsMutation } from "../../../../redux/Features/Admin/adminApi";
 import { toast } from "sonner";
 import LoadingSpinner from "../../../../components/Loaders/LoadingSpinner/LoadingSpinner";
 import Ripple from "../../../../components/Reusable/Ripple/Ripple";
+import { BankInfoField, TSetupProfileData } from "../../../Auth/SetupProfile/SetupProfile";
 
 const ViewAffiliate = () => {
   const navigate = useNavigate();
@@ -20,12 +22,36 @@ const ViewAffiliate = () => {
   const { data: user } = useGetSingleUserByIdQuery(id);
   const [approveKyc, { isLoading: isApproving }] = useApproveKycMutation();
   const [rejectKyc, { isLoading: isRejecting }] = useRejectKycMutation();
+  const [updateUserDetails, { isLoading: isUpdating }] = useUpdateUserDetailsMutation();
+  const [selectedDocument, setSelectedDocument] = useState<string>("");
 
   const {
     register,
+    handleSubmit,
     formState: { errors },
     setValue,
   } = useForm<TProfileData>();
+
+  const [bankInfo, setBankInfo] = useState([
+    {
+      accholderName: "",
+      accNumber: "",
+      accType: "Savings",
+      ifscCode: "",
+      bankName: "",
+      bankBranch: "",
+      nominName: "",
+      nomiRelation: "",
+    },
+  ]);
+
+  const handleBankInfoChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, field: BankInfoField) => {
+    setBankInfo(prev => {
+      const updatedBankInfo = [...prev];
+      updatedBankInfo[0][field] = e.target.value;
+      return updatedBankInfo;
+    });
+  };
 
   useEffect(() => {
     if (user) {
@@ -40,6 +66,8 @@ const ViewAffiliate = () => {
       setValue("city", user?.user?.city);
       setValue("state", user?.user?.state);
       setValue("country", user?.user?.country);
+      setValue("addline1", user?.user?.addline1);
+      setValue("addline2", user?.user?.addline2);
       setValue("pinCode", user?.user?.pinCode);
       setValue("occupation", user?.user?.occupation);
       setValue("language", user?.user?.language);
@@ -60,7 +88,6 @@ const ViewAffiliate = () => {
       }
     }
   }, [user, setValue]);
-
 
   const handleApproveKyc = async () => {
     try {
@@ -89,6 +116,143 @@ const ViewAffiliate = () => {
     }
   };
 
+  const [frontFileNames, setFrontFileNames] = useState({
+    adImageFile: "",
+    panImageFile: "",
+    passbookImageFile: "",
+    docImage: "",
+  });
+
+  const [backFileNames, setBackFileNames] = useState({
+    adImageFile: "",
+    panImageFile: "",
+    passbookImageFile: "",
+    docImage: "",
+  });
+
+  const [frontFiles, setFrontFiles] = useState({
+    docFrontImageFile: null,
+  });
+
+  const [backFiles, setBackFiles] = useState({
+    docBackImageFile: null,
+  });
+
+
+
+
+  // -------- For PAN Card ----- (Start)
+
+  const [fileNames, setFileNames] = useState({
+    panImageFile: "",
+    passbookImageFile: "",
+  });
+
+  const [files, setFiles] = useState({
+    panImageFile: null,
+    passbookImageFile: null,
+  });
+
+  const handleFileChange = (name: string, file: File | null) => {
+    if (file) {
+      setFileNames((prev) => ({
+        ...prev,
+        [name]: file.name,
+      }));
+      setFiles((prev) => ({
+        ...prev,
+        [name]: file,
+      }));
+    }
+  };
+  // -------- PAN Card end ------
+
+
+  const handleFileChangeFront = (name: string, file: File | null) => {
+    if (file) {
+      setFrontFileNames((prev) => ({
+        ...prev,
+        [name]: file.name,
+      }));
+      setFrontFiles((prev) => ({
+        ...prev,
+        [name]: file,
+      }));
+    }
+  };
+
+  const handleFileChangeBack = (name: string, file: File | null) => {
+    if (file) {
+      setBackFileNames((prev) => ({
+        ...prev,
+        [name]: file.name,
+      }));
+      setBackFiles((prev) => ({
+        ...prev,
+        [name]: file,
+      }));
+    }
+  };
+
+
+
+
+  const handleUpdateUserDetails = async (data: TSetupProfileData) => {
+    try {
+      const formData = new FormData();
+
+      // Appending text fields
+      formData.append('full_name', data.full_name);
+      formData.append('email', data.email);
+      formData.append('gender', data.gender);
+      formData.append('dob', data.dob);
+      formData.append('mobileNumber', data?.mobileNumber);
+      formData.append('occupation', data.occupation);
+      formData.append('country', data.country);
+      formData.append('state', data.state);
+      formData.append('city', data.city);
+      formData.append('pinCode', data.pinCode);
+      formData.append('panNumber', data.panNumber);
+      formData.append('refralCode', data.refralCode);
+      formData.append('addline1', data.addline1);
+      formData.append('addline2', data.addline2);
+
+      // Appending document details
+      formData.append('doctype', selectedDocument);
+      formData.append('documentNumber', data.documentNumber);
+
+      // front side doc image
+      if (frontFiles.docFrontImageFile) {
+        if (frontFiles.docFrontImageFile) {
+          formData.append('docFrontImageFile', frontFiles.docFrontImageFile);
+        }
+      }
+
+      // back side doc image
+      if (backFiles.docBackImageFile) {
+        if (backFiles.docBackImageFile) {
+          formData.append('docBackImageFile', backFiles.docBackImageFile);
+        }
+      }
+
+      // Appending bank info
+      formData.append('bankInfo', JSON.stringify(bankInfo));
+
+      // Appending pan card image
+      if (files.panImageFile) formData.append('panImageFile', files.panImageFile);
+      // Appending pass book image
+      if (files.passbookImageFile) formData.append('passbookImageFile', files.passbookImageFile);
+
+      const response = await updateUserDetails({ id, formData }).unwrap();
+      if (response?.user) {
+        toast.success(response?.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error((err as any)?.data?.message);
+    }
+  };
+
   // State to manage the modal visibility
   // const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -102,7 +266,7 @@ const ViewAffiliate = () => {
   //   setIsModalOpen(false);
   // };
 
-  console.log(user?.user?.bankInfo);
+  console.log(user?.user);
 
   return (
     <div className="flex flex-col p-6 bg-[#F8FAFC] gap-8 w-full">
@@ -141,17 +305,20 @@ const ViewAffiliate = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-col gap-8 mt-8">
+      <form onSubmit={handleSubmit(handleUpdateUserDetails)} className="flex flex-col gap-8 mt-8">
         <PersonalInfo register={register} errors={errors} />
         <div className="flex flex-col gap-4">
           <p className="text-neutral-90 font-semibold">KYC Details</p>
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-4">
               <KYCStatus kycStatus={user?.user?.kyc_status} />
-              <IdentityInfo register={register} errors={errors} />
+              <IdentityInfo register={register} errors={errors} setSelectedDocument={setSelectedDocument} selectedDocument={selectedDocument}
+                frontFileNames={frontFileNames} backFileNames={backFileNames} onFileChangeFront={handleFileChangeFront} onFileChangeBack={handleFileChangeBack}
+                handleFileChange={handleFileChange} fileNames={fileNames} />
               {/* <UploadProof register={register} errors={errors} /> */}
               <UploadedProofs
-                addharCardImage={user?.user?.addharCard?.adImage?.url}
+                docName={user?.user?.document?.doctype}
+                docImage={user?.user?.document?.docFrontImage?.url}
                 panCardImage={user?.user?.panCard?.panImage?.url}
                 passBookImage={user?.user?.passbookImage?.url}
               />
@@ -160,6 +327,9 @@ const ViewAffiliate = () => {
               ? user?.user?.bankInfo?.map((_: TBankInfo, index: number) => (
                 <BankInfo
                   key={index}
+                  handleBankInfoChange={handleBankInfoChange}
+                  handleFileChange={handleFileChange}
+                  fileNames={fileNames}
                   index={index}
                   register={register}
                   errors={errors}
@@ -168,6 +338,9 @@ const ViewAffiliate = () => {
               : [0].map((_, index) => (
                 <BankInfo
                   key={index}
+                  handleBankInfoChange={handleBankInfoChange}
+                  handleFileChange={handleFileChange}
+                  fileNames={fileNames}
                   index={index}
                   register={register}
                   errors={errors}
@@ -176,20 +349,24 @@ const ViewAffiliate = () => {
 
           </div>
         </div>
-      </div>
 
-      <div className="flex items-center justify-end gap-4">
-        <Ripple styles="rounded-xl">
-          <Link to={"/admin/affiliates"} className="bg-neutral-60 border border-neutral-55 py-[10px] px-4 text-primary-10 text-sm leading-5 font-semibold w-full rounded-lg text-center flex items-center gap-2 justify-center">
-            Go Back
-          </Link>
-        </Ripple>
-        <Ripple styles="rounded-xl">
-          <button className="bg-primary-10 border border-neutral-55 py-[10px] px-4 text-white text-sm leading-5 font-semibold w-full rounded-lg text-center">
-            Save Details
-          </button>
-        </Ripple>
-      </div>
+        <div className="flex items-center justify-end gap-4">
+          <Ripple styles="rounded-xl">
+            <Link to={"/admin/affiliates"} className="bg-neutral-60 border border-neutral-55 py-[10px] px-4 text-primary-10 text-sm leading-5 font-semibold w-full rounded-lg text-center flex items-center gap-2 justify-center">
+              Go Back
+            </Link>
+          </Ripple>
+          <Ripple styles="rounded-xl">
+            <button type="submit" className="bg-primary-10 border border-neutral-55 py-[10px] px-4 text-white text-sm leading-5 font-semibold w-full rounded-lg text-center">
+              {
+                isUpdating ? "Loading..." : 'Save Details'
+              }
+            </button>
+          </Ripple>
+        </div>
+      </form>
+
+
 
       {/* ReasonForRejection Modal */}
       {/* <ReasonForRejection open={isModalOpen} onClose={closeModal} /> */}

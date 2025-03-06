@@ -8,14 +8,15 @@ type TIdentityInfo = {
   errors?: any;
   selectedDocument?: string;
   setSelectedDocument?: (value: string) => void;
+  fileNames?: { [key: string]: string };
   frontFileNames?: { [key: string]: string };
   backFileNames?: { [key: string]: string };
   onFileChangeFront?: (name: string, file: File | null) => void;
   onFileChangeBack?: (name: string, file: File | null) => void;
+  handleFileChange?: (name: string, file: File | null) => void;
 };
 
-const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocument, setSelectedDocument, onFileChangeFront, onFileChangeBack, frontFileNames, backFileNames }) => {
-  console.log(selectedDocument);
+const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocument, setSelectedDocument, onFileChangeFront, onFileChangeBack, fileNames, frontFileNames, backFileNames, handleFileChange }) => {
 
   const documentLabel1 =
     selectedDocument === "Aadhar Card" ? "Aadhaar Card Image (Front Side)" :
@@ -53,11 +54,11 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
 
         <UploadInput
           label={"PAN Card Image"}
-          name="identityProofFile"
+          name="panImageFile"
           accept="image/*"
-          error={errors?.identityProofFile || ""}
-          fileName={frontFileNames?.identityProofFile || ""}
-          onFileChange={onFileChangeFront || (() => { })}
+          error={errors?.panImageFile || ""}
+          fileName={fileNames?.panImageFile || ""}
+          onFileChange={handleFileChange || (() => { })}
           isRequired={false}
         />
 

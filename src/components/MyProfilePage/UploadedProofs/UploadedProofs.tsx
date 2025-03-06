@@ -1,11 +1,12 @@
 
 type TUploadedProofs = {
-    addharCardImage: string;
+    docName: string;
+    docImage: string;
     panCardImage: string;
     passBookImage: string;
 }
 
-const UploadedProofs: React.FC<TUploadedProofs> = ({ addharCardImage, panCardImage, passBookImage }) => {
+const UploadedProofs: React.FC<TUploadedProofs> = ({ docName, docImage, panCardImage, passBookImage }) => {
     return (
         <div>
             <p className="text-neutral-90 font-semibold">Uploaded Proofs</p>
@@ -13,10 +14,10 @@ const UploadedProofs: React.FC<TUploadedProofs> = ({ addharCardImage, panCardIma
                 <div className="flex flex-col w-full gap-5">
                     <div className="flex items-center justify-between gap-2">
                         <div>
-                            <p className="text-neutral-65">Aadhaar Card</p>
+                            <p className="text-neutral-65">{docName}</p>
                             {
-                                addharCardImage ?
-                                    <img src={addharCardImage} alt="" className="max-h-[170px] w-full mt-1 rounded-xl border border-neutral-65/40" />
+                                docImage ?
+                                    <img src={docImage} alt="" className="max-h-[170px] w-full mt-1 rounded-xl border border-neutral-65/40" />
                                     :
                                     <p className="text-neutral-90 text-center">No document submitted</p>
                             }

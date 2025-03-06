@@ -69,12 +69,12 @@ const PurchaseHistory = () => {
   const allOrdersHistoryTableData = allOrdersHistory?.orders?.length
     ? allOrdersHistory.orders.map((order: TOrders, index: number) => ({
       no: `${index + 1}`,
-      orderID: order._id,
-      customerName: order.user.full_name,
-      mobile: order.user.mobileNumber,
+      orderID: order?._id,
+      customerName: order?.user?.full_name,
+      mobile: order?.user?.mobileNumber,
       noOfItems: order?.course?.length || 0,
-      amount: `₹${order.totalPrice}`,
-      orderDate: new Date(order.createdAt).toLocaleDateString(),
+      amount: `₹${order?.totalPrice}`,
+      orderDate: new Date(order?.createdAt).toLocaleDateString(),
       action: [
         {
           label: 'View Order',
