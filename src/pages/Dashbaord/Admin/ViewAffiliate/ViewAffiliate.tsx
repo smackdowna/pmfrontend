@@ -5,7 +5,7 @@ import PersonalInfo from "../../../../components/MyProfilePage/PersonalInfo/Pers
 import { useForm } from "react-hook-form";
 import IdentityInfo from "../../../../components/MyProfilePage/KycDetails/IdentityInfo";
 import BankInfo from "../../../../components/MyProfilePage/KycDetails/BankInfo";
-import { TBankInfo, TProfileData } from "../../../../types/profileData.types";
+import { TBankInfo } from "../../../../types/profileData.types";
 import KYCStatus from "../../../../components/MyProfilePage/KycDetails/KYCStatus/KYCStatus";
 import UploadedProofs from "../../../../components/MyProfilePage/UploadedProofs/UploadedProofs";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -16,10 +16,11 @@ import Ripple from "../../../../components/Reusable/Ripple/Ripple";
 
 type BankInfoField = 'accholderName' | 'accNumber' | 'accType' | 'ifscCode' | 'bankName' | 'bankBranch' | 'nominName' | 'nomiRelation';
 
-type TSetupProfileData = {
+export type TProfileData = {
   full_name: string;
   email: string;
   gender: string;
+  language: string;
   dob: string;
   mobileNumber: string;
   occupation: string;
@@ -29,29 +30,20 @@ type TSetupProfileData = {
   pinCode: string;
   panNumber: string;
   adNumber: string;
+  bankInfo: TBankInfo[];
+  panImageFile: string;
+  adImageFile: string;
+  refralCode: string;
   addline1: string;
   addline2: string;
-  bankInfo: [
-    {
-      accholderName: string;
-      accNumber: string;
-      accType: "Savings" | "Current" | "Other";
-      ifscCode: string;
-      bankName: string;
-      bankBranch: string;
-      nominName: string;
-      nomiRelation: string;
-    }
-  ];
-  // document: {
-  doctype: string;
-  documentNumber: string;
-  docImage: any;
-  // },
-  panImageFile: any;
-  adImageFile: any;
-  passbookImageFile: any;
-  refralCode: string;
+  document: {
+    doctype: string;
+    documentNumber: string;
+    docImage: any;
+  },
+} & {
+  // dynamic access for bankInfo properties
+  [key: `bankInfo.${number}.${keyof TBankInfo}`]: any;
 };
 
 const ViewAffiliate = () => {
@@ -120,8 +112,8 @@ const ViewAffiliate = () => {
       setValue("occupation", user?.user?.occupation);
       setValue("language", user?.user?.language);
       setValue("refralCode", user?.user?.refralCode);
-      setValue("documentNumber", user?.user?.document?.documentNumber);
-      setValue("doctype", user?.user?.document?.doctype);
+      setValue("document.documentNumber", user?.user?.document?.documentNumber);
+      setValue("document.doctype", user?.user?.document?.doctype);
       setSelectedDocument(user?.user?.document?.doctype);
       setValue("panNumber", user?.user?.panCard?.panNumber);
       if (user?.user?.bankInfo) {
@@ -244,7 +236,7 @@ const ViewAffiliate = () => {
   };
 
 // Update details function
-  const handleUpdateUserDetails = async (data: TSetupProfileData) => {
+  const handleUpdateUserDetails = async (data: TProfileData) => {
     try {
       const formData = new FormData();
 
@@ -266,7 +258,7 @@ const ViewAffiliate = () => {
 
       // Appending document details
       formData.append('doctype', selectedDocument);
-      formData.append('documentNumber', data.documentNumber);
+      formData.append('documentNumber', data.document.documentNumber);
 
       // front side doc image
       if (frontFiles.docFrontImageFile) {
@@ -299,8 +291,6 @@ const ViewAffiliate = () => {
       toast.error((err as any)?.data?.message);
     }
   };
-
-  console.log(user?.user);
 
   return (
     <div className="flex flex-col p-6 bg-[#F8FAFC] gap-8 w-full">

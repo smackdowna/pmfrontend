@@ -71,7 +71,7 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
           label="Document Type"
           options={["Aadhar Card", "Driving License", "Voter ID", "Passport"]}
           error={errors?.documentType}
-          {...register?.("documentType")}
+          {...register?.("document.documentType")}
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedDocument?.(e.target.value)}
           isRequired={false}
         />
@@ -80,7 +80,7 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
         {selectedDocument === "Aadhar Card" && (
           <TextInput
             label="Aadhaar Card"
-            {...register?.("documentNumber", {
+            {...register?.("document.documentNumber", {
               pattern: {
                 value: /^[2-9]{1}[0-9]{11}$/,
                 message: "Enter a valid Aadhaar Number",
@@ -95,7 +95,7 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
         {selectedDocument === "Driving License" && (
           <TextInput
             label="Driving License"
-            {...register?.("documentNumber", {
+            {...register?.("document.documentNumber", {
             })}
             error={errors?.documentNumber}
             placeholder="Enter your Driving License Number"
@@ -106,7 +106,7 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
         {selectedDocument === "Voter ID" && (
           <TextInput
             label="Voter ID"
-            {...register?.("documentNumber", {
+            {...register?.("document.documentNumber", {
             })}
             error={errors?.documentNumber}
             placeholder="Enter your Voter ID"
@@ -117,7 +117,7 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
         {selectedDocument === "Passport" && (
           <TextInput
             label="Passport"
-            {...register?.("documentNumber", {
+            {...register?.("document.documentNumber", {
             })}
             error={errors?.documentNumber}
             placeholder="Enter your Passport Number"

@@ -66,6 +66,15 @@ const adminApi = baseApi.injectEndpoints({
       invalidatesTags: ["user"],
     }),
 
+    rejectKyc: builder.mutation({
+      query: (id) => ({
+        url: `/user/reject/${id}`,
+        method: "PUT",
+        credentials: "include",
+      }),
+      invalidatesTags: ["user"],
+    }),
+
     updateUserDetails: builder.mutation({
       query: (arg) => {
         const { id, formData } = arg;
@@ -76,16 +85,6 @@ const adminApi = baseApi.injectEndpoints({
           credentials: "include",
         };
       },
-      invalidatesTags: ["user"],
-    }),
-    
-
-    rejectKyc: builder.mutation({
-      query: (id) => ({
-        url: `/user/reject/${id}`,
-        method: "PUT",
-        credentials: "include",
-      }),
       invalidatesTags: ["user"],
     }),
 
