@@ -138,6 +138,8 @@ const ViewAffiliate = () => {
     docBackImageFile: null,
   });
 
+  console.log(backFiles);
+
 
 
 
@@ -318,7 +320,8 @@ const ViewAffiliate = () => {
               {/* <UploadProof register={register} errors={errors} /> */}
               <UploadedProofs
                 docName={user?.user?.document?.doctype}
-                docImage={user?.user?.document?.docFrontImage?.url}
+                docImageFront={user?.user?.document?.docFrontImage?.url}
+                docImageBack={user?.user?.document?.docFrontImage?.url}
                 panCardImage={user?.user?.panCard?.panImage?.url}
                 passBookImage={user?.user?.passbookImage?.url}
               />

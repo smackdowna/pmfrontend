@@ -125,10 +125,10 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
           selectedDocument &&
           <UploadInput
             label={documentLabel1}
-            name="identityProofFile"
+            name="docFrontImageFile"
             accept="image/*"
-            error={errors?.identityProofFile || ""}
-            fileName={frontFileNames?.identityProofFile || ""}
+            error={errors?.docFrontImageFile || ""}
+            fileName={frontFileNames?.docFrontImageFile || ""}
             onFileChange={onFileChangeFront || (() => { })}
           />
         }
@@ -137,10 +137,10 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
           selectedDocument &&
           <UploadInput
             label={documentLabel2}
-            name="identityProofFile"
+            name="docBackImageFile"
             accept="image/*"
-            error={errors?.identityProofFile || ""}
-            fileName={backFileNames?.identityProofFile || ""}
+            error={errors?.docBackImageFile || ""}
+            fileName={backFileNames?.docBackImageFile || ""}
             onFileChange={onFileChangeBack || (() => { })}
           />
         }
