@@ -59,7 +59,7 @@ const adminApi = baseApi.injectEndpoints({
 
     approveKyc: builder.mutation({
       query: (id) => ({
-        url: `/user/${id}`,
+        url: `/user/approve/${id}`,
         method: "PUT",
         credentials: "include",
       }),
