@@ -8,7 +8,7 @@ interface DropdownProps {
   options: string[];
   error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
   isRequired?: boolean;
-  selected?: string;
+  selected?: boolean;
 }
 
 const SelectDropdown = forwardRef<HTMLSelectElement, DropdownProps>(

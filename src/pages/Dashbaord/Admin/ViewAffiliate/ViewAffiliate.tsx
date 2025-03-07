@@ -87,9 +87,9 @@ const ViewAffiliate = () => {
   useEffect(() => {
     if (user?.user?.bankInfo) {
       const bankData = user.user.bankInfo.map((bank: TBankInfo) => ({
-        ...bank, // Spread Operator to Create New Object
+        ...bank,
       }));
-      setBankInfo(bankData); // Set New Copied Array
+      setBankInfo(bankData);
     }
   }, [user]);
 
