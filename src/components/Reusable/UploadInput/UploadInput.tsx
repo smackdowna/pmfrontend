@@ -11,7 +11,7 @@ interface UploadInputProps {
   isRequired? : boolean;
 }
 
-const UploadInput: React.FC<UploadInputProps> = ({ label, name, accept, error, fileName, onFileChange, isRequired=true }) => {
+const UploadInput: React.FC<UploadInputProps> = ({ label, name, accept, error, fileName, onFileChange, isRequired=false }) => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0] || null;
     onFileChange(name, file);

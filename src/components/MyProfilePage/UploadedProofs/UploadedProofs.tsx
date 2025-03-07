@@ -17,7 +17,7 @@ const UploadedProofs: React.FC<TUploadedProofs> = ({ docName, docImageFront, doc
                 <div className="flex flex-col w-full gap-5 text-neutral-65">
                     <div className="flex items-center justify-between gap-2">
                         <div>
-                            <p>{docName}</p>
+                            <p>{docName} Front Side</p>
                             {
                                 docImageFront ?
                                     <img src={docImageFront} alt="" className={imageStyle} />
@@ -26,7 +26,7 @@ const UploadedProofs: React.FC<TUploadedProofs> = ({ docName, docImageFront, doc
                             }
                         </div>
                         <div>
-                            <p>{docName}</p>
+                            <p>{docName} Back Side</p>
                             {
                                 docImageBack ?
                                     <img src={docImageBack} alt="" className={imageStyle} />

@@ -33,7 +33,10 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
           selectedDocument === "Voter ID" ? "Voter ID Image (Back Side)" :
             selectedDocument === "Passport" ? "Passport Image (Back Side)" :
               "Identity Proof Image";
-              
+
+              console.log(documentLabel1);
+              console.log(documentLabel2);
+
   return (
     <div className="bg-white w-full rounded-2xl p-6">
       <div className="flex flex-col gap-4">
@@ -64,6 +67,7 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
 
         {/* Dropdown for selecting document type */}
         <SelectDropdown
+        selected={selectedDocument}
           label="Document Type"
           options={["Aadhar Card", "Driving License", "Voter ID", "Passport"]}
           error={errors?.documentType}

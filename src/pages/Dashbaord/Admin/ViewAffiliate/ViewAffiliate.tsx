@@ -13,7 +13,46 @@ import { useApproveKycMutation, useGetSingleUserByIdQuery, useRejectKycMutation,
 import { toast } from "sonner";
 import LoadingSpinner from "../../../../components/Loaders/LoadingSpinner/LoadingSpinner";
 import Ripple from "../../../../components/Reusable/Ripple/Ripple";
-import { BankInfoField, TSetupProfileData } from "../../../Auth/SetupProfile/SetupProfile";
+
+type BankInfoField = 'accholderName' | 'accNumber' | 'accType' | 'ifscCode' | 'bankName' | 'bankBranch' | 'nominName' | 'nomiRelation';
+
+type TSetupProfileData = {
+  full_name: string;
+  email: string;
+  gender: string;
+  dob: string;
+  mobileNumber: string;
+  occupation: string;
+  country: string;
+  state: string;
+  city: string;
+  pinCode: string;
+  panNumber: string;
+  adNumber: string;
+  addline1: string;
+  addline2: string;
+  bankInfo: [
+    {
+      accholderName: string;
+      accNumber: string;
+      accType: "Savings" | "Current" | "Other";
+      ifscCode: string;
+      bankName: string;
+      bankBranch: string;
+      nominName: string;
+      nomiRelation: string;
+    }
+  ];
+  // document: {
+  doctype: string;
+  documentNumber: string;
+  docImage: any;
+  // },
+  panImageFile: any;
+  adImageFile: any;
+  passbookImageFile: any;
+  refralCode: string;
+};
 
 const ViewAffiliate = () => {
   const navigate = useNavigate();
@@ -45,6 +84,15 @@ const ViewAffiliate = () => {
     },
   ]);
 
+  useEffect(() => {
+    if (user?.user?.bankInfo) {
+      const bankData = user.user.bankInfo.map((bank: TBankInfo) => ({
+        ...bank, // Spread Operator to Create New Object
+      }));
+      setBankInfo(bankData); // Set New Copied Array
+    }
+  }, [user]);
+
   const handleBankInfoChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, field: BankInfoField) => {
     setBankInfo(prev => {
       const updatedBankInfo = [...prev];
@@ -72,7 +120,9 @@ const ViewAffiliate = () => {
       setValue("occupation", user?.user?.occupation);
       setValue("language", user?.user?.language);
       setValue("refralCode", user?.user?.refralCode);
-      setValue("adNumber", user?.user?.addharCard?.adNumber);
+      setValue("documentNumber", user?.user?.document?.documentNumber);
+      setValue("doctype", user?.user?.document?.doctype);
+      setSelectedDocument(user?.user?.document?.doctype);
       setValue("panNumber", user?.user?.panCard?.panNumber);
       if (user?.user?.bankInfo) {
         user.user.bankInfo.forEach((bank: TBankInfo, index: number) => {
@@ -138,10 +188,6 @@ const ViewAffiliate = () => {
     docBackImageFile: null,
   });
 
-  console.log(backFiles);
-
-
-
 
   // -------- For PAN Card ----- (Start)
 
@@ -169,7 +215,7 @@ const ViewAffiliate = () => {
   };
   // -------- PAN Card end ------
 
-
+// Handle Front Image
   const handleFileChangeFront = (name: string, file: File | null) => {
     if (file) {
       setFrontFileNames((prev) => ({
@@ -183,6 +229,7 @@ const ViewAffiliate = () => {
     }
   };
 
+  // Handle Back Image
   const handleFileChangeBack = (name: string, file: File | null) => {
     if (file) {
       setBackFileNames((prev) => ({
@@ -196,9 +243,7 @@ const ViewAffiliate = () => {
     }
   };
 
-
-
-
+// Update details function
   const handleUpdateUserDetails = async (data: TSetupProfileData) => {
     try {
       const formData = new FormData();
@@ -255,19 +300,6 @@ const ViewAffiliate = () => {
     }
   };
 
-  // State to manage the modal visibility
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Function to open the modal
-  // const openModal = () => {
-  //   setIsModalOpen(true);
-  // };
-
-  // Function to close the modal
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  // };
-
   console.log(user?.user);
 
   return (
@@ -321,7 +353,7 @@ const ViewAffiliate = () => {
               <UploadedProofs
                 docName={user?.user?.document?.doctype}
                 docImageFront={user?.user?.document?.docFrontImage?.url}
-                docImageBack={user?.user?.document?.docFrontImage?.url}
+                docImageBack={user?.user?.document?.docBackImage?.url}
                 panCardImage={user?.user?.panCard?.panImage?.url}
                 passBookImage={user?.user?.passbookImage?.url}
               />
