@@ -8,14 +8,15 @@ type TIdentityInfo = {
   errors?: any;
   selectedDocument?: string;
   setSelectedDocument?: (value: string) => void;
+  fileNames?: { [key: string]: string };
   frontFileNames?: { [key: string]: string };
   backFileNames?: { [key: string]: string };
   onFileChangeFront?: (name: string, file: File | null) => void;
   onFileChangeBack?: (name: string, file: File | null) => void;
+  handleFileChange?: (name: string, file: File | null) => void;
 };
 
-const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocument, setSelectedDocument, onFileChangeFront, onFileChangeBack, frontFileNames, backFileNames }) => {
-  console.log(selectedDocument);
+const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocument, setSelectedDocument, onFileChangeFront, onFileChangeBack, fileNames, frontFileNames, backFileNames, handleFileChange }) => {
 
   const documentLabel1 =
     selectedDocument === "Aadhar Card" ? "Aadhaar Card Image (Front Side)" :
@@ -32,7 +33,10 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
           selectedDocument === "Voter ID" ? "Voter ID Image (Back Side)" :
             selectedDocument === "Passport" ? "Passport Image (Back Side)" :
               "Identity Proof Image";
-              
+
+              console.log(documentLabel1);
+              console.log(documentLabel2);
+
   return (
     <div className="bg-white w-full rounded-2xl p-6">
       <div className="flex flex-col gap-4">
@@ -53,20 +57,21 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
 
         <UploadInput
           label={"PAN Card Image"}
-          name="identityProofFile"
+          name="panImageFile"
           accept="image/*"
-          error={errors?.identityProofFile || ""}
-          fileName={frontFileNames?.identityProofFile || ""}
-          onFileChange={onFileChangeFront || (() => { })}
+          error={errors?.panImageFile || ""}
+          fileName={fileNames?.panImageFile || ""}
+          onFileChange={handleFileChange || (() => { })}
           isRequired={false}
         />
 
         {/* Dropdown for selecting document type */}
         <SelectDropdown
+        selected={selectedDocument}
           label="Document Type"
           options={["Aadhar Card", "Driving License", "Voter ID", "Passport"]}
           error={errors?.documentType}
-          {...register?.("documentType")}
+          {...register?.("document.documentType")}
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedDocument?.(e.target.value)}
           isRequired={false}
         />
@@ -75,7 +80,7 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
         {selectedDocument === "Aadhar Card" && (
           <TextInput
             label="Aadhaar Card"
-            {...register?.("documentNumber", {
+            {...register?.("document.documentNumber", {
               pattern: {
                 value: /^[2-9]{1}[0-9]{11}$/,
                 message: "Enter a valid Aadhaar Number",
@@ -90,7 +95,7 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
         {selectedDocument === "Driving License" && (
           <TextInput
             label="Driving License"
-            {...register?.("documentNumber", {
+            {...register?.("document.documentNumber", {
             })}
             error={errors?.documentNumber}
             placeholder="Enter your Driving License Number"
@@ -101,7 +106,7 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
         {selectedDocument === "Voter ID" && (
           <TextInput
             label="Voter ID"
-            {...register?.("documentNumber", {
+            {...register?.("document.documentNumber", {
             })}
             error={errors?.documentNumber}
             placeholder="Enter your Voter ID"
@@ -112,7 +117,7 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
         {selectedDocument === "Passport" && (
           <TextInput
             label="Passport"
-            {...register?.("documentNumber", {
+            {...register?.("document.documentNumber", {
             })}
             error={errors?.documentNumber}
             placeholder="Enter your Passport Number"
@@ -124,10 +129,10 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
           selectedDocument &&
           <UploadInput
             label={documentLabel1}
-            name="identityProofFile"
+            name="docFrontImageFile"
             accept="image/*"
-            error={errors?.identityProofFile || ""}
-            fileName={frontFileNames?.identityProofFile || ""}
+            error={errors?.docFrontImageFile || ""}
+            fileName={frontFileNames?.docFrontImageFile || ""}
             onFileChange={onFileChangeFront || (() => { })}
           />
         }
@@ -136,10 +141,10 @@ const IdentityInfo: React.FC<TIdentityInfo> = ({ register, errors, selectedDocum
           selectedDocument &&
           <UploadInput
             label={documentLabel2}
-            name="identityProofFile"
+            name="docBackImageFile"
             accept="image/*"
-            error={errors?.identityProofFile || ""}
-            fileName={backFileNames?.identityProofFile || ""}
+            error={errors?.docBackImageFile || ""}
+            fileName={backFileNames?.docBackImageFile || ""}
             onFileChange={onFileChangeBack || (() => { })}
           />
         }

@@ -42,7 +42,7 @@ const userApi = baseApi.injectEndpoints({
     updateProfile: builder.mutation({
       query: (profileUpdatedData) => ({
         method: "PUT",
-        url: `/auth/me/update`,
+        url: `/me/update`,
         body: profileUpdatedData,
         credentials: "include",
       }),

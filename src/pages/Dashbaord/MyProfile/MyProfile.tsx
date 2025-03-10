@@ -7,17 +7,24 @@ import IdentityInfo from "../../../components/MyProfilePage/KycDetails/IdentityI
 import BankInfo from "../../../components/MyProfilePage/KycDetails/BankInfo";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { useGetMeQuery } from "../../../redux/Features/User/userApi";
+import { useGetMeQuery, useUpdateProfileMutation } from "../../../redux/Features/User/userApi";
 import { Helmet } from "react-helmet-async";
 import UploadedProofs from "../../../components/MyProfilePage/UploadedProofs/UploadedProofs";
 import KYCStatus from "../../../components/MyProfilePage/KycDetails/KYCStatus/KYCStatus";
 import { TBankInfo, TProfileData } from "../../../types/profileData.types";
+import { toast } from "sonner";
+import { BankInfoField } from "../../Auth/SetupProfile/SetupProfile";
+import Ripple from "../../../components/Reusable/Ripple/Ripple";
+import { Link } from "react-router-dom";
 
 const MyProfile = () => {
   // Getting loggedin user profile data
-  const { data: myProfile } = useGetMeQuery({});
+  const { data: user } = useGetMeQuery({});
   const [isKycClicked, setIsKycClicked] = useState<boolean>(false);
   const [selectedDocument, setSelectedDocument] = useState<string>("");
+  const [updateProfile, { isLoading: isUpdating }] = useUpdateProfileMutation();
+
+
   const {
     register,
     handleSubmit,
@@ -25,28 +32,61 @@ const MyProfile = () => {
     setValue,
   } = useForm<TProfileData>();
 
+  const [bankInfo, setBankInfo] = useState([
+    {
+      accholderName: "",
+      accNumber: "",
+      accType: "Savings",
+      ifscCode: "",
+      bankName: "",
+      bankBranch: "",
+      nominName: "",
+      nomiRelation: "",
+    },
+  ]);
+
   useEffect(() => {
-    if (myProfile) {
-      setValue("full_name", myProfile?.user?.full_name);
-      setValue("email", myProfile?.user?.email);
-      setValue("mobileNumber", myProfile?.user?.mobileNumber);
-      setValue("gender", myProfile?.user?.gender);
-      const formattedDob = myProfile?.user?.dob
-        ? new Date(myProfile.user.dob).toISOString().split('T')[0]
+    if (user?.user?.bankInfo) {
+      const bankData = user.user.bankInfo.map((bank: TBankInfo) => ({
+        ...bank,
+      }));
+      setBankInfo(bankData);
+    }
+  }, [user]);
+
+  const handleBankInfoChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, field: BankInfoField) => {
+    setBankInfo(prev => {
+      const updatedBankInfo = [...prev];
+      updatedBankInfo[0][field] = e.target.value;
+      return updatedBankInfo;
+    });
+  };
+
+  useEffect(() => {
+    if (user) {
+      setValue("full_name", user?.user?.full_name);
+      setValue("email", user?.user?.email);
+      setValue("mobileNumber", user?.user?.mobileNumber);
+      setValue("gender", user?.user?.gender);
+      const formattedDob = user?.user?.dob
+        ? new Date(user.user.dob).toISOString().split('T')[0]
         : '';
       setValue("dob", formattedDob);
-      setValue("city", myProfile?.user?.city);
-      setValue("state", myProfile?.user?.state);
-      setValue("addline1", myProfile?.user?.addline1);
-      setValue("addline2", myProfile?.user?.addline2);
-      setValue("country", myProfile?.user?.country);
-      setValue("pinCode", myProfile?.user?.pinCode);
-      setValue("occupation", myProfile?.user?.occupation);
-      setValue("refralCode", myProfile?.user?.refralCode);
-      setValue("adNumber", myProfile?.user?.addharCard?.adNumber);
-      setValue("panNumber", myProfile?.user?.panCard?.panNumber);
-      if (myProfile?.user?.bankInfo) {
-        myProfile.user.bankInfo.forEach((bank: TBankInfo, index: number) => {
+      setValue("city", user?.user?.city);
+      setValue("state", user?.user?.state);
+      setValue("country", user?.user?.country);
+      setValue("addline1", user?.user?.addline1);
+      setValue("addline2", user?.user?.addline2);
+      setValue("pinCode", user?.user?.pinCode);
+      setValue("occupation", user?.user?.occupation);
+      setValue("language", user?.user?.language);
+      setValue("refralCode", user?.user?.refralCode);
+      setValue("document.documentNumber", user?.user?.document?.documentNumber);
+      setValue("document.doctype", user?.user?.document?.doctype);
+      setSelectedDocument(user?.user?.document?.doctype);
+      setValue("panNumber", user?.user?.panCard?.panNumber);
+      if (user?.user?.bankInfo) {
+        user.user.bankInfo.forEach((bank: TBankInfo, index: number) => {
           setValue(`bankInfo.${index}.accholderName` as keyof TProfileData, bank.accholderName);
           setValue(`bankInfo.${index}.accNumber` as keyof TProfileData, bank.accNumber);
           setValue(`bankInfo.${index}.accType` as keyof TProfileData, bank.accType);
@@ -58,30 +98,29 @@ const MyProfile = () => {
         });
       }
     }
-  }, [myProfile, setValue]);
-  console.log(myProfile);
+  }, [user, setValue]);
 
+  const [frontFileNames, setFrontFileNames] = useState({
+    adImageFile: "",
+    panImageFile: "",
+    passbookImageFile: "",
+    docImage: "",
+  });
 
-   const [frontFileNames, setFrontFileNames] = useState({
-        adImageFile: "",
-        panImageFile: "",
-        passbookImageFile: "",
-        docImage: "",
-    });
+  const [backFileNames, setBackFileNames] = useState({
+    adImageFile: "",
+    panImageFile: "",
+    passbookImageFile: "",
+    docImage: "",
+  });
 
-   const [backFileNames, setBackFileNames] = useState({
-        adImageFile: "",
-        panImageFile: "",
-        passbookImageFile: "",
-        docImage: "",
-    });
+  const [frontFiles, setFrontFiles] = useState({
+    docFrontImageFile: null,
+  });
 
-    const [frontFiles, setFrontFiles] = useState({
-        adImageFile: null,
-        panImageFile: null,
-        passbookImageFile: null,
-        docImage: null,
-    });
+  const [backFiles, setBackFiles] = useState({
+    docBackImageFile: null,
+  });
 
     const [backFiles, setBackFiles] = useState({
         adImageFile: null,
@@ -91,78 +130,192 @@ const MyProfile = () => {
     });
   console.log(frontFiles, backFiles);
 
-    const handleFileChangeFront = (name: string, file: File | null) => {
-        if (file) {
-          setFrontFileNames((prev) => ({
-                ...prev,
-                [name]: file.name,
-            }));
-            setFrontFiles((prev) => ({
-                ...prev,
-                [name]: file,
-            }));
-        }
-    };
+  // -------- For PAN Card ----- (Start)
 
-    const handleFileChangeBack = (name: string, file: File | null) => {
-        if (file) {
-            setBackFileNames((prev) => ({
-                ...prev,
-                [name]: file.name,
-            }));
-            setBackFiles((prev) => ({
-                ...prev,
-                [name]: file,
-            }));
-        }
-    };
+  const [fileNames, setFileNames] = useState({
+    panImageFile: "",
+    passbookImageFile: "",
+  });
 
-  const handleEditProfileData = (data: TProfileData) => {
-    console.log(data);
-  }
+  const [files, setFiles] = useState({
+    panImageFile: null,
+    passbookImageFile: null,
+  });
+
+  const handleFileChange = (name: string, file: File | null) => {
+    if (file) {
+      setFileNames((prev) => ({
+        ...prev,
+        [name]: file.name,
+      }));
+      setFiles((prev) => ({
+        ...prev,
+        [name]: file,
+      }));
+    }
+  };
+  // -------- PAN Card end ------
+
+  // Handle Front Image
+  const handleFileChangeFront = (name: string, file: File | null) => {
+    if (file) {
+      setFrontFileNames((prev) => ({
+        ...prev,
+        [name]: file.name,
+      }));
+      setFrontFiles((prev) => ({
+        ...prev,
+        [name]: file,
+      }));
+    }
+  };
+
+  // Handle Back Image
+  const handleFileChangeBack = (name: string, file: File | null) => {
+    if (file) {
+      setBackFileNames((prev) => ({
+        ...prev,
+        [name]: file.name,
+      }));
+      setBackFiles((prev) => ({
+        ...prev,
+        [name]: file,
+      }));
+    }
+  };
+
+  // Update details function
+  const handleUpdateProfileData = async (data: TProfileData) => {
+    try {
+      const formData = new FormData();
+
+      // Appending text fields
+      formData.append('full_name', data.full_name);
+      formData.append('email', data.email);
+      formData.append('gender', data.gender);
+      formData.append('dob', data.dob);
+      formData.append('mobileNumber', data?.mobileNumber);
+      formData.append('occupation', data.occupation);
+      formData.append('country', data.country);
+      formData.append('state', data.state);
+      formData.append('city', data.city);
+      formData.append('pinCode', data.pinCode);
+      formData.append('panNumber', data.panNumber);
+      formData.append('refralCode', data.refralCode);
+      formData.append('addline1', data.addline1);
+      formData.append('addline2', data.addline2);
+
+      // Appending document details
+      formData.append('doctype', selectedDocument);
+      formData.append('documentNumber', data.document.documentNumber);
+
+      // front side doc image
+      if (frontFiles.docFrontImageFile) {
+        if (frontFiles.docFrontImageFile) {
+          formData.append('docFrontImageFile', frontFiles.docFrontImageFile);
+        }
+      }
+
+      // back side doc image
+      if (backFiles.docBackImageFile) {
+        if (backFiles.docBackImageFile) {
+          formData.append('docBackImageFile', backFiles.docBackImageFile);
+        }
+      }
+
+      // Appending bank info
+      formData.append('bankInfo', JSON.stringify(bankInfo));
+
+      // Appending pan card image
+      if (files.panImageFile) formData.append('panImageFile', files.panImageFile);
+      // Appending pass book image
+      if (files.passbookImageFile) formData.append('passbookImageFile', files.passbookImageFile);
+
+      const response = await updateProfile(formData).unwrap();
+      if (response?.user) {
+        toast.success(response?.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error((err as any)?.data?.message);
+    }
+  };
+
+  console.log(user?.user?.document?.docBackImage?.url);
+
+
   return (
     <div>
       <Helmet>
         <title>PMGURUKKUL | My Profile</title>
       </Helmet>
-      <div className="flex items-center justify-start gap-3">
-        <img src={ICONS.ArrowLeft} alt="Profile" className="size-9" />
-        <h1 className="text-2xl font-semibold text-neutral-90">My Profile</h1>
-      </div>
-      <form onSubmit={handleSubmit(handleEditProfileData)} className="flex flex-col gap-8 mt-8">
-        <PersonalInfo register={register} errors={errors} />
+      <div className="flex items-center justify-between">
+        <div className="flex items-center justify-start gap-3">
+          <img src={ICONS.ArrowLeft} alt="Profile" className="size-9" />
+          <h1 className="text-2xl font-semibold text-neutral-90">My Profile</h1>
+        </div>
+
         <div className="flex justify-end">
-          <button
+          {/* <button
             onClick={() => setIsKycClicked(!isKycClicked)}
-            type="submit"
+            type="button"
             className="px-6 py-3 bg-primary-10 text-white rounded-xl text-lg font-semibold">
             Submit KYC Information
-          </button>
+          </button> */}
+
+          <Ripple styles="rounded-xl">
+            <button onClick={() => setIsKycClicked(!isKycClicked)} type="button" className="bg-primary-10 border border-neutral-55 py-[10px] px-4 text-white text-sm leading-5 font-semibold w-full rounded-lg text-center">
+              Submit KYC Information
+            </button>
+          </Ripple>
         </div>
+      </div>
+
+
+      <form onSubmit={handleSubmit(handleUpdateProfileData)} className="flex flex-col gap-8 mt-8">
+        <PersonalInfo register={register} errors={errors} />
+
         {
           isKycClicked &&
           <div className="flex flex-col gap-4">
             <p className="text-neutral-90 font-semibold">KYC Details</p>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-4">
-                <KYCStatus kycStatus={myProfile?.user?.kyc_status} />
-                <IdentityInfo register={register} errors={errors} setSelectedDocument={setSelectedDocument} selectedDocument={selectedDocument} frontFileNames={frontFileNames} backFileNames={backFileNames} onFileChangeFront={handleFileChangeFront} onFileChangeBack={handleFileChangeBack} />
+                <KYCStatus kycStatus={user?.user?.kyc_status} />
+                <IdentityInfo register={register} errors={errors} setSelectedDocument={setSelectedDocument} selectedDocument={selectedDocument} frontFileNames={frontFileNames} backFileNames={backFileNames} onFileChangeFront={handleFileChangeFront} onFileChangeBack={handleFileChangeBack} handleFileChange={handleFileChange} fileNames={fileNames} />
                 {/* <UploadProof register={register} errors={errors} /> */}
                 <UploadedProofs
-                  addharCardImage={myProfile?.user?.addharCard?.adImage?.url}
-                  panCardImage={myProfile?.user?.panCard?.panImage?.url}
-                  passBookImage={myProfile?.user?.passbookImage?.url}
+                  docName={user?.user?.document?.doctype}
+                  docImageFront={user?.user?.document?.docFrontImage?.url}
+                  docImageBack={user?.user?.document?.docBackImage?.url}
+                  panCardImage={user?.user?.panCard?.panImage?.url}
+                  passBookImage={user?.user?.passbookImage?.url}
                 />
               </div>
-              {(myProfile?.user?.bankInfo?.length ? myProfile.user.bankInfo : [{}]).map(
+              {(user?.user?.bankInfo?.length ? user.user.bankInfo : [{}]).map(
                 (_: TBankInfo, index: number) => (
-                  <BankInfo key={index} index={index} register={register} errors={errors} />
+                  <BankInfo handleBankInfoChange={handleBankInfoChange} key={index} index={index} register={register} errors={errors} />
                 )
               )}
 
             </div>
           </div>
         }
+
+        <div className="flex items-center justify-end gap-4">
+          <Ripple styles="rounded-xl">
+            <Link to={"/admin/affiliates"} className="bg-neutral-60 border border-neutral-55 py-[10px] px-4 text-primary-10 text-sm leading-5 font-semibold w-full rounded-lg text-center flex items-center gap-2 justify-center">
+              Go Back
+            </Link>
+          </Ripple>
+          <Ripple styles="rounded-xl">
+            <button type="submit" className="bg-primary-10 border border-neutral-55 py-[10px] px-4 text-white text-sm leading-5 font-semibold w-full rounded-lg text-center">
+              {
+                isUpdating ? "Loading..." : 'Save Details'
+              }
+            </button>
+          </Ripple>
+        </div>
       </form>
     </div>
   );

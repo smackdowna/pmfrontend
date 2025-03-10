@@ -59,7 +59,7 @@ const adminApi = baseApi.injectEndpoints({
 
     approveKyc: builder.mutation({
       query: (id) => ({
-        url: `/user/${id}`,
+        url: `/user/approve/${id}`,
         method: "PUT",
         credentials: "include",
       }),
@@ -72,6 +72,19 @@ const adminApi = baseApi.injectEndpoints({
         method: "PUT",
         credentials: "include",
       }),
+      invalidatesTags: ["user"],
+    }),
+
+    updateUserDetails: builder.mutation({
+      query: (arg) => {
+        const { id, formData } = arg;
+        return {
+          url: `/user/${id}`,
+          method: "PUT",
+          body: formData,
+          credentials: "include",
+        };
+      },
       invalidatesTags: ["user"],
     }),
 
@@ -132,6 +145,7 @@ export const {
   useGetAllOrdersQuery,
   useGetSingleOrderByIdQuery,
   useGetSingleUserByIdQuery,
+  useUpdateUserDetailsMutation,
   useApproveKycMutation,
   useRejectKycMutation,
   useApprovePayoutMutation,

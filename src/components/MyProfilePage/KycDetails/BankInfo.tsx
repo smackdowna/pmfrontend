@@ -11,7 +11,8 @@ type TBankInfoProps = {
   index?: number;
   handleBankInfoChange?: (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>, field: BankInfoField) => void;
   fileNames?: { [key: string]: string };
-  onFileChange?: (name: string, file: File | null) => void;
+  // onFileChange?: (name: string, file: File | null) => void;
+  handleFileChange?: (name: string, file: File | null) => void;
 };
 
 const BankInfo: React.FC<TBankInfoProps> = ({
@@ -20,7 +21,8 @@ const BankInfo: React.FC<TBankInfoProps> = ({
   index = 0,
   handleBankInfoChange = () => { },
   fileNames,
-  onFileChange,
+  // onFileChange,
+  handleFileChange,
 }) => {
   return (
     <div className="bg-white w-full rounded-2xl p-6">
@@ -112,7 +114,7 @@ const BankInfo: React.FC<TBankInfoProps> = ({
           accept="image/*"
           error={errors?.passbookImageFile || ""}
           fileName={fileNames?.passbookImageFile || ""}
-          onFileChange={onFileChange || (() => { })}
+          onFileChange={handleFileChange || (() => { })}
           isRequired={false}
         />
       </div>
