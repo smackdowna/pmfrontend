@@ -88,6 +88,8 @@ const PurchaseHistory = () => {
     }))
     : [];
 
+    console.log(allOrdersHistory);
+
   return (
     <>
       <Helmet>
