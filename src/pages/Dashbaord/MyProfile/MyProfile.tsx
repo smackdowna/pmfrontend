@@ -122,6 +122,13 @@ const MyProfile = () => {
     docBackImageFile: null,
   });
 
+    const [backFiles, setBackFiles] = useState({
+        adImageFile: null,
+        panImageFile: null,
+        passbookImageFile: null,
+        docImage: null,
+    });
+  console.log(frontFiles, backFiles);
 
   // -------- For PAN Card ----- (Start)
 
