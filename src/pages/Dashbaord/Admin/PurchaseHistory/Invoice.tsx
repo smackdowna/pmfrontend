@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
 });
 
 const Invoice = ({ order }: { order: TOrders }) => {
+  const gstAmount = order?.totalPrice ? (order.totalPrice * Number(order?.gst)) / (100 + Number(order?.gst)) : 0;
   if (!order || !order._id) {
     return <Text>Invalid Order</Text>;
   }
@@ -123,12 +124,16 @@ const Invoice = ({ order }: { order: TOrders }) => {
           </View>
 
           {/* Course Details */}
-          <View style={[styles.tableRow, styles.rowFontSize]}>
-            <Text style={[styles.tableCell, styles.cellWithBorder]}>Marketing Mastery</Text>
+         {
+          order?.course?.map((course:any) => 
+            <View key={course?._id} style={[styles.tableRow, styles.rowFontSize]}>
+            <Text style={[styles.tableCell, styles.cellWithBorder]}>{course?.title}</Text>
             <Text style={[styles.tableCell, styles.cellWithBorder]}>1</Text>
             <Text style={[styles.tableCell, styles.cellWithBorder]}>999293</Text>
-            <Text style={styles.tableCell}>1499</Text>
+            <Text style={styles.tableCell}>{order?.discountedPrice}</Text>
           </View>
+          )
+         }
 
 
           {/* Subtotal */}
@@ -136,15 +141,15 @@ const Invoice = ({ order }: { order: TOrders }) => {
             <Text style={styles.tableCell}></Text>
             <Text style={styles.tableCell}></Text>
             <Text style={[styles.tableCell, styles.cellWithBorder, { textAlign: 'right', fontWeight: 'bold' }]}>Sub Total:</Text>
-            <Text style={[styles.tableCell, { fontWeight: 'bold' }]}>1270.34</Text>
+            <Text style={[styles.tableCell, { fontWeight: 'bold' }]}>{order?.discountedPrice}</Text>
           </View>
 
           {/* Tax Row */}
           <View style={[styles.tableRow, styles.rowFontSize]}>
-            <Text style={[styles.tableCell, styles.cellWithBorder, { fontWeight: 'bold' }]}>Tax 19%:</Text>
-            <Text style={[styles.tableCell, styles.cellWithBorder]}>CGST: 9%</Text>
-            <Text style={[styles.tableCell, styles.cellWithBorder]}>CGST Amt: 114.33</Text>
-            <Text style={[styles.tableCell, styles.cellWithBorder, { fontWeight: 'bold' }]}>12312</Text>
+            <Text style={[styles.tableCell, styles.cellWithBorder, { fontWeight: 'bold' }]}>Tax {order?.gst}%:</Text>
+            <Text style={[styles.tableCell, styles.cellWithBorder]}>CGST: 0%</Text>
+            <Text style={[styles.tableCell, styles.cellWithBorder]}>CGST Amt: 0</Text>
+            <Text style={[styles.tableCell, styles.cellWithBorder, { fontWeight: 'bold' }]}>{gstAmount.toFixed(2)}</Text>
           </View>
 
 
@@ -153,7 +158,7 @@ const Invoice = ({ order }: { order: TOrders }) => {
             <Text style={[styles.tableCell, { textAlign: 'right' }]}></Text>
             <Text style={styles.tableCell}></Text>
             <Text style={[styles.tableCell, { textAlign: 'right', fontWeight: 'bold' }]}>Total:</Text>
-            <Text style={[styles.tableCell, { fontWeight: 'bold' }]}>1499</Text>
+            <Text style={[styles.tableCell, { fontWeight: 'bold' }]}>{order?.totalPrice}</Text>
           </View>
         </View>
 
